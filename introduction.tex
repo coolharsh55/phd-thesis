@@ -1,34 +1,48 @@
 \chapter{Introduction}
 \label{chapter:introduction}
 
-\section{Background}
-% privacy
+\section{Background \& Motivation}
+% privacy laws across the world
+% disconnect with technological progress
 To date, 132 of the 206 states listed by the United Nations (UN) have a privacy law which regulates the usage of personal data \cite{greenleaf_global_2019}.
-However, their intended application suffers from a disconnect with the rapid progresses in technology. In particular, the use of internet as a medium for data exchange and its pervasiveness and connectivity to individuals via devices such as the smartphone has led to industrial data harvesting at large scales. 
+However, their intended application suffers from a disconnect with the rapid progresses in technology. In particular, the use of internet as a medium for data exchange and its pervasiveness and connectivity to individuals via devices such as the smartphone has led to industrial data harvesting at large scales \cite{christl_networks_2016}. 
 
+% GDPR
 To counter this problem, lawmakers in the European Union (EU) passed the General Data Protection Regulation (GDPR) \cite{noauthor_regulation_2016} in 2016 with the aim of providing individuals with the right to information and control over use of their personal data, and to simplify the regulation requirements for organisations through a unified regulation across the EU.
 Compared with its predecessor - the Data Protection Directive (DPD) \cite{noauthor_directive_1995}, the GDPR provides a significantly large number of obligations and requirements for the processing of personal data, and is applicable for processing taking place or involving individuals in the EU.
 The GDPR has received a large amount of attention due to its prospective fines which can be up to 4\% of an organisation's annual turnover or €20 million - whichever is greater. 
 To date, there have been over 70 publicly known instances of fines associated with the GDPR \cite{noauthor_gdpr_nodate}, the largest of which was the disruptive €50 million fine to internet giant and Android developer Google \cite{noauthor_cnils_2019}.
 
+% more GDPR
 The combination of new requirements and significant fines has provided the community with an incentive to utilise technology in meeting the obligations and requirements stipulated by GDPR towards its compliance. 
 Such technology has applicability across the EU as GDPR provides a uniform set of compliance requirements, and with national privacy laws effectively being adaptations of the GDPR \cite{mccullagh_national_2019}.
 Furthermore, GDPR has influenced upcoming privacy laws, such as the California Consumer Protection Act (CCPA) \cite{noauthor_assembly_2018}, which have similarities in requirements and provide compliance technologies the potential of application at a global scale.
 
-Compared to other privacy laws, including its predecessor DPD, GDPR provides significantly stricter and verbose requirements for the processing of personal data and requires organisations to explicitly document information specific to its obligations in order to be compliant. At the same time, being in force for a short time, the interpretation of its clauses in terms of compliance awaits clarification through legal opinions and decisions by supervisory authorities and courts.
-Thus, while there are ...
+% acknowledge existence of ISO
+Existing efforts, such as the International Organization for Standardization (ISO), have addressed this change by updating standards to meet increased requirements with global privacy laws.
+In the context of GDPR, ISO/IEC 27001 defines requirements for an information security management system, and its extension ISO/IEC 27701 defines a privacy information management system, which together provide a framework for managing privacy risks associated with personal data processing.
+Adherence to such standards provides a commonality in the information management practices of an organisation, and assists in the compliance process by providing a structured interpretation of practices based on the standard specification, which is demonstrated through certification with the standard.
 
+% challenges in developing technological solutions
+Technological development of solutions for legal compliance face two problems in general: the first being algorithmic interpretation of the requirements associated with legal compliance - which is difficult as the text used in a legal document such as the GDPR does not readily lead to a data model due to ambiguity and uncertainty in its legal interpretation, especially in domain specific use-cases.
+In addition, because the law has been enforced for a comparatively short period, the interpretation of its clauses in terms of requirements and compliance awaits clarification through legal opinions and decisions by supervisory authorities and courts.
+Which means that there is no existing case law to provide usable interpretation of the law towards development of related technology.
+The second problem is that regardless of how technology is used in the compliance process, formal investigations of legal compliance require information to be documented and associated with the specifics of the law they intend to comply with - in this case the specific articles of GDPR.
+Traditionally, this is carried out through creation of legal documentation by legal experts, lawyers, and legal departments.
+Therefore, technological solutions addressing GDPR compliance should incorporate also incorporate information documentation in addition to assessment of compliance. 
+
+% problem with existing text based approaches
+While there has been significant work in the use of technology to address and evaluate compliance in the last decade \cite{sadiq_modeling_2007,otto_addressing_2007,gordon_rules_2009,fellmann_state---art_2014,benyoucef_information_2015,elgammal_formalizing_2016,kirrane_access_2016}, there is a lack of attention towards the second problem of documenting information.
+While contemporary methods are sufficient to meet legal requirements, their use of text-based document formats prevents effective technological solutions that can be scaled, automated, or utilised in an information management system. To enable such approaches, information must be represented using machine-readable formats which can enable the use of querying to retrieve information as well as validation methods to check its correctness. Furthermore, the need to share information between stakeholders leads to the necessity of it being interoperable, which is also important towards transparency in the compliance process. By using open and interoperable standards, the commonality in representation and interpretation of information benefits stakeholders and reduces costs associated with innovation in the legal community. 
+
+% information associated with gdpr compliance
+Compared to other privacy laws, including its predecessor DPD, GDPR provides significantly stricter and verbose requirements for the processing of personal data and requires organisations to explicitly document information specific to its obligations in order to be compliant.
+This information consists of identification of which clauses are applicable to the specific use-case of an organisation, and the steps taken to achieve compliance with their requirements and obligations.
 From a technical or informational viewpoint, GDPR specifies interactions between entities in a clear manner, for example - a controller using the legal basis of consent is required to provide certain information about processing activities to the data subject, or how the controller needs to inform supervisory authorities of data breach. Furthermore, this information is also necessary to be maintained, evaluated, and documented in order to demonstrate compliance to a Supervisory Authority as part of an investigation. At the same time, this information is also associated with other stakeholders - such as through privacy policies, user agreements, terms and conditions, or even controller - processor agreements. This shows that information associated with GDPR compliance is also useful or used in other applications and involves several stakeholders.
 
-% Assessment of GDPR compliance requires an understanding of how the personal data is processed, along with information regarding purposes, activities, and recipients. Furthermore, every instance of processing must be justified by one or more legal bases, of which consent receives special focus due to its specific requirements for validity and compliance. Currently, regulatory authorities and legal firms offer guidance which includes checklists, 
-
-While contemporary methods utilising text-based document formats are sufficient to meet legal requirements, they cannot be scaled, automated, or utilised in an information management system. To enable such approaches, information must be represented using machine-readable formats which can enable the use of querying to retrieve information as well as validation methods to check its correctness. Furthermore, the need to share information between stakeholders leads to the necessity of it being interoperable, which is also important towards transparency in the compliance process. By using open and interoperable standards, a common model can be generated which will benefit stakeholders and reduce costs associated with innovation in the legal community. Existing experience shows how technology has been useful in the finance domain by utilising interoperable standards such as Finance Industry Business Ontology (FIBO). Furthermore, by basing such standards on a common base vocabulary and representation, each stakeholder can adapt it for their specific use-case while relying on the common standards for interoperability.
-
-By being a legislation, GDPR does not readily lead to a technical solution without legal interpretation of what is strictly compliant. Therefore, even when its text is interpreted as a list of requirements or a set of legal obligations and requirements, the formal investigation of compliance requires information associated with specific articles of the GDPR in order to evaluate whether the obligations have been fulfilled and the requirements have been met.
 
 As GDPR is a data protection law, its compliance is concerned primarily with information about the provenance of personal data, where provenance indicates history - such as the source, usage, storage, sharing, archival, and erasure. Furthermore, GDPR also mentions provenance in the future tense to refer to intended interactions with personal data - for example, an indication of how and where the personal data will be shared. These are defined in the legal domain by the terms ex-ante and ex-post respectively.
 While GDPR compliance also involves other information - such as contractual obligations between a Controller and a Processor, or the interactions between Supervisory Authorities regarding investigations - this thesis focuses on the specific obligations and requirements of GDPR that require the documentation of provenance information regarding personal data and consent.
-
 
 % setup a data and metadata market
 \cite{casanovas_european_2016}
