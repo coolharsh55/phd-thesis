@@ -24,43 +24,53 @@ In the context of GDPR, ISO/IEC 27001 defines requirements for an information se
 Adherence to such standards provides a commonality in the information management practices of an organisation, and assists in the compliance process by providing a structured interpretation of practices based on the standard specification, which is demonstrated through certification with the standard.
 
 % challenges in developing technological solutions
-Technological development of solutions for legal compliance face two problems in general: the first being algorithmic interpretation of the requirements associated with legal compliance - which is difficult as the text used in a legal document such as the GDPR does not readily lead to a data model due to ambiguity and uncertainty in its legal interpretation, especially in domain specific use-cases.
-In addition, because the law has been enforced for a comparatively short period, the interpretation of its clauses in terms of requirements and compliance awaits clarification through legal opinions and decisions by supervisory authorities and courts.
-Which means that there is no existing case law to provide usable interpretation of the law towards development of related technology.
-The second problem is that regardless of how technology is used in the compliance process, formal investigations of legal compliance require information to be documented and associated with the specifics of the law they intend to comply with - in this case the specific articles of GDPR.
-Traditionally, this is carried out through creation of legal documentation by legal experts, lawyers, and legal departments.
-Therefore, technological solutions addressing GDPR compliance should incorporate also incorporate information documentation in addition to assessment of compliance. 
+Technological development of solutions for legal compliance face two problems in general: the first being algorithmic interpretation of the requirements associated with legal compliance - which is difficult as the text used in a legal document such as the GDPR does not readily lead to algorithmic compliance due to ambiguity and uncertainty in its legal interpretation, especially in domain specific use-cases.
+In addition, because GDPR has been enforced for a comparatively short period, the interpretation of its clauses in terms of requirements and compliance relies on clarification through legal opinions and decisions by supervisory authorities and courts.
+The second problem is that regardless of how technology is used in the compliance process, formal investigations of legal compliance require information to be documented and associated with the specifics of the law they intend to comply with - in this case the specific articles and clauses of GDPR.
+Traditionally, this is carried out through creation of documentation by legal experts, lawyers, and legal departments.
+Therefore, technological solutions addressing GDPR compliance should also incorporate information documentation in addition to assessment of compliance. 
 
 % problem with existing text based approaches
-While there has been significant work in the use of technology to address and evaluate compliance in the last decade \cite{sadiq_modeling_2007,otto_addressing_2007,gordon_rules_2009,fellmann_state---art_2014,benyoucef_information_2015,elgammal_formalizing_2016,kirrane_access_2016}, there is a lack of attention towards the second problem of documenting information.
-While contemporary methods are sufficient to meet legal requirements, their use of text-based document formats prevents effective technological solutions that can be scaled, automated, or utilised in an information management system. To enable such approaches, information must be represented using machine-readable formats which can enable the use of querying to retrieve information as well as validation methods to check its correctness. Furthermore, the need to share information between stakeholders leads to the necessity of it being interoperable, which is also important towards transparency in the compliance process. By using open and interoperable standards, the commonality in representation and interpretation of information benefits stakeholders and reduces costs associated with innovation in the legal community. 
+Incorporating legal compliance into a requirements of a business has led to several approaches, which include use of symbolic (mathematical) logic, knowledge representation of legal text as logical rules, deontic rights specifying rights and obligations, defeasible logic based on exceptions, first order temporal logic, access control, markup based representations, and goal modelling of obligations \cite{otto_addressing_2007}.
+While there has been significant work in the use of technology to adopt these approaches towards addressing and evaluating compliance in the last decade \cite{sadiq_modeling_2007,otto_addressing_2007,gordon_rules_2009,fellmann_state---art_2014,benyoucef_information_2015,elgammal_formalizing_2016,kirrane_access_2016}, the issue of associating information with legal documents has received relatively lesser focus.
+While contemporary methods are sufficient to meet legal requirements, their use of text-based document formats prevents effective technological solutions that can be scaled, automated, or utilised in an information management system. To enable such approaches, information must be represented using machine-readable formats which can enable the use of querying to retrieve information as well as validation methods to check its correctness. Furthermore, the need to share information between stakeholders leads to the necessity of it being interoperable, which is also important towards transparency in the compliance process. By using open and interoperable standards, the commonality in representation and interpretation of information benefits stakeholders and reduces costs associated with innovation in the legal community.
+
+% linked data principles and ELI, Akoma Ntoso
+Governmental agencies across the globe have addressed this issue by adopting the principles of Linked Open Data \cite{bizer_linked_2011}, and have produced interoperable standards \cite{palmirani_akoma_2018,european_union_eli_2015,van_opijnen_european_2011} which facilitate use of information in technological solutions.
+In addition to Linked Data, these standards also implement the principles of the Semantic Web \cite{noauthor_semantic_nodate} by utilising the Resource Description Framework (RDF) \cite{noauthor_rdf_2014} to specify information in an interoperable and machine-readable manner.
+This has paved the way for development of technologies that address challenges associated with legal compliance through greater use of automation and scale.
+
+% research incorporating linked data and semantic web
+Consequently, the use of Linked Data and Semantic Web within the legal domain has resulted in the development of ontologies along the dimensions of organising and structuring information, reasoning and problem solving, semantic indexing and search, semantic integration and interoperability, and understanding the domain \cite{rodrigues_legal_2019}.
+Semantic Web is also being used to address the challenges associated with GDPR compliance through commercial solutions as well as large-scale European research projects such as SPECIAL \cite{noauthor_scalable_nodate}, MIREL \cite{noauthor_mirel_nodate}, DAPRECO \cite{noauthor_data_2018-1}, BPR4GDPR \cite{noauthor_bpr4gdpr_nodate}, RestAssured \cite{noauthor_restassured_nodate}.
+The technological solutions developed within these utilise ontologies to represent the information required for compliance, and a corresponding approach that expresses and evaluates obligations for compliance.
+
+%%% link between GDPR compliance and research question???
+
+This thesis is based on identifying approaches in the state of the art incorporating the use of semantic web towards GDPR compliance. More specifically, it focuses on the following three areas
+\begin{enumerate}
+    \item link of information to GDPR - The concepts and relationships defined within these ontologies are based on or derived from an interpretation of the text of the GDPR. 
+    \item 
+    \item 
+\end{enumerate}
+
+While ex-post information is commonly interpreted from the use of activity logs, the ex-post information can be represented as a model or template of what is intended to happen. The term `\textit{lifecycle}` as defined in software engineering and business vocabularies can also be used to refer to information associated in both ex-ante and ex-post phases. Similarly, information about consent, which is one of the legal basis under the GDPR,  can also be documented in the form of lifecycles as its compliance is based on upon how it is obtained and utilised. Therefore, this thesis uses the terms `\textit{provenance}' and `\textit{lifecycle}' to indicate information about the provenance of personal data and consent for both ex-ante and ex-post phases.
+
+\section{Research Question}
+
 
 % information associated with gdpr compliance
 Compared to other privacy laws, including its predecessor DPD, GDPR provides significantly stricter and verbose requirements for the processing of personal data and requires organisations to explicitly document information specific to its obligations in order to be compliant.
 This information consists of identification of which clauses are applicable to the specific use-case of an organisation, and the steps taken to achieve compliance with their requirements and obligations.
 From a technical or informational viewpoint, GDPR specifies interactions between entities in a clear manner, for example - a controller using the legal basis of consent is required to provide certain information about processing activities to the data subject, or how the controller needs to inform supervisory authorities of data breach. Furthermore, this information is also necessary to be maintained, evaluated, and documented in order to demonstrate compliance to a Supervisory Authority as part of an investigation. At the same time, this information is also associated with other stakeholders - such as through privacy policies, user agreements, terms and conditions, or even controller - processor agreements. This shows that information associated with GDPR compliance is also useful or used in other applications and involves several stakeholders.
 
-
 As GDPR is a data protection law, its compliance is concerned primarily with information about the provenance of personal data, where provenance indicates history - such as the source, usage, storage, sharing, archival, and erasure. Furthermore, GDPR also mentions provenance in the future tense to refer to intended interactions with personal data - for example, an indication of how and where the personal data will be shared. These are defined in the legal domain by the terms ex-ante and ex-post respectively.
 While GDPR compliance also involves other information - such as contractual obligations between a Controller and a Processor, or the interactions between Supervisory Authorities regarding investigations - this thesis focuses on the specific obligations and requirements of GDPR that require the documentation of provenance information regarding personal data and consent.
 
-% setup a data and metadata market
-\cite{casanovas_european_2016}
 
-% use of technology for legal compliance
-\cite{sadiq_modeling_2007} process modelling based on legal compliance
-\cite{benyoucef_information_2015} survey of information artefacts used in regulatory compliance - finds - two broad methodologies of technology: for support and for description. methods and guidelines are most common, algorithms and metrics are least frequent, --> regulatory compliance is viewed as identifying relevant requirements in laws and ensuring business processes comply with them --> 80\% of studies focus on compliance modeling and checking; compliance analysis and compliance enactment tasks are neglected. Trend since 2000 onwards: focus is increasing on compliance analysis and enactment, and less on mdoeling.
-\cite{drogkaris_guidance_2018} relation between regulatory compliance and standards, especially those provided by ISO --> privacy standards in context of information security
-\cite{kingston_using_2017} using AI for compliance
-\cite{mommers_understanding_2009} translating law contents to improve dissemination
-
-
-
-While ex-post information is commonly interpreted from the use of activity logs, the ex-post information can be represented as a model or template of what is intended to happen. The term `\textit{lifecycle}` as defined in software engineering and business vocabularies can also be used to refer to information associated in both ex-ante and ex-post phases. Similarly, information about consent, which is one of the legal basis under the GDPR,  can also be documented in the form of lifecycles as its compliance is based on upon how it is obtained and utilised. Therefore, this thesis uses the terms `\textit{provenance}' and `\textit{lifecycle}' to indicate information about the provenance of personal data and consent for both ex-ante and ex-post phases.
 
 With this as the motivation, this thesis focuses on the use of semantic web technologies to represent provenance information for GDPR compliance. Semantic web provides standards for representation (RDF), modelling (RDFS, OWL), querying (SPARQL), and validation (SHACL), as well as the ability to to easily extend or specialise a vocabulary in a compatible manner. Existing work outside the contributions of this thesis (citations to be included) shows the feasibility and usefulness of semantic web regarding GDPR compliance and provides a stronge argument towards its use in this thesis.
 
-\section{Research Question}
 The aim of the thesis is to enable representation of information associated with provenance through the use of semantic web technologies for an interoperable approach towards GDPR compliance. Therefore, the thesis is guided by the following research question -
 \begin{framed}
 \small{Research Question}
