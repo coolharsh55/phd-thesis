@@ -205,67 +205,94 @@ The validation results are persisted and annotated with GDPRtEXT to link them wi
 Furthermore, the approach demonstrates how a combination of ex-ante and ex-post tests are more efficient by abstracting common constraints and validating them at the ex-ante stage, while only the specific constraints associated with individuals and provenance are validated at the ex-post stage based on ex-ante validation results.
 
 Related work in the state of the art use a variety of approaches in the validation and assessment of compliance. The SPECIAL project has investigated the use of OWL2 reasoners to validate consent at ex-ante and ex-post stages \cite{bonatti_fast_2018,dullaert_d3.4_2019}, the application of ODRL policies as a compliance checking mechanism \cite{agarwal_legislative_2018,vos_odrl_2019}. The MIREL project has proposed the use of deontic logic for legal reasoning through the use of LegalRuleML \cite{palmirani_pronto:_2018,monica_modelling_2018}, while the BPR4GDPR project proposes checking provenance logs for conformance to predetermined processes (ex-post analysis) \cite{,mehr_compliance_2019}.
-Compared to the state of the art, the approach provides a novel utilisation of SHACL in the domain of GDPR compliance, as well as in its use of linking tests and results with the GDPR. Furthermore, the approach is also novel in the utilisation of ex-ante and ex-post validation for GDPR compliance.
-A similar use of SHACL utilising P-Plan workflows to validate policies expressed in ODRL for GDPR compliance has been proposed \cite{lieber_policy-compliant_2019}, and demonstrates the further applicability of the contributions of this thesis. 
-
-\subsection{Publications}
-The presentations associated with the research of this thesis are as follows:
-
-\subsubsection{GDPR Ontologies}
-\begin{enumerate}[start]
-    \item \textbf{\bibentry{pandit_gconsent_2019}}
-        \newline
-        This publication presented the GConsent ontology for representing consent and its associated information based on the GDPR
-    \item \textbf{\bibentry{pandit_gdprtext_2018}}
-        \newline
-        This publication presented GDPRtEXT which expresses the text of the GDPR as a linked data resource to enable information to be associated with a specific article or part of the GDPR. It also presented a vocabulary of concepts within the GDPR, and a mapping to re-use approaches from DPD for GDPR.
-    \item \textbf{\bibentry{pandit_modelling_2017}}
-        \newline
-        This publication presented the GDPRov ontology for representing the provenance of personal data and consent for GDPR. It also demonstrated the use of SPARQL queries to represent questions for retrieving information associated with compliance.
-    \item \textbf{\bibentry{fatema_compliance_2017}}
-        \newline
-        This publication presented a preliminary ontology for representing consent, and explored the use of permissions and access control towards a data management model for GDPR.
-    \item \textbf{\bibentry{hadziselimovic_linked_2017}}
-        \newline
-        This publication presented an ontology for representing contracts for sharing data under GDPR by extending the ODRL ontology.
-\end{enumerate}
-
-\subsubsection{Queries and Evaluation of Information}
-\begin{enumerate}[resume]
-    \item \textbf{\bibentry{pandit_test-driven_2019}} (citation to be updated when paper is published in proceedings)
-        \newline
-        This publication presented a method to evaluate and validate information using semantic web technologies and to link the results for compliance with specific articles of the GDPR.
-    \item \textbf{\bibentry{pandit_queryable_2018}}
-        \newline
-        This publication presented the use of SPARQL queries to represent questions associated with compliance and retrieve relevant information using the GDPRtEXT and GDPRov ontologies.
-    \item \textbf{\bibentry{pandit_exploring_2018}}
-        \newline
-        This publication presented an approach for using semantic web technologies to evaluate and validate information associated with compliance and store it as a compliance graph for further analysis.
-\end{enumerate}
-
-\subsubsection{GDPR Information Model}
-\begin{enumerate}[resume]
-    \item \textbf{\bibentry{pandit_exploration_2018}}
-    \item \textbf{\bibentry{pandit_gdpr_2018}}
-\end{enumerate}
-These publications presented a model of interaction between entities as defined by the GDPR, and explored the information categories and interoperability requirements based on existing standards, including those provided by the semantic web.
-
-\subsubsection{Investigated Applications of Research}
-The following publications, though not relevant to answering the research question, present explored applications of the work presented in this thesis. Investigated applications include the generation of compliance datasets from given consent, creating a knowledge-based system for GDPR compliance, extracting and representing provenance metadata from privacy policies, and detecting changes in given consent and activities using graph-based methods.
-\begin{enumerate}[resume]
-    \item \textbf{\bibentry{debruyne_towards_2019}}
-    \item \textbf{\bibentry{pandit_towards_2018}}
-    \item \textbf{\bibentry{pandit_extracting_2018}}
-    \item \textbf{\bibentry{pandit_personalised_2018}}
-    \item \textbf{\bibentry{pandit_ontology_2018}}
-    \item \textbf{\bibentry{pandit_gdpr-driven_2018}}
-\end{enumerate}
+Compared to the state of the art, the approach presented in this thesis is novel in its utilisation of SHACL to validate information and link its results with the GDPR for compliance.
+A similar use of SHACL utilising P-Plan workflows to validate policies expressed in ODRL for GDPR compliance has been proposed \cite{lieber_policy-compliant_2019}, which adds to the applicability of contributions of this thesis. 
 
 \subsection{Participation in DPVCG}
-The Data Privacy Vocabularies and Controls Community Group (DPVCG) is a W3C community group with the aim of developing a vocabulary of privacy terms associated with personal data processing and relevant laws such as the GDPR. The group is consists of community members from diverse domains such as academia, legal experts, lawyers, and industry stakeholders. The DPVCG has produced a deliverable in the form of Data Privacy Vocabulary (DPV), which is an ontological resource for the representation and declaration of information associated with processing of data, and for which the author of this thesis was an editor. The DPV provides a community agreement in the form of a vocabulary of terms and concepts associated with the GDPR, and enables interoperability of compliance-related information.
+The Data Privacy Vocabularies and Controls Community Group\footnote{\url{https://www.w3.org/community/dpvcg/}} (DPVCG) is a W3C community group working towards developing a vocabulary associated with personal data processing based on relevant laws such as GDPR.
+The group was created by members of the SPECIAL project, and currently consists of community members from diverse domains such as academia, legal experts, lawyers, and industry stakeholders.
 
-The research presented in this thesis had an indirect impact on the work of the DPVCG by using the GDPR ontologies as an input as well as through direct participation of the author as an active and contributing member. Whereas the DPV provides a high-level abstraction of terms and concepts, the vocabularies presented in this thesis offer a more verbose model for the representation of information, which makes their usage with the DPV complimentary rather than contradictory. Furthermore, the vocabularies presented in this thesis have been updated to align them with the DPV, providing an opportunity for their usage and adoption through compatibility.
+Currently in operation for over 18 months, the work done within the DPVCG has produced the Data Privacy Vocabulary\footnote{\url{http://w3.org/ns/dpv}} (DPV) , an ontological resource for the representation of information associated with processing of data.
+The DPV provides a community agreement in the form of a vocabulary of terms and concepts associated with the GDPR, and enables interoperability of compliance-related information.
+The work conducted in the creation of DPV has been published in a peer-reviewed conference \cite{pandit_dpv_2019}, and has also been listed as a deliverable within the SPECIAL project \cite{pandit_d6.5_2019} - in both of which the author of this thesis is listed as an editor.
 
+The research presented in this thesis had an impact in the creation of DPV through the use of developed ontologies as an input as well as through direct participation of the author as an active contributing member.
+Comparing them both, the DPV provides a high-level abstraction of terms and concepts, whereas the ontologies in this thesis provide a more verbose model for the representation of information - which makes their usage with the DPV complimentary rather than contradictory.
+Furthermore, the thesis provides a mapping between them to demonstrate similarities and potential for combined usage (see Chapter \ref{chapter:vocabularies}).
+
+\subsection{Publications}
+The following peer-reviewed publications present the research in this thesis:
+
+\subsubsection{GDPR Ontologies}
+The following publications are associated with $RO3$ - developing ontologies for representing the concepts and relationships within the GDPR.
+\begin{enumerate}[start]
+    \item \textbf{\bibentry{pandit_gdprtext_2018}}
+        \newline
+        This publication presents the GDPRtEXT resource consisting of a linked data representation of the text of GDPR, and a thesauri of its concepts. It also provides a mapping from clauses of the DPD to GDPR based on applicability of access control methods developed for DPD towards GDPR compliance. GDPRtEXT fulfils research objective $RO3(a)$, and is instrumental in providing semantic association between information and the GDPR for the approaches presented in this thesis.
+    \item \textbf{\bibentry{pandit_modelling_2017}}
+        \newline
+        This publication presents the GDPRov ontology for representing the provenance of personal data and consent for GDPR, and also discusses the use of its concepts in SPARQL queries for retrieving information associated with compliance. GDPRov fulfils research objective $RO3(b)$, and provides ex-ante and ex-post representations for activities associated with personal data and consent for GDPR.
+    \item \textbf{\bibentry{fatema_compliance_2017}}
+        \newline
+        This publication presents an early collaboration (pre-GDPR) for developing a preliminary ontology for representing consent, and a data management model using access control for GDPR. The early work was crucial towards understanding the complexities of consent, and provided valuable feedback towards the development of GConsent.
+    \item \textbf{\bibentry{pandit_gconsent_2019}}
+        \newline
+        This publication presents the GConsent ontology for representing information about consent as required by the GDPR. GConsent fulfils research objective $RO3(c)$, and provides a verbose representation of consent for information management and documentation.
+    \item \textbf{\bibentry{hadziselimovic_linked_2017}}
+        \newline
+        This publication presents an early collaboration (pre-GDPR) towards developing an ontology for representing data sharing agreements by extending the ODRL ontology based on GDPR. The ontology - called Data Protection Rights Language (DPRL) - enables representation of obligations associated with propagation of rights between parties that share or exchange data.
+\end{enumerate}
+
+\subsubsection{Querying and Evaluating Information for Compliance}
+The following publications are associated with $RO4$ - querying for information, and $RO5$ - validating information for compliance.
+\begin{enumerate}[resume]
+    \item \textbf{\bibentry{pandit_queryable_2018}}
+        \newline
+        This publication presents the use of SPARQL queries to represent questions associated with compliance by using the GDPRtEXT and GDPRov ontologies.
+        It demonstrates effectiveness of SPARQL in retrieving information for GDPR compliance, and fulfils research objective $RO4$.
+    \item \textbf{\bibentry{pandit_test-driven_2019}} (in-press)
+        \newline
+        This publication presents an overview of the approach for validating information using SHACL and associating the results with specific articles of the GDPR. The approach proposes persistence of validation results to create a `compliance graph' that can itself by queried and validated for documenting information for compliance.
+    \item \textbf{\bibentry{pandit_exploring_2018}}
+        \newline
+        This publication presents the implementation of the approach described above for validation of information by utilising the use-case of consent mechanism in a real-world website. It utilises SHACL to validate information represented by GDPRov and GConsent, and uses GDPRtEXT to associate the tests and their results with the GDPR. It also demonstrates the use of SPARQL to identify tasks and reports related to compliance by querying the validation results. The approach demonstrates the usefulness of combining ex-ante and ex-post approaches in terms of efficiency and compliance, and fulfils research objective $RO5$.
+\end{enumerate}
+
+\subsubsection{Model for Information Interoperability in GDPR}
+These publications present a model of interaction between entities as defined by the GDPR, and explore information categories and their interoperability requirements based on existing standards, including those provided by the semantic web.
+The model provides an overview of information flows between stakeholders, and the role of interoperability in facilitating information for compliance between them.
+\begin{enumerate}[resume]
+    \item \textbf{\bibentry{pandit_gdpr_2018}}
+    \item \textbf{\bibentry{pandit_exploration_2018}}
+\end{enumerate}
+
+\subsubsection{Investigated Applications of Research - Information Management}
+The following publications do not address the research question, but consist of applying the research presented in this thesis towards processes that assist with being compliant.
+\begin{enumerate}[resume]
+    \item \textbf{\bibentry{pandit_gdpr-driven_2018}}
+    \newline This publication proposes an approach for detecting changes related to use of personal data and consent in activities by utilising the ex-ante component of GDPRov to represent activities and comparing them using a graph-based algorithm.
+    \item \textbf{\bibentry{pandit_towards_2018}}
+    \newline This publication explores the creation of a knowledge-based framework based on the utilisation of information associated with compliance using semantic web technologies, which can be utilised in applications such as creation of reports, documentation, and assessment of compliance for different stakeholders.
+    \item \textbf{\bibentry{debruyne_towards_2019}}
+    \newline This publication presents an approach for generating just-in-time datasets consisting of personal data based on given consent to ensure processes are compliant in their usage of consent as the legal basis.
+\end{enumerate}
+
+\subsubsection{Investigated Applications of Research - Privacy Policies}
+The following publications do not address the research question, but consist of applying the research presented in this thesis towards privacy policies.
+\begin{enumerate}[resume]
+    \item \textbf{\bibentry{pandit_extracting_2018}}
+    \newline This publication discusses the use of GDPRov to represent extracted extracting information about activities associated with personal data from within a privacy policy.
+    \item \textbf{\bibentry{pandit_ontology_2018}}
+    \newline This publication presents an ontology design pattern that uses GDPRov and GDPRtEXT to represent information about personal data and its processing in a privacy policy.
+    \item \textbf{\bibentry{pandit_personalised_2018}}
+    \newline This publication discusses the personalisation of privacy policies by using information about an individual's personal data processing to generate the text of the policy, and using GDPRtEXT and GDPRov to annotate it for a machine-readable representation.
+\end{enumerate}
+
+\subsubsection{Data Privacy Vocabulary}
+The following publication presents the work related to the creation of the Data Privacy Vocabulary by the DPVCG, and describes the methodology used as well as relation to the existing vocabulary, including those presented in this thesis - namely GDPRtEXT, GDPRov, and GConsent.
+\begin{enumerate}[resume]
+    \item \textbf{\bibentry{pandit_creating_2019}}
+\end{enumerate}
 
 \section{Thesis Overview}
 The rest of this thesis is structured as follows:
