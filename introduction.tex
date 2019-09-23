@@ -70,7 +70,7 @@ The research question investigated in this thesis is:
 \begin{framed}
 \small{Research Question}
 \begin{quote}
-\textbf{To what extent can information regarding activities associated with processing of personal data and consent be represented and associated using Semantic Web technologies with GDPR for compliance?}
+\textbf{To what extent can information regarding activities associated with processing of personal data and consent be represented and associated with the GDPR using Semantic Web technologies with for compliance?}
 \end{quote}
 \end{framed}
 
@@ -131,21 +131,50 @@ $RO5$: Utilise SHACL to:
 \newline\indent\indent\textbf{(b)}: link validation results with GDPR
 \end{framed}
 
-% (optional) How can this research be used to create an interoperable framework for regulatory compliance and governance of data protection?
-% (optional) To design a model for regulatory compliance and governance using the open and extendable aspects of this research
+\section{Research Methodology}\label{sec:intro:research-methodology}
+\begin{verbatim}
+% state of the art
+- sota in what domains? how was sota gathered?
+1> legal information
+- official text of the GDPR, is interpretation and guidance from sources
+- case law as it arose - give examples of cases, expert opinions
+- compliance guidance issued by sources
+2> research
+- legal models for compliance other than GDPR
+-- what were the legal models identified?
+-- role of semantic web in legal models for compliance
+- in-depth review of approaches related to GDPR
+-- academic: semantic web and non-semantic web, semantic web had projects SPECIAL and MIREL, DAPRECO
+-- commercial: details not available, focus on understanding capabilities and tooling offered
 
-% \subsection{Research Scope}\label{sec:intro-scope}
-% The following outlines and limits the scope of this research:
-% \begin{itemize}
-%     \item The work presented in this thesis addresses only the representation and management of information associated with GDPR compliance, and is not intended to evaluate compliance itself, as only supervisory authorities and courts have the legal authority to opine about compliance.
-%     \item The research presented in this thesis is not intended to replace professional opinions such as that offered by lawyers and legal experts. The intention of the work is to demonstrate the applicability and feasibility of using technology as a tool to assist with the compliance process.
-%     \item The thesis aims to provide only the necessary technological basis for information documentation and management with respect to GDPR compliance. Therefore, it is not the aim of this thesis to create a software or tool or product. However, the presented contributions can be utilised in the creation of such tools outside the scope of this thesis.
-%     \item The research presented in this thesis was instigated before the GDPR entered into force on 25\textsuperscript{th} May 2018, and has continued one year past this date. As a result, the work presented here reflects only the legal opinions and judgements available at this time.
-%     \item The GDPR refers to informational categories other than those associated with personal data and consent. However, the scope of this thesis is limited to addressing the requirements of activities limited to personal data and consent.
-%     \item The research presented in this thesis is based on the interpretation and understanding of the current status of GDPR compliance requirements to the best of the author's ability, and is subject to change with future development in terms of legal opinions. However, the contributions of this thesis rest on the merits of its technological approaches, which are intended to remain applicable in the foreseeable future.
-% \end{itemize}
+% construction of ontologies
+- methodologies followed - NEON, ontology 101; lack of involvement from legal experts; compare with SPECIAL methodology and MIREL methodology
+- effect methodology for thesis:
+1> gather questions related to information associated with GDPR compliance (With a particular focus on activities related to personal data and consent - use them as competency questions - RO1, RO2
+2> identify concepts and relationships required to answer these
+3> construct preliminary ontology using OWL2 - RO3
+4> assess effectiveness of ontology in answering questions, identify changes required
+5> repeat steps 1-4 for progressive improvement
 
-\section{Research Methodology}
+% querying and validation framework
+1> gather compliance questions - linked to GDPR
+2> express compliance questions using SPARQL reusing concepts from developed ontologies to create 'compliance queries' which can be executed over RDF - RO4
+3> identify constraints and assumptions from questions
+4> express constraints using SHACL - preserve links to GDPR
+5> persist validation report for evaluation and query based on methodology (SEMANTiCS poster) - RO5
+
+% evaluation strategy
+%% ontologies
+- design: best practices in terms of ontology design - OOPS!, WIDOCO
+- quality: publishing best practices advocated by community - WIDOCO (metadata, documentation), w3id, zenodo (DOI), SPARQL endpoint
+- sufficiency: assess whether concepts and relationships are sufficient to answer competency questions
+- comparison against similar ontologies identified in sota
+%% querying and validation framework
+- evaluate ex-ante and ex-post methods for constraint validation
+- compare verbosity of ex-ante vs ex-post e.g. more tests needed to be run
+- assess whether framework is capable of retrieving information based on GDPR concepts and clauses e.g. validation information for specific article
+\end{verbatim}
+
 Initially, a review was undertaken to establish the state of the art for regulatory compliance and the use of semantic web technologies for GDPR. In particular, the review identified and focused on the provenance of information as a gap in the state of the art. This was followed by the creation of research question(s) and objective(s) with the aim of addressing identified gaps.
 
 A theoretical model of information was then created to understand the entities (stakeholders) and their interactions within the context of the GDPR. The model was also used to understand the requirements regarding information for each entity, and to formulate use-cases regarding the use and application of information. Following this, questions to retrieve information were identified based on legal documents published by legal bodies and organisations regarding the GDPR, and represented as constraints and assumptions required to be satisfied by information for compliance. These were then used to identify the set of concepts and relationships necessary to represent the information as OWL2-DL ontologies. The questions were represented as SPARQL queries to retrieve required information for compliance, with SHACL providing a validation and persistence mechanism for evaluation of information correctness regarding compliance.
