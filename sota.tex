@@ -1,6 +1,188 @@
 \chapter{State of the Art}\label{chapter:sota}
+This chapter presents the state of the art (SotA) regarding approaches for GDPR compliance.
+The first section (\autoref{sec:sota:models}) presents an overview of technological approaches for legal compliance to date.
+The second section (\autoref{sec:sota:gdpr-semweb}) presents an overview of approaches for GDPR compliance utilising semantic web, with the third section (\autoref{sec:sota:gdpr-other}) presenting other approaches for GDPR compliance,
+while the fourth section (\autoref{sec:sota:other}) presents approaches regarding regulatory compliance which do not directly concern the GDPR but are relevant towards understanding the SotA.
+The chapter concludes (\autoref{sec:sota:analysis}) with an analysis of presented approaches and a discussion on the identified gaps for further work in the domain of utilising semantic web for GDPR compliance.
 
-\section{Technological Models for Legal Compliance}\label{sec:sota:models}
+\section{Overview of Technological Approaches for Legal Compliance}\label{sec:sota:models}
+This section provides an overview of technological approaches utilised for addressing legal compliance. It presents the different methodologies and frameworks for interpreting requirements from legal documents, and using technological frameworks towards the management of information and compliance.
+To that end, the section utilises surveys and key publications in the last decade (2007-2019) to identify the state of the art.
+
+\cite{otto_addressing_2007} 
+
+\begin{itemize}
+\item Access control and the Resource Description Framework: A survey
+	\begin{itemize}
+	\item access \$ trust policies - refers to actions like authentication, authorization and security preservation. Access policies define permissions, restrictions or prohibitions associated with an asset for making this asset available to a user in a specific role or other related feature of distinction (Kirrane et al. 2015). 
+	\item license policies -  license is used to express generalized terms about the intended usage pattern of a certain asset and usually defines the notion of property associated with a specific asset (such as declaring the degree of permissiveness allowed in the reuse of a certain asset). 
+	\item policy representation - entities, roles, resources, concepts
+	\end{itemize}
+\item Addressing Legal Requirements in Requirements Engineering
+	\begin{itemize}
+	\item symbolic logic / mathematical logic
+		\begin{itemize}
+		\item balance logic with natural language
+		\end{itemize}
+	\item knowledge representation - represent legal text as computer programs or algorithms
+	\item deontic logic - rights and obligations
+	\item defeasible logic - strict rules, defeasible rules, and defeaters
+	\item first order temporal logic - extract key concepts rather than precisely modelling the regulation
+	\item access control - access control techniques to capture the privacy-related elements of legal texts, conditions and obligations that cannot be 9 represented as access control rules are cast instead as external environmental flags
+	\item markup-based representations
+	\item goal based modeling - extracting and representing goals, soft goals, tasks, resources, and social relationships
+	\item reusable requirements catalog - applying requirements engineering to create reusable catalog of legal requirements
+	\end{itemize}
+\item A genealogy and classification of rights expression languages-preliminary results - REL
+	\begin{itemize}
+	\item contract policies -  contract is a legally binding agreement of two or more parties, on the exchange of rights to (digital) goods or services under certain terms and conditions Guth (2004, p. 81)
+	\item enforcement framework - environment in which the access control is enforced
+	\item enforcement mechanism - logic based (DL), rules, semantic web (RDFS, SPARQL)
+	\end{itemize}
+\item Formalizing and appling compliance patterns for business process compliance - survey of applying compliance patterns to business process compliancec
+	\begin{itemize}
+	\item temporal logic
+		\begin{itemize}
+		\item bottom-up - use logical language to represent compliance requirements, and to transform process specifications to formal representations, then verify for compliance
+		\item top-down - processes are represented using high-level abstract langauges, compliance requirments are formalised using temporal logic language, then verified for compliance
+		\end{itemize}
+	\item deontic logic 
+	\item graph pattern matching approaches - pattern specification and matching with querying of business process artefacts
+	\end{itemize}
+\item Legal Compliance by Design (LCbD) and through Design (LCtD): Preliminary Survey - good overview survey of approaches for legal compliance
+	\begin{itemize}
+	\item business process modelling
+		\begin{itemize}
+		\item graph based 
+		\item BPMN
+		\item BPMN-Q
+		\item temporal deontic logic and computation tree logic
+		\item petri nets
+		\item ontologies
+		\end{itemize}
+	\item Methodologies and corporate governace models - ISO etc
+	\item Legal Compliance by Design - includes REL, ODP
+	\end{itemize}
+\item Legal Ontologies and How to Choose Them: the InvestigatiOnt Tool
+	\begin{itemize}
+	\item 12 ontologies 6 legal fields
+		\begin{itemize}
+		\item norms - models norms found in legal documents
+			\begin{itemize}
+			\item LegalRuleML, NRV
+			\end{itemize}
+		\item policies - permissions, mandatory, prohibited actions
+			\begin{itemize}
+			\item ODRL, LDR
+			\end{itemize}
+		\item licenses - actions allowed on resources protected by rights
+			\begin{itemize}
+			\item CC, L4LOD
+			\end{itemize}
+		\item legal documents representation/indexing - textual structure
+			\begin{itemize}
+			\item Eurovoc, ELI
+			\end{itemize}
+		\item privacy in GDPR - model concepts involved in GDPR
+			\begin{itemize}
+			\item GDPRtEXT, Bartolini et al
+			\end{itemize}
+		\item tenders and public procurements - model processes used by administration for services and supplies
+		\end{itemize}
+	\end{itemize}
+\item Legal ontologies over time: A systematic mapping study
+	\begin{itemize}
+	\item legal theories by purpose of ontology
+		\begin{itemize}
+		\item organise and structure information
+		\item reasoning and problem solving
+		\item semantic indexing and search
+		\item semantic integration interation
+		\item understand a domain
+		\end{itemize}
+	\item legal theories by ontology generalisation level
+		\begin{itemize}
+		\item upper
+		\item core
+		\item domain
+		\item application
+		\end{itemize}
+	\item ontology evaluation approaches
+		\begin{itemize}
+		\item specialists
+		\item data-driven
+		\item gold-standard
+		\item case study
+		\item no evaluation / unclear
+		\end{itemize}
+	\end{itemize}
+\item Qualitative Privacy Description Language - survey of privacy policy languages
+	\begin{itemize}
+	\item focus - machine, human, privacy, security
+	\item aspects - authorisation, context, meta, spatial, temporal, user, enterprise, multi-party, law
+	\item syntax - XML/RDF, high-level, logical, specific
+	\end{itemize}
+\item STATE-OF-THE-ART OF BUSINESS PROCESS  COMPLIANCE APPROACHES - survey of information artifacts used in regulatory compliance of business processes [23]
+	\begin{itemize}
+	\item dimensions for compliance checking of business process
+		\begin{itemize}
+		\item scope
+			\begin{itemize}
+			\item order and occurence
+			\item information
+			\item resource
+			\item time
+			\item location
+			\end{itemize}
+		\item lifecycle phase
+			\begin{itemize}
+			\item design
+			\item execution
+			\item after execution
+			\end{itemize}
+		\item formality
+			\begin{itemize}
+			\item verification/validation
+			\item business-oriented
+			\end{itemize}
+		\item contribution type
+			\begin{itemize}
+			\item technical artefact
+			\item method
+			\item other
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+\item Taking stock of legal ontologies: a feature-based comparative analysis — survey of legal ontologies
+	\begin{itemize}
+	\item policies - ODRL, linked data rights
+	\item licenses - L4LOD, CC, REL
+	\item tenders and procurements
+	\item privacy - PrivOnto, GDPRtEXT, PrOnto, Data Protection Ontology (bartolini)
+	\item cross-domains - normative requirements vocabulary, LegalRuleML, Eurovoc, ELI
+	\end{itemize}
+\item Towards an Ontology for Privacy Requirements via a Systematic Literature Review - privacy ontology from survey of studies based on privacy concecpts
+	\begin{itemize}
+	\item organisational
+		\begin{itemize}
+		\item agentive - actor, role, agent, user, stakeholder, person, is\_a, plays
+		\item intentional - goal, objective, task, action, refinement
+		\item informational - asset, information, data, resource, personal info, sensitive info, part\_of, own
+		\item interaction - obj. deleg., perm. deleg., info provision, monitor, obj trust, perm trust
+		\end{itemize}
+	\item risk - risk, threat, inten. threat, casual threat, vulnerability, attack, attacker, attack method, impact, threaten, exploit
+	\item treatment - countermeasure, mitigate, control, treatment, s/p goal, s/p constraint, s/p policy, s/p mechanism
+	\item privacy - sec/priv req., confidentiality, integrity, availability, non-repudiation, notice, anonymity, transparency, accountability
+	\end{itemize}
+\item A methodological framework for aligning business processes and regulatory compliance
+	\begin{itemize}
+	\item process model, compliance monitoring, comliance enforcement
+	\end{itemize}
+\item Compliance by design for artifact-centric business processes - using process models and artifacts to evaluate compliance
+\item Compliance Monitoring as a Service: Requirements, Architecture and Implementation - BPMN notation, evaluate compliance on a continous basis, use of ontology
+\end{itemize}
+
+
 
 \section{Approaches for GDPR compliance utilising Semantic Web}\label{sec:sota:gdpr-semweb}
 
