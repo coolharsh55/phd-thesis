@@ -24,26 +24,57 @@ A survey of approaches within the last 50 years (from 2007) for addressing legal
 	\item \textbf{reusable requirements catalogue}: This approach constructs reusable catalogue of legal requirements derived from legal texts which are then applied to development lifecycles to incorporate compliance into systems. The use of the catalogue enables uncovering ambiguities and inconsistencies through use, and the refinement of the approach over time. The approach has been applied regarding security and personal data protection.
 \end{itemize}
 
-The survey paper provides comments on the applicability as well as limitation of each approach, and  outlines the following objectives an approach must take with respect to requirements engineering in legal contexts:
-\begin{enumerate}
-    \item Identification of relevant regulations
-    \item Classification of regulations with metadata
-    \item Prioritisation of regulations and exceptions
-    \item Management of evolving regulations and law
-    \item Traceability between references and requirements
-    \item Data Dictionary and glossary to ensure consistency
-    \item Semi-automated navigation and searching
-    \item Annotation of regulatory statements
-    \item Queries comparing legal concepts and compliance
-\end{enumerate}{}
+The survey paper provides comments on the applicability as well as limitation of each approach, and  outlines the following requirements engineering objectives (prefix \textit{REO}) an approach must take with in legal contexts to support the analysis of regulatory texts for requirements specification, system design, and compliance monitoring:
+\begin{enumerate}[label={\textit{REO.\theenumi}}]
+    \item \textbf{Identification of relevant regulations}: Finding relevant laws for a given system or process requires understanding of both - the requirements of the process as well as the context of the law. In addition, incorporating case law provides further challenges regarding application of relevant laws to processes due to the specifics and interpretation of requirements involved.
+    \item \textbf{Classification of regulations with metadata}: In view of the above, the regulations need to be annotated or associated with metadata which can be utilised to classify them. This has been achieved to some extent through the EuroVoc\footnote{\url{https://eur-lex.europa.eu/browse/eurovoc.html}} - which is used as a multilingual and multidisciplinary thesaurus in the publication of metadata associated with EU legislations. However, where EuroVoc provides metadata about the domain of the legislation, greater granularity is needed to identify relevant information such as concepts, use-cases, and roles within the legal text.
+    \item \textbf{Prioritisation of regulations and exceptions}: The hierarchical structure of regulations as well as relation to other regulations in terms of exceptions as well as overlaps and contradictions  must be taken into account for developing requirements.
+    \item \textbf{Management of evolving regulations and law}: Changes in regulations need to be assessed by comparing the regulations, understanding the changes in requirements, and their application to existing systems for compliance. This requires traceability between legislations and requirements.
+    \item \textbf{Traceability between references and requirements}: From the above, it is necessary to provide traceability from any section or clause with a reference in the legislation to the legal text being referenced. This is required in order to enable understanding of derived requirements from such sections across legislations.
+    \item \textbf{Data Dictionary and glossary to ensure consistency}: Regulatory compliance makes use of consistent definitions and terminology an important aspect of requirements engineering. These are represented in the form of a data dictionary for domain-specific definitions and acronyms, and are utilised to support the requirements engineering process in providing a unified glossary for specifications, design, and compliance. 
+    \item \textbf{Semi-automated navigation and searching}: The legislation needs to be accessible in both machine-readable as well as human-understandable states so as to enable technological approaches such as information extraction, annotations, searching, and automation in traceability of related information.
+    \item \textbf{Annotation of regulatory statements}: It must be possible to associate annotations or additional information to regulatory statements, for example, with clarification of ambiguities or relevant case laws. Additionally, such annotations are also useful in a requirements engineering process to record assumptions and interpretations, and their usage in systems and applications.
+    \item \textbf{Queries comparing legal concepts and compliance}: Finally, it must be possible query for information both within the text of the regulation as well as its associated information in order to support disambiguation and auditing for compliance. 
+    Queries can assist with identification and comparison of applicable regulations, and to assess whether a particular requirement derived from the regulation has been addressed with respect to its compliance.
+\end{enumerate}
+
+\subsubsection{Discussion}
+While the survey paper does not explicitly mention or refer to the linked data principles \cite{bizer_linked_2011}, some of the above objectives are fulfilled by utilising them in a given approach. Namely, linked data and semantic web provide an interoperable representation based in standards which can be used to define the required metadata regarding legislations, as demonstrated by EuroVoc, which addresses \textit{REO.1}, \textit{REO.2}, and \textit{REO.6} to some extent.
+
+The use of structured representation to define legislations for \textit{REO.3} and \textit{REO.7} is possible using XML and ontologies such as ELI and Akoma Ntoso. However, ELI does not currently offer a way to represent the hierarchical structure of regulations, such as representation of individual articles or clauses, though the European Commission's Publication Office has stated their intention to provide this feature in the future.
+This also limits the applications of \textit{REO.4} and \textit{REO.5} which require the above representation.
+For creation of glossaries from legal text, the requirements of \textit{REO.6} are addressed through existing efforts such as EuroVoc and Interactive Terminology for Europe\footnote{\url{https://iate.europa.eu/}} (IATE), which provide consistent use of terms across domains, though there are no mechanisms to derive definitions from legislations or common interpretations of terms.
+
+Regarding annotations for \textit{REO.8}, there exist standards such as W3C's Web Annotations model\footnote{\url{https://www.w3.org/annotation/}}, which can be utilised to annotate documents in an interoperable format, though they are not intended nor directly applicable for use over legislations.
+Limitations to this are a lack of structured representation with sufficient granularity, for example, to reference individual clauses of text within the document.
+Querying, as required for \textit{REO.9}, is inherently dependant on the underlying information representation, though there are standards such as SQL and SPARQL which provide interoperability in the approach.
 
 \subsection{Approaches based on business process representations}
+The use of approaches utilising business process representations for compliance are summarised in two key surveys. The first \cite{fellmann_state---art_2014} relates to the use of business processes within different phases of compliance, while the second \cite{benyoucef_information_2015} analyses use of information artefacts in business processes for compliance.
 
-\cite{fellmann_state---art_2014}
-business process based compliance approaches
+\subsubsection{Business Processes and Phases of Compliance}
+A survey of business process approaches \cite{fellmann_state---art_2014} uses the following hierarchy of 4 dimensions to categorise approaches:
+\begin{itemize}
+    \item \textbf{Scope}: This dimension relates to the scope in terms of representation of processes, and concerns classes such as order and occurrence, information, resource, time, and location which describe the planning and execution of a process.
+    \item \textbf{Lifecycle Phase}: This dimension indicates the period in time addressed by the representation in terms of design (ex-ante,a-priori,ad-hoc), execution, and after execution (ex-post,a-posteriori,post-hoc). The approaches related to design representation focus on prevention of compliance adherence and avoiding violations by design, whereas those concerned with after execution are focused on demonstration of compliance and detection of violations. Approaches concerned with execution are focused on real-time observation and prevention of violations.
+    \item \textbf{Formality}: This dimension categorises approaches as addressing compliance in terms of its verification and validation, or whether addressing business processes. The approaches addressing business processes are analysed in terms of their annotation and representation of information relevant to compliance, and categorised based on their formality in terms of whether they focus on formalisation, compliance checking, end-user oriented, management orientied, and is a framework or a method.
+    \item \textbf{Contribution Type}: This dimension indicates whether the approach provides a technical artefact as an implementation, or a conceptual model checking method, with approaches not satisfying either criteria being categorised as `other'.
+\end{itemize}
 
-\cite{benyoucef_information_2015}
-information artefacts used in business process for compliance
+\subsubsection{Information Artefacts in Business Processes for Compliance}
+A survey of information artefacts used in business processes for compliance \cite{benyoucef_information_2015} provides the following categories for artefacts based on their type and use. These artefacts are used by business process across all phases (ex-ante, execution, ex-post) of compliance and represent the different stages of compliance management.
+\begin{itemize}
+    \item \textbf{System design artefacts}: These artefacts provide structure or behaviour-related description of a system, through some formalism such as UML or text.
+    \item \textbf{Method}: These artefacts provide definitions of activities to create or interact with a system.
+    \item \textbf{Language or notation}: These artefacts are a formalised system for statements represents parts of reality.
+    \item \textbf{Algorithm}: These artefacts provide executable descriptions of system behaviour.
+    \item \textbf{Guideline}: These artefacts provide suggestion regarding behaviour in specific situations.
+    \item \textbf{Requirements}: These artefacts provide statements about systems and their properties.
+    \item \textbf{Pattern}: These artefacts provide definition of reusable elements of design with its benefits and application contexts.
+    \item \textbf{Metric}: These artefacts provide a mathematical model able to measure aspects of systems or methods.
+\end{itemize}
+
+% provide descriptions from analysis in paper w.r.t. above artefacts
 
 \subsection{Approaches utilising Legal Ontologies}
 
