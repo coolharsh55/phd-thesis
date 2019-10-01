@@ -9,30 +9,47 @@ The chapter concludes (\autoref{sec:sota:analysis}) with an analysis of presente
 This section provides an overview of technological approaches utilised for addressing legal compliance. It presents the different methodologies and frameworks for interpreting requirements from legal documents, and using technological frameworks towards the management of information and compliance.
 To that end, the section utilises surveys and key publications in the last decade (2007-2019) to identify the state of the art.
 
-\cite{otto_addressing_2007} 
+\subsection{Classification of Approaches}
+% 1> surveys of high level approaches to legal compliance
+A survey of approaches within the last 50 years (from 2007) for addressing legal requirements \cite{otto_addressing_2007} provides the following categorisation:
+\begin{itemize}
+    \item \textbf{symbolic or mathematical logic}:  This approach attempts to balance use of natural language in legal documents with symbolic logic in an attempt to avoid ambiguities in interpretation. One of the earliest approaches, it was the precursor to later representations for machine and human readability.
+    \item \textbf{knowledge representation}: This approach attempts to represent legal text as computer programs or algorithms by using logic programming techniques, primarily using Prolog, to avoid ambiguities in interpretation. The approach has been applied only within rigid domains where the law has minimal changes and does not rely on case law for interpretation. Additionally, the approach requires manual construction of logic rules from legal text, which prevents traceability. These challenges have limited its application to areas requiring requirements for system design, such as in software.
+	\item \textbf{deontic logic}: This is another logic-based approach which involves capturing the rights and obligations provided within the law. The approach can be extending from representing this information to utilising it for preparing and assessing of compliance. This provides the necessary requirements which can be utilised in the development of business processes for legal compliance. Deontic logic has also been utilised to represent licensing and agreement requirements similar to those as legal text \cite{pellegrini_genealogy_2018}, and continues to be a topic of research in the areas of legal compliance \cite{palmirani_pronto:_2018,agarwal_legislative_2018,vos_odrl_2019}.
+	\item \textbf{defeasible logic}: This approach consists of formulating rules of different types, namely - strict rules, defeasible rules, and defeaters - in order to represent the normative requirements extracted from legal text. Within the approach, strict rules must always hold, while defeasible rules hole true unless countered by an exception of a defeater. The approach is promised to provide better representation of conflicts in legal text in terms of interpretation as well as governance and jurisdiction requirements.
+	\item \textbf{first order temporal logic}: This approach is based on using first-order temporal logic to extract key concepts such as - context, roles, type of information - and constructing logic-based requirements from those. The approach has not seen a large amount of interest, with existing applications limited to the privacy domain, and utilised for assessing compliance between privacy policies and laws.
+	\item \textbf{access control }: Access control techniques have been utilised to capture the privacy-related elements of legal texts in the form of conditions and obligations that must be incorporated into a system as normative requirements for access to information. Conditions and obligations that cannot be represented as access control rules are incorporated as external environmental flags within the requirements. Utilising access control provides compliance by design, with logging providing transparency and accountability in the process. A survey of access control approaches utilising semantic web \cite{kirrane_access_2016} provides an overview of its applicability for different domains, including privacy enforcement.
+	\item \textbf{markup-based representations}: This approach involves representing the hierarchical structure of legal text using markup-based representations such as SGML and XML. The representation enables the annotation of legal text and addition of metadata pertaining to definitions, acronyms, and citations. It also enables associating information about compliance requirements as well as interpretation. The United Nations and European Commission utilise this approach in publication of legislations and case law through standardised ontologies  \cite{palmirani_akoma_2018,european_union_eli_2015,van_opijnen_european_2011}.
+	\item \textbf{goal based modelling}: This approach involves extracting and representing goals, soft goals, tasks, resources, and social relationships and modelling obligations to represent relationships for actors, dependencies, trust, delegation, and goal refinement. 
+	\item \textbf{reusable requirements catalogue}: This approach constructs reusable catalogue of legal requirements derived from legal texts which are then applied to development lifecycles to incorporate compliance into systems. The use of the catalogue enables uncovering ambiguities and inconsistencies through use, and the refinement of the approach over time. The approach has been applied regarding security and personal data protection.
+\end{itemize}
+
+The survey paper provides comments on the applicability as well as limitation of each approach, and  outlines the following objectives an approach must take with respect to requirements engineering in legal contexts:
+\begin{enumerate}
+    \item Identification of relevant regulations
+    \item Classification of regulations with metadata
+    \item Prioritisation of regulations and exceptions
+    \item Management of evolving regulations and law
+    \item Traceability between references and requirements
+    \item Data Dictionary and glossary to ensure consistency
+    \item Semi-automated navigation and searching
+    \item Annotation of regulatory statements
+    \item Queries comparing legal concepts and compliance
+\end{enumerate}{}
+
+\subsection{Approaches based on business process representations}
+
+\cite{fellmann_state---art_2014}
+business process based compliance approaches
+
+\cite{benyoucef_information_2015}
+information artefacts used in business process for compliance
+
+\subsection{Approaches utilising Legal Ontologies}
 
 \begin{itemize}
-\item Access control and the Resource Description Framework: A survey
-	\begin{itemize}
-	\item access \$ trust policies - refers to actions like authentication, authorization and security preservation. Access policies define permissions, restrictions or prohibitions associated with an asset for making this asset available to a user in a specific role or other related feature of distinction (Kirrane et al. 2015). 
-	\item license policies -  license is used to express generalized terms about the intended usage pattern of a certain asset and usually defines the notion of property associated with a specific asset (such as declaring the degree of permissiveness allowed in the reuse of a certain asset). 
-	\item policy representation - entities, roles, resources, concepts
-	\end{itemize}
-\item Addressing Legal Requirements in Requirements Engineering
-	\begin{itemize}
-	\item symbolic logic / mathematical logic
-		\begin{itemize}
-		\item balance logic with natural language
-		\end{itemize}
-	\item knowledge representation - represent legal text as computer programs or algorithms
-	\item deontic logic - rights and obligations
-	\item defeasible logic - strict rules, defeasible rules, and defeaters
-	\item first order temporal logic - extract key concepts rather than precisely modelling the regulation
-	\item access control - access control techniques to capture the privacy-related elements of legal texts, conditions and obligations that cannot be 9 represented as access control rules are cast instead as external environmental flags
-	\item markup-based representations
-	\item goal based modeling - extracting and representing goals, soft goals, tasks, resources, and social relationships
-	\item reusable requirements catalog - applying requirements engineering to create reusable catalog of legal requirements
-	\end{itemize}
+
+
 \item A genealogy and classification of rights expression languages-preliminary results - REL
 	\begin{itemize}
 	\item contract policies -  contract is a legally binding agreement of two or more parties, on the exchange of rights to (digital) goods or services under certain terms and conditions Guth (2004, p. 81)
@@ -180,6 +197,14 @@ To that end, the section utilises surveys and key publications in the last decad
 	\end{itemize}
 \item Compliance by design for artifact-centric business processes - using process models and artifacts to evaluate compliance
 \item Compliance Monitoring as a Service: Requirements, Architecture and Implementation - BPMN notation, evaluate compliance on a continous basis, use of ontology
+\item Privacy, security, policies: review of problems and solutions with semantic web technologies \cite{kirrane_privacy_2018}
+\item normative requirements as linked data \cite{gandon_normative_2017} current vocabularies on the Semantic Web do not provide the expressiveness we need to support deontic reasoning on normative
+requirements and rules. As a contribution, we specified and formalized an ontology extending LegalRuleML, and we showed how it can be used to represent normative requirements as Linked Data with states of affairs represented as RDF 1.1 named graphs. Relying on this modeling, we proposed an approach based on SPARQL rules to cover some of the deontic aspects outside the expressiveness of OWL 2, and we experiment this approach with a proof of concept based on two established tools of the Semantic Web community.
+\item Reasoning with data flows and policy propagation rules \cite{daga_reasoning_2017} AAAAA(A) methodology
+\item Normative requirements for regulatory compliance: An abstract formal framework \cite{hashmi_normative_2016} petri nets, BPMN, framework; presents an abstract framework consist- ing of a list of norms and a generic compliance checking approach on the idea of (possible) execution of processes.
+\item regulatory compliance checking using legalruleml \cite{governatori_semantic_2016} annotate legal documents
+\item Ontologies for Privacy Requirements Engineering: A Systematic Literature Review \cite{gharib_ontologies_2016} concepts related to privacy; survey; page 19: Table 4: Summary of the privacy related concepts and relations identified in the studies
+
 \end{itemize}
 
 
