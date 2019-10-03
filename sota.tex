@@ -73,14 +73,19 @@ A survey of information artefacts used in business processes for compliance \cit
     \item \textbf{Pattern}: These artefacts provide definition of reusable elements of design with its benefits and application contexts.
     \item \textbf{Metric}: These artefacts provide a mathematical model able to measure aspects of systems or methods.
 \end{itemize}
-
-% provide descriptions from analysis in paper w.r.t. above artefacts
+These artefacts are used for tasks associated with regulatory compliance, including enactment, analysis, checking, and modelling. The survey finds that existing approaches have over the years been largely focused on the modelling and checking tasks in the context of regulatory compliance, with compliance analysis being increasingly researched over time  while enactment has received little attention. The survey concludes that compliance approaches are basically limited to identifying relevant requirements from laws and regulations and ensuring that business processes comply with them, without much attention to compliance enactment.
+This gap can be addressed by developing technologies for activities such as anticipation, adaptation and management of change to business processes as and when they occur.
 
 \subsection{Approaches utilising Legal Ontologies}
+Surveys on legal ontologies provide categorisation of ontologies as well as their intended applications within the domain. One such survey \cite{rodrigues_legal_2019} categorises the purposes as - organising and structuring information, reasoning and problem solving, semantic indexing and searching, and understanding a domain. It also categorised them based on the generalisation of concepts as - upper level ontology, core ontology, domain ontology, and application ontology - with most of them falling under core and domain ontologies. The survey also provides an overview of the methodologies used, and the evaluation approaches utilised, which consist of - evaluation by specialists, data-driven evaluations, gold-standard assessments, application in case study, and those that have no evaluation or are unclear. The survey also shows that most ontologies are formalised using RDF/OWL-DL.
+
+Another survey\footnote{One of the analysed ontologies is GDPRtEXT, which is one of the major contributions of this thesis. The survey provide a comparison for GDPRtEXT with the SotA, and is described in more detail in \autoref{sec:voc:GDPRtEXT}.} \cite{leone_taking_2019} categorises ontologies in to the five domains of - policies, licenses, tenders and procurement, privacy, and cross-domain. It then analyses the ontologies based on features such as the intended domain, purpose, year, license, development, source of concepts, base ontology, and formalism.
+
+A survey of approaches capturing privacy requirements in the SotA \cite{gharib_towards_2017} identified and categorised concepts and relationships as agentive (actor, role), intentional (goal, action), informational (asset, information), interaction (delegation, permission, trust), risk (threat, vulnerability, attack), treatment (mitigate, constraint, policy), and privacy (requirement, notice, anonymity).
+Another survey \cite{van_de_ven_qualitative_2016} categorises privacy policy languages based on their focus (machine, human, privacy, security), aspects (authorisation, spatial, temporal, law), and syntax (XML, high-level, logical).
+Both surveys identify the gaps in the SotA in terms of absence or limitation of approaches to sufficiently express concepts, and propose an ontology to fill the gaps.
 
 \begin{itemize}
-
-
 \item A genealogy and classification of rights expression languages-preliminary results - REL
 	\begin{itemize}
 	\item contract policies -  contract is a legally binding agreement of two or more parties, on the exchange of rights to (digital) goods or services under certain terms and conditions Guth (2004, p. 81)
