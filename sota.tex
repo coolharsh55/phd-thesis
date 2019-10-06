@@ -76,174 +76,33 @@ A survey of information artefacts used in business processes for compliance \cit
 These artefacts are used for tasks associated with regulatory compliance, including enactment, analysis, checking, and modelling. The survey finds that existing approaches have over the years been largely focused on the modelling and checking tasks in the context of regulatory compliance, with compliance analysis being increasingly researched over time  while enactment has received little attention. The survey concludes that compliance approaches are basically limited to identifying relevant requirements from laws and regulations and ensuring that business processes comply with them, without much attention to compliance enactment.
 This gap can be addressed by developing technologies for activities such as anticipation, adaptation and management of change to business processes as and when they occur.
 
-\subsection{Approaches utilising Legal Ontologies}
-Surveys on legal ontologies provide categorisation of ontologies as well as their intended applications within the domain. One such survey \cite{rodrigues_legal_2019} categorises the purposes as - organising and structuring information, reasoning and problem solving, semantic indexing and searching, and understanding a domain. It also categorised them based on the generalisation of concepts as - upper level ontology, core ontology, domain ontology, and application ontology - with most of them falling under core and domain ontologies. The survey also provides an overview of the methodologies used, and the evaluation approaches utilised, which consist of - evaluation by specialists, data-driven evaluations, gold-standard assessments, application in case study, and those that have no evaluation or are unclear. The survey also shows that most ontologies are formalised using RDF/OWL-DL.
+\subsubsection*{Discussion}
+The business processes are represented for organisational planning and management purposes using standard representations such as UML and BPMN. These can be reused for compliance management tasks by applying and assessing the compliance requirements over these processes. For this, it is necessary to align the business processes and the artefacts they use with the compliance requirements and terminology. The two approaches discussed in the earlier sections presented existing work in terms of categorising such approaches based on their use of business processes in phases of compliance, and the information artefacts they use. Through this, they provide the different avenues where an approach might assist with the compliance process, as well as the type of artefacts it might use to do so.
 
-Another survey\footnote{One of the analysed ontologies is GDPRtEXT, which is one of the major contributions of this thesis. The survey provide a comparison for GDPRtEXT with the SotA, and is described in more detail in \autoref{sec:voc:GDPRtEXT}.} \cite{leone_taking_2019} categorises ontologies in to the five domains of - policies, licenses, tenders and procurement, privacy, and cross-domain. It then analyses the ontologies based on features such as the intended domain, purpose, year, license, development, source of concepts, base ontology, and formalism.
+Depending on the context, such as - type of activities, legal requirements, use-case - one or more of the categories can be adopted for creating an approach for compliance. For example, the requirement of ensuring activities are compliant before they are executed in GDPR can be fulfilled by an approach utilising business process representations in the ex-ante lifecyle phase with the verification and validation being performed through any of the categorised information artefacts with varying degrees of formality. Assessing them purely from a compliance management perspective would serve to diminish their usefulness and prevalence in the planning and management of activities.
+
+As legal requirements evolve, it could be a costly exercise to create and adopt a new approach to meet its compliance. Therefore, an evolving approach needs to identify and adapt the new compliance requirements over existing representations of business processes through development of validation and verification mechanisms.
+This requires the business process representations to be in an form which can reused for such purposes, such as through the example of interoperable standards.
+
+\subsection{Approaches utilising Legal Ontologies}
+Surveys on legal ontologies provide categorisation of ontologies as well as their intended applications within the domain. One such survey \cite{rodrigues_legal_2019} categorises the purposes as - organising and structuring information, reasoning and problem solving, semantic indexing and searching, and understanding a domain. It also categorised them based on the generalisation of concepts as - upper level ontology, core ontology, domain ontology, and application ontology - with most of them falling under core and domain ontologies. The survey also provides an overview of the methodologies used, and the evaluation approaches utilised, which consist of - evaluation by specialists, data-driven evaluations, gold-standard assessments, application in case study, and those that have no evaluation or are unclear. The survey also shows that most ontologies are formalised using RDF/OWL-DL though other formalisations were also utilised.
+
+Another survey\footnote{One of the analysed ontologies is GDPRtEXT, which is one of the major contributions of this thesis. The survey provides a comparison of GDPRtEXT with the SotA, and is described in more detail in \autoref{sec:voc:GDPRtEXT}.} \cite{leone_taking_2019} categorises ontologies in the five domains of - policies, licenses, tenders and procurement, privacy, and cross-domain. It then analyses the ontologies based on features such as the intended domain, purpose, year, license, development, source of concepts, base ontology, and formalism.
 
 A survey of approaches capturing privacy requirements in the SotA \cite{gharib_towards_2017} identified and categorised concepts and relationships as agentive (actor, role), intentional (goal, action), informational (asset, information), interaction (delegation, permission, trust), risk (threat, vulnerability, attack), treatment (mitigate, constraint, policy), and privacy (requirement, notice, anonymity).
 Another survey \cite{van_de_ven_qualitative_2016} categorises privacy policy languages based on their focus (machine, human, privacy, security), aspects (authorisation, spatial, temporal, law), and syntax (XML, high-level, logical).
 Both surveys identify the gaps in the SotA in terms of absence or limitation of approaches to sufficiently express concepts, and propose an ontology to fill the gaps.
+Further surveys represent the SotA in their respective areas regarding access control \cite{kirrane_access_2016}, rights expression languages \cite{pellegrini_genealogy_2018}, privacy policy languages \cite{van_de_ven_qualitative_2016}, privacy requirements engineering \cite{gharib_ontologies_2016}.
 
-\begin{itemize}
-\item A genealogy and classification of rights expression languages-preliminary results - REL
-	\begin{itemize}
-	\item contract policies -  contract is a legally binding agreement of two or more parties, on the exchange of rights to (digital) goods or services under certain terms and conditions Guth (2004, p. 81)
-	\item enforcement framework - environment in which the access control is enforced
-	\item enforcement mechanism - logic based (DL), rules, semantic web (RDFS, SPARQL)
-	\end{itemize}
-\item Formalizing and appling compliance patterns for business process compliance - survey of applying compliance patterns to business process compliancec
-	\begin{itemize}
-	\item temporal logic
-		\begin{itemize}
-		\item bottom-up - use logical language to represent compliance requirements, and to transform process specifications to formal representations, then verify for compliance
-		\item top-down - processes are represented using high-level abstract langauges, compliance requirments are formalised using temporal logic language, then verified for compliance
-		\end{itemize}
-	\item deontic logic 
-	\item graph pattern matching approaches - pattern specification and matching with querying of business process artefacts
-	\end{itemize}
-\item Legal Compliance by Design (LCbD) and through Design (LCtD): Preliminary Survey - good overview survey of approaches for legal compliance
-	\begin{itemize}
-	\item business process modelling
-		\begin{itemize}
-		\item graph based 
-		\item BPMN
-		\item BPMN-Q
-		\item temporal deontic logic and computation tree logic
-		\item petri nets
-		\item ontologies
-		\end{itemize}
-	\item Methodologies and corporate governace models - ISO etc
-	\item Legal Compliance by Design - includes REL, ODP
-	\end{itemize}
-\item Legal Ontologies and How to Choose Them: the InvestigatiOnt Tool
-	\begin{itemize}
-	\item 12 ontologies 6 legal fields
-		\begin{itemize}
-		\item norms - models norms found in legal documents
-			\begin{itemize}
-			\item LegalRuleML, NRV
-			\end{itemize}
-		\item policies - permissions, mandatory, prohibited actions
-			\begin{itemize}
-			\item ODRL, LDR
-			\end{itemize}
-		\item licenses - actions allowed on resources protected by rights
-			\begin{itemize}
-			\item CC, L4LOD
-			\end{itemize}
-		\item legal documents representation/indexing - textual structure
-			\begin{itemize}
-			\item Eurovoc, ELI
-			\end{itemize}
-		\item privacy in GDPR - model concepts involved in GDPR
-			\begin{itemize}
-			\item GDPRtEXT, Bartolini et al
-			\end{itemize}
-		\item tenders and public procurements - model processes used by administration for services and supplies
-		\end{itemize}
-	\end{itemize}
-\item Legal ontologies over time: A systematic mapping study
-	\begin{itemize}
-	\item legal theories by purpose of ontology
-		\begin{itemize}
-		\item organise and structure information
-		\item reasoning and problem solving
-		\item semantic indexing and search
-		\item semantic integration interation
-		\item understand a domain
-		\end{itemize}
-	\item legal theories by ontology generalisation level
-		\begin{itemize}
-		\item upper
-		\item core
-		\item domain
-		\item application
-		\end{itemize}
-	\item ontology evaluation approaches
-		\begin{itemize}
-		\item specialists
-		\item data-driven
-		\item gold-standard
-		\item case study
-		\item no evaluation / unclear
-		\end{itemize}
-	\end{itemize}
-\item Qualitative Privacy Description Language - survey of privacy policy languages
-	\begin{itemize}
-	\item focus - machine, human, privacy, security
-	\item aspects - authorisation, context, meta, spatial, temporal, user, enterprise, multi-party, law
-	\item syntax - XML/RDF, high-level, logical, specific
-	\end{itemize}
-\item STATE-OF-THE-ART OF BUSINESS PROCESS  COMPLIANCE APPROACHES - survey of information artifacts used in regulatory compliance of business processes [23]
-	\begin{itemize}
-	\item dimensions for compliance checking of business process
-		\begin{itemize}
-		\item scope
-			\begin{itemize}
-			\item order and occurence
-			\item information
-			\item resource
-			\item time
-			\item location
-			\end{itemize}
-		\item lifecycle phase
-			\begin{itemize}
-			\item design
-			\item execution
-			\item after execution
-			\end{itemize}
-		\item formality
-			\begin{itemize}
-			\item verification/validation
-			\item business-oriented
-			\end{itemize}
-		\item contribution type
-			\begin{itemize}
-			\item technical artefact
-			\item method
-			\item other
-			\end{itemize}
-		\end{itemize}
-	\end{itemize}
-\item Taking stock of legal ontologies: a feature-based comparative analysis — survey of legal ontologies
-	\begin{itemize}
-	\item policies - ODRL, linked data rights
-	\item licenses - L4LOD, CC, REL
-	\item tenders and procurements
-	\item privacy - PrivOnto, GDPRtEXT, PrOnto, Data Protection Ontology (bartolini)
-	\item cross-domains - normative requirements vocabulary, LegalRuleML, Eurovoc, ELI
-	\end{itemize}
-\item Towards an Ontology for Privacy Requirements via a Systematic Literature Review - privacy ontology from survey of studies based on privacy concecpts
-	\begin{itemize}
-	\item organisational
-		\begin{itemize}
-		\item agentive - actor, role, agent, user, stakeholder, person, is\_a, plays
-		\item intentional - goal, objective, task, action, refinement
-		\item informational - asset, information, data, resource, personal info, sensitive info, part\_of, own
-		\item interaction - obj. deleg., perm. deleg., info provision, monitor, obj trust, perm trust
-		\end{itemize}
-	\item risk - risk, threat, inten. threat, casual threat, vulnerability, attack, attacker, attack method, impact, threaten, exploit
-	\item treatment - countermeasure, mitigate, control, treatment, s/p goal, s/p constraint, s/p policy, s/p mechanism
-	\item privacy - sec/priv req., confidentiality, integrity, availability, non-repudiation, notice, anonymity, transparency, accountability
-	\end{itemize}
-\item A methodological framework for aligning business processes and regulatory compliance
-	\begin{itemize}
-	\item process model, compliance monitoring, comliance enforcement
-	\end{itemize}
-\item Compliance by design for artifact-centric business processes - using process models and artifacts to evaluate compliance
-\item Compliance Monitoring as a Service: Requirements, Architecture and Implementation - BPMN notation, evaluate compliance on a continous basis, use of ontology
-\item Privacy, security, policies: review of problems and solutions with semantic web technologies \cite{kirrane_privacy_2018}
-\item normative requirements as linked data \cite{gandon_normative_2017} current vocabularies on the Semantic Web do not provide the expressiveness we need to support deontic reasoning on normative
-requirements and rules. As a contribution, we specified and formalized an ontology extending LegalRuleML, and we showed how it can be used to represent normative requirements as Linked Data with states of affairs represented as RDF 1.1 named graphs. Relying on this modeling, we proposed an approach based on SPARQL rules to cover some of the deontic aspects outside the expressiveness of OWL 2, and we experiment this approach with a proof of concept based on two established tools of the Semantic Web community.
-\item Reasoning with data flows and policy propagation rules \cite{daga_reasoning_2017} AAAAA(A) methodology
-\item Normative requirements for regulatory compliance: An abstract formal framework \cite{hashmi_normative_2016} petri nets, BPMN, framework; presents an abstract framework consist- ing of a list of norms and a generic compliance checking approach on the idea of (possible) execution of processes.
-\item regulatory compliance checking using legalruleml \cite{governatori_semantic_2016} annotate legal documents
-\item Ontologies for Privacy Requirements Engineering: A Systematic Literature Review \cite{gharib_ontologies_2016} concepts related to privacy; survey; page 19: Table 4: Summary of the privacy related concepts and relations identified in the studies
+In areas of compliance, standardisation of representations for norms and requirements has seen efforts such as LegalRuleML \cite{palmirani_legalruleml:_2011} which uses temporal and defeasible logic, and has been applied for compliance checking over business processes \cite{governatori_semantic_2016}. On similar lines, Compliance Management Ontology \cite{syed_abdullah_compliance_2012} proposes shared conceptualisation of business process management, culture management, obligations, programme, resources, risk management, and solutions.
 
-\end{itemize}
+\subsubsection{Discussion}
+Ontologies have been extensively used for formal representations of information, rules \cite{kirrane_scalable_2018}, rights \cite{pellegrini_genealogy_2018}, legislations \cite{leone_taking_2019}, business processes \cite{elgammal_formalizing_2016}, policies \cite{van_de_ven_qualitative_2016}, and requirements \cite{gharib_ontologies_2016}.
+However, there has also been a noted lack of guidelines regarding their reuse, particularly within the legal domain for compliance \cite{casanovas_legal_2017}.
+Within the legal domain, evaluation of developed ontologies is a challenge due to the requirement of specialists or legal experts being involved in the modelling stage \cite{rodrigues_legal_2019}.
+Despite these hurdles, ontologies continue to be researched and utilised as a solution for assisting with the legal compliance.
 
-
+The state of the art in ontologies thus presents encompassing representations for documents, requirements, rules, obligations, policies, and business processes associated with legal compliance. An adopter has a range of approaches to choose from based on the stated methodologies and formalisms, where the choice of approach depends on the stated requirements and goals of the ontology as well as its role in the legal compliance process.
 
 \section{Approaches for GDPR compliance utilising Semantic Web}\label{sec:sota:gdpr-semweb}
 
