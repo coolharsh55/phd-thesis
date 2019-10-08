@@ -151,9 +151,10 @@ The activity is recorded in a log using the Policy Log vocabulary \cite{bonatti_
     \label{fig:SPECIAL-policy-log-vocabulary}
 \end{figure}
 
+The methodologies associated with the vocabularies produced by the SPECIAL project are based on the utilisation of metadata in the compliance process \cite{wenning_compliance_2018}.
+
 SPECIAL's work has also produced ODRL models for deontic representations of GDPR requirements through collaborations with other projects. The first of this is based on work with the Austrian SERAMIS\footnote{\url{https://cordis.europa.eu/project/rcn/189040/factsheet/en}} (Sensor-Enabled Real-World Awareness for Management Information Systems) project, which produced a web-based tool called PriWUcy for evaluating compliance assessments of GDPR articles \cite{agarwal_legislative_2018}.
 The tool uses a model of the legislation created by parsing the legislation text and representing the obligations using ODRL. A set of preliminary assessment questions provides the inputs over which the model is applied to identify actions and obligations to be fulfilled as part of the assessment. The ODRL model, depicted in Figure. \ref{fig:SPECIAL-ODRL}, is extended to represent additional granularity of constraints of - Feature, Discretional, and Dispensation. The ODRL policies are associated with the text of the GDPR they represent through classes representing chapters, articles, and paragraphs within the text of the GDPR. The approach relies on identifying and representing assets, parties, actions, duties, and constraints using the developed ODRL model. More information on the tool can be found in the public deliverable D5.5 \cite{agarwal_d5.5_2017}.
-
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{img/SPECIAL_ODRL.png}
@@ -161,13 +162,53 @@ The tool uses a model of the legislation created by parsing the legislation text
     \label{fig:SPECIAL-ODRL}
 \end{figure}
 
-The ODRL profile was further developed for modelling regulatory obligations and business policies based on GDPR towards compliance checking and providing explanations of the reasoning process \cite{vos_odrl_2019}.
+The ODRL profile was further developed for modelling regulatory obligations and business policies based on GDPR towards compliance checking and providing explanations of the reasoning process \cite{vos_odrl_2019}. Additional classes and properties added include those relevant for specifying the legal bases, purpose, location, and safeguards associated with processing. Policies representing articles in the GDPR are checked against permissions by activities to perform a data processing operation. For example, the following listing shows a request for transfer personal data to a third country based on consent, which would be checked against the corresponding policy representing Article 46 of the GDPR. 
+\begin{lstlisting}
+<http://example.com/policy:bp-transfer> a orcp:Set ;
+    odrl:profile <http://example.com/odrl:profile:regulatory-compliance> ;
+    orcp:permission
+    [ odrl:action orcp:Transfer ;
+        orcp:data orcp:PersonalData ;
+        orcp:responsibleParty orcp:Controller ;
+        orcp:organisationType orcp:InternationalOrganisation ;
+        orcp:sender <http://example.com/CompanyA_Ireland> ;
+        orcp:recipient <http://example.com/CompanyA_US> ;
+        orcp:recipientLocation orcp:ThirdCountry ;
+        orcp:purpose orcp:PersonalRecommendations ;
+        orcp:legalBasis orcp:Consent ;
+        odrl:dataSubjectProvisions orcp:EnforceableDataSubjectRights ;
+        odrl:dataSubjectProvisions orcp:LegalRemediesForDataSubjects
+    ] .
+\end{lstlisting}
+Compliance is checked by converting the ODRL policies into InstAL, a domain-specific language for writing models based on events and states, which translates to Answer Set Programming (ASP) and is evaluated using a solver. When a policy is found to be non-compliant, explanations are generated based on `fluents' - facts that are true if present and false if absent - through a reasoning process. The implementation is publicly accessible through a hosted repository\footnote{\url{https://github.com/instsuite/instsuite.github.io/blob/master/gdpr.ial}}. An example of this is as follows:
+\begin{lstlisting}
+# fluents capturing justifications
+type Article;
+fluent permission(Subject,Article);
+fluent prohibition(Subject,Article);
+noninertial fluent supports(Subject,Article,Predicate,Object);
+noninertial fluent lacks(Subject,Article,Predicate,Object);
+
+# if enforceable data subject rights are defined, the term is true
+article46_body_term2(Process) when
+    triple(Process,dataSubjectProvisions,enforceableDataSubjectRights);
+supports(Process,article46,dataSubjectProvisions,
+        enforceableDataSubjectRights) when
+    article46_body_term2(Process),
+    triple(Process,dataSubjectProvisions,enforceableDataSubjectRights);
+
+# otherwise the description lacks data, and non-inertial fluents are applied
+lacks(Process,article46,dataSubjectProvisions,
+        enforceableDataSubjectRights) when
+    applies(Process,article46),
+    not supports(Process,article46,dataSubjectPro
+\end{lstlisting}
 
 The second work is based on applying SPECIAL's GDPR compliance framework to the Austrian CitySPIN\footnote{\url{http://cityspin.net/}} (Cyber-Physical Social Systems for City-wide Infrastructures) project, which utilises linked data platforms to ingest data from multiple sources in a smart city scenario, and utilises it for data processing pipelines and analytics. An important component of the project is the management of consent which utilises SPECIAL's policies \cite{bonatti_special_2018-1,bonatti_special_2018-2} and compliance framework \cite{kirrane_scalable_2018}.
 The auxiliary vocabularies provided by SPECIAL for purpose and data categories were extended for use-cases associated with CitySPIN \cite{fernandez_user_2019}, as depicted in Figure. \ref{fig:SPECIAL-CitySPIN}. 
 The defined policies are checked in the ex-ante and ex-post phase using the SPECIAL compliance checking algorithm \cite{bonatti_fast_2018}, with a prototype implementation demonstrating ex-ante compliance checking in ad-hoc widgets sharing personal data \cite{fernandez_privacy-aware_2019}. Details about the project and its implementation are available through its public deliverables D6.1 \cite{noauthor_d6.1_nodate} and D6.3 \cite{noauthor_d6.3_nodate}.
 
-\begin{figure}[htbp]
+\begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{img/SPECIAL_CitySPIN.png}
     \caption{CitySPIN's extension of SPECIAL vocabularies \cite{fernandez_user_2019}}
