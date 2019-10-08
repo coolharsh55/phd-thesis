@@ -109,6 +109,7 @@ The state of the art in ontologies thus presents encompassing representations fo
 
 \subsubsection{SPECIAL}
 SPECIAL\footnote{\url{https://www.specialprivacy.eu/}} (Scalable Policy-aware Linked Data Architecture For Privacy, Transparency and Compliance) is an European H2020 Project that aims to provide technical solutions for data protection requirements associated with use-cases involving big data. It features extensive use of semantic web technologies across a variety of compliance related tasks such as recording provenance logs of data processing \cite{kirrane_scalable_2018}, providing visual interfaces for consent \cite{drozd_consent_nodate,gritzalis_i_2019}, compliance checking of processing activities based on given consent \cite{westphal_spirit:_nodate,vos_odrl_2019,fernandez_user_2019}, and efforts towards standardisation of related vocabularies\footnote{The SPECIAL project was the primary driving force behind the creation of the W3C Data Privacy Vocabularies and Controls Community Group (DPVCG), of which the author was an active participating member. Information about this has been listed in \autoref{sec:intro:dpvcg}. The Data Privacy Vocabulary (DPV), produced by the DPVCG, has also been documented as a deliverable of the project in D6.5 \cite{pandit_d6.5_2019}.} \cite{pandit_creating_2019}.
+Collaborations between SPECIAL and other projects have produced related work, such as an approach for compliance checking using ODRL \cite{agarwal_legislative_2018,vos_odrl_2019}, and the application of SPECIAL's framework in a Smart City use-case \cite{fernandez_user_2019}.
 Information about the methodologies used, developed technologies, and their evaluations is accessible through peer-reviewed publications and public deliverables\footnote{\url{https://www.specialprivacy.eu/publications/public-deliverables}}.
 
 SPECIAL uses a distributed ledger to store the processing logs for data processing activities, which can be evaluated for compliance against given consent in ex-ante and ex-post phases. The logs are stored using the  Policy Log vocabulary\cite{bonatti_special_2018-1} with the data processing activities represented by Usage vocabulary \cite{bonatti_special_2018-2}. Compliance evaluation is performed by using a custom reasoning algorithm \cite{bonatti_fast_2018} in a semantic reasoner. The consent is provided in a visual and interactive form to the user using the web browser \cite{drozd_consent_nodate,gritzalis_i_2019}. The project has been successfully applied to use-cases provided by its commercial partners\footnote{See D1.5 \cite{bonatti_d1.5_2018} and D1.6 \cite{schlehahn_d1.6_2018} for information on use-cases.} as well as in an external use-case related to use of IoT in Smart Cities \cite{fernandez_user_2019}. The Figure. \ref{fig:SPECIAL-architecture1} presents an overview of the SPECIAL architecture along with its components and utilised technologies.
@@ -141,7 +142,37 @@ ObjectIntersectionOf(
 
 For a given policy $P_c$ representing activities permitted by given consent and policy $P_s$ representing processing activity, compliance is evaluated by checking whether $P_c$ complies with $P_s$ - which in OWL2 is checked by using a reasoner to check whether $P_c \subseteq P_s$. This is performed by using an algorithm \cite{bonatti_fast_2018} in a semantic reasoner that is optimised for speed by only performing those operations associated with checking for compliance between policies.
 
-The activity is recorded in a log using the Policy Log vocabulary \cite{bonatti_special_2018-1} and is evaluated for compliance by using the reasoner in both ex-ante and ex-post phase. The Policy Log vocabulary, described in D2.7 \cite{kirrane_d2.7_2018}, reuses existing vocabularies such as DCAT and PROV \cite{lebo_prov-o:_2013}, and is used to record an immutable documentation of compliant activities and their legal basis in consent.
+The activity is recorded in a log using the Policy Log vocabulary \cite{bonatti_special_2018-1}, represented in Figure. \ref{fig:SPECIAL-policy-log-vocabulary}, and is evaluated for compliance by using the reasoner in both ex-ante and ex-post phase. The Policy Log vocabulary, described in D2.7 \cite{kirrane_d2.7_2018}, reuses existing vocabularies such as DCAT and PROV \cite{lebo_prov-o:_2013}, and is used to record an immutable documentation of compliant activities and their legal basis in consent.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/SPECIAL_logvocabulary.png}
+    \caption{Overview of SPECIAL Policy Log Vocabulary \cite{bonatti_special_2018-1}}
+    \label{fig:SPECIAL-policy-log-vocabulary}
+\end{figure}
+
+SPECIAL's work has also produced ODRL models for deontic representations of GDPR requirements through collaborations with other projects. The first of this is based on work with the Austrian SERAMIS\footnote{\url{https://cordis.europa.eu/project/rcn/189040/factsheet/en}} (Sensor-Enabled Real-World Awareness for Management Information Systems) project, which produced a web-based tool called PriWUcy for evaluating compliance assessments of GDPR articles \cite{agarwal_legislative_2018}.
+The tool uses a model of the legislation created by parsing the legislation text and representing the obligations using ODRL. A set of preliminary assessment questions provides the inputs over which the model is applied to identify actions and obligations to be fulfilled as part of the assessment. The ODRL model, depicted in Figure. \ref{fig:SPECIAL-ODRL}, is extended to represent additional granularity of constraints of - Feature, Discretional, and Dispensation. The ODRL policies are associated with the text of the GDPR they represent through classes representing chapters, articles, and paragraphs within the text of the GDPR. The approach relies on identifying and representing assets, parties, actions, duties, and constraints using the developed ODRL model. More information on the tool can be found in the public deliverable D5.5 \cite{agarwal_d5.5_2017}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/SPECIAL_ODRL.png}
+    \caption{Extension of ODRL for representing GDPR obligations \cite{agarwal_legislative_2018}}
+    \label{fig:SPECIAL-ODRL}
+\end{figure}
+
+The ODRL profile was further developed for modelling regulatory obligations and business policies based on GDPR towards compliance checking and providing explanations of the reasoning process \cite{vos_odrl_2019}.
+
+The second work is based on applying SPECIAL's GDPR compliance framework to the Austrian CitySPIN\footnote{\url{http://cityspin.net/}} (Cyber-Physical Social Systems for City-wide Infrastructures) project, which utilises linked data platforms to ingest data from multiple sources in a smart city scenario, and utilises it for data processing pipelines and analytics. An important component of the project is the management of consent which utilises SPECIAL's policies \cite{bonatti_special_2018-1,bonatti_special_2018-2} and compliance framework \cite{kirrane_scalable_2018}.
+The auxiliary vocabularies provided by SPECIAL for purpose and data categories were extended for use-cases associated with CitySPIN \cite{fernandez_user_2019}, as depicted in Figure. \ref{fig:SPECIAL-CitySPIN}. 
+The defined policies are checked in the ex-ante and ex-post phase using the SPECIAL compliance checking algorithm \cite{bonatti_fast_2018}, with a prototype implementation demonstrating ex-ante compliance checking in ad-hoc widgets sharing personal data \cite{fernandez_privacy-aware_2019}. Details about the project and its implementation are available through its public deliverables D6.1 \cite{noauthor_d6.1_nodate} and D6.3 \cite{noauthor_d6.3_nodate}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/SPECIAL_CitySPIN.png}
+    \caption{CitySPIN's extension of SPECIAL vocabularies \cite{fernandez_user_2019}}
+    \label{fig:SPECIAL-CitySPIN}
+\end{figure}
 
 \subsubsection{MIREL}\label{sota:projects:MIREL}
 MIREL\footnote{\url{www.mirelproject.eu/}} (Mining and Reasoning with Legal Texts) is an European H2020 Project that aims to create a framework for interpretation of legal texts into formal representations for querying norms, checking compliance, and decision support. The project uses semantic web to provide normative requirements \cite{gandon_normative_2017}, provide natural language processing over legal texts \cite{milagro_teruel_legal_2018}, and creating ontologies based on GDPR \cite{monica_legal_2018} for legal compliance \cite{palmirani_pronto:_2018-1} and reasoning \cite{palmirani_pronto:_2018}. The project also involves creation of icons for data protection based on the developed ontologies \cite{arianna_dapis:_2019}.
@@ -164,17 +195,19 @@ While PrOnto represents a more mature and progressive deliverable of the project
 
 Subsequent applications of PrOnto in the project utilises Reified Input/Output logic (RIO) \cite{robaldo_reified_2017} - a formalism for normative reasoning based on reification applied to natural language semantics. The rules are expressed using LegalRuleML and are associated with activities using BPMN. This is utilised to allocate tasks related to data protection to stakeholders, and to track compliance across different phases of a software development life-cycle.
 
+% non sem-web
 \subsubsection{My Health My Data (MHMD)}
 My Health My Data\footnote{\url{http://www.myhealthmydata.eu/}} (MHMD) is an European H2020 project that aims to develop infrastructure based on blockchain and smart contracts, which provide personal data accounts in the cloud that can be managed using dynamic consent interfaces and provide peer-to-peer connections between stakeholders. The project uses blockchain to log data transactions in a secure, transparent, and accountable manner, while using de-identification and encryption to protect identity and sensitive information. The safety and security of the data is tested using re-identification and penetration simulations.
 Information about the project is available through peer-reviewed publications and public deliverables\footnote{\url{http://www.myhealthmydata.eu/publicdeliverables/}}.
 
-% TODO: add reference
-% TODO: add diagram - if available
-The project is applied over the use-case of health data and devices, described in deliverable D1.1, and uses an ontological resource to model the common data ontology - described more in its deliverable D4.2 \cite{teodoro_d4.2-mhmd-ontological-resources.pdf_2018}. The common data ontology consists of modular health data ontologies
-DATS core data model figure 2 page 33 showing ontology for data set and its distribution, storage, access, data typeconsent types reflect whether consent is required e.g. synthetic data, fully anonmisedtable 2 page 46 list of parameters - datatype, consents, cloudconsent management interface figure 7, page 41
+The project is applied over the use-case of health data and devices, described in deliverable D1.1 \cite{noauthor_d1.1_initial-list--main-requirements.pdf_nodate}, and uses an ontological resource to model the common data ontology - described more in its deliverable D4.2 \cite{teodoro_d4.2-mhmd-ontological-resources.pdf_2018}. The common data ontology consists of modular health data ontologies representing synthetic data shared by the project's commercial partners as an use-case.
+Access to the data is provided through an API that includes parameters describing the requested data category as well as consent descriptions. The API returns matching datasets which can then be utilised for data processing activities. The consent description parameter of the API is a text field consisting of values such as ``synthetic data'' and ``fully anonymised'' which reflect the state of data and its requirements in terms of consent. 
 
+Though the project aims to utilise the GDPR as a source of legal requirements and strives to design its framework to meet compliance requirements by both design and default, there is no publicly available information regarding the specifics of how GDPR compliance is achieved or represented.
+It focuses on the privacy preserving and security aspects of data storage by using technological solutions such as access control and transparent logging to design specifications based on legal requirements.
+The project does explores the impact of GDPR of storing data in a blockchain, especially regarding the right to be forgotten \cite{bayle_when_2018}.
 
-5> RestAssured
+\subsubsection{RestAssured}
 
 6> BPR4GDPR
 
