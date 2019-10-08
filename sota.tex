@@ -105,7 +105,7 @@ Despite these hurdles, ontologies continue to be researched and utilised as a so
 The state of the art in ontologies thus presents encompassing representations for documents, requirements, rules, obligations, policies, and business processes associated with legal compliance. An adopter has a range of approaches to choose from based on the stated methodologies and formalisms, where the choice of approach depends on the stated requirements and goals of the ontology as well as its role in the legal compliance process.
 
 \section{Approaches for GDPR compliance utilising Semantic Web}\label{sec:sota:gdpr-semweb}
-\subsection{Projects utilising Semantic Web}
+\subsection{Research Projects utilising Semantic Web}
 
 \subsubsection{SPECIAL}
 SPECIAL\footnote{\url{https://www.specialprivacy.eu/}} (Scalable Policy-aware Linked Data Architecture For Privacy, Transparency and Compliance) is an European H2020 Project that aims to provide technical solutions for data protection requirements associated with use-cases involving big data. It features extensive use of semantic web technologies across a variety of compliance related tasks such as recording provenance logs of data processing \cite{kirrane_scalable_2018}, providing visual interfaces for consent \cite{drozd_consent_nodate,gritzalis_i_2019}, compliance checking of processing activities based on given consent \cite{westphal_spirit:_nodate,vos_odrl_2019,fernandez_user_2019}, and efforts towards standardisation of related vocabularies\footnote{The SPECIAL project was the primary driving force behind the creation of the W3C Data Privacy Vocabularies and Controls Community Group (DPVCG), of which the author was an active participating member. Information about this has been listed in \autoref{sec:intro:dpvcg}. The Data Privacy Vocabulary (DPV), produced by the DPVCG, has also been documented as a deliverable of the project in D6.5 \cite{pandit_d6.5_2019}.} \cite{pandit_creating_2019}.
@@ -143,21 +143,36 @@ For a given policy $P_c$ representing activities permitted by given consent and 
 
 The activity is recorded in a log using the Policy Log vocabulary \cite{bonatti_special_2018-1} and is evaluated for compliance by using the reasoner in both ex-ante and ex-post phase. The Policy Log vocabulary, described in D2.7 \cite{kirrane_d2.7_2018}, reuses existing vocabularies such as DCAT and PROV \cite{lebo_prov-o:_2013}, and is used to record an immutable documentation of compliant activities and their legal basis in consent.
 
-\subsubsection{MIREL}
+\subsubsection{MIREL}\label{sota:projects:MIREL}
 MIREL\footnote{\url{www.mirelproject.eu/}} (Mining and Reasoning with Legal Texts) is an European H2020 Project that aims to create a framework for interpretation of legal texts into formal representations for querying norms, checking compliance, and decision support. The project uses semantic web to provide normative requirements \cite{gandon_normative_2017}, provide natural language processing over legal texts \cite{milagro_teruel_legal_2018}, and creating ontologies based on GDPR \cite{monica_legal_2018} for legal compliance \cite{palmirani_pronto:_2018-1} and reasoning \cite{palmirani_pronto:_2018}. The project also involves creation of icons for data protection based on the developed ontologies \cite{arianna_dapis:_2019}.
 Information about the project is available through peer-reviewed publications and public deliverables\footnote{\url{http://www.mirelproject.eu/publications.php}}.
 Details about the project and its developed resources, namely PrOnto, have  been described in publications, but are not open or publicly accessible at the time of writing this thesis.
 
 The developed ontology is termed PrOnto (Privacy Ontology) \cite{monica_legal_2018}, and provides concepts within the GDPR associated with data types and documents, agents and roles, processing purposes, legal bases, processing operations, and deontic operations for modelling rights and duties. It reuses existing vocabularies \cite{palmirani_pronto:_2018} and has been applied within the Cloud4EU project\footnote{\url{http://www.agid.gov.it/cloudforeurope}} for legal compliance checking of eGovernment systems as well as the DAPRECO project (see \autoref{sota:projects:DAPRECO}).
 
+% TODO: diagrams
 PrOnto consists of modules representing (i) documents and data, (ii) actors and roles, (iii) processing and workflow, (iv) legal rules and deontic formula, (v) purposes and legal bases. It also includes modules for risk analysis and measures, which it utilises to represent risk management processes such as DPIA as workflows \cite{palmirani_pronto:_2018}. Reasoning is utilised based on the deontic operators within the ontology, and violations are connected with the violated obligations thereby providing traceability towards the steps that created the violation.  LegalRuleML is extended and used to represent the obligations and enable creation and rules for compliance.
 
+% TODO: references
 An proof-of-concept application for detecting violations of the GDPR \cite{monica_modelling_2018} utilises PrOnto to model the legal concepts, along with Akoma Ntoso to model the legal text, LegalRuleML to model norms, and Regorous to apply LegalRuleML rules over BPMN and generate a report. The application utlises a web editor for modelling legal rules in connection with the legal text and ontology.
 
 \subsubsection{DAPRECO}\label{sota:projects:DAPRECO}
-\footnote{\url{https://www.fnr.lu/projects/data-protection-regulation-compliance/}}
+DAPRECO\footnote{\url{https://www.fnr.lu/projects/data-protection-regulation-compliance/}} (Data Protection Regulation Compliance) is an Luxembourgish project relating to the creation of a knowledge base for formal compliance with the terms and provisions of the GDPR. It aims to provide formalisms in deontic logic and natural language semantics for handling legal norms in written language. The project has researched correlation of standards with laws \cite{bartolini_towards_2016}, creation of an ontology to model concepts in the GDPR \cite{otake_using_2017}, modelling the norms of the GDPR using logic formalisms \cite{bartolini_legal_2018}, and annotating BPMN for GDPR compliance \cite{bartolini_enhancing_2019}.
+The project involves collaborations with the MIREL project (see \autoref{sota:projects:MIREL}), particularly in the creation and utilisation of PrOnto for addressing GDPR \cite{monica_legal_2018,palmirani_pronto:_2018,palmirani_pronto:_2018-1,bartolini_enhancing_2019}. In turn, DAPRECO provides a practical application of PrOnto as an use-case for legal compliance over business activities \cite{bartolini_enhancing_2019,bartolini_agile_2019}.
 
-4> My Health My Data (MHMD)
+While PrOnto represents a more mature and progressive deliverable of the project's ontology for GDPR, the earlier ontology - referred to as data protection ontology \cite{otake_using_2017} - is relevant for its modelling of the concepts and norms based on an draft of the GDPR. This ontology uses OWL2 to model the concepts of the GDPR and was specified to be a work in progress in its publication\footnote{It can be assumed the ontology is no longer being used or developed and was utilised in the development of PrOnto based on subsequent publications of the project \cite{bartolini_legal_2018,bartolini_enhancing_2019}.}. The ontology can be accessed publicly\footnote{Link from \cite{otake_using_2017} \url{https://github.com/guerret/lu.uni.eclipse.bpmn2}} with documentation provided using LODE ontology documentation tool \cite{peroni_tools_2013}.
+
+Subsequent applications of PrOnto in the project utilises Reified Input/Output logic (RIO) \cite{robaldo_reified_2017} - a formalism for normative reasoning based on reification applied to natural language semantics. The rules are expressed using LegalRuleML and are associated with activities using BPMN. This is utilised to allocate tasks related to data protection to stakeholders, and to track compliance across different phases of a software development life-cycle.
+
+\subsubsection{My Health My Data (MHMD)}
+My Health My Data\footnote{\url{http://www.myhealthmydata.eu/}} (MHMD) is an European H2020 project that aims to develop infrastructure based on blockchain and smart contracts, which provide personal data accounts in the cloud that can be managed using dynamic consent interfaces and provide peer-to-peer connections between stakeholders. The project uses blockchain to log data transactions in a secure, transparent, and accountable manner, while using de-identification and encryption to protect identity and sensitive information. The safety and security of the data is tested using re-identification and penetration simulations.
+Information about the project is available through peer-reviewed publications and public deliverables\footnote{\url{http://www.myhealthmydata.eu/publicdeliverables/}}.
+
+% TODO: add reference
+% TODO: add diagram - if available
+The project is applied over the use-case of health data and devices, described in deliverable D1.1, and uses an ontological resource to model the common data ontology - described more in its deliverable D4.2 \cite{teodoro_d4.2-mhmd-ontological-resources.pdf_2018}. The common data ontology consists of modular health data ontologies
+DATS core data model figure 2 page 33 showing ontology for data set and its distribution, storage, access, data typeconsent types reflect whether consent is required e.g. synthetic data, fully anonmisedtable 2 page 46 list of parameters - datatype, consents, cloudconsent management interface figure 7, page 41
+
 
 5> RestAssured
 
@@ -182,7 +197,7 @@ An proof-of-concept application for detecting violations of the GDPR \cite{monic
 - PRIPARE
 - 
 
-\subsection{Research utilising Semantic Web}
+\subsection{Research Approaches utilising Semantic Web}
 
 \section{Other Approaches for GDPR compliance}\label{sec:sota:gdpr-other}
 
