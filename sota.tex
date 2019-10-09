@@ -418,6 +418,7 @@ The public deliverable D3.1 \cite{lioudakis_d3.1_2019} defines rules derived fro
     \item  System administrator’s logging activity should be tracked
 \end{enumerate}
 
+% non sem-web
 \subsubsection{DEFeND}
 DEFeND\footnote{\url{https://www.defendproject.eu/}} (Data Privacy Governance for Supporting GDPR) is an European H2020 project that aims to create a platform for providing services to organisations in the context of GDPR compliance. The platform is stated to provide services regarding data management and governance, data breach reporting, process management, along with GDPR planning and reporting. The peer reviewed publication \cite{piras_defend_2019} presents more details about the architecture of the project and its various components.
 
@@ -425,23 +426,63 @@ The Data Assessment Component (DAC) consists of the Organisation Data Collection
 
 The DAM is used by the Data Privacy Analysis Component (DPAC) to perform analysis about DPIA, Data Minimisation, Privacy-by-Design/Default, and Threat mitigation. The outcome of the analysis is a Data Privacy Model (DPC), which is utilised to specify and evaluate both at design and run-time the operations of consent management, data access rights, security and privacy technologies. The project also aims to create a dashboard to provide organisations with control and monitoring of operations to achieve GDPR compliance, and to enable data subjects to interact with the platform based on consent.
 
+% non sem-web, relevant
 \subsubsection{PAPAYA}
 PAPAYA\footnote{\url{https://www.papaya-project.eu/}} (PlAtform for PrivAcY preserving data Analytics) is an European H2020 project that aims to provide privacy preserving techniques and technologies for performing analytics tasks on encrypted data by untrusted third-party data processors. The project uses the obligations of the GDPR to structure its outcomes in terms of Privacy Enhancing Technologies (PETs) which are provided through an intoperable platform. The project focuses on the application of privacy by design principle to provide usability, transparency, and auditability to end users regarding the processing of their data. Information about the project is available through peer-reviewed publications\footnote{The deliverables listed at \url{https://www.papaya-project.eu/deliverables} are not publicly accessible at the time of writing this thesis.}.
 
+% non sem-web, relevant
 \subsubsection{SMOOTH}
 SMOOTH\footnote{\url{https://smoothplatform.eu/}} is an European H2020 project that aims to assist micro enterprises become compliant with the GDPR by designing and implementing tools for awareness about GDPR obligations and analysing their level of compliance with the new data protection regulation.
+The objectives of the project include creation of a platform for automatic assessment of privacy protection documents (including privacy policies), stored data, and the processing of personal data on the website or mobile apps to create a compliance report. Further details about the project are currently not available.
 
-\subsubsection{STAR}
-
+% non sem-web
 \subsubsection{SODA}
+SODA\footnote{\url{https://www.soda-project.eu/}} (Scalable Oblivious Data Analytics) is an European H2020 project that aims to provide tools for performing analytics over encrypted data at large scales while providing compliance with the GDPR. The project will utilise use-cases within the health domain to demonstrate the privacy-preserving aspects of its technologies. SODA incorporates requirements of the GDPR and provides guarantees regarding compliance through the use of its tools and technologies. The analysis of legal requirements arising from the GDPR and the role of SODA in addressing them is presented in deliverable D3.1 \cite{spindler_d3.1_2017}. Further information about the project is available through peer-reviewed publications and public deliverables\footnote{\url{https://www.soda-project.eu/deliverables/}}.
+
+% non sem-web, relevant
 \subsubsection{DECODE}
-\subsubsection{MOSAICrOWN}
-\subsubsection{MUSKETEER}
+DECODE\footnote{\url{https://decodeproject.eu/}} is an European H2020 project that aims to provide tools for data ownership by using blockchain with attribute-based cryptography. The project will be piloted in Amsterdam and Barcelona, and will focus on enabling citizens to manage and control the data generated through IoT devices. The objective of the project is to provide the data as a shared resource for collective benefit and crowd-sourced information. Smart contracts are used to enable control of data and are stored in a distributed ledger (such as blockchain). Information about the project is available through its public deliverables\footnote{\url{https://decodeproject.eu/publications}}.
+
+The specification of information required for legal compliance as well as processing is defined in terms of `entitlements', which include personal data category, description, purpose, condition (alternate purpose), expiry date (storage duration). These are collected across use-cases, normalised to find commonalities, and utilised in smart policies to record information about processing. The deliverable D3.5 \cite{noauthor_decode_d3.5_initial_nodate} describes collected entitlements from use-cases in Barcelona pilot.
+The analysis of legal requirements and their incorporation in the DECODE project is described in D1.8 \cite{noauthor_d1.8_legalframefordigcomm.pdf_nodate}.
+
+% non sem-web, non relevant
+% \subsubsection{MOSAICrOWN}
+% MOSAICrOWN\footnote{\url{https://mosaicrown.eu/}} (Multi-Owner data Sharing for Analytics and Integration respecting Confidentiality and OWNer control) is an European H2020 project that aims to enable data sharing and collaborative analytics in multi-owner scenarios. Its objectives are to provide a data governance framework able to capture and combine the protection requirements specified by multiple parties, and to provide protection techniques for enabling efficient and scalable data sharing and processing.
+% One of the outcomes of the research is an approach for performing combining selective encryp-tion, blockchain, and smart contracts to enable data ownersto leverage data markets to monetize their data in a con-trolled way. Our approach is complemented by an auditprocess counteracting misbehaviors in case of dishonestsubjects.
+% \subsubsection{MUSKETEER}
+
+% non sem-web
 \subsubsection{OPERANDO}
+OPERANDO\footnote{\url{www.operando.eu/}} (Online Privacy Enforcement, Rights Assurance \& Optimisation) is an European H2020 project that aims to provide a platform for users to specify preferences via a dashboard, which is then compared with online service providers privacy policies and converted into access control rules.
+The deliverable D3.1 \cite{noauthor_d3.1-guidelinesonlegalaspectsv2.0_77_289.pdf_nodate} describes the legal requirements of the GDPR in the context of OPERANDO's objectives, while deliverable D6.4 \cite{noauthor_d6.4finalproductversionofprivacyenhancedtoolsv1.0_77_366.pdf_nodate} describes the architecture and working of privacy tools.
+Information about the project is available through peer-reviewed publications and public deliverables\footnote{\url{http://www.operando.eu/servizi/moduli/moduli_fase01b.aspx}}.
+
+The platform operates in an online environment and uses APIs between services which pass information using JSON. An User Privacy Policy (UPP) \cite{noauthor_d6.7finalproductversionofsecurityawaretoolsv1.0_77_378.pdf_nodate} is stored in the platform database and represents the user's preferences (and consent). The UPP records preferences using fields for information identifiers, personal data category, ranked preference (0 to 10, higher indicating greater concern), role (of person acting on data), action (performed on data), purpose, and recipient. The UPP also contains information on access policies created based on comparing the user's preferences against an online service provider's privacy policy. 
+
+The online service provider's privacy policy (OSP) \cite{noauthor_d6.7finalproductversionofsecurityawaretoolsv1.0_77_378.pdf_nodate} consists of fields defining workflows and contained steps with information about requester subject (role of service provider), requested data, and action to be performed. The OSP also contains information about access policies for which the service provider has privileges to perform the requested operations in specified roles. Information about how the UPP and OSP are utilised in an API to enact an access request is provided through the deliverable D6.4 \cite{noauthor_d6.4finalproductversionofprivacyenhancedtoolsv1.0_77_366.pdf_nodate}.
+
+% non sem-web
 \subsubsection{PDP4E}
+PDP43\footnote{\url{https://www.pdp4e-project.eu/}} (Methods and Tools for GDPR Compliance through Privacy and Data Protection Engineering) is an European H2020 project that aims to provide tools and guidance for incorporating privacy and data protection into software development life-cycles (SDLC) to implement data protection by design. Currently, the project lists one deliverable on its website, D2.1 \cite{noauthor_pdp4e-d2.1_multistakeholder_nodate}, which provides information on the legal analysis of GDPR in terms of requirements and obligations for software, and identifies the various roles and responsibilities within the context of SDLC. 
+
+% non sem-web, relevant
 \subsubsection{PoSEID-on}
+POSEID-on\footnote{\url{https://www.poseidon-h2020.eu/}} (Protection and control of Secured Information by means of a privacy Enhanced Dashboard) is an European H2020 project that aims to safeguard the rights of data subjects
+while simultaneously supporting organisations in data management and processing while ensuring GDPR compliance.
+Its objective is to create a Privacy Enhancing Dashboard for personal data protection using an implementation of permissioned blockchain and smart contracts to provide accountability, transparency and compliance.
+The project aims to develop technologies for automated detection of unexpected and potentially harmful behaviours in order to monitor privacy risks and notify threats to data subjects during transactions.
+Information about the project is available through its public deliverables\footnote{\url{https://www.poseidon-h2020.eu/documents/}}.
+
+Deliverable D2.1 \cite{noauthor_poseid-on_d2.1-use-cases-analysis-and-user-scenarios-v1.00.pdf_nodate} provides information on use-cases considered within the project with their user stories, personal data required in the use-case, and third parties involved. Deliverable D3.1 \cite{noauthor_d3.1_final-version_poseidon_v10.pdf_nodate} presents the architecture of the PoSEID-on, with information about the smart contract utilised on the permissioned blockchain. The smart contract supports permissions regarding requesting, granting, revoking, notifying, checking, and accessing permissions regarding use of PII. Each permission event is logged to the blockchain and consists of the data processor, data subject, and personal data field involved. Deliverable D4.3 \cite{noauthor_d4.3-rmm-and-pda-v1.0-final.pdf_nodate} describes use of natural language programming approaches to detect PII in stored data as a measure of risk detection and management.
+
+% non sem-web, relevant
 \subsubsection{PRIPARE}
-- 
+PRIPARE\footnote{\url{http://pripareproject.eu/}} (PReparing Industry to Privacy-by-design by supporting its Application in REsearch) is an European research project that aimed to provide a set of documents regarding privacy engineering by covering activities such as privacy risk management, requirement analysis, design strategies, maintenance and compliance. To this end, it published the PRIPARE methodology handbook \cite{noauthor_pripare-methodology-handbook-final-feb-24-2016.pdf_nodate} providing guidelines for privacy and security by design. The handbook incorporates information based on a draft of GDPR\footnote{\url{The handbook was published in 2015, and incorporated known information about the GDPR up to that point in time.}} It provides foundational methodologies and reference models for carrying out privacy analysis, designing and implementing privacy enhancing systems, with templates for impact assessments and conformance. 
+
+% non sem-web, relevant
+\subsubsection{STAR \& STAR II}
+STAR\footnote{\url{https://projectstareu.wordpress.com/}} (Support Training Activities on the data protection Reform) is an European project that had the aim to provide materials to support training of DPAs and DPOs for the GDPR. To this end, it has created and published its resources consisting of training materials in an open and publicly accessible form\footnote{\url{http://www.project-star.eu/training-materials}}. The resources also provide a compliance checklist \cite{noauthor_gdpr_2019-1}, which provides a list of questions and criterion to assess preparedness with the requirements of the GDPR. 
 
 \subsection{Research Approaches utilising Semantic Web}
 
