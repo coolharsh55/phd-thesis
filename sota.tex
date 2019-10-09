@@ -319,26 +319,128 @@ It focuses on the privacy preserving and security aspects of data storage by usi
 The project does explores the impact of GDPR of storing data in a blockchain, especially regarding the right to be forgotten \cite{bayle_when_2018}.
 
 \subsubsection{RestAssured}
+RestAssured\\footnote{\url{https://restassuredh2020.eu/}} is an European H2020 project that aims to enable secure data processing in the cloud with sticky policies for decentralised data lifecycle management.
+The project aims to achieve this by using run-time models for data protection assurance and automated risk management. Run-time detection, prediction, and prevention of data protection violations is achieved by using a catalogue of risk patterns representing data protection vulnerabilities of cloud systems \cite{palm_modelling_2018,braubach_using_2018}. The pattern meta-model and its validation is described in detail in the deliverable D5.1 \cite{noauthor_d5.1.pdf_nodate}. Information about the project is available through peer-reviewed publications and publicly available deliverables\footnote{\url{https://restassuredh2020.eu/publications/}}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/RestAssured_model.png}
+    \caption{Model of policy specification framework in RestAssured \cite{noauthor_d6.1.pdf_nodate}}
+    \label{fig:RestAssured-model}
+\end{figure}
 
-6> BPR4GDPR
+The project addresses GDPR specifically through a conceptual model incorporating concepts necessary for compliance, as depicted in \autoref{fig:RestAssured-model} \cite{noauthor_d6.1.pdf_nodate}. The model is utilised in a data protection policy specification consisting of a data protection contract, sticky policies, and specification of obligations. The model is utilised to provide a customised privacy policy that allows users choice of preferences for selected services \cite{gritzalis_privacy_2019}. The data protection contract is composed of 4 main parts:
+\begin{enumerate}
+    \item A description of the Service that needs to access the data
+    \item A specification of the data that is needed to be accessed by the service and whether this access is mandatory
+    \item A list of usages, where a usage is composed of a textual description that describes the purpose of this usage(example: statistics, marketing) and the associated action (example: store, read, etc.) as well as a list of needed data types
+    \item A specification of data that will be published by the service
+\end{enumerate}
+The obligations are defined based on their enforcement in relation to access control (before, at same time, after), and are specified with three pieces of information: (i) obligation type (before, after, with), (ii) event trigger, and (iii) action to be performed. The serialisation of obligations is done using XACML 3.0.
+The deliverable D7.1 \cite{noauthor_d7.1.pdf_nodate} refers to the use of RDF to represent the concepts and relationships as a graph, which consists of three layers:
+\begin{enumerate}
+    \item \textbf{A core model}: the schema that captures the fundamental concepts, e.g. assets, roles, threats, and their relationships.
+    \item \textbf{Domain models}: datasets that encode domain- specific knowledge, e.g. detailed threats and their possible control strategies.
+    \item \textbf{System models}: that represent an actual system upon which the risk assessment is being performed.
+\end{enumerate}
 
-7> DEFEND
+\subsubsection{BPR4GDPR}
+BPR4GDPR\footnote{\url{http://www.bpr4gdpr.eu/}} (Business Process Re-engineering and functional toolkit for GDPR compliance) is an European H2020 project that aims to provide a a reference compliance framework for the GDPR. The framework is stated to provide specification of sophisticated security and privacy policies, modelling technologies and tools for the incorporation of provisions in process models and the resulting executable processes, and means for automating verification and alignment.
+This is planned to be achieved using a set of mechanisms for automating the respective procedures and resulting in processes that are compliant by design.
+The project intends to implement the concept of Compliance-as-a-Service (CaaS) by providing a set of tools that fit the needs of various organisations being subject to GDPR compliance.
+Information about the project is available through peer-reviewed publications and project deliverables\footnote{\url{http://www.bpr4gdpr.eu/results/deliverables/}}.
 
-8> Papaya
+The project uses an ontology to represent the information model utilised in its approach, as depicted in \autoref{fig:BPR4GDPR-model} \cite{lioudakis_d3.1_2019}. The ontology consists of concepts and relationships regarding:
+\begin{itemize}
+    \item DataTypes: all the types of data that can be used during the system's operation.
+    \item Roles: roles that the system's users may hold.
+    \item Operations: all the operations that may take place.
+    \item OrganisationTypes: reflecting the different types of organisations, external or internal, actual or virtual, that may be involved in operations.
+    \item OperationContainerTypes: representing functional components that offer a set of operations together.
+    \item MachineTypes: types of machines that are used during the system's operation.
+    \item EventTypes: types of events that may affect the operations and/or may require some action to take place in response.
+    \item ContextTypes: specification of run-time constraints.
+    \item Attributes: description of properties that characterise the entities.
+\end{itemize}
+The ontology is serialised using OWL2, and contains `default instances' representing a ready to use set of instances based on its use-cases, which are described in detail in deliverable D3.1 \cite{lioudakis_d3.1_2019}. 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/BPR4GDPR_model.png}
+    \caption{Information Model Ontology in BPR4GDPR \cite{lioudakis_d3.1_2019}}
+    \label{fig:BPR4GDPR-model}
+\end{figure}
 
-9> SMOOTH
+The compliance assessment is performed using the compliance meta-model ontology, as depicted in \autoref{fig:BPR4GDPR-compliance}, and described in detail in deliverable D2.3 \cite{dellas_d2.3_2019}. The compliance ontology is used to dictate and evaluate processes by considering them as worfkflows where actions or operations are connected to each other in terms of dependencies and data flows, are performed by an actor, and include assets or artefacts. Process mining is performed on the knowledge extracted from the event logs of information systems to discover, monitor and improve processes not assumed or modelled prior to the evaluation. This is then utilised to create a process monitoring architecture, which contains the following four sub-components of functionality:
+\begin{itemize}
+    \item The \textbf{pre-processing subcomponent} receives data from Data Management middleware as an input and updates and produces standard event logs for process mining. 
+    \item The \textbf{conformance checking subcomponent} compares previously discovered models from those extracted from given event logs. The conformance depends on whether the process discovered from logs conforms to to the previously discovered or assumed process.
+    \item The \textbf{rules subcomponent} retrieves policies from Security \& Privacy Policies module and converts them to a set of access control rules.
+    \item The \textbf{model repair subcomponent} receives the to-be-repaired process models based on failed conformance checks, the converted rules, and the results of conformance checking as inputs, and identifies  parts of the process model not compliant with the rules. 
+\end{itemize}
 
-10> STAR
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/BPR4GDPR_compliance.png}
+    \caption{Compliance meta-model ontology in BPR4GDPR \cite{dellas_d2.3_2019}}
+    \label{fig:BPR4GDPR-compliance}
+\end{figure}
 
-0> Other Projects
-- SODA
-- DECODE 
-- MOSAICrOWN
-- MUSKETEER
-- OPERANDO
-- PDP4E
--PoSEID-on
-- PRIPARE
+The public deliverable D3.1 \cite{lioudakis_d3.1_2019} defines rules derived from the GDPR which represent the minimal set of configurations of the BPR4GDPR architecture before it is adapted to a particular use-case, i.e. its default configuration. The rules are as follows:
+\begin{enumerate}[label={\textit{Rule\#\theenumi}}]
+    \item  Nobody should have access to any data (secrecy by default)
+    \item  An authorisation mechanism should be available and used in any access and use operation
+    \item  A data breach must be reported within 72 hours starting when the controller has ascertained the
+    breach
+    \item  No data should be shared to third parties
+    \item  If shared, data must be pseudonymised or anonymised
+    \item  Stored data must be encrypted
+    \item  Data subjects should have access to their data
+    \item  No data processing should take place unless the data subject has provided consent
+    \item  The means for updating consent must be provided, thus keeping consent information up to date
+    \item  An easy way to revoke consent must be provided
+    \item  If consent has been obtained, it should be tracked
+    \item  Data subjects must be provided with adequate privacy notice
+    \item  Data subject must be able to update or modify his/her own personal data
+    \item  Personal data should be stored for no longer than required by the underlying law/regulation, as
+    well as the duration of the purpose of the processing itself
+    \item  The DPO should have broad access to personal data processing activities
+    \item  The DPO should be involved in any data processing assessment
+    \item  No actions may be taken without the prior consultation of the DPO
+    \item  Access to personal information should be granular, according to the role and the functions of the
+    person who is meant to access
+    \item  Features to carry out data portability should be enabled
+    \item  The system should allow to delete only personal data eventually considered as either not relevant
+    for specific and imperative obligations of the controller or inaccurate
+    \item  Any record of processing for each controller should be stored separately and accessed only by
+    authorised users
+    \item  The system should allow for the customisation of data retention periods according to the
+    particularities of the collected data
+    \item  Transfer of personal data must be tracked
+    \item  System administrator’s logging activity should be tracked
+\end{enumerate}
+
+\subsubsection{DEFeND}
+DEFeND\footnote{\url{https://www.defendproject.eu/}} (Data Privacy Governance for Supporting GDPR) is an European H2020 project that aims to create a platform for providing services to organisations in the context of GDPR compliance. The platform is stated to provide services regarding data management and governance, data breach reporting, process management, along with GDPR planning and reporting. The peer reviewed publication \cite{piras_defend_2019} presents more details about the architecture of the project and its various components.
+
+The Data Assessment Component (DAC) consists of the Organisation Data Collection (ODC) module which uses an questionnaire to collect information about organisational scope, data processing, processes, and activities - and is used to evaluate the organisation with relevant aspects of the GPDR. The questionnaire responses from ODC are given to the Assessment Translator (ATr) module which converts them to an XML-schema in order to create Data Assessment Model (DAM) - which is a goal-based requirement engineering model of actors, assets, establishments and data flows.
+
+The DAM is used by the Data Privacy Analysis Component (DPAC) to perform analysis about DPIA, Data Minimisation, Privacy-by-Design/Default, and Threat mitigation. The outcome of the analysis is a Data Privacy Model (DPC), which is utilised to specify and evaluate both at design and run-time the operations of consent management, data access rights, security and privacy technologies. The project also aims to create a dashboard to provide organisations with control and monitoring of operations to achieve GDPR compliance, and to enable data subjects to interact with the platform based on consent.
+
+\subsubsection{PAPAYA}
+PAPAYA\footnote{\url{https://www.papaya-project.eu/}} (PlAtform for PrivAcY preserving data Analytics) is an European H2020 project that aims to provide privacy preserving techniques and technologies for performing analytics tasks on encrypted data by untrusted third-party data processors. The project uses the obligations of the GDPR to structure its outcomes in terms of Privacy Enhancing Technologies (PETs) which are provided through an intoperable platform. The project focuses on the application of privacy by design principle to provide usability, transparency, and auditability to end users regarding the processing of their data. Information about the project is available through peer-reviewed publications\footnote{The deliverables listed at \url{https://www.papaya-project.eu/deliverables} are not publicly accessible at the time of writing this thesis.}.
+
+\subsubsection{SMOOTH}
+SMOOTH\footnote{\url{https://smoothplatform.eu/}} is an European H2020 project that aims to assist micro enterprises become compliant with the GDPR by designing and implementing tools for awareness about GDPR obligations and analysing their level of compliance with the new data protection regulation.
+
+\subsubsection{STAR}
+
+\subsubsection{SODA}
+\subsubsection{DECODE}
+\subsubsection{MOSAICrOWN}
+\subsubsection{MUSKETEER}
+\subsubsection{OPERANDO}
+\subsubsection{PDP4E}
+\subsubsection{PoSEID-on}
+\subsubsection{PRIPARE}
 - 
 
 \subsection{Research Approaches utilising Semantic Web}
