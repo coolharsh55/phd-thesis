@@ -438,7 +438,56 @@ The publication explicitly mentions that the ontology has not been evaluated. Th
 \section{Other Approaches for GDPR compliance}\label{sec:sota:gdpr-other}
 
 \subsection{Layered Privacy Language (LPL)}
-LPL \cite{gerl_lpl_2018}
+LPL \cite{gerl_lpl_2018} presents a formal model for specification of legal requirements regarding consent, data provenance, data retention and other privacy related concepts associated with the GDPR.
+The objective of LPL is to be used in technical systems as a machine-readable privacy policy to provide privacy by design. Towards that end, LPL defines the following requirements for a privacy language:
+\begin{itemize}
+    \item Differentiation between data-source and data-recipient to enable fine-grained access-control
+    \item Modelling of purpose-based privacy policies with modelling of data, retention and anonymisation enabling privacy models
+    \item Layering of privacy policies to ensure provenance 
+    \item Human-readability
+\end{itemize}
+
+The LPL structure, depicted in \autoref{fig:LPL-model}, consists of \textit{LayeredPrivacyPolicy} (LPP) as the root element representing a privacy policy or a legal contract. The element contains attributes for recording version information and an URI to the privacy policy containing its human-readable description. Each LPP can refer to an \textit{UnderlyingPrivacyPolicy} to enable tracking of privacy policies across multiple entities.
+LPP is associated with a data source and its use in (multiple) purposes. The purpose is further associated with data recipients, data, privacy models, and data retention.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/LPL_model.png}
+    \caption{GuideMe approach by Ayala-Rivera and Pasquale \cite{gerl_lpl_2018}}
+    \label{fig:LPL-model}
+\end{figure}
+
+LPL contains the concept of \textit{Entity-Hierarchy} where permissions provided to a parent entity can be controlled at a granular level with its child entities. An example of this is different departments within an organisation. Similarly, \textit{Purpose-Hierarchy} represents trees of purposes where a child purpose inherits the rights from a parent purpose. In this hierarchy, \textit{Regulated Purpose} specify a purpose required or obligated by the law.
+Authorisation of entities and purposes is carried out by searching for rules matching the entity and purpose or their parents in the hierarchy. 
+
+A critical analysis of the LPL for Article 12-14 of the GDPR was carried in the context of the work \cite{gerl_critical_2018}. This analysis presented requirements identified in the article of the GDPR and the corresponding LPL concepts along with whether they fulfil the stated requirements.
+The analysis is used to present proposed changes to the LPL to incorporate additional concepts that fulfil the requirements.
+
+\subsection{Lodge et al.}
+Lodge et al. \cite{garcia-alfaro_developing_2018} present the Databox application development environment (SDK) for developing IoT apps utilising requirements to meet GDPR compliance. The SDK is provided with the objective to simplify compliance by utilising provided tools and design patterns.
+The approach is based on identifying applicable requirements from the text of the GDPR and classifying them as based on risk or transparency.
+
+The SDK enables modelling of applications as information flows consisting of four node types: datastores - devices or services that generate data, processors - nodes that operate on data, profiler - nodes that infer new information about data subject, and outputs - nodes that perform action on data. Using the SDK, application developers can inspect ongoing risk breakdowns based on developed application, and track personal data as its moves through the application. The SDK also enables creation of GDPR-compliant contracts that embed the required information to provide informed consent, and provide automatic tooling for runtime data flow inspection.
+
+Risks are detected based on whether the data is exported out of the platform, or triggers physical actuation, utilises insecure hardware, or uses unverified libraries. Tracking of personal data is provided by enforcing all outputs from a node to provide a personal data schema, which consists of the following top-level attributes:
+\begin{itemize}
+    \item Type: identifier, sensitive, personal
+    \item Ordinal: primary, secondary (inferred)
+    \item Category: physical, education, professional, state, contact, consumption
+    \item Subtype: sensitive (biometric, health, sexual, criminal), personal (education, profession, consumption)
+    \item Description: details of personal data and method of inference
+    \item Required: List of attributes of data that must be present in order for it to be constituted as personal data
+\end{itemize}
+
+GDPR compliant contracts are created by utilising the information flows to construct an agreement that is presented to the user. The agreement is visualised as a multi-layered notice that represents information taken from a manifest file containing all possible configurations in terms of data collection and usage. Developers can mark an information as compulsory or optional to indicate its basis in consent.
+
+\subsection{Consent and Data Management Model by Peras}
+Peras \cite{peras_guidelines_2018} presented 10 guidelines for implementing a consent management framework based on the requirements of the GDPR. These guidelines are based on adopting the requirements of consent and provision of rights in a data management system. The publication presents an analysis of existing consent and data management models\footnote{One of the works cited in this analysis contains the author as a co-author in its contribution \cite{fatema_compliance_2017}.} where the elements and attributes of the model are used for comparison. Based on this, a consent and data management model, depicted in \autoref{fig:Peras-model}, is proposed consisting of a contact interface for interactions between controllers and data subjects, a consent management module, a context management module, a data management module, and origin management.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/Peras_model.png}
+    \caption{Consent and Data Management Model by Peras \cite{peras_guidelines_2018}}
+    \label{fig:Peras-model}
+\end{figure}
 
 \subsection{privacyTracker}
 privacyTracker \cite{gjermundrod_privacytracker:_2016} is a framework that provides data traceability through privacy by design principles for GDPR compliance. The framework utilises policies to mediate access to information stored in the form of \textit{Customer Records}, and consists of 3 modules regarding data collection, data distribution, and data traceability. The \textit{Customer Record} is a XML document utilising XSD to store personal data, and contains two sections - a mandatory metadata section and an optional section. The metadata section contains fields for record identification, data tractability, and cryptographic controls. The optional section consists of fields indicating public data, private data which can be disclosed based on consent, and data provided by enterprise itself.
