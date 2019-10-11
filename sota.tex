@@ -421,7 +421,24 @@ PICS is a project with the objective of enabling users to discover and control u
 
 The ontology used by the ToS analyser \cite{benfenatki_towards_2019} consists of concepts associated with actions on data (such as deletion, disclosure, fusion, sharing), governance (laws, ownership, rights, terms of service), security strategies, and data protection. The ontology itself is not public or accessible and the publication does not provide complete details about its concepts or use beyond that of utilisation in the ToS analyser.
 
+\subsection{Ontology by Geko \& Tjoa}
+Geko \& Tjoa \cite{geko_ontology_2018} proposed an ontology for capturing the interdependence between GDPR and information security requirements for assisting with compliance requirements involving security.
+The ontology, depicted in \autoref{Geko-ontology}, consists of hierarchical concepts representing the obligations of the GDPR and information security.
+It has concepts regarding entities (Controller, Processor, Data Subject), rights, principles, personal data, obligations, and security. These are related using properties associated with fulfilling roles and obligations, ensuring data security, and provision of rights.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/Geko_ontology.png}
+    \caption{Ontology for GDPR and Information Security by Geko \& Tjoa \cite{geko_ontology_2018}}
+    \label{fig:Geko-ontology}
+\end{figure}
+
+The publication describes an example use-case of the ontology, where additional concepts are added to represent security concepts of access control, audits, data classification, information risk assessment, security awareness, and security policy. Further concepts are also mentioned for representing technical measures of encryption, logging, network security, physical security, privacy by design and default, and pseudo-anonymisation.
+The publication explicitly mentions that the ontology has not been evaluated. The publication also does not provide access to the ontology or its documentation.
+
 \section{Other Approaches for GDPR compliance}\label{sec:sota:gdpr-other}
+
+\subsection{Layered Privacy Language (LPL)}
+LPL \cite{gerl_lpl_2018}
 
 \subsection{privacyTracker}
 privacyTracker \cite{gjermundrod_privacytracker:_2016} is a framework that provides data traceability through privacy by design principles for GDPR compliance. The framework utilises policies to mediate access to information stored in the form of \textit{Customer Records}, and consists of 3 modules regarding data collection, data distribution, and data traceability. The \textit{Customer Record} is a XML document utilising XSD to store personal data, and contains two sections - a mandatory metadata section and an optional section. The metadata section contains fields for record identification, data tractability, and cryptographic controls. The optional section consists of fields indicating public data, private data which can be disclosed based on consent, and data provided by enterprise itself.
@@ -469,7 +486,20 @@ The publication provides examples through use-cases, stakeholder scenarios, and 
 
 \subsection{Basin et al.}
 Basin et al. \cite{basin_purpose_2018} proposed an approach that aligns purpose as defined by the GDPR with a business process, and uses formal models of inter-process communication to audit GDPR compliance. The approach also uses models of data flows to derive privacy policies. 
-The definition of business process used in the approach ...
+The definition of business process used in the approach consists of having a set of activities that take inputs and produce outputs, have a beginning and an end, and are ordered. The inter-process communication is based on the understanding of data-flow graphs where different processes interact and share the same set of data for different purposes.
+
+The auditing mechanism in the approach is based on validating the following:
+\begin{enumerate}
+    \item Implementation conforms to process collections (i.e. implemented activities conform to modelled processes)
+    \item Process collection conforms to privacy policy (i.e. modelled processes conform to those specified within a privacy policy)
+    \item Process collection conforms to GDPR
+    \item Privacy policy conforms to GDPR
+\end{enumerate}
+
+The process collection is defined as a tuple $PC = (P,D,DU,DC)$ consisting of processes ($P$), data classes ($D$), data usage ($DU\subset D x P$), and data collection ($DC\subset D x P$). Consent is based on evaluating whether the process collection permitted by consent falls within that defined by the privacy policy. Similarly, data minimisation is evaluated by assessing whether all data collected is utilised in some process.
+
+\subsection{Approaches utilisation visualisation and dashboards}
+\cite{fox_communicating_2018} - GDPR privacy label - creating a privacy label to inform data subjects about the data processing characteristics such as identity of controller, purposes, recipients, transfers, consent - withdrawal
 
 % non sem-web
 \subsection{RestAssured}
