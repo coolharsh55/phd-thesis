@@ -422,6 +422,55 @@ PICS is a project with the objective of enabling users to discover and control u
 The ontology used by the ToS analyser \cite{benfenatki_towards_2019} consists of concepts associated with actions on data (such as deletion, disclosure, fusion, sharing), governance (laws, ownership, rights, terms of service), security strategies, and data protection. The ontology itself is not public or accessible and the publication does not provide complete details about its concepts or use beyond that of utilisation in the ToS analyser.
 
 \section{Other Approaches for GDPR compliance}\label{sec:sota:gdpr-other}
+
+\subsection{privacyTracker}
+privacyTracker \cite{gjermundrod_privacytracker:_2016} is a framework that provides data traceability through privacy by design principles for GDPR compliance. The framework utilises policies to mediate access to information stored in the form of \textit{Customer Records}, and consists of 3 modules regarding data collection, data distribution, and data traceability. The \textit{Customer Record} is a XML document utilising XSD to store personal data, and contains two sections - a mandatory metadata section and an optional section. The metadata section contains fields for record identification, data tractability, and cryptographic controls. The optional section consists of fields indicating public data, private data which can be disclosed based on consent, and data provided by enterprise itself.
+
+The record identification field contains a URI based on string concatenation of company name, user email address and auto-generated random identifier. This URI is unique throughout the framework, but changes when the data is distributed to another entity. In addition, the identification field also stores timestamps associated with record genesis, (local) record creation, and expiration. The data tractability fields record links to the entity that generated the record (backward-to-root reference), entities the record was obtained from (backward reference), and entities the record is disclosed to (forward reference). The cryptographic controls store a signed copy of the received record and a signature in the form of hash code of the complete record.
+The distribution module enables sharing of data via an API through which granular requests can be made. Records of distributions are signed cryptographically and verified for tractability.
+Enforcing rights is simplified by traversing the stored distribution records starting from the original record as root and moving towards the leaves.
+A prototype of the implementation consisted of 6 companies and used MySQL and PHP as the technological framework. The records were stored using XML, which was then ingested into the database and queried using SQL.
+
+The analysis of GDPR presented in connection with privacyTracker provide a list of requirements required to be satisfied by compliance frameworks, which are: Articles 5(1a), 5(1d), 6(1a), 6(1c), 7(1), 7(3), 12(1), 12(2), 14(1a), 14(1ac), 14a(2g), 15, 16(1), 17(1), 17(2a), 17a(1), 18(2), 19(2)). These provide the obligation to record and demonstrate evidence regarding handling and sharing of consumer data. 
+
+\subsection{Metrics for Transparency by Spagnuelo et al.}
+Spagnuelo et al. \cite{livraga_metrics_2016} define eight quality metrics for transparency regarding data processing associated with the GDPR.
+In this context, transparency is defined based on quality factors of Informativeness, Understandability, and Accessibility associated with providing information, and Validity and Accessibility associated with providing mechanisms.
+Each metric is associated with one or more questions that retrieve information regarding quality factors associated with its quantitative scoring.
+The metrics provide a quantifiable representation of transparency in a system, and are used in a use-case to evaluate Microsoft Health-Vault - a commercial product.
+The metrics are as follows - accuracy, currentness, conciseness, detailing, readability, availability, portability, and effectiveness.
+
+\subsection{Metamodel for Privacy Level Agreements by Diamantopoulou et al.}
+Diamantopoulou et al. present a metamodel for representing Privacy Level Agreements (PLA) with the aim of establishing contracts between controllers and individuals.
+The metamodel, depicted in \autoref{fig:Diamantopoulou-metamodel}, represents privacy preferences using the concept of questionnaires, where each question refers to a specific data and the answer represents the individual's preferences regarding data sharing. The metamodel also associates preferences with threats, risks, and security measures through the data and controller. Requests for sharing data are associated with data and preferences, and can be accepted or denied based on the values of linked preferences.
+The metamodel is specified to be designed for use-case in eGovernance scenarios where public administrators can provide data and value based on citizens preferences represented through the metamodel.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/Diamantopoulou_metamodel.png}
+    \caption{Metamodel for Privacy Level Agreements by Diamantopoulou et al. \cite{diamantopoulou_metamodel_2017}}
+    \label{fig:Diamantopoulou-metamodel}
+\end{figure}
+
+\subsection{Robol et al.}
+Robol et al. \cite{robol_toward_2017} proposed a modelling and reasoning framework based on socio-technical systems \cite{dalpiaz_security_2016} - an approach for incorporating interaction between people and technology. The proposed framework extends STS-ml - a goal-based modelling language provided in STS - with relevant concepts regarding privacy by design and GDPR compliance. The extended modelling language consists of three views - social, information, and authorisation - based on concepts and context of interactions between them. Social views incorporate actors and their goals and documents, as well as delegations and transmissions. Information views consist of associating actors with information and the tangible documents. Authorisation views consist of interactions with actors based on authorisations which are validated by legal basis over some information towards a particular goal. The modelling concepts are explained in the publication using a health-domain use-case.
+
+Reasoning is based on using the concepts in policies that are then validated for compliance. The policies are based on formal representations of rules based on conditions and constraints for compliance, and the notion of \textit{well-formedness} of models. One notable aspect of this work is the use of concepts from socio-technical approaches to represent GDPR concepts. In particular, goal is used to simulate purpose, actors are used to conceptualise individuals and controllers, and authorisation is used to simulate valid legal basis. The approach enables use of STS modelling and reasoning to develop rules for expressing GDPR compliance requirements and validations.
+
+\subsection{Ayala-Rivera and Pasquale}
+Ayala-Rivera and Pasquale \cite{ayala-rivera_grace_2018} proposed a 6 step approach that links GDPR obligations with privacy controls for compliance and focuses on utilisation of data protection principles in activities. The approach, called GuideMe and depicted in \autoref{fig:Ayala-GuideMe}, is based on eliciting requirements from a business perspective and moving towards encapsulating them into compliant solutions. The first step consists of conducting a data audit to recognise all sources and instance of personal data, its storage, legal basis, and sharing, and identification of use in activities and their risks. The second step is a gap analysis to identify systems and processes that need remedial actions based on their violations of GDPR obligations. The third step utilises the results of gap analysis to establish plans for incorporating privacy controls towards obtaining compliance with the GDPR. The fourth step reviews the implementation plan with stakeholders, while the fifth step implements the corrective actions. The sixth and final step is the evaluation of implemented actions with experts.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/Ayala_GuideMe.png}
+    \caption{GuideMe approach by Ayala-Rivera and Pasquale \cite{ayala-rivera_grace_2018}}
+    \label{fig:Ayala-GuideMe}
+\end{figure}
+
+The publication provides examples through use-cases, stakeholder scenarios, and presents the application of data protection principles in each of GuideMe's steps. It also provides an examples utlising a template containing placeholders for incorporating legal obligations into business requirements. Evaluation of the implemented measures is explained through the example of scenarios which used SMART questionnaires to analyse and validate the corrective actions.
+
+\subsection{Basin et al.}
+Basin et al. \cite{basin_purpose_2018} proposed an approach that aligns purpose as defined by the GDPR with a business process, and uses formal models of inter-process communication to audit GDPR compliance. The approach also uses models of data flows to derive privacy policies. 
+The definition of business process used in the approach ...
+
 % non sem-web
 \subsection{RestAssured}
 RestAssured\footnote{\url{https://restassuredh2020.eu/}} is an European H2020 project that aims to enable secure data processing in the cloud with sticky policies for decentralised data lifecycle management.
