@@ -489,6 +489,29 @@ Peras \cite{peras_guidelines_2018} presented 10 guidelines for implementing a co
     \label{fig:Peras-model}
 \end{figure}
 
+\subsection{Tom et al.}
+Tom et al. \cite{tom_conceptual_2018} presented a conceptual model of the GDPR representing the entities, actions, artefacts, rights, and their interactions. The publication provides a table of GDPR articles and their related entities and associations within the model, which it uses for evaluating completeness.
+The model, depicted in \autoref{fig:Tom-model}, contains concepts regarding consent, purpose, data processing, technical measures, and actors such as controller, processor, data subject, and supervisory authority.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/Tom_model.png}
+    \caption{Conceptual Model of GDPR by Tom et al. \cite{tom_conceptual_2018}}
+    \label{fig:Tom-model}
+\end{figure}
+
+The attributes of each concept are modelled based on database schemas, and represent conditions or additional information associated with the concept. For consent, boolean attributes define whether it was freely given, can be withdrawn, is unambiguous, was in affirmative action, and is distinguishable. Similarly, purpose has boolean attributes regarding whether it is in legitimate interest, does not require identification, is in public interest, for legal obligation, of vital interest to the data subject, and whether it indicates contract of processing. Certain attributes can refer to a table of concepts or instances, such as the \textit{PersonalData} attribute of category referring to \textit{DATA_CATEGORY}. The publication provides examples of personal data categories, actor types (private, public, natural person, legal person, official), technology categories, processing operations, and generic stereotypes (secure channel, communication protection, encryption).
+
+The model was utilised to develop an approach for analysing GDPR compliance over business process models using BPMN \cite{pullonen_privacy-enhanced_2019}.
+The approach, termed PE-BPMN (Privacy Enhanced BPMN) and depicted in \autoref{fig:Tom-PEBPMN}, utilises BPMN to capture Privacy Enhancing Techniques (PETs) for capturing information flows. The approach is utilised in a mobile app scenario where the to analyse information disclosure.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/Tom_PEBPMN.png}
+    \caption{PE-BPMN approach by Pullonen et al. \cite{pullonen_privacy-enhanced_2019}}
+    \label{fig:Tom-PEBPMN}
+\end{figure}
+
+\subsection{Approaches concerning Privacy Policies}
+
 \subsection{privacyTracker}
 privacyTracker \cite{gjermundrod_privacytracker:_2016} is a framework that provides data traceability through privacy by design principles for GDPR compliance. The framework utilises policies to mediate access to information stored in the form of \textit{Customer Records}, and consists of 3 modules regarding data collection, data distribution, and data traceability. The \textit{Customer Record} is a XML document utilising XSD to store personal data, and contains two sections - a mandatory metadata section and an optional section. The metadata section contains fields for record identification, data tractability, and cryptographic controls. The optional section consists of fields indicating public data, private data which can be disclosed based on consent, and data provided by enterprise itself.
 
