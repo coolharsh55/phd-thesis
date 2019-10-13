@@ -405,7 +405,7 @@ Related work within the same project by Joshi and Banerjee  \cite{joshi_automati
 The modelling of concepts includes some notably different relationships, such as the association of storage duration within collection purpose, usage limitation relating to data recipients, attributes associated with consent, and the inclusion of redress as a related concept. The developed ontology is utilised to extract and represent instances from privacy policies, enhance it using a reasoner, and to store the resulting access control representations in the blockchain. The work is based on the approach of utilising an existing privacy policy as a smart contract in the sharing of data between provider and consumer.
 It is important to note that the work relates to the use of PII as opposed to personal data as defined by the GDPR. Furthermore, the policy does not encode information about rights as required by the GDPR.
 
-\subsection{Ujcich et al.}
+\subsection{Ujcich et al.}\label{sec:sota:gdpr-semweb:ujcich}
 Ujcich et al \cite{belhajjame_provenance_2018} presented a data provenance model of the GDPR, depicted in \autoref{fig:Ujcich-ontology}, which utilises PROV-O \cite{lebo_prov-o:_2013} to represent activities and data in a semantic-web representation. The approach uses the activity `\textit{Justify}' to represent the rationale for processing personal data and has annotations depicting its starting and ending times, as well as a `\textit{Justification}' - which represents the legal basis of processing. The ontology focuses on the workflows involving exercising of rights under the GDPR, and provides examples of data rectification and withdrawal of consent utilising provenance.
 \begin{figure}[htbp]
     \centering
@@ -481,7 +481,7 @@ Risks are detected based on whether the data is exported out of the platform, or
 GDPR compliant contracts are created by utilising the information flows to construct an agreement that is presented to the user. The agreement is visualised as a multi-layered notice that represents information taken from a manifest file containing all possible configurations in terms of data collection and usage. Developers can mark an information as compulsory or optional to indicate its basis in consent.
 
 \subsection{Consent and Data Management Model by Peras}
-Peras \cite{peras_guidelines_2018} presented 10 guidelines for implementing a consent management framework based on the requirements of the GDPR. These guidelines are based on adopting the requirements of consent and provision of rights in a data management system. The publication presents an analysis of existing consent and data management models\footnote{One of the works cited in this analysis contains the author as a co-author in its contribution \cite{fatema_compliance_2017}.} where the elements and attributes of the model are used for comparison. Based on this, a consent and data management model, depicted in \autoref{fig:Peras-model}, is proposed consisting of a contact interface for interactions between controllers and data subjects, a consent management module, a context management module, a data management module, and origin management.
+Peras \cite{peras_guidelines_2018} presented 10 guidelines for implementing a consent management framework based on the requirements of the GDPR. These guidelines are based on adopting the requirements of consent and provision of rights in a data management system. The publication presents an analysis of existing consent and data management models\footnote{One of the works cited in this analysis is an approach developed in collaboration by the author \cite{fatema_compliance_2017}, with further information presented in \autoref{sec:voc:GConsent}.} where the elements and attributes of the model are used for comparison. Based on this, a consent and data management model, depicted in \autoref{fig:Peras-model}, is proposed consisting of a contact interface for interactions between controllers and data subjects, a consent management module, a context management module, a data management module, and origin management.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{img/Peras_model.png}
@@ -499,10 +499,10 @@ The model, depicted in \autoref{fig:Tom-model}, contains concepts regarding cons
     \label{fig:Tom-model}
 \end{figure}
 
-The attributes of each concept are modelled based on database schemas, and represent conditions or additional information associated with the concept. For consent, boolean attributes define whether it was freely given, can be withdrawn, is unambiguous, was in affirmative action, and is distinguishable. Similarly, purpose has boolean attributes regarding whether it is in legitimate interest, does not require identification, is in public interest, for legal obligation, of vital interest to the data subject, and whether it indicates contract of processing. Certain attributes can refer to a table of concepts or instances, such as the \textit{PersonalData} attribute of category referring to \textit{DATA_CATEGORY}. The publication provides examples of personal data categories, actor types (private, public, natural person, legal person, official), technology categories, processing operations, and generic stereotypes (secure channel, communication protection, encryption).
+The attributes of each concept are modelled based on database schemas, and represent conditions or additional information associated with the concept. For consent, boolean attributes define whether it was freely given, can be withdrawn, is unambiguous, was in affirmative action, and is distinguishable. Similarly, purpose has boolean attributes regarding whether it is in legitimate interest, does not require identification, is in public interest, for legal obligation, of vital interest to the data subject, and whether it indicates contract of processing. Certain attributes can refer to a table of concepts or instances, such as the \textit{PersonalData} attribute of category referring to \textit{DATA\_CATEGORY}. The publication provides examples of personal data categories, actor types (private, public, natural person, legal person, official), technology categories, processing operations, and generic stereotypes (secure channel, communication protection, encryption).
 
 The model was utilised to develop an approach for analysing GDPR compliance over business process models using BPMN \cite{pullonen_privacy-enhanced_2019}.
-The approach, termed PE-BPMN (Privacy Enhanced BPMN) and depicted in \autoref{fig:Tom-PEBPMN}, utilises BPMN to capture Privacy Enhancing Techniques (PETs) for capturing information flows. The approach is utilised in a mobile app scenario where the to analyse information disclosure.
+The approach, termed PE-BPMN (Privacy Enhanced BPMN) and depicted in \autoref{fig:Tom-PEBPMN}, utilises BPMN to capture Privacy Enhancing Techniques (PETs) for capturing information flows. The approach is utilised in a mobile app scenario to analyse information disclosure.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{img/Tom_PEBPMN.png}
@@ -510,10 +510,79 @@ The approach, termed PE-BPMN (Privacy Enhanced BPMN) and depicted in \autoref{fi
     \label{fig:Tom-PEBPMN}
 \end{figure}
 
-\subsection{Approaches concerning Privacy Policies}
+The information disclosure analysis is performed based on identifying whether an object (personal data) is disclosed, which in this context is defined by it being received or intercepted by another party regardless of intent or policy. Objects can be visible, accessible, or hidden - based on whether the actor obtains and owns them, whether the data is protected or requires additional permissions, and whether it is protected by some PETs. The associated publication \cite{pullonen_privacy-enhanced_2019} presents details of an implemented prototype and its application in use-cases involving secure storage of data using encryption and PETs. 
+
+\subsection{Coletti et al.}
+Coletti et al. \cite{kurosu_design_2019} proposed visual design patterns to provide transparency regarding personal data processing in mobile applications. These design patterns consist of recommendations for user interface and experience regarding providing information about processing and rights as per the requirements of the GDPR. Their approach identifies the following relevant information to be provided for transparency: 
+\begin{itemize}
+    \item Contact data information for Controllers, Processors and Data Protection Officers
+    \item Information about purpose of use, legal basis, and rights
+    \item Information about location as a specific form of data and processing
+    \item Information about actions and algorithms utilised in processing
+    \item Data sources 
+    \item Period of use and storage of data
+\end{itemize}
+The visual design patterns organise this information into different layouts and screens to provide a simpler view to the data subject. A `springboard' consisting of an overview of the different sections is provided through which the information about each topic can be obtained. The approach recommends a three-layered approach consisting of - (1) purpose, legal basis, and rights; (2) subgroups of information such as specific laws related to legal basis, actionable tasks regarding rights; and (3) textual information with a search field.
+
+\subsection{Corrales et al.}
+Corrales et al. \cite{corrales_smart_2019} propose embedding legal requirements in smart contracts as a programmatic algorithm based on encoding the answers to a questionnaire into a compliance framework for data processing in the cloud. The questionnaire contains a set of 15 questions related to legal and technical issues including privacy, data protection and data security. The answers to the questionnaire are boolean in that they consist of affirmative (YES) or negative (NO). The algorithm for compliance then checks whether the questions have been answered in a way that meets the reqiurements of the GDPR. The pseudo-code presented in the publication consists of a series of steps checking whether the answers which can also be visualised in the form of a flow-chart containing decision making steps. The set of legal questions in the questionnaire is as follows:
+\begin{enumerate}
+    \item Does your SaaS application deal with sensitive/personal data?
+    \item Does your SaaS application support native encryption/protection of the data and
+authentication?
+    \item Does your SaaS application give the choice of EU-based data storage location?
+    \item Is your SaaS application dynamically configured for using IaaS/PaaS services?
+    \item Are the data or metadata “ownership” rights clearly defined and clarified in the
+contract/SLA?
+    \item Do you offer notifications in case you change the terms and conditions?
+    \item Do you offer notifications in case your underlying PaaS/IaaS provider changes the
+terms and conditions?
+    \item Do you offer the ability to the end-users to virtually be under more control over
+their own data ensuring data portability (e.g., migration, extraction and reuse of their
+data) and interoperability within the Cloud?
+    \item Do you offer the ability to the end-users the right to delete/eliminate their data
+(so-called “Right to be Forgotten”) in the original used service?
+    \item Does your underlying PaaS/IaaS provider use Standard Contractual Clauses
+(SCCs) with you and other parties?
+    \item Has your underlying PaaS/IaaS provider been certified for their Binding
+Corporate Rules (BCR) clauses by a EU DPA?
+    \item Do you take measures to prevent data loss (regular backups, replication, etc.)?
+    \item Are you using your own resources to run your application?
+\end{enumerate}
+
+\subsection{LUCE}
+LUCE \cite{havelange_luce:_2019} (A Blockchain Solution for monitoring data License accoUntability and CompliancE) is a platform for facilitating compliance with licensing terms by enabling data accountability through recording of data use and purpose using blockchain. The platform specifically aims to provide compliance assistance towards the GDPR and its rights. LUCE has the following objectives: (i) to automatically manage and enforce licensing terms attached to a dataset, ii) record and makes available information pertaining to how and for which purpose the dataset is reused, and iii) enable compliance with the GDPR rights regarding data access, rectification, and erasure. The architecture, depicted in \autoref{fig:sota:LUCE-architecture}, consists of four layers for management of metadata, entities, data, and blockchain. 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/LUCE_architecture.png}
+    \caption{Architecture of LUCE \cite{havelange_luce:_2019}}
+    \label{fig:sota:LUCE-architecture}
+\end{figure}
+
+Data providers publish their dataset metadata into a \textit{Yellow Page} shared directory where requestors can search for matching datasets. Each dataset is accompanied with licensing information for access and reuse to the data. A transaction for reusing data is implemented in the form of a smart contract which contains the associated license as an obligation of terms. Requestors accepting the licensing agreements are provided with an access token which is tracked within the smart contract for compliance. The \textit{License-Monitoring} sub-module continuously checks the actions performed by the data requester comply with the licensing terms and records these actions in a file which constitutes a log of events. Access tokens are valid for a specific time period, after which renewal is granted based on prior compliance with the licensing terms, which are checked using the event logs. A data provider can also check accesses to the data and the status of requestor's compliance. GDPR rights are enforced and supplemented by using the smart contracts to perform actions, such as retrieving information to provide regarding right to access, and obtaining IDs for deletion regarding right to erasure and rectification. The prototype implementation described uses Ethereum\footnote{\url{https://ethereum.org/}} as the blockchain platform and Solidity\footnote{\url{https://solidity.readthedocs.io/}} as the smart contracts language.
+
+% TODO: move to semantic web scection
+\subsection{ADvoCATE}
+ADvoCATE \cite{rantos_advocate:_2019} is a consent management platform for data processing in IoT that uses blockchain to record given consent, detects conflicts in data sharing policies, and provides recommendations for managing unwarantted exposure of personal data. In ADvoCATE, the consent notary component is responsible for obtaining and verifying consent signed by both the controller and the data subject, which is used to prepare a smart contract for processing based on the given consent. The consent management component then utilises the smart contract to update the user policy used to enforce access control over the stored personal data. Blockchain is utilised to store versioned hashes of consent linked to the smart contracts enforcing them. This enables traceability of consent and maintaining a record of consent and its relevant actions through the utilisation of smart contracts.
+ADvoCATE has two components - Intelligent Policies Analysis Mechanism (IPAM) and Intelligent Recommendation Mechanism (IReMe) - to identify contradictory rules and policies regarding consent and adapt privacy strategies in real-time. 
+
+A reference implementation describe in the publication uses the ontology of GDPR concepts by Bartolini et. al \cite{bartolini_using_2015} to model data protection requirements, and uses Ethereum as a blockchain platform, and Solidity for programming smart contracts. Examples of consent requests presented contain information about personal data category with collection medium and period, retention period, purpose, recipients (EU/Non-EU), whether it involves - automated processing, profiling, manual processing, and the IDs for controller, device, and device type.
+
+\subsection{Decision Provenance by Singh et al.}
+Singh et al. propose the concept of `Decision Provenance' - which uses methods based on provision to identify decision pipelines and actions taken in an system at design and run-time. 
+Decision provenance is aimed to facilitate oversight, audit, compliance, risk mitigation, and user empowerment, and relates to the accountability of algorithmic systems.
+The paper provides a discussion of GDPR, identifying the legal impetus to identify and record provenance information regarding processing of personal data and management of rights. 
+The utilisation of data flows in a system to map actions, steps, and boundaries is utilised as motivation for its use in a compliance management system based on adapting legal requirements over the design and use of such data flows. With this, `decision provenance' is defined as ``use and means for provenance mechanisms to assist accountability considerations in algorithmic systems''.
+
+The information required to be recorded and utilised for decision provenance concerns the history or provenance of data, and a broader view of system behaviour and interactions including those with entities. The publication also describes the usefulness of such information in ex-post analysis.
+Regarding compliance, decision provenance is described with uses for tracking of conditions associated with processing, consent, purposes, rights, and sharing.
+The collected information is also described for uses in performing audits and investigations by authorities as well as the organisation itself.
+
+The publication makes specific mention of PROV \cite{lebo_prov-o:_2013} for representing provenance information, supplemented by ontologies for describing additional information about data processing.
+An example cited in this context concerns the use of PROV-O to represent provenance for GDPR compliance (Ujcich et al. \cite{belhajjame_provenance_2018} - see \autoref{sec:sota:gdpr-semweb:ujcich}).
 
 \subsection{privacyTracker}
-privacyTracker \cite{gjermundrod_privacytracker:_2016} is a framework that provides data traceability through privacy by design principles for GDPR compliance. The framework utilises policies to mediate access to information stored in the form of \textit{Customer Records}, and consists of 3 modules regarding data collection, data distribution, and data traceability. The \textit{Customer Record} is a XML document utilising XSD to store personal data, and contains two sections - a mandatory metadata section and an optional section. The metadata section contains fields for record identification, data tractability, and cryptographic controls. The optional section consists of fields indicating public data, private data which can be disclosed based on consent, and data provided by enterprise itself.
+or privacyTracker \cite{gjermundrod_privacytracker:_2016} is a framework that provides data traceability through privacy by design principles for GDPR compliance. The framework utilises policies to mediate access to information stored in the form of \textit{Customer Records}, and consists of 3 modules regarding data collection, data distribution, and data traceability. The \textit{Customer Record} is a XML document utilising XSD to store personal data, and contains two sections - a mandatory metadata section and an optional section. The metadata section contains fields for record identification, data tractability, and cryptographic controls. The optional section consists of fields indicating public data, private data which can be disclosed based on consent, and data provided by enterprise itself.
 
 The record identification field contains a URI based on string concatenation of company name, user email address and auto-generated random identifier. This URI is unique throughout the framework, but changes when the data is distributed to another entity. In addition, the identification field also stores timestamps associated with record genesis, (local) record creation, and expiration. The data tractability fields record links to the entity that generated the record (backward-to-root reference), entities the record was obtained from (backward reference), and entities the record is disclosed to (forward reference). The cryptographic controls store a signed copy of the received record and a signature in the form of hash code of the complete record.
 The distribution module enables sharing of data via an API through which granular requests can be made. Records of distributions are signed cryptographically and verified for tractability.
@@ -529,7 +598,7 @@ Each metric is associated with one or more questions that retrieve information r
 The metrics provide a quantifiable representation of transparency in a system, and are used in a use-case to evaluate Microsoft Health-Vault - a commercial product.
 The metrics are as follows - accuracy, currentness, conciseness, detailing, readability, availability, portability, and effectiveness.
 
-\subsection{Metamodel for Privacy Level Agreements by Diamantopoulou et al.}
+\subsection{Metamodel for PLA by Diamantopoulou et al.}
 Diamantopoulou et al. present a metamodel for representing Privacy Level Agreements (PLA) with the aim of establishing contracts between controllers and individuals.
 The metamodel, depicted in \autoref{fig:Diamantopoulou-metamodel}, represents privacy preferences using the concept of questionnaires, where each question refers to a specific data and the answer represents the individual's preferences regarding data sharing. The metamodel also associates preferences with threats, risks, and security measures through the data and controller. Requests for sharing data are associated with data and preferences, and can be accepted or denied based on the values of linked preferences.
 The metamodel is specified to be designed for use-case in eGovernance scenarios where public administrators can provide data and value based on citizens preferences represented through the metamodel.
