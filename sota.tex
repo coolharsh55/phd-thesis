@@ -581,6 +581,26 @@ The collected information is also described for uses in performing audits and in
 The publication makes specific mention of PROV \cite{lebo_prov-o:_2013} for representing provenance information, supplemented by ontologies for describing additional information about data processing.
 An example cited in this context concerns the use of PROV-O to represent provenance for GDPR compliance (Ujcich et al. \cite{belhajjame_provenance_2018} - see \autoref{sec:sota:gdpr-semweb:ujcich}).
 
+\subsection{Sion et al.}
+Sion et al. \cite{sion_architectural_2019} presented an approach for data protection by design in software architectures towards incorporating the requirements of GDPR. The approach is developed towards automation of data protection impact assessment (DPIA) using (i) meta-model constraints, (ii) model analysis, and  (iii) interaction with stakeholders. It uses architectural notations, such as UML and Data Flow Diagrams (DFD) to express the model of a system.  The publication provides a discussion of necessary information for the creation of a meta-model for GDPR, which includes the following:
+\begin{itemize}
+    \item Use of GDPR terminology as opposed to abstract architectural notations; 
+    \item Core abstractions such as \textit{ProcessingPurpose};
+    \item Documentation regarding abstractions - such as collection, further processing, the purpose itself, its legal basis (termed \textit{LawfulGround}), involved actors and their roles, and datasets and datatypes involved for a purpose.
+\end{itemize}
+
+The presented meta-model, depicted in \autoref{fig:sota:Sion-model}, utilises UML to denote the concepts and their relationships. Apart from expressing concepts such as purpose, processing, personal data type, and data subject type, the meta-model expresses controllers, processors, recipients and third parties as legal roles expressed through an actor. Additionally, it has a distinct concept for further processing to represent processing other than that of the primary purpose. Exceptions to the obligations provided by GDPR are captured as prohibition and exemption types.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/Sion_model.png}
+    \caption{Meta-model of architectural view for GDPR by Sion et al. \cite{sion_architectural_2019}}
+    \label{fig:sota:Sion-model}
+\end{figure}
+
+The meta-model is used to express the model or architecture of a system, which is then evaluated or validated utilising a number of constraints. One of these, described in the publication, is ``soundness criteria'' - which is relevant to the completeness and correctness of a model. Examples of these are - ``every chain of Processing needs to start with a Collection'', and ``Every input DataSet to a Processing needs to be the output DataSet of a Processing that is located earlier in the chain of Processings''. These can be collectively expressed as constraints for every data used in processing to have a source whether by collection or as output of processing activity. The publication also provides examples of incorporating legal requirements over the meta-model, with examples for purpose limitation, minimisation, and automated decision making involving special categories of personal data. 
+
+The approach is validated through an use-case in the health domain involving a patient monitoring system (PMS), using DFD to denote architectural notations in Eclipse Modelling Framework, with graphical visualisations created using Sirius viewpoint specification. The soundness checks were performed using the Acceleo Query Language supported by Sirius, with work in progress for implementing compliance assessment rules using VIATRA’s graph-based pattern language
+
 \subsection{privacyTracker}
 or privacyTracker \cite{gjermundrod_privacytracker:_2016} is a framework that provides data traceability through privacy by design principles for GDPR compliance. The framework utilises policies to mediate access to information stored in the form of \textit{Customer Records}, and consists of 3 modules regarding data collection, data distribution, and data traceability. The \textit{Customer Record} is a XML document utilising XSD to store personal data, and contains two sections - a mandatory metadata section and an optional section. The metadata section contains fields for record identification, data tractability, and cryptographic controls. The optional section consists of fields indicating public data, private data which can be disclosed based on consent, and data provided by enterprise itself.
 
@@ -748,5 +768,57 @@ The analysis of legal requirements and their incorporation in the DECODE project
 % non sem-web, relevant
 \subsection{PRIPARE}
 PRIPARE\footnote{\url{http://pripareproject.eu/}} (PReparing Industry to Privacy-by-design by supporting its Application in REsearch) is an European research project that aimed to provide a set of documents regarding privacy engineering by covering activities such as privacy risk management, requirement analysis, design strategies, maintenance and compliance. To this end, it published the PRIPARE methodology handbook \cite{noauthor_pripare-methodology-handbook-final-feb-24-2016.pdf_nodate} providing guidelines for privacy and security by design. The handbook incorporates information based on a draft of GDPR\footnote{\url{The handbook was published in 2015, and incorporated known information about the GDPR up to that point in time.}} It provides foundational methodologies and reference models for carrying out privacy analysis, designing and implementing privacy enhancing systems, with templates for impact assessments and conformance. 
+
+\subsection{Approaches involving Privacy Policies}
+These approaches involve utilisation of privacy policies for various purposes associated with data protection and user empowerment. While they do not target GDPR compliance, they are relevant to the work as they involve analysis of information associated with compliance - such as purposes, data categories, and rights - and also provide an overview of GDPR's impact and uptake in the real-world.
+
+The UsablePrivacy project \cite{sadeh_usable_2013}
+use of semantic web technologies \cite{oltramari_privonto:_2018}
+Galle et al. \cite{galle_case_2019} argue for a similar corpus of GDPR-specific privacy policies
+
+Polisis \cite{harkous_polisis:_2018}
+analysis of privacy policies using taxonomy by Wilson et al. \cite{wilson_creation_2016} depicted in \autoref{fig:sota:Linden-taxonomy}
+Further GDPR specific work Analysis of privacy policies post-GDPR \cite{linden_privacy_2018}
+collect policies with pre-GDPR and post-GDPR version
+use list of the queries derived from ICO’s GDPR checklists to obtain coverage of GDPR
+reuse Polisis \cite{harkous_polisis:_2018}
+% \begin{enumerate}[label={Q{\theenumi}}]
+%     \item Quantify how specifically the policy indicates how the first party is obtaining user data 
+%     \item Quantify how specifically the policy indicates how the third party is collecting user data 
+%     \item Quantify how specifically the policy indicates the type of information accessed by the first party 
+%     \item Quantify how specifically the policy indicates the type of information shared with the third party 
+%     \item Quantify how specifically the policy indicates how the third party is receiving user information 
+%     \item Quantify how specifically the policy covers first party collection purposes relative to all possible purposes in our taxonomy 
+%     \item Quantify how specifically the policy covers third party sharing purposes relative to all possible purposes in our taxonomy 
+%     \item Quantify how specifically the policy indicates the purpose for data retention
+% \end{enumerate}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/Linden_taxonomy.png}
+    \caption{Privacy taxonomy by Wilson et al. \cite{wilson_creation_2016} used by Harkous et al. \cite{harkous_polisis:_2018} and Linden et al.  \cite{linden_privacy_2018} to analyse privacy policies}
+    \label{fig:sota:Linden-taxonomy}
+\end{figure}
+
+PrivacyGuide \cite{tesfay_privacyguide:_2018}
+visulisation, dashboard 
+concepts: data collection, protection of children, third-party sharing, data security, data retention, data aggregation, control of data, privacy settings, account deletion, privacy breach notification, policy changes.
+examples of keywords occuring in policies for each concept
+
+\subsection{Approaches related to Consent}
+These approaches involve association with consent, and provide information about existing efforts towards its representation and analysis. They are relevant as they involve information associated with the provision of consent, its impact in real-life, and the complexities associated with its representations.
+
+Grando et al. \cite{grando_ontological_2012} ontology-based model of subject’s permissions and organization’s obligations resulting from the informed consent process
+XACML for rules implementing consent management system
+reasoning using SWRL
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/Grando_ontology.png}
+    \caption{Informed consent permissions ontology by Grando et al. \cite{grando_ontological_2012}}
+    \label{fig:LPL-model}
+\end{figure}
+
+Consent receipt specification \cite{lizar_consent_2017}
+
+A study of consent through LinkedIn settings \cite{v_consent_2019}
 
 \section{Analysis \& Discussion}\label{sec:sota:analysis}
