@@ -9,7 +9,7 @@ The chapter concludes (\autoref{sec:sota:analysis}) with an analysis of presente
 This section provides an overview of technological approaches utilised for addressing legal compliance. It presents the different methodologies and frameworks for interpreting requirements from legal documents, and using technological frameworks towards the management of information and compliance.
 To that end, the section utilises surveys and key publications in the last decade (2007-2019) to identify the state of the art.
 
-\subsection{Classification of Approaches}
+\subsection{Classification of Approaches}\label{sec:sota:models:approaches}
 % 1> surveys of high level approaches to legal compliance
 A survey of approaches within the last 50 years (from 2007) for addressing legal requirements \cite{otto_addressing_2007} provides the following categorisation:
 \begin{itemize}
@@ -38,16 +38,7 @@ The survey paper provides comments on the applicability as well as limitation of
     Queries can assist with identification and comparison of applicable regulations, and to assess whether a particular requirement derived from the regulation has been addressed with respect to its compliance.
 \end{enumerate}
 
-\subsubsection{Discussion}
-While the survey paper does not explicitly mention or refer to the linked data principles \cite{bizer_linked_2011}, some of the above objectives are fulfilled by utilising them in a given approach. Namely, linked data and semantic web provide an interoperable representation based in standards which can be used to define the required metadata regarding legislations, as demonstrated by EuroVoc, which addresses \textit{REO.1}, \textit{REO.2}, and \textit{REO.6} to some extent.
-
-The use of structured representation to define legislations for \textit{REO.3} and \textit{REO.7} is possible using XML and ontologies such as ELI and Akoma Ntoso. However, ELI does not currently offer a way to represent the hierarchical structure of regulations, such as representation of individual articles or clauses, though the European Commission's Publication Office has stated their intention to provide this feature in the future.
-This also limits the applications of \textit{REO.4} and \textit{REO.5} which require the above representation.
-For creation of glossaries from legal text, the requirements of \textit{REO.6} are addressed through existing efforts such as EuroVoc and Interactive Terminology for Europe\footnote{\url{https://iate.europa.eu/}} (IATE), which provide consistent use of terms across domains, though there are no mechanisms to derive definitions from legislations or common interpretations of terms.
-
-Regarding annotations for \textit{REO.8}, there exist standards such as W3C's Web Annotations model\footnote{\url{https://www.w3.org/annotation/}}, which can be utilised to annotate documents in an interoperable format, though they are not intended nor directly applicable for use over legislations.
-Limitations to this are a lack of structured representation with sufficient granularity, for example, to reference individual clauses of text within the document.
-Querying, as required for \textit{REO.9}, is inherently dependant on the underlying information representation, though there are standards such as SQL and SPARQL which provide interoperability in the approach.
+% \subsubsection{Discussion}
 
 \subsection{Approaches based on business process representations}
 The use of approaches utilising business process representations for compliance are summarised in two key surveys. The first \cite{fellmann_state---art_2014} relates to the use of business processes within different phases of compliance, while the second \cite{benyoucef_information_2015} analyses use of information artefacts in business processes for compliance.
@@ -76,13 +67,8 @@ A survey of information artefacts used in business processes for compliance \cit
 These artefacts are used for tasks associated with regulatory compliance, including enactment, analysis, checking, and modelling. The survey finds that existing approaches have over the years been largely focused on the modelling and checking tasks in the context of regulatory compliance, with compliance analysis being increasingly researched over time  while enactment has received little attention. The survey concludes that compliance approaches are basically limited to identifying relevant requirements from laws and regulations and ensuring that business processes comply with them, without much attention to compliance enactment.
 This gap can be addressed by developing technologies for activities such as anticipation, adaptation and management of change to business processes as and when they occur.
 
-\subsubsection*{Discussion}
-The business processes are represented for organisational planning and management purposes using standard representations such as UML and BPMN. These can be reused for compliance management tasks by applying and assessing the compliance requirements over these processes. For this, it is necessary to align the business processes and the artefacts they use with the compliance requirements and terminology. The two approaches discussed in the earlier sections presented existing work in terms of categorising such approaches based on their use of business processes in phases of compliance, and the information artefacts they use. Through this, they provide the different avenues where an approach might assist with the compliance process, as well as the type of artefacts it might use to do so.
+% \subsubsection*{Discussion}
 
-Depending on the context, such as - type of activities, legal requirements, use-case - one or more of the categories can be adopted for creating an approach for compliance. For example, the requirement of ensuring activities are compliant before they are executed in GDPR can be fulfilled by an approach utilising business process representations in the ex-ante lifecyle phase with the verification and validation being performed through any of the categorised information artefacts with varying degrees of formality. Assessing them purely from a compliance management perspective would serve to diminish their usefulness and prevalence in the planning and management of activities.
-
-As legal requirements evolve, it could be a costly exercise to create and adopt a new approach to meet its compliance. Therefore, an evolving approach needs to identify and adapt the new compliance requirements over existing representations of business processes through development of validation and verification mechanisms.
-This requires the business process representations to be in an form which can reused for such purposes, such as through the example of interoperable standards.
 
 \subsection{Approaches utilising Legal Ontologies}
 Surveys on legal ontologies provide categorisation of ontologies as well as their intended applications within the domain. One such survey \cite{rodrigues_legal_2019} categorises the purposes as - organising and structuring information, reasoning and problem solving, semantic indexing and searching, and understanding a domain. It also categorised them based on the generalisation of concepts as - upper level ontology, core ontology, domain ontology, and application ontology - with most of them falling under core and domain ontologies. The survey also provides an overview of the methodologies used, and the evaluation approaches utilised, which consist of - evaluation by specialists, data-driven evaluations, gold-standard assessments, application in case study, and those that have no evaluation or are unclear. The survey also shows that most ontologies are formalised using RDF/OWL-DL though other formalisations were also utilised.
@@ -95,14 +81,6 @@ Both surveys identify the gaps in the SotA in terms of absence or limitation of 
 Further surveys represent the SotA in their respective areas regarding access control \cite{kirrane_access_2016}, rights expression languages \cite{pellegrini_genealogy_2018}, privacy policy languages \cite{van_de_ven_qualitative_2016}, privacy requirements engineering \cite{gharib_ontologies_2016}.
 
 In areas of compliance, standardisation of representations for norms and requirements has seen efforts such as LegalRuleML \cite{palmirani_legalruleml:_2011} which uses temporal and defeasible logic, and has been applied for compliance checking over business processes \cite{governatori_semantic_2016}. On similar lines, Compliance Management Ontology \cite{syed_abdullah_compliance_2012} proposes shared conceptualisation of business process management, culture management, obligations, programme, resources, risk management, and solutions.
-
-\subsubsection{Discussion}
-Ontologies have been extensively used for formal representations of information, rules \cite{kirrane_scalable_2018}, rights \cite{pellegrini_genealogy_2018}, legislations \cite{leone_taking_2019}, business processes \cite{elgammal_formalizing_2016}, policies \cite{van_de_ven_qualitative_2016}, and requirements \cite{gharib_ontologies_2016}.
-However, there has also been a noted lack of guidelines regarding their reuse, particularly within the legal domain for compliance \cite{casanovas_legal_2017}.
-Within the legal domain, evaluation of developed ontologies is a challenge due to the requirement of specialists or legal experts being involved in the modelling stage \cite{rodrigues_legal_2019}.
-Despite these hurdles, ontologies continue to be researched and utilised as a solution for assisting with the legal compliance.
-
-The state of the art in ontologies thus presents encompassing representations for documents, requirements, rules, obligations, policies, and business processes associated with legal compliance. An adopter has a range of approaches to choose from based on the stated methodologies and formalisms, where the choice of approach depends on the stated requirements and goals of the ontology as well as its role in the legal compliance process.
 
 \section{Approaches for GDPR compliance utilising Semantic Web}\label{sec:sota:gdpr-semweb}
 
@@ -772,16 +750,13 @@ PRIPARE\footnote{\url{http://pripareproject.eu/}} (PReparing Industry to Privacy
 \subsection{Approaches involving Privacy Policies}
 These approaches involve utilisation of privacy policies for various purposes associated with data protection and user empowerment. While they do not target GDPR compliance, they are relevant to the work as they involve analysis of information associated with compliance - such as purposes, data categories, and rights - and also provide an overview of GDPR's impact and uptake in the real-world.
 
-The UsablePrivacy project \cite{sadeh_usable_2013}
-use of semantic web technologies \cite{oltramari_privonto:_2018}
-Galle et al. \cite{galle_case_2019} argue for a similar corpus of GDPR-specific privacy policies
+The UsablePrivacy project \cite{sadeh_usable_2013} utilised natural language programming over manually annotated corpus of privacy policies to create a system for automatic classification of policies. 
+It utilised semantic web technologies \cite{oltramari_privonto:_2018} to represent the annotations and information within a privacy policy, as well as to query information for retrieval.
+The datasets generated as part of the project have been utilised in other similar approaches \cite{harkous_polisis:_2018,linden_privacy_2018} concerning automatic analyses over privacy policies. 
 
-Polisis \cite{harkous_polisis:_2018}
-analysis of privacy policies using taxonomy by Wilson et al. \cite{wilson_creation_2016} depicted in \autoref{fig:sota:Linden-taxonomy}
-Further GDPR specific work Analysis of privacy policies post-GDPR \cite{linden_privacy_2018}
-collect policies with pre-GDPR and post-GDPR version
-use list of the queries derived from ICO’s GDPR checklists to obtain coverage of GDPR
-reuse Polisis \cite{harkous_polisis:_2018}
+Galle et al. \cite{galle_case_2019} presented an argument for a similar corpus of GDPR-specific privacy policies based on the increased requirements required for GDPR compliance based on the presence of information and use of simpler text. While such a dataset has not been published to date, there have been approaches incorporating GDPR specific information in privacy policy analysis.
+Polisis \cite{harkous_polisis:_2018} is one such approach that analyses privacy policies using the taxonomy of privacy concepts by Wilson et al. \cite{wilson_creation_2016} (depicted in \autoref{fig:sota:Linden-taxonomy}).
+Further GDPR specific work using the same approach collects and compares policies in pre-GDPR and post-GDPR versions to identify the impact of GDPR \cite{linden_privacy_2018}. The approach uses a list of the queries derived from ICO’s GDPR compliance checklists to obtain coverage of GDPR in terms of queries answerable in privacy policies.
 % \begin{enumerate}[label={Q{\theenumi}}]
 %     \item Quantify how specifically the policy indicates how the first party is obtaining user data 
 %     \item Quantify how specifically the policy indicates how the third party is collecting user data 
@@ -799,26 +774,54 @@ reuse Polisis \cite{harkous_polisis:_2018}
     \label{fig:sota:Linden-taxonomy}
 \end{figure}
 
-PrivacyGuide \cite{tesfay_privacyguide:_2018}
-visulisation, dashboard 
-concepts: data collection, protection of children, third-party sharing, data security, data retention, data aggregation, control of data, privacy settings, account deletion, privacy breach notification, policy changes.
-examples of keywords occuring in policies for each concept
+PrivacyGuide \cite{tesfay_privacyguide:_2018} provides visualisation of privacy policies and information categories in the form of a dashboard. It uses a similar approach to UsablePrivacy and Polisis in classifying statements in policies and extracting information using machine learning. In terms of information, its models contain the following concepts: data collection, protection of children, third-party sharing, data security, data retention, data aggregation, control of data, privacy settings, account deletion, privacy breach notification, policy changes.
+The approach is based on identifying a set of keywords for each concept and classifying statements based on their presence.
 
 \subsection{Approaches related to Consent}
 These approaches involve association with consent, and provide information about existing efforts towards its representation and analysis. They are relevant as they involve information associated with the provision of consent, its impact in real-life, and the complexities associated with its representations.
 
-Grando et al. \cite{grando_ontological_2012} ontology-based model of subject’s permissions and organization’s obligations resulting from the informed consent process
-XACML for rules implementing consent management system
-reasoning using SWRL
+Grando et al. \cite{grando_ontological_2012} present an ontology-based model of permissions and obligations resulting from informed consent within the medical domain. The approach, depicted in \autoref{fig:sota:Grando-ontology}, consists of using XACML for rules implementing a consent management system by utilising reasoning using SWRL.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{img/Grando_ontology.png}
     \caption{Informed consent permissions ontology by Grando et al. \cite{grando_ontological_2012}}
-    \label{fig:LPL-model}
+    \label{fig:sota:Grando-ontology}
 \end{figure}
 
-Consent receipt specification \cite{lizar_consent_2017}
+% Another approach regarding consent in the medical domain, the MAGIC project \cite{bialke_magic:_2018}, utilises a modular structure 
 
-A study of consent through LinkedIn settings \cite{v_consent_2019}
+The Consent Receipt specification\footnote{\url{https://kantarainitiative.org/confluence/display/infosharing/Consent+Receipt+Specification}} \cite{lizar_consent_2017} is a standardisation effort by the Kantara Initiative - a non-profit industry professional trade association with the mission - ``improving trustworthy use of identity and personal data through innovation, standardisation and good practice in the domain of digital identity management and data privacy''. The consent receipt provides a list of fields necessary to capture the context of given consent and is meant to be a record of transaction regarding personal data. Its fields, depicted in \autoref{fig:sota:ConsentReceipt}, capture information about timestamp the consent was given at, the entities involved (controllers), PII involved, purposes, and recipients.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/ConsentReceipt.png}
+    \caption{Fields in Consent Receipt \cite{lizar_consent_2017}}
+    \label{fig:sota:ConsentReceipt}
+\end{figure}
 
 \section{Analysis \& Discussion}\label{sec:sota:analysis}
+\subsubsection{Legal Models of Compliance}
+While the survey paper in \autoref{sec:sota:models:approaches} does not explicitly mention or refer to the linked data principles \cite{bizer_linked_2011}, some of its objectives are fulfilled by utilising them in a given approach. Namely, linked data and semantic web provide an interoperable representation based in standards which can be used to define the required metadata regarding legislations, as demonstrated by EuroVoc, which addresses \textit{REO.1}, \textit{REO.2}, and \textit{REO.6} to some extent.
+
+The use of structured representation to define legislations for \textit{REO.3} and \textit{REO.7} is possible using XML and ontologies such as ELI and Akoma Ntoso. However, ELI does not currently offer a way to represent the hierarchical structure of regulations, such as representation of individual articles or clauses, though the European Commission's Publication Office has stated their intention to provide this feature in the future.
+This also limits the applications of \textit{REO.4} and \textit{REO.5} which require the above representation.
+For creation of glossaries from legal text, the requirements of \textit{REO.6} are addressed through existing efforts such as EuroVoc and Interactive Terminology for Europe\footnote{\url{https://iate.europa.eu/}} (IATE), which provide consistent use of terms across domains, though there are no mechanisms to derive definitions from legislations or common interpretations of terms.
+
+Regarding annotations for \textit{REO.8}, there exist standards such as W3C's Web Annotations model\footnote{\url{https://www.w3.org/annotation/}}, which can be utilised to annotate documents in an interoperable format, though they are not intended nor directly applicable for use over legislations.
+Limitations to this are a lack of structured representation with sufficient granularity, for example, to reference individual clauses of text within the document.
+Querying, as required for \textit{REO.9}, is inherently dependant on the underlying information representation, though there are standards such as SQL and SPARQL which provide interoperability in the approach.
+
+\subsubsection{Business Processes \& Information Artefacts}
+The business processes are represented for organisational planning and management purposes using standard representations such as UML and BPMN. These can be reused for compliance management tasks by applying and assessing the compliance requirements over these processes. For this, it is necessary to align the business processes and the artefacts they use with the compliance requirements and terminology. The two approaches discussed in the earlier sections presented existing work in terms of categorising such approaches based on their use of business processes in phases of compliance, and the information artefacts they use. Through this, they provide the different avenues where an approach might assist with the compliance process, as well as the type of artefacts it might use to do so.
+
+Depending on the context, such as - type of activities, legal requirements, use-case - one or more of the categories can be adopted for creating an approach for compliance. For example, the requirement of ensuring activities are compliant before they are executed in GDPR can be fulfilled by an approach utilising business process representations in the ex-ante lifecyle phase with the verification and validation being performed through any of the categorised information artefacts with varying degrees of formality. Assessing them purely from a compliance management perspective would serve to diminish their usefulness and prevalence in the planning and management of activities.
+
+As legal requirements evolve, it could be a costly exercise to create and adopt a new approach to meet its compliance. Therefore, an evolving approach needs to identify and adapt the new compliance requirements over existing representations of business processes through development of validation and verification mechanisms.
+This requires the business process representations to be in an form which can reused for such purposes, such as through the example of interoperable standards.
+
+\subsubsection{Ontologies}
+Ontologies have been extensively used for formal representations of information, rules \cite{kirrane_scalable_2018}, rights \cite{pellegrini_genealogy_2018}, legislations \cite{leone_taking_2019}, business processes \cite{elgammal_formalizing_2016}, policies \cite{van_de_ven_qualitative_2016}, and requirements \cite{gharib_ontologies_2016}.
+However, there has also been a noted lack of guidelines regarding their reuse, particularly within the legal domain for compliance \cite{casanovas_legal_2017}.
+Within the legal domain, evaluation of developed ontologies is a challenge due to the requirement of specialists or legal experts being involved in the modelling stage \cite{rodrigues_legal_2019}.
+Despite these hurdles, ontologies continue to be researched and utilised as a solution for assisting with the legal compliance.
+
+The state of the art in ontologies thus presents encompassing representations for documents, requirements, rules, obligations, policies, and business processes associated with legal compliance. An adopter has a range of approaches to choose from based on the stated methodologies and formalisms, where the choice of approach depends on the stated requirements and goals of the ontology as well as its role in the legal compliance process.
