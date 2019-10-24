@@ -823,32 +823,66 @@ The Consent Receipt specification\footnote{\url{https://kantarainitiative.org/co
 
 \section{Analysis \& Discussion}\label{sec:sota:analysis}
 
-The state of the art consists of a multitude of approaches utilising technological solutions to represent and evaluate legal compliance. The approaches, summarised in \autoref{sec:sota:models}, provide an overview of the different approaches based on logic and formalism of legal norms, as well as their utilisation to represent and evaluate business processes for compliance.
-The state of the art for the thesis consists of the adoption and implementation of these approaches towards addressing aspects of GDPR and its compliance.
-Of these, particular emphasis is placed on those that utilise semantic web, presented in \autoref{sec:sota:gdpr-semweb}, based on the motivation outlined in \autoref{sec:intro:background}, with the other approaches described in \autoref{sec:sota:gdpr-other}.
+There are a multitude of approaches utilising technological solutions to represent and evaluate legal compliance, as summarised in \autoref{sec:sota:models}.
+The state of the art for this thesis consists of work that adopts and implements these approaches to address GDPR and its compliance.
+In its analysis, particular emphasis is placed on those that utilise semantic web (\autoref{sec:sota:gdpr-semweb}) based on the motivation of the thesis and its research question (\autoref{sec:intro:background}), with the other approaches described in \autoref{sec:sota:gdpr-other}.
+Approaches that do not concern or address the GDPR, but are relevant within the domain are also included (\autoref{sec:sota:other}) to provide additional information useful in representing the state of the art.
+
+\subsubsection{Methodology for Analysis}
+Analysis of the state of the art is based on assessing the approaches undertaken to address GDPR and its compliance requirements. The surveys presented in \autoref{sec:sota:models} regarding classification of approaches regarding legal compliance \cite{otto_addressing_2007} and phases of compliance \cite{fellmann_state---art_2014} provide a criteria to classify the approaches. In addition, the information disseminated by authoritative bodies, presented in \autoref{sec:background:GDPR}, provides an investigative framework to analyse information regarding GDPR compliance.
+The analysis of the state of the art utilises a set of questions derived from these, and summarised as follows:
+\begin{enumerate}
+    \item Which aspects of GDPR compliance does the approach target?
+    \item How does the approach represent information associated with GDPR and its compliance?
+    \item What are the formalism used in the approach?
+    \item How does the approach represent process flows in terms of phases of compliance?
+    \item How does the approach represent information associated with consent?
+    \item How does the approach evaluate GDPR compliance?
+\end{enumerate}
 
 \subsection{Overview of existing work}
-The primary analysis of these approaches utilises the following points derived from \autoref{sec:sota:models} to identify and classify the approaches:
-\begin{enumerate}
-    \item Aspects of GDPR addressed: which articles of the GDPR is addressed; with the analysis presented in Table X1. % TODO: table of GDPR articles by approches
-    \item Formalism used to represent information about GDPR and its compliance: category based on classifications \cite{otto_addressing_2007} as presented in \autoref{sec:sota:models:approaches}; with the analysis presented in Table X2. % TODO: table of formalisms associated with approaches
-    \item Modelling of process flows: lifecycle phase \cite{fellmann_state---art_2014} represented as presented in \autoref{sota:models:process}, consisting of ex-ante, real-time, ex-post; with the analysis presented in Table X3. % TODO: table to compliance phases
-\end{enumerate}
-% TODO: Table of approaches with categories
-
-The state of the art consists of a significant number of research projects (primarily European) that have dedicated resources in terms of funding and personnel, and some of which have concluded or are still ongoing.
-Therefore, an analysis of their aims and objectives towards GDPR compliance is presented with their years of operation in Table X4. to indicate their impact on the state of the art.
+\subsubsection{European Research Projects}
+The state of the art consists of a significant number of European research projects which directly or indirectly incorporate GDPR compliance as an objective. These projects represent dedicated resources in terms of funding and personnel, as well as collaboration between universities, research institutes, and the industry - which often also includes participation of legal experts and legal organisations.
+In terms of output, the deliverables of such research projects represent a wider consensus between stakeholders, and evaluation in terms of use-cases that are often provided by the commercial partners.
+An analysis of such research projects within the state of the art therefore provides valuable insights into stakeholder requirements and developed solutions.
+To facilitate this, the research projects are presented in a comparative Table X4 outlining their approaches, formalisms, deliverables, and years of operation.
 % TODO: Table table of EU research projects
 
-\subsection{Analysis}
+% \subsection{Articles of GDPR addressed}
 
-\subsubsection{Representation of GDPR}\label{sota:analysis:representation}
+\subsection{Formalism used}
 
-\subsubsection{Representation of Process Flows}\label{sota:analysis:process-flows}
+\subsection{Representation of GDPR}\label{sota:analysis:representation}
+1> machine-readable representation of GDPR
 
-\subsubsection{Representation of Consent}\label{sota:analysis:consent}
+2> glossary of concepts and terms associated with GDPR
 
-\subsubsection{Evaluation of GDPR Compliance}\label{sota:analysis:compliance}
+\subsection{Modelling of process flows}\label{sota:analysis:process-flows}
+1> representations: semantic-web, BPMN
+2> in semantic-web, PROV-O as the standard --> tension between PROV implying provenance, whereas ex-ante compliance models things to happen
+SPECIAL logs ex-ante compliance checks using PROV-O
+
+\subsection{Representation of Process Flows}
+
+\subsection{Representation of Consent}\label{sota:analysis:consent}
+1> consent attributes modelled in individual projects
+2> does not meet all criteria of consent for GDPR
+3> no semantic web vocabularies
+
+\subsection{Querying of information associated with GDPR Compliance}
+
+\subsection{Evaluation of GDPR Compliance}\label{sota:analysis:compliance}
+1> approaches to evaluate
+2> no approach for documentation - potentials exist
+3> linking information back to GDPR 
 
 \subsection{Identification of Opportunities based on Gaps in SotA}
 The following section provides a discussion on the identified opportunities and gaps based on an analysis of the state of the art.
+
+(1) no machine-readable representation of GDPR exists
+(2) no glossary of terms and concepts associated with GDPR exists
+(3) no ontology for ex-ante and ex-post phases exists
+(4) Lack of authoritative compliance queries
+(5) No methodology for recording of compliance assessment as documentation
+- no semantics or methods for certification & seals
+- coverage of GDPR articles
