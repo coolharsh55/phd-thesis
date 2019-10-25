@@ -821,62 +821,130 @@ The Consent Receipt specification\footnote{\url{https://kantarainitiative.org/co
     \label{fig:sota:ConsentReceipt}
 \end{figure}
 
-\section{Analysis \& Discussion}\label{sec:sota:analysis}
-
+\section{Analysis}\label{sec:sota:analysis}
+\subsection{Methodology for Analysis}\label{sota:analysis:methodology}
 There are a multitude of approaches utilising technological solutions to represent and evaluate legal compliance, as summarised in \autoref{sec:sota:models}.
 The state of the art for this thesis consists of work that adopts and implements these approaches to address GDPR and its compliance.
+
+Analysis of the state of the art is based on assessing the approaches undertaken to address GDPR and its compliance requirements. 
 In its analysis, particular emphasis is placed on those that utilise semantic web (\autoref{sec:sota:gdpr-semweb}) based on the motivation of the thesis and its research question (\autoref{sec:intro:background}), with the other approaches described in \autoref{sec:sota:gdpr-other}.
 Approaches that do not concern or address the GDPR, but are relevant within the domain are also included (\autoref{sec:sota:other}) to provide additional information useful in representing the state of the art.
 
-\subsubsection{Methodology for Analysis}
-Analysis of the state of the art is based on assessing the approaches undertaken to address GDPR and its compliance requirements. The surveys presented in \autoref{sec:sota:models} regarding classification of approaches regarding legal compliance \cite{otto_addressing_2007} and phases of compliance \cite{fellmann_state---art_2014} provide a criteria to classify the approaches. In addition, the information disseminated by authoritative bodies, presented in \autoref{sec:background:GDPR}, provides an investigative framework to analyse information regarding GDPR compliance.
-The analysis of the state of the art utilises a set of questions derived from these, and summarised as follows:
+The surveys presented in \autoref{sec:sota:models} regarding classification of approaches for legal compliance \cite{otto_addressing_2007} and phases of compliance \cite{fellmann_state---art_2014} provide context for the analysis. In addition, the information disseminated by authoritative bodies, presented in \autoref{sec:background:GDPR}, provides an investigative framework to analyse information regarding GDPR compliance.
+Based on these, the questions described below are used to categorise and assess the approaches. Following this, each category represented by the question is analysed and discussed in detail to present its state of the art, and for identification of further opportunities and gaps.
 \begin{enumerate}
     \item Which aspects of GDPR compliance does the approach target?
     \item How does the approach represent information associated with GDPR and its compliance?
-    \item What are the formalism used in the approach?
+    \item What formalism are used in the approach?
     \item How does the approach represent process flows in terms of phases of compliance?
     \item How does the approach represent information associated with consent?
     \item How does the approach evaluate GDPR compliance?
 \end{enumerate}
 
-\subsection{Overview of existing work}
+\subsection{Analysis of existing work}
+For ease of reference, the following labels are used to indicate their respective work within the state of the art.
+% TODO: table of labels and citations of work
+% label, references, presented in Section X
+
+\subsubsection{Overview}
+An overview of the state of the art from \autoref{sec:sota:gdpr-semweb} and \autoref{sec:sota:gdpr-other} is presented in \autoref{table:sota:analysis:overview}. It shows the diversity in approaches as well as the versatility of technological solutions developed, amongst which is the use of semantic web technologies. In particular, approaches that utilise semantic-web utilise its inherent logic-based formalism to represent the GDPR and associated information using ontologies. 
+
+% TODO: table of existing work
+\begin{table}[htbp]
+\footnotesize
+\centering
+\caption{Overview of existing approaches. Column headings: (R): Representation of GDPR, (MG): Modelling of Concepts, (EA): Ex-Ante Compliance, (EP): Ex-Post Compliance, (P): Process Flows, (C): Consent, (Cm): Evaluates Compliance, (Rq): Specifies Requirements}\label{table:sota:analysis:overview}
+\begin{tabularx}{\textwidth}{|l|p{27mm}|X|X|X|X|X|X|X|X|}
+\hline
+
+\textbf{Work} & \textbf{Formalism} & \textbf{R} & \textbf{M} & \textbf{EA} & \textbf{EP} & \textbf{P} & \textbf{C} &\textbf{Cm} & \textbf{Rq} \\ \hline
+
+SPECIAL & OWL &  &  & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &  \\ \hline
+SPL+SERAMIS & OWL & \checkmark & \checkmark &  &  &  &  & \checkmark & \checkmark \\ \hline
+SPL+Vos et al. & OWL,ASP & \checkmark & \checkmark &  &  &  &  & \checkmark & \checkmark \\ \hline
+SPL+CitySPIN & OWL &  & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &  \\ \hline
+MIREL & OWL,RuleML,BPMN & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &  & \checkmark & \checkmark \\ \hline
+MRL+DAPRECO & OWL,RuleML,BPMN & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &  & \checkmark & \checkmark \\ \hline
+BPR4GDPR & OWL &  &  & \checkmark & \checkmark & \checkmark &  & \checkmark & \checkmark \\ \hline
+Elluri et al. & OWL &  & \checkmark &  &  &  &  &  &  \\ \hline
+Ujcich et al. & OWL &  &  &  & \checkmark & \checkmark &  &  &  \\ \hline
+PICS & OWL &  &  &  & \checkmark &  &  &  &  \\ \hline
+Geko and Tjoa & OWL &  & \checkmark &  &  &  &  &  &  \\ \hline
+LPL &  &  & \checkmark &  &  &  &  &  &  \\ \hline
+Lodge et al &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark & \checkmark &  \\ \hline
+Peras &  &  & \checkmark &  &  & \checkmark & \checkmark &  &  \\ \hline
+Tom et al & BPMN &  & \checkmark & \checkmark &  & \checkmark &  & \checkmark &  \\ \hline
+Coletti et al &  &  & \checkmark & \checkmark &  &  & \checkmark &  & \checkmark \\ \hline
+Corrales et al &  &  &  &  &  &  &  & \checkmark & \checkmark \\ \hline
+LUCE &  &  &  &  &  & \checkmark &  & \checkmark &  \\ \hline
+AdvoCATE & OWL &  & \checkmark &  &  &  & \checkmark & \checkmark &  \\ \hline
+Singh et al &  &  &  & \checkmark &  & \checkmark &  &  &  \\ \hline
+Sion et al & UML,DFD &  & \checkmark & \checkmark &  & \checkmark &  & \checkmark &  \\ \hline
+privacyTracker &  &  & \checkmark &  & \checkmark & \checkmark &  & \checkmark & \checkmark \\ \hline
+Spagnuelo et al &  &  &  &  &  &  &  &  & \checkmark \\ \hline
+Diamantopulou et al &  &  & \checkmark &  &  &  &  &  &  \\ \hline
+Robol et al & STS &  & \checkmark & \checkmark &  &  &  & \checkmark &  \\ \hline
+GuideMe &  &  &  &  &  &  &  & \checkmark & \checkmark \\ \hline
+Basin et al &  &  &  & \checkmark &  & \checkmark &  & \checkmark &  \\ \hline
+RestAssured & XACML &  & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &  \\ \hline
+Fox et al &  &  & \checkmark &  &  &  & \checkmark &  &  \\ \hline
+DEFeND &  &  & \checkmark & \checkmark &  & \checkmark &  & \checkmark &  \\ \hline
+OPERANDO &  &  &  &  &  &  & \checkmark & \checkmark &  \\ \hline
+PDP4E &  &  &  &  &  &  &  &  & \checkmark \\ \hline
+PoSEID-on &  &  &  &  &  &  & \checkmark & \checkmark &  \\ \hline
+STAR+STAR-II &  &  &  &  &  &  &  &  & \checkmark \\ \hline
+MHMD & OWL &  &  &  &  &  & \checkmark &  &  \\ \hline
+PAPAYA &  &  &  &  &  &  &  &  &  \\ \hline
+SMOOTH &  &  &  &  &  &  &  &  &  \\ \hline
+SODA &  &  &  &  &  &  &  & \checkmark &  \\ \hline
+DECODE &  &  &  &  &  &  & \checkmark & \checkmark &  \\ \hline
+PRIPARE &  &  &  &  &  &  &  &  & \checkmark \\ \hline
+Galle et al &  &  & \checkmark &  &  &  &  &  &  \\ \hline
+Polisis &  &  & \checkmark &  &  &  &  &  &  \\ \hline
+Linden et al &  &  & \checkmark &  &  &  &  &  &  \\ \hline
+PrivacyGuide &  &  & \checkmark &  &  &  &  &  &  \\ \hline
+Grando et al & XACML &  &  &  &  &  & \checkmark &  &  \\ \hline
+Consent Receipt &  &  &  &  &  &  & \checkmark &  &  \\ \hline
+
+\end{tabularx}
+\end{table}
+
 \subsubsection{European Research Projects}
-The state of the art consists of a significant number of European research projects which directly or indirectly incorporate GDPR compliance as an objective. These projects represent dedicated resources in terms of funding and personnel, as well as collaboration between universities, research institutes, and the industry - which often also includes participation of legal experts and legal organisations.
-In terms of output, the deliverables of such research projects represent a wider consensus between stakeholders, and evaluation in terms of use-cases that are often provided by the commercial partners.
+The overview also shows a significant number of European research projects addressing or incorporating the GDPR. Given that the GDPR is itself an European law, it is not surprising to have research projects funded by the EU researching applications of technology for its compliance. These projects represent dedicated resources in terms of funding and personnel, as well as collaboration between universities, research institutes, and the industry - which often also includes participation of legal experts and legal organisations.
+In terms of output, the deliverables of such research projects represent a wider consensus between stakeholders and evaluation in terms of use-cases that are often provided by the commercial partners.
 An analysis of such research projects within the state of the art therefore provides valuable insights into stakeholder requirements and developed solutions.
-To facilitate this, the research projects are presented in a comparative Table X4 outlining their approaches, formalisms, deliverables, and years of operation.
+The research projects are presented in a comparative Table X4 outlining their approaches, formalisms, deliverables, and years of operation. Given that some projects have concluded whereas others are ongoing, the projects also provide insight into further developments within the state of the art in the coming years.
 % TODO: Table table of EU research projects
 
 % \subsection{Articles of GDPR addressed}
 
-\subsection{Formalism used}
+\subsubsection{Formalism used}
 
-\subsection{Representation of GDPR}\label{sota:analysis:representation}
+\subsubsection{Representation of GDPR}\label{sota:analysis:representation}
 1> machine-readable representation of GDPR
 
 2> glossary of concepts and terms associated with GDPR
 
-\subsection{Modelling of process flows}\label{sota:analysis:process-flows}
+\subsubsection{Modelling of process flows}\label{sota:analysis:process-flows}
 1> representations: semantic-web, BPMN
 2> in semantic-web, PROV-O as the standard --> tension between PROV implying provenance, whereas ex-ante compliance models things to happen
 SPECIAL logs ex-ante compliance checks using PROV-O
 
-\subsection{Representation of Process Flows}
+\subsubsection{Representation of Process Flows}
 
-\subsection{Representation of Consent}\label{sota:analysis:consent}
+\subsubsection{Representation of Consent}\label{sota:analysis:consent}
 1> consent attributes modelled in individual projects
 2> does not meet all criteria of consent for GDPR
 3> no semantic web vocabularies
 
-\subsection{Querying of information associated with GDPR Compliance}
+\subsubsection{Querying of information associated with GDPR Compliance}
 
-\subsection{Evaluation of GDPR Compliance}\label{sota:analysis:compliance}
+\subsubsection{Evaluation of GDPR Compliance}\label{sota:analysis:compliance}
 1> approaches to evaluate
 2> no approach for documentation - potentials exist
 3> linking information back to GDPR 
 
-\subsection{Identification of Opportunities based on Gaps in SotA}
+\subsection{Identification of Opportunities based on Gaps}
 The following section provides a discussion on the identified opportunities and gaps based on an analysis of the state of the art.
 
 (1) no machine-readable representation of GDPR exists
@@ -884,5 +952,5 @@ The following section provides a discussion on the identified opportunities and 
 (3) no ontology for ex-ante and ex-post phases exists
 (4) Lack of authoritative compliance queries
 (5) No methodology for recording of compliance assessment as documentation
-- no semantics or methods for certification & seals
+- no semantics or methods for certification \& seals
 - coverage of GDPR articles
