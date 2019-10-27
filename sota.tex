@@ -107,7 +107,7 @@ The state of the art in ontologies thus presents encompassing representations fo
 
 \section{Approaches for GDPR compliance utilising Semantic Web}\label{sec:sota:gdpr-semweb}
 
-\subsection{SPECIAL}
+\subsection{SPECIAL}\label{sec:sota:SPECIAL}\label{sec:sota:}
 SPECIAL\footnote{\url{https://www.specialprivacy.eu/}} (Scalable Policy-aware Linked Data Architecture For Privacy, Transparency and Compliance) is an European H2020 Project that aims to provide technical solutions for data protection requirements associated with use-cases involving big data. It features extensive use of semantic web technologies across a variety of compliance related tasks such as recording provenance logs of data processing \cite{kirrane_scalable_2018}, providing visual interfaces for consent \cite{drozd_consent_nodate,gritzalis_i_2019}, compliance checking of processing activities based on given consent \cite{westphal_spirit:_nodate,vos_odrl_2019,fernandez_user_2019}, and efforts towards standardisation of related vocabularies\footnote{The SPECIAL project was the primary driving force behind the creation of the W3C Data Privacy Vocabularies and Controls Community Group (DPVCG), of which the author was an active participating member. Information about this has been listed in \autoref{sec:intro:dpvcg}. The Data Privacy Vocabulary (DPV), produced by the DPVCG, has also been documented as a deliverable of the project in D6.5 \cite{pandit_d6.5_2019}.} \cite{bonatti_data_2018,pandit_creating_2019}.
 Collaborations between SPECIAL and other projects have produced related work, such as an approach for compliance checking using ODRL \cite{agarwal_legislative_2018,vos_odrl_2019}, and the application of SPECIAL's framework in a Smart City use-case \cite{fernandez_user_2019}.
 Information about the methodologies used, developed technologies, and their evaluations is accessible through peer-reviewed publications and public deliverables\footnote{\url{https://www.specialprivacy.eu/publications/public-deliverables}}.
@@ -218,7 +218,7 @@ The defined policies are checked in the ex-ante and ex-post phase using the SPEC
 
 The use-cases utilised within the SPECIAL project and a discussion of their legal requirements can be found in the deliverables D1.5 \cite{bonatti_d1.5_2018} and D1.6 \cite{schlehahn_d1.6_2018}. A dashboard representing information of processing activities and consent was created to represent the logged information \cite{raschke_designing_2017}, whose usability and testing are described in deliverables D4.3 \cite{raschke_d4.3_nodate} and D4.4 \cite{milosevic_d4.4_2019}. Another visual interface for interactive consent was also developed based on presenting the components of a usage policy to the individual in an interactive format \cite{gritzalis_i_2019}. The interface provides visual representations of associations between purposes, processing, data categories, recipients, and storage which allows the individual to explore and choose their consent. It also offers visual paradigms such for representation of information as tabs, breadcrumbs, hierarchies, and graphs for visualisation and exploration of information. 
 
-\subsection{MIREL}\label{sota:projects:MIREL}
+\subsection{MIREL}\label{sec:sota:MIREL}
 MIREL\footnote{\url{www.mirelproject.eu/}} (Mining and Reasoning with Legal Texts) is an European H2020 Project that aims to create a framework for interpretation of legal texts into formal representations for querying norms, checking compliance, and decision support. The project uses semantic web to provide normative requirements \cite{gandon_normative_2017}, provide natural language processing over legal texts \cite{milagro_teruel_legal_2018}, and creating ontologies based on GDPR \cite{monica_legal_2018} for legal compliance \cite{palmirani_pronto:_2018-1} and reasoning \cite{palmirani_pronto:_2018}. The project also involves creation of icons for data protection based on the developed ontologies \cite{arianna_dapis:_2019}.
 Information about the project is available through peer-reviewed publications and public deliverables\footnote{\url{http://www.mirelproject.eu/publications.php}}.
 Details about the project and its developed resources, namely PrOnto, have  been described in publications, but are not open or publicly accessible at the time of writing this thesis.
@@ -283,7 +283,7 @@ An example\footnote{The URI used in the namespace of the example, although using
 </owl:ObjectProperty>
 \end{lstlisting}
 
-\subsection{DAPRECO}\label{sota:projects:DAPRECO}
+\subsection{DAPRECO}\label{sec:sota:DAPRECO}
 DAPRECO\footnote{\url{https://www.fnr.lu/projects/data-protection-regulation-compliance/}} (Data Protection Regulation Compliance) is an Luxembourgish project relating to the creation of a knowledge base for formal compliance with the terms and provisions of the GDPR. It aims to provide formalisms in deontic logic and natural language semantics for handling legal norms in written language. The project has researched correlation of standards with laws \cite{bartolini_towards_2016}, creation of an ontology to model concepts in the GDPR \cite{otake_using_2017}, modelling the norms of the GDPR using logic formalisms \cite{bartolini_legal_2018}, and annotating BPMN for GDPR compliance \cite{bartolini_enhancing_2019}.
 The project involves collaborations with the MIREL project (see \autoref{sota:projects:MIREL}), particularly in the creation and utilisation of PrOnto for addressing GDPR \cite{monica_legal_2018,palmirani_pronto:_2018,palmirani_pronto:_2018-1,bartolini_enhancing_2019}. In turn, DAPRECO provides a practical application of PrOnto as an use-case for legal compliance over business activities \cite{bartolini_enhancing_2019,bartolini_agile_2019}.
 
@@ -307,7 +307,7 @@ The project uses these to create a knowledge base \cite{bartolini_agile_2019} wi
 The project also researchers automating the comparison of GDPR with the ISO by extracting RIO rules from their texts and analysing them for comparisons.
 The resulting knowledge base is used in collaboration with the MIREL project to provide semantic extraction and annotation over ECHR (European Court of Human Rights) judgements \cite{cardellino_legal_2017}, as described in MIREL's deliverables D2.4 \cite{robaldo_livio_d2.4_2017}.
 
-\subsection{BPR4GDPR}
+\subsection{BPR4GDPR}\label{sec:sota:BPR4GDPR}
 BPR4GDPR\footnote{\url{http://www.bpr4gdpr.eu/}} (Business Process Re-engineering and functional toolkit for GDPR compliance) is an European H2020 project that aims to provide a a reference compliance framework for the GDPR. The framework is stated to provide specification of sophisticated security and privacy policies, modelling technologies and tools for the incorporation of provisions in process models and the resulting executable processes, and means for automating verification and alignment.
 This is planned to be achieved using a set of mechanisms for automating the respective procedures and resulting in processes that are compliant by design.
 The project intends to implement the concept of Compliance-as-a-Service (CaaS) by providing a set of tools that fit the needs of various organisations being subject to GDPR compliance.
@@ -382,7 +382,7 @@ The public deliverable D3.1 \cite{lioudakis_d3.1_2019} defines rules derived fro
     \item  System administrator’s logging activity should be tracked
 \end{enumerate}
 
-\subsection{Elluri et al.}
+\subsection{Elluri et al.}\label{sec:sota:Elluri}
 Elluri et al. \cite{elluri_knowledge_2018, elluri_integrated_2018} present an ontology of rules and obligations for cloud data providers and consumers based on the GDPR and for Payment Card Industry Data Security Standard (PCI DSS). The ontology for GDPR \cite{elluri_knowledge_2018} is comprised of concepts for components - `Consumers and Providers', `Fines and Enforcement', `Breach \& Notification', `Data Protection Officer', and `Data Subject'. This is combined with the ontology developed for PCI DSS and Clous Security Alliance (CSA) to provide a comprehensive combined ontology for addressing their combined legal requirements and obligations \cite{elluri_integrated_2018}. The resulting ontology, depicted in \autoref{fig:Elluri-ontology}, consists of concepts and relationships associated with stakeholders, obligations for providers and consumers, and security requirements. 
 \begin{figure}[htbp]
     \centering
@@ -825,9 +825,7 @@ The Consent Receipt specification\footnote{\url{https://kantarainitiative.org/co
 \subsection{Methodology for Analysis}\label{sota:analysis:methodology}
 There are a multitude of approaches utilising technological solutions to represent and evaluate legal compliance, as summarised in \autoref{sec:sota:models}.
 The state of the art for this thesis consists of work that adopts and implements these approaches to address GDPR and its compliance.
-
-Analysis of the state of the art is based on assessing the approaches undertaken to address GDPR and its compliance requirements. 
-In its analysis, particular emphasis is placed on those that utilise semantic web (\autoref{sec:sota:gdpr-semweb}) based on the motivation of the thesis and its research question (\autoref{sec:intro:background}), with the other approaches described in \autoref{sec:sota:gdpr-other}.
+Analysis of the state of the art is based on assessing these approaches with a particular emphasis on those that utilise semantic web (\autoref{sec:sota:gdpr-semweb}) based on the motivation of the thesis and its research question (\autoref{sec:intro:background}), with the other approaches described in \autoref{sec:sota:gdpr-other}.
 Approaches that do not concern or address the GDPR, but are relevant within the domain are also included (\autoref{sec:sota:other}) to provide additional information useful in representing the state of the art.
 
 The surveys presented in \autoref{sec:sota:models} regarding classification of approaches for legal compliance \cite{otto_addressing_2007} and phases of compliance \cite{fellmann_state---art_2014} provide context for the analysis. In addition, the information disseminated by authoritative bodies, presented in \autoref{sec:background:GDPR}, provides an investigative framework to analyse information regarding GDPR compliance.
@@ -842,70 +840,134 @@ Based on these, the questions described below are used to categorise and assess 
 \end{enumerate}
 
 \subsection{Analysis of existing work}
-For ease of reference, the following labels are used to indicate their respective work within the state of the art.
-% TODO: table of labels and citations of work
-% label, references, presented in Section X
+% For ease of use and understanding, the following labels are used when referring to the work in its entirety as presented in the state of the art instead of individual references.
+% \begin{table}[htbp]
+%     \centering
+%     \begin{tabular}{|c|c|c|}
+%         \hline
+%         \textbf{Work} & \textbf{Comment} & \textbf{Reference} \\ \hline
+%         SPECIAL & SPECIAL H2020 project & \ref{sec:sota:SPECIAL} \\ \hline
+%         SPL+SERAMIS & Collaboration of SPECIAL with SERAMIS project & \ref{sec:sota:SPECIAL} \\ \hline
+%         SPL+Vos et al. & Collaboration of SPECIAL with Vos et al. & \ref{sec:sota:SPECIAL} \\ \hline
+%         SPL+CitySPIN & Collaboration of SPECIAL with CitySPIN project & \ref{sec:sota:SPECIAL} \\ \hline
+%         MIREL & MIREL H2020 project & \ref{sec:sota:MIREL} \\ \hline
+%         MRL+DAPRECO & Collaboration of MIREL with DAPRECO project & \ref{sec:sota:DAPRECO} \\ \hline
+%         BPR4GDPR & BPR4GDPR H2020 project & \ref{sec:sota:BPR4GDPR} \\ \hline
+%         Elluri et al. & Work presented by Elluri et al. & \ref{sec:sota:Elluri} \\ \hline
+%         Ujcich et al. & Work presented  by Ujcich et al. & \ref{sec:sota:Ujcich} \\ \hline
+%         PICS & Personal Information Controll Service & \ref{sec:sota:PICS} \\ \hline
+%         Geko and Tjoa & Work presented by Geko and Tjoa &  \\ \hline
+%         LPL & & \\ \hline
+%         Lodge et al & & \\ \hline
+%         Peras & & \\ \hline
+%         Tom et al & & \\ \hline
+%         Coletti et al & & \\ \hline
+%         Corrales et al & & \\ \hline
+%         LUCE & & \\ \hline
+%         AdvoCATE & & \\ \hline
+%         Singh et al & & \\ \hline
+%         Sion et al & & \\ \hline
+%         privacyTracker & & \\ \hline
+%         Spagnuelo et al & & \\ \hline
+%         Diamantopulou et al & & \\ \hline
+%         Robol et al & & \\ \hline
+%         GuideMe & & \\ \hline
+%         Basin et al & & \\ \hline
+%         RestAssured & & \\ \hline
+%         Fox et al & & \\ \hline
+%         DEFeND & & \\ \hline
+%         OPERANDO & & \\ \hline
+%         PDP4E & & \\ \hline
+%         PoSEID-on & & \\ \hline
+%         STAR+STAR-II & & \\ \hline
+%         MHMD & & \\ \hline
+%         PAPAYA & & \\ \hline
+%         SMOOTH & & \\ \hline
+%         SODA & & \\ \hline
+%         DECODE & & \\ \hline
+%         PRIPARE & & \\ \hline
+%         Galle et al & & \\ \hline
+%         Polisis & & \\ \hline
+%         Linden et al & & \\ \hline
+%         PrivacyGuide & & \\ \hline
+        
+%     \end{tabular}
+%     \caption{Labels used to refer to work in the SotA}
+%     \label{table:sota:analysis:labels}
+% \end{table}
 
 \subsubsection{Overview}
-An overview of the state of the art from \autoref{sec:sota:gdpr-semweb} and \autoref{sec:sota:gdpr-other} is presented in \autoref{table:sota:analysis:overview}. The column headings represent the following - (T): type of work where P is project and R is research publication, (R): Representation of GDPR, (MG): Modelling of Concepts, (EA): Ex-Ante Compliance, (EP): Ex-Post Compliance, (P): Process Flows, (C): Consent, (Cm): Evaluates Compliance, (Rq): Specifies Requirements, (O): open \& accessible resources. It shows the diversity in approaches as well as the versatility of technological solutions developed, amongst which is the use of semantic web technologies. In particular, approaches that utilise semantic-web utilise its inherent logic-based formalism to represent the GDPR and associated information using ontologies. 
-
-\begin{table}[htbp]
+An overview of the state of the art from \autoref{sec:sota:gdpr-semweb} and \autoref{sec:sota:gdpr-other} is presented in \autoref{table:sota:analysis:overview}. The column headings represent the following - (T): type of work where PRJ is research project and RES is research publication, (R): Representation of GDPR, (MG): Modelling of Concepts, (EA): Ex-Ante Compliance, (EP): Ex-Post Compliance, (P): Process Flows, (C): Consent, (Cm): Evaluates Compliance, (Rq): Specifies Requirements, (O): open \& accessible resources, and (Ref) indicating the section where the work is described within the thesis. 
+The overview provides a comparison and basis for analysis of approaches, and brings attention to the following:
+% \begin{itemize}
+%     \item There are a significant number of research projects addressing or incorporating aspects of GDPR compliance (column T).
+%     \item There are only three approaches that utilise a representation of GDPR in a machine-readable format (column R)
+%     \item Most approaches model concepts from the GDPR (column M)
+%     \item A significant number of approaches model or work with process flows (column P)
+%     \item A significant number of approaches model or work with metadata about consent (column C)
+%     \item Evaluation of compliance is carried out by most approaches (column Cm)
+%     \item A significant number of approaches provide requirements and suggestions for compliance (column Rq)
+%     \item Very few works provide their resources in an open and accessible format (column O)
+% \end{itemize}
+\begin{table}[]
 \footnotesize
 \centering
 \caption{Overview of approaches in SotA}\label{table:sota:analysis:overview}
-\begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|X|X|X|X|}
+\rowcolors{1}{}{gray!10}
+\begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|X|X|X|X|X|}
 \hline
 
-\textbf{Work} & \textbf{T} & \textbf{R} & \textbf{M} & \textbf{EA} & \textbf{EP} & \textbf{P} & \textbf{C} &\textbf{Cm} & \textbf{Rq} & \textbf{O} \\ \hline
+\textbf{Work} & \textbf{T} & \textbf{R} & \textbf{M} & \textbf{EA} & \textbf{EP} & \textbf{P} & \textbf{C} &\textbf{Cm} & \textbf{Rq} & \textbf{O} & \textbf{Ref.} \\ \hline
 
-SPECIAL & P &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark \\ \hline
-SPL+SERAMIS & P & \cmark & \cmark &  &  &  &  & \cmark & \cmark &  \\ \hline
-SPL+Vos et al & R &  & \cmark &  &  &  &  & \cmark & \cmark & \cmark \\ \hline
-SPL+CitySPIN & P &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark \\ \hline
-MIREL & P & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark & \cmark &  \\ \hline
-MRL+DAPRECO & P & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark & \cmark &  \\ \hline
-BPR4GDPR & P &  &  & \cmark & \cmark & \cmark &  & \cmark & \cmark &  \\ \hline
-Elluri et al. & R &  & \cmark &  &  &  &  &  &  & \cmark \\ \hline
-Ujcich et al. & R &  & \cmark &  & \cmark & \cmark &  &  &  &  \\ \hline
-PICS & R &  &  &  & \cmark &  &  &  &  &  \\ \hline
-Geko and Tjoa & R &  & \cmark &  &  &  &  &  &  &  \\ \hline
-LPL & R &  & \cmark &  &  &  &  &  &  &  \\ \hline
-Lodge et al & R &  & \cmark &  & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
-Peras & R &  & \cmark &  &  &  & \cmark &  &  &  \\ \hline
-Tom et al & R &  & \cmark & \cmark &  & \cmark &  & \cmark &  &  \\ \hline
-Coletti et al & R &  & \cmark & \cmark &  &  & \cmark &  & \cmark &  \\ \hline
-Corrales et al & R &  &  &  &  &  &  & \cmark & \cmark &  \\ \hline
-LUCE & R &  &  &  &  & \cmark &  & \cmark &  &  \\ \hline
-AdvoCATE & R &  & \cmark &  &  &  & \cmark & \cmark &  &  \\ \hline
-Singh et al & R &  &  & \cmark &  &  &  &  &  &  \\ \hline
-Sion et al & R &  & \cmark & \cmark &  & \cmark &  & \cmark &  &  \\ \hline
-privacyTracker & R &  & \cmark &  & \cmark & \cmark &  & \cmark & \cmark &  \\ \hline
-Spagnuelo et al & R &  &  &  &  &  &  &  & \cmark &  \\ \hline
-Diamantopulou et al & R &  & \cmark &  &  &  &  &  &  &  \\ \hline
-Robol et al & R &  & \cmark & \cmark &  &  &  & \cmark &  &  \\ \hline
-GuideMe & R &  &  &  &  &  &  & \cmark & \cmark &  \\ \hline
-Basin et al & R &  &  & \cmark &  & \cmark &  & \cmark &  &  \\ \hline
-RestAssured & P &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
-Fox et al & R &  &  &  &  &  &  &  & \cmark &  \\ \hline
-DEFeND & P &  & \cmark & \cmark &  &  &  & \cmark &  &  \\ \hline
-OPERANDO & P &  &  &  &  &  & \cmark & \cmark &  &  \\ \hline
-PDP4E & P &  &  &  &  &  &  &  & \cmark &  \\ \hline
-PoSEID-on & P &  &  &  &  &  & \cmark & \cmark &  &  \\ \hline
-STAR+STAR-II & P &  &  &  &  &  &  &  & \cmark & \cmark \\ \hline
-MHMD & P &  &  &  &  &  & \cmark &  &  &  \\ \hline
-PAPAYA & P &  &  &  &  &  &  &  &  &  \\ \hline
-SMOOTH & P &  &  &  &  &  &  &  &  &  \\ \hline
-SODA & P &  &  &  &  &  &  & \cmark &  &  \\ \hline
-DECODE & P &  &  &  &  &  & \cmark & \cmark &  &  \\ \hline
-PRIPARE & P &  &  &  &  &  &  &  & \cmark &  \\ \hline
-Galle et al & R &  & \cmark &  &  &  &  &  &  &  \\ \hline
-Polisis & R &  & \cmark &  &  &  &  &  &  &  \\ \hline
-Linden et al & R &  & \cmark &  &  &  &  &  &  &  \\ \hline
-PrivacyGuide & R &  & \cmark &  &  &  &  &  &  &  \\ \hline
-Consent Receipt &  &  &  &  &  &  & \cmark &  &  & \cmark \\ \hline
+SPECIAL & PRJ &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark & \ref{sec:sota:SPECIAL} \\ \hline
+SPL+SERAMIS & PRJ & \cmark & \cmark &  &  &  &  & \cmark & \cmark & & \ref{sec:sota:SPECIAL}  \\ \hline
+SPL+Vos et al & RES &  & \cmark &  &  &  &  & \cmark & \cmark & \cmark & \ref{sec:sota:SPECIAL}  \\ \hline
+SPL+CitySPIN & PRJ &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \cmark & \ref{sec:sota:SPECIAL} \\ \hline
+MIREL & PRJ & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark & \cmark & & \ref{sec:sota:MIREL} \\ \hline
+MRL+DAPRECO & PRJ & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark & \cmark & & \ref{sec:sota:DAPRECO}  \\ \hline
+BPR4GDPR & PRJ &  &  & \cmark & \cmark & \cmark &  & \cmark & \cmark & & \ref{sec:sota:BPR4GDPR}  \\ \hline
+Elluri et al. & RES &  & \cmark &  &  &  &  &  &  & \cmark & \ref{sec:sota:Elluri} \\ \hline
+Ujcich et al. & RES &  & \cmark &  & \cmark & \cmark &  &  &  &  & \ref{sec:sota:Ujcich} \\ \hline
+PICS & RES &  &  &  & \cmark &  &  &  &  &  & \ref{sec:sota:PICS} \\ \hline
+Geko and Tjoa & RES &  & \cmark &  &  &  &  &  &  &  & \ref{sec:sota:Geko} \\ \hline
+LPL & RES &  & \cmark &  &  &  &  &  &  &  & \ref{sec:sota:LPL} \\ \hline
+Lodge et al & RES &  & \cmark &  & \cmark & \cmark & \cmark & \cmark &  &  & \ref{sec:sota:Lodge} \\ \hline
+Peras & RES &  & \cmark &  &  &  & \cmark &  &  &  & \ref{sec:sota:Peras} \\ \hline
+Tom et al & RES &  & \cmark & \cmark &  & \cmark &  & \cmark &  &  & \ref{sec:sota:Tom} \\ \hline
+Coletti et al & RES &  & \cmark & \cmark &  &  & \cmark &  & \cmark &  & \ref{sec:sota:Coletti} \\ \hline
+Corrales et al & RES &  &  &  &  &  &  & \cmark & \cmark &  & \ref{sec:sota:Corrales} \\ \hline
+LUCE & RES &  &  &  &  & \cmark &  & \cmark &  &  & \ref{sec:sota:LUCE} \\ \hline
+AdvoCATE & RES &  & \cmark &  &  &  & \cmark & \cmark &  &  & \ref{sec:sota:AdvoCATE} \\ \hline
+Singh et al & RES &  &  & \cmark &  &  &  &  &  &  & \ref{sec:sota:Singh} \\ \hline
+Sion et al & RES &  & \cmark & \cmark &  & \cmark &  & \cmark &  &  & \ref{sec:sota:Sion} \\ \hline
+privacyTracker & RES &  & \cmark &  & \cmark & \cmark &  & \cmark & \cmark &  & \ref{sec:sota:privacyTracker} \\ \hline
+Spagnuelo et al & RES &  &  &  &  &  &  &  & \cmark &  & \ref{sec:sota:Spagnuelo} \\ \hline
+Diamantopulou et al & RES &  & \cmark &  &  &  &  &  &  &  & \ref{sec:sota:Diamantopulou} \\ \hline
+Robol et al & RES &  & \cmark & \cmark &  &  &  & \cmark &  &  & \ref{sec:sota:Robol} \\ \hline
+GuideMe & RES &  &  &  &  &  &  & \cmark & \cmark &  & \ref{sec:sota:GuideMe} \\ \hline
+Basin et al & RES &  &  & \cmark &  & \cmark &  & \cmark &  &  & \ref{sec:sota:Basin} \\ \hline
+RestAssured & PRJ &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  & \ref{sec:sota:RestAssured} \\ \hline
+Fox et al & RES &  &  &  &  &  &  &  & \cmark &  & \ref{sec:sota:Fox} \\ \hline
+DEFeND & PRJ &  & \cmark & \cmark &  &  &  & \cmark &  &  & \ref{sec:sota:DEFeND} \\ \hline
+OPERANDO & PRJ &  &  &  &  &  & \cmark & \cmark &  &  & \ref{sec:sota:OPERANDO} \\ \hline
+PDP4E & PRJ &  &  &  &  &  &  &  & \cmark &  & \ref{sec:sota:PDP4E} \\ \hline
+PoSEID-on & PRJ &  &  &  &  &  & \cmark & \cmark &  &  & \ref{sec:sota:PoSEID-on} \\ \hline
+STAR+STAR-II & PRJ &  &  &  &  &  &  &  & \cmark & \cmark & \ref{sec:sota:STAR} \\ \hline
+MHMD & PRJ &  &  &  &  &  & \cmark &  &  &  & \ref{sec:sota:MHMD} \\ \hline
+PAPAYA & PRJ &  &  &  &  &  &  &  &  &  & \ref{sec:sota:PAPAYA} \\ \hline
+SMOOTH & PRJ &  &  &  &  &  &  &  &  &  & \ref{sec:sota:SMOOTH} \\ \hline
+SODA & PRJ &  &  &  &  &  &  & \cmark &  &  & \ref{sec:sota:SODA} \\ \hline
+DECODE & PRJ &  &  &  &  &  & \cmark & \cmark &  &  & \ref{sec:sota:DECODE} \\ \hline
+PRIPARE & PRJ &  &  &  &  &  &  &  & \cmark &  & \ref{sec:sota:PRIPARE} \\ \hline
+Galle et al & RES &  & \cmark &  &  &  &  &  &  &  & \ref{sec:sota:Galle} \\ \hline
+Polisis & RES &  & \cmark &  &  &  &  &  &  &  & \ref{sec:sota:Polisis} \\ \hline
+Linden et al & RES &  & \cmark &  &  &  &  &  &  &  & \ref{sec:sota:Linden} \\ \hline
+PrivacyGuide & RES &  & \cmark &  &  &  &  &  &  &  & \ref{sec:sota:PrivacyGuide} \\ \hline
+Consent Receipt &  &  &  &  &  &  & \cmark &  &  & \cmark & \ref{sec:sota:CR} \\ \hline
 
 \end{tabularx}
 \end{table}
+% TODO: delete EA and EP from overview table
 
 \subsubsection{European Research Projects}
 The overview also shows a significant number of European research projects addressing or incorporating the GDPR. Given that the GDPR is itself an European law, it is not surprising to have research projects funded by the EU researching applications of technology for its compliance. These projects represent dedicated resources in terms of funding and personnel, as well as collaboration between universities, research institutes, and the industry - which often also includes participation of legal experts and legal organisations.
@@ -914,11 +976,12 @@ An overview of such research projects provides valuable insights into stakeholde
 Table X4 outlines time of operation for the research projects as well as the work presented in this thesis for a perspective on their comparison and analysis.
 % TODO: Table table of EU research projects
 
-% \subsection{Articles of GDPR addressed}
-
-\subsubsection{Formalism used}
-
 \subsubsection{Representation of GDPR}\label{sota:analysis:representation}
+The overview presented in \autoref{table:sota:analysis:overview} shows only three approaches representing the structure of GDPR and enabling machine-readable linking of information to specific parts of its text. Of these, two (MIREL and DAPRECO) are utilise the framework provided by PrOnto \cite{palmirani_pronto:_2018,palmirani_pronto:_2018-1} and can therefore be consolidated into a single work for the purposes of analysis. Therefore, there are only two distinct approaches for representation of GDPR in the state of the art. 
+
+\autoref{table:sota:analysis:GDPR} presents an overview of these approaches, along with the 
+ELI ontology \cite{} % TODO: citation ELI
+which is used in the publication of metadata associated with GDPR as a legislation. The granularity of ELI ontology in representing metadata is limited to specifying information at the document level, i.e. it defines GDPR as a legislation but does not provide metadata about its contents. The EU Publication Office, which is in-charge of publishing legislations and maintains the ELI ontology, has indicated\footnote{Information communicated via private channels and correspondences, and does not have a public reference.} work-in-progress updates to the ontology, which have been represented in the table under the heading `ELI+' for descriptive purposes and completeness of the analysis.
 \begin{table}[htbp]
 \footnotesize
 \centering
@@ -936,19 +999,13 @@ Table X4 outlines time of operation for the research projects as well as the wor
 
 \end{tabular}
 \end{table}
-1> machine-readable representation of GDPR
 
-2> glossary of concepts and terms associated with GDPR
+The table demonstrates that there are very few approaches working with machine-readable representations of GDPR, even when a large number of approaches utilise machine-readable formats for information associated with specifying information for compliance assessment. The table also shows that none of the existing approaches address the drawbacks of ELI, but instead utilise other vocabularies to achieve granularity regarding the GDPR. For this, Agarwal et al. \cite{agarwal_legislative_2018} use RDFS, while PrOnto uses Akoma Ntoso to represent the hierarchy of text within GDPR.
+Apart from ELI, none of the other two resources are open and publicly accessible (row OA), and they do not use a persistent identifier (row PID) enabling sustained use over time. Also, none of the approaches provide a glossary of terms utilised or defined within the scope of the GDPR.
 
-\subsubsection{Modelling of process flows}\label{sota:analysis:process-flows}
-1> representations: semantic-web, BPMN
-2> in semantic-web, PROV-O as the standard --> tension between PROV implying provenance, whereas ex-ante compliance models things to happen
-SPECIAL logs ex-ante compliance checks using PROV-O
-
-Column headings are as follows - (Repr): representation of process flow, (EA): Ex-ante modelling, (EP): Ex-post modelling, (Pu): Purpose, (Pr): Processing, (DS): Data Sharing, (Rp): Recipients, (St): Data Storage, (Rg): Rights, (LB): Legal Basis.
-
-\subsubsection{Representation of Process Flows}
-\begin{table}[htbp]
+\subsubsection{Representation of process flows}\label{sota:analysis:process-flows}
+The modelling of process flows in SotA is further elaborated in \autoref{table:sota:analysis:process-flow} in terms of its use in terms of phase (ex-ante or ex-post), concepts modelled, and representation. The column headings used are as follows - (Repr): representation of process flow, (EA): Ex-ante modelling, (EP): Ex-post modelling, (Pu): Purpose, (Pr): Processing, (DS): Data Sharing, (Rp): Recipients, (St): Data Storage, (Rg): Rights, (LB): Legal Basis.
+\begin{table}
 \footnotesize
 \centering
 \caption{Representation of Process Flows in SotA}\label{table:sota:analysis:process-flow}
@@ -973,9 +1030,14 @@ RestAssured &  &  &  & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hlin
 \end{tabularx}
 \end{table}
 
+The table shows the use of BPMN notation and semantic web ontologies to model process flows for GDPR, which includes reuse of existing ontologies PROV-O \cite{lebo_prov-o:_2013} and 
+PWO. % TODO: citation for PWO
+The approaches model process flows across both - ex-ante and ex-post - phases, though modelling of both within the same approach is less prevalent.
+Approaches modelling process flows also do not necessarily model their concepts to match or align with the terminology utilised by the GDPR. 
+
 \subsubsection{Representation of Consent}\label{sota:analysis:consent}
 Column headings are as follows - (PD): Personal Data, (Pu): Purpose, (Pr): Processing, (Sh): Data Sharing, (St): Data Storage, (Rp): Recipients, (S): Data Source, (W): Withdrawal of consent, (D): Delegation, (V): Visualisation, (SE): Significant effects of processing, (Ct): Context, (T): Type.
-\begin{table}[htbp]
+\begin{table}
 \footnotesize
 \centering
 \caption{Representation of consent in SotA}\label{table:sota:analysis:consent}
@@ -1006,10 +1068,10 @@ Consent Receipt & \cmark & \cmark &  &  &  &  &  &  &  &  & \cmark & \cmark \\ \
 
 \subsubsection{Evaluation of GDPR Compliance}\label{sota:analysis:compliance}
 Column headings are as follows - (M): Method used for evaluation, (Sc): Scope of evaluation, (EA): Ex-Ante, (EP): Ex-post, (MR): Machine-readable outcome, (R): Suggests remedies and recommendations, (LG): Links results to GDPR.
-\begin{table}[htbp]
+\begin{table}
 \footnotesize
 \centering
-\caption{Compliance evaluation in SotA}\label{table:sota:analysis:overview}
+\caption{Compliance evaluation in SotA}\label{table:sota:analysis:compliance}
 \begin{tabularx}{\textwidth}{|l|l|l|X|X|X|X|X|X|X|X|}
 \hline
 
@@ -1031,7 +1093,7 @@ privacyTracker & Access Control & Data Sharing &  & \cmark & \cmark &  &  \\ \hl
 Robol et al & STS & Process Flows & \cmark &  & \cmark &  &  \\ \hline
 GuideMe & Questionnaire & Process Flows & \cmark &  &  & \cmark &  \\ \hline
 Basin et al & Algorithm & Process Flows & \cmark &  &  &  &  \\ \hline
-RestAssured & \cmarkACML & Process Flows & \cmark & \cmark & \cmark &  &  \\ \hline
+RestAssured & \cmark XACML & Process Flows & \cmark & \cmark & \cmark &  &  \\ \hline
 DEFeND & Questionnaire & Obligations & \cmark &  & \cmark &  &  \\ \hline
 OPERANDO & Access Control & Process Flows &  & \cmark & \cmark &  &  \\ \hline
 PoSEID-on & Smart Contracts & Data Sharing &  & \cmark & \cmark &  &  \\ \hline
