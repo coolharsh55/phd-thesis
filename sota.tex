@@ -847,64 +847,62 @@ For ease of reference, the following labels are used to indicate their respectiv
 % label, references, presented in Section X
 
 \subsubsection{Overview}
-An overview of the state of the art from \autoref{sec:sota:gdpr-semweb} and \autoref{sec:sota:gdpr-other} is presented in \autoref{table:sota:analysis:overview}. It shows the diversity in approaches as well as the versatility of technological solutions developed, amongst which is the use of semantic web technologies. In particular, approaches that utilise semantic-web utilise its inherent logic-based formalism to represent the GDPR and associated information using ontologies. 
+An overview of the state of the art from \autoref{sec:sota:gdpr-semweb} and \autoref{sec:sota:gdpr-other} is presented in \autoref{table:sota:analysis:overview}. The column headings represent the following - (T): type of work where P is project and R is research publication, (R): Representation of GDPR, (MG): Modelling of Concepts, (EA): Ex-Ante Compliance, (EP): Ex-Post Compliance, (P): Process Flows, (C): Consent, (Cm): Evaluates Compliance, (Rq): Specifies Requirements, (O): open \& accessible resources. It shows the diversity in approaches as well as the versatility of technological solutions developed, amongst which is the use of semantic web technologies. In particular, approaches that utilise semantic-web utilise its inherent logic-based formalism to represent the GDPR and associated information using ontologies. 
 
-% TODO: table of existing work
 \begin{table}[htbp]
 \footnotesize
 \centering
-\caption{Overview of existing approaches. Column headings: (R): Representation of GDPR, (MG): Modelling of Concepts, (EA): Ex-Ante Compliance, (EP): Ex-Post Compliance, (P): Process Flows, (C): Consent, (Cm): Evaluates Compliance, (Rq): Specifies Requirements}\label{table:sota:analysis:overview}
-\begin{tabularx}{\textwidth}{|l|p{27mm}|X|X|X|X|X|X|X|X|}
+\caption{Overview of approaches in SotA}\label{table:sota:analysis:overview}
+\begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|X|X|X|X|}
 \hline
 
-\textbf{Work} & \textbf{Formalism} & \textbf{R} & \textbf{M} & \textbf{EA} & \textbf{EP} & \textbf{P} & \textbf{C} &\textbf{Cm} & \textbf{Rq} \\ \hline
+\textbf{Work} & \textbf{T} & \textbf{R} & \textbf{M} & \textbf{EA} & \textbf{EP} & \textbf{P} & \textbf{C} &\textbf{Cm} & \textbf{Rq} & \textbf{O} \\ \hline
 
-SPECIAL & OWL &  &  & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &  \\ \hline
-SPL+SERAMIS & OWL & \checkmark & \checkmark &  &  &  &  & \checkmark & \checkmark \\ \hline
-SPL+Vos et al. & OWL,ASP & \checkmark & \checkmark &  &  &  &  & \checkmark & \checkmark \\ \hline
-SPL+CitySPIN & OWL &  & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &  \\ \hline
-MIREL & OWL,RuleML,BPMN & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &  & \checkmark & \checkmark \\ \hline
-MRL+DAPRECO & OWL,RuleML,BPMN & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &  & \checkmark & \checkmark \\ \hline
-BPR4GDPR & OWL &  &  & \checkmark & \checkmark & \checkmark &  & \checkmark & \checkmark \\ \hline
-Elluri et al. & OWL &  & \checkmark &  &  &  &  &  &  \\ \hline
-Ujcich et al. & OWL &  &  &  & \checkmark & \checkmark &  &  &  \\ \hline
-PICS & OWL &  &  &  & \checkmark &  &  &  &  \\ \hline
-Geko and Tjoa & OWL &  & \checkmark &  &  &  &  &  &  \\ \hline
-LPL &  &  & \checkmark &  &  &  &  &  &  \\ \hline
-Lodge et al &  &  & \checkmark &  & \checkmark & \checkmark & \checkmark & \checkmark &  \\ \hline
-Peras &  &  & \checkmark &  &  & \checkmark & \checkmark &  &  \\ \hline
-Tom et al & BPMN &  & \checkmark & \checkmark &  & \checkmark &  & \checkmark &  \\ \hline
-Coletti et al &  &  & \checkmark & \checkmark &  &  & \checkmark &  & \checkmark \\ \hline
-Corrales et al &  &  &  &  &  &  &  & \checkmark & \checkmark \\ \hline
-LUCE &  &  &  &  &  & \checkmark &  & \checkmark &  \\ \hline
-AdvoCATE & OWL &  & \checkmark &  &  &  & \checkmark & \checkmark &  \\ \hline
-Singh et al &  &  &  & \checkmark &  & \checkmark &  &  &  \\ \hline
-Sion et al & UML,DFD &  & \checkmark & \checkmark &  & \checkmark &  & \checkmark &  \\ \hline
-privacyTracker &  &  & \checkmark &  & \checkmark & \checkmark &  & \checkmark & \checkmark \\ \hline
-Spagnuelo et al &  &  &  &  &  &  &  &  & \checkmark \\ \hline
-Diamantopulou et al &  &  & \checkmark &  &  &  &  &  &  \\ \hline
-Robol et al & STS &  & \checkmark & \checkmark &  &  &  & \checkmark &  \\ \hline
-GuideMe &  &  &  &  &  &  &  & \checkmark & \checkmark \\ \hline
-Basin et al &  &  &  & \checkmark &  & \checkmark &  & \checkmark &  \\ \hline
-RestAssured & XACML &  & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &  \\ \hline
-Fox et al &  &  & \checkmark &  &  &  & \checkmark &  &  \\ \hline
-DEFeND &  &  & \checkmark & \checkmark &  & \checkmark &  & \checkmark &  \\ \hline
-OPERANDO &  &  &  &  &  &  & \checkmark & \checkmark &  \\ \hline
-PDP4E &  &  &  &  &  &  &  &  & \checkmark \\ \hline
-PoSEID-on &  &  &  &  &  &  & \checkmark & \checkmark &  \\ \hline
-STAR+STAR-II &  &  &  &  &  &  &  &  & \checkmark \\ \hline
-MHMD & OWL &  &  &  &  &  & \checkmark &  &  \\ \hline
-PAPAYA &  &  &  &  &  &  &  &  &  \\ \hline
-SMOOTH &  &  &  &  &  &  &  &  &  \\ \hline
-SODA &  &  &  &  &  &  &  & \checkmark &  \\ \hline
-DECODE &  &  &  &  &  &  & \checkmark & \checkmark &  \\ \hline
-PRIPARE &  &  &  &  &  &  &  &  & \checkmark \\ \hline
-Galle et al &  &  & \checkmark &  &  &  &  &  &  \\ \hline
-Polisis &  &  & \checkmark &  &  &  &  &  &  \\ \hline
-Linden et al &  &  & \checkmark &  &  &  &  &  &  \\ \hline
-PrivacyGuide &  &  & \checkmark &  &  &  &  &  &  \\ \hline
-Grando et al & XACML &  &  &  &  &  & \checkmark &  &  \\ \hline
-Consent Receipt &  &  &  &  &  &  & \checkmark &  &  \\ \hline
+SPECIAL & P &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark \\ \hline
+SPL+SERAMIS & P & \cmark & \cmark &  &  &  &  & \cmark & \cmark &  \\ \hline
+SPL+Vos et al & R &  & \cmark &  &  &  &  & \cmark & \cmark & \cmark \\ \hline
+SPL+CitySPIN & P &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark \\ \hline
+MIREL & P & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark & \cmark &  \\ \hline
+MRL+DAPRECO & P & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark & \cmark &  \\ \hline
+BPR4GDPR & P &  &  & \cmark & \cmark & \cmark &  & \cmark & \cmark &  \\ \hline
+Elluri et al. & R &  & \cmark &  &  &  &  &  &  & \cmark \\ \hline
+Ujcich et al. & R &  & \cmark &  & \cmark & \cmark &  &  &  &  \\ \hline
+PICS & R &  &  &  & \cmark &  &  &  &  &  \\ \hline
+Geko and Tjoa & R &  & \cmark &  &  &  &  &  &  &  \\ \hline
+LPL & R &  & \cmark &  &  &  &  &  &  &  \\ \hline
+Lodge et al & R &  & \cmark &  & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
+Peras & R &  & \cmark &  &  &  & \cmark &  &  &  \\ \hline
+Tom et al & R &  & \cmark & \cmark &  & \cmark &  & \cmark &  &  \\ \hline
+Coletti et al & R &  & \cmark & \cmark &  &  & \cmark &  & \cmark &  \\ \hline
+Corrales et al & R &  &  &  &  &  &  & \cmark & \cmark &  \\ \hline
+LUCE & R &  &  &  &  & \cmark &  & \cmark &  &  \\ \hline
+AdvoCATE & R &  & \cmark &  &  &  & \cmark & \cmark &  &  \\ \hline
+Singh et al & R &  &  & \cmark &  &  &  &  &  &  \\ \hline
+Sion et al & R &  & \cmark & \cmark &  & \cmark &  & \cmark &  &  \\ \hline
+privacyTracker & R &  & \cmark &  & \cmark & \cmark &  & \cmark & \cmark &  \\ \hline
+Spagnuelo et al & R &  &  &  &  &  &  &  & \cmark &  \\ \hline
+Diamantopulou et al & R &  & \cmark &  &  &  &  &  &  &  \\ \hline
+Robol et al & R &  & \cmark & \cmark &  &  &  & \cmark &  &  \\ \hline
+GuideMe & R &  &  &  &  &  &  & \cmark & \cmark &  \\ \hline
+Basin et al & R &  &  & \cmark &  & \cmark &  & \cmark &  &  \\ \hline
+RestAssured & P &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
+Fox et al & R &  &  &  &  &  &  &  & \cmark &  \\ \hline
+DEFeND & P &  & \cmark & \cmark &  &  &  & \cmark &  &  \\ \hline
+OPERANDO & P &  &  &  &  &  & \cmark & \cmark &  &  \\ \hline
+PDP4E & P &  &  &  &  &  &  &  & \cmark &  \\ \hline
+PoSEID-on & P &  &  &  &  &  & \cmark & \cmark &  &  \\ \hline
+STAR+STAR-II & P &  &  &  &  &  &  &  & \cmark & \cmark \\ \hline
+MHMD & P &  &  &  &  &  & \cmark &  &  &  \\ \hline
+PAPAYA & P &  &  &  &  &  &  &  &  &  \\ \hline
+SMOOTH & P &  &  &  &  &  &  &  &  &  \\ \hline
+SODA & P &  &  &  &  &  &  & \cmark &  &  \\ \hline
+DECODE & P &  &  &  &  &  & \cmark & \cmark &  &  \\ \hline
+PRIPARE & P &  &  &  &  &  &  &  & \cmark &  \\ \hline
+Galle et al & R &  & \cmark &  &  &  &  &  &  &  \\ \hline
+Polisis & R &  & \cmark &  &  &  &  &  &  &  \\ \hline
+Linden et al & R &  & \cmark &  &  &  &  &  &  &  \\ \hline
+PrivacyGuide & R &  & \cmark &  &  &  &  &  &  &  \\ \hline
+Consent Receipt &  &  &  &  &  &  & \cmark &  &  & \cmark \\ \hline
 
 \end{tabularx}
 \end{table}
@@ -912,8 +910,8 @@ Consent Receipt &  &  &  &  &  &  & \checkmark &  &  \\ \hline
 \subsubsection{European Research Projects}
 The overview also shows a significant number of European research projects addressing or incorporating the GDPR. Given that the GDPR is itself an European law, it is not surprising to have research projects funded by the EU researching applications of technology for its compliance. These projects represent dedicated resources in terms of funding and personnel, as well as collaboration between universities, research institutes, and the industry - which often also includes participation of legal experts and legal organisations.
 In terms of output, the deliverables of such research projects represent a wider consensus between stakeholders and evaluation in terms of use-cases that are often provided by the commercial partners.
-An analysis of such research projects within the state of the art therefore provides valuable insights into stakeholder requirements and developed solutions.
-The research projects are presented in a comparative Table X4 outlining their approaches, formalisms, deliverables, and years of operation. Given that some projects have concluded whereas others are ongoing, the projects also provide insight into further developments within the state of the art in the coming years.
+An overview of such research projects provides valuable insights into stakeholder requirements and developed solutions within the state of the art, as well as indication of motivation and further work in the future.
+Table X4 outlines time of operation for the research projects as well as the work presented in this thesis for a perspective on their comparison and analysis.
 % TODO: Table table of EU research projects
 
 % \subsection{Articles of GDPR addressed}
@@ -921,6 +919,23 @@ The research projects are presented in a comparative Table X4 outlining their ap
 \subsubsection{Formalism used}
 
 \subsubsection{Representation of GDPR}\label{sota:analysis:representation}
+\begin{table}[htbp]
+\footnotesize
+\centering
+\caption{Approaches representing GDPR in machine-readable format}\label{table:sota:analysis:GDPR}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+
+\textbf{Work} & \textbf{ELI} & \textbf{ELI+} & \textbf{Agarwal et al} & \textbf{PrOnto} \\ \hline
+\textbf{Vocabulary} & OWL2 & OWL2 & RDFS & Akoma Ntoso \\ \hline
+\textbf{Granularity} & Legislation & Sub-Paragraph & Paragraph & Sub-Paragraph \\ \hline
+\textbf{Glossary} & \xmark & \cmark & \xmark & \xmark \\ \hline
+\textbf{PID} & \cmark & \cmark & \xmark & \xmark \\ \hline
+\textbf{OA} & \cmark & \cmark & \xmark & \xmark \\ \hline
+\textbf{GDPR text} & \xmark & \cmark & \xmark & \cmark \\ \hline
+
+\end{tabular}
+\end{table}
 1> machine-readable representation of GDPR
 
 2> glossary of concepts and terms associated with GDPR
@@ -930,9 +945,59 @@ The research projects are presented in a comparative Table X4 outlining their ap
 2> in semantic-web, PROV-O as the standard --> tension between PROV implying provenance, whereas ex-ante compliance models things to happen
 SPECIAL logs ex-ante compliance checks using PROV-O
 
+Column headings are as follows - (Repr): representation of process flow, (EA): Ex-ante modelling, (EP): Ex-post modelling, (Pu): Purpose, (Pr): Processing, (DS): Data Sharing, (Rp): Recipients, (St): Data Storage, (Rg): Rights, (LB): Legal Basis.
+
 \subsubsection{Representation of Process Flows}
+\begin{table}[htbp]
+\footnotesize
+\centering
+\caption{Representation of Process Flows in SotA}\label{table:sota:analysis:process-flow}
+\begin{tabularx}{\textwidth}{|l|l|X|X|X|X|X|X|X|X|X|}
+\hline
+
+Work & Repr & EA & EP & Pu & Pr & DS & Rp & St & Rg & LB \\ \hline
+SPECIAL & PROV-O & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
+SPL+CitySPIN & PROV-O & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
+MIREL & PWO & \cmark &  & \cmark & \cmark &  &  & \cmark & \cmark &  \\ \hline
+MRL+DAPRECO & PWO & \cmark &  & \cmark & \cmark &  &  & \cmark & \cmark &  \\ \hline
+BPR4GDPR &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  &  \\ \hline
+Ujcich et al. & PROV-O &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\ \hline
+Lodge et al &  & \cmark &  & \cmark &  &  &  &  &  &  \\ \hline
+Tom et al & BPMN & \cmark &  &  & \cmark & \cmark & \cmark & \cmark & \cmark &  \\ \hline
+LUCE &  & \cmark & \cmark &  &  & \cmark & \cmark &  &  &  \\ \hline
+Sion et al &  & \cmark &  & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark \\ \hline
+privacyTracker &  & \cmark & \cmark &  &  & \cmark & \cmark &  &  &  \\ \hline
+Basin et al &  & \cmark &  & \cmark &  &  &  &  &  &  \\ \hline
+RestAssured &  &  &  & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
+
+\end{tabularx}
+\end{table}
 
 \subsubsection{Representation of Consent}\label{sota:analysis:consent}
+Column headings are as follows - (PD): Personal Data, (Pu): Purpose, (Pr): Processing, (Sh): Data Sharing, (St): Data Storage, (Rp): Recipients, (S): Data Source, (W): Withdrawal of consent, (D): Delegation, (V): Visualisation, (SE): Significant effects of processing, (Ct): Context, (T): Type.
+\begin{table}[htbp]
+\footnotesize
+\centering
+\caption{Representation of consent in SotA}\label{table:sota:analysis:consent}
+\begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|X|X|X|X|X|X|}
+\hline
+
+\textbf{Work} & \textbf{PD} & Pu & Pr & Sh & St & Rp & S & W & D & SE & Ct & T \\ \hline
+SPECIAL & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark &  &  &  &  \\ \hline
+SPL+CitySPIN & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark &  &  &  &  \\ \hline
+Lodge et al & \cmark & \cmark &  &  &  &  &  &  &  &  &  &  \\ \hline
+Peras & \cmark & \cmark & \cmark & \cmark & \cmark &  &  & \cmark &  &  &  &  \\ \hline
+Coletti et al & \cmark & \cmark &  &  &  &  & \cmark & \cmark &  &  &  &  \\ \hline
+AdvoCATE & \cmark & \cmark &  &  & \cmark & \cmark &  &  &  & \cmark & \cmark &  \\ \hline
+RestAssured & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  &  &  &  &  \\ \hline
+OPERANDO & \cmark & \cmark & \cmark & \cmark &  & \cmark &  &  &  &  &  &  \\ \hline
+PoSEID-on & \cmark &  &  &  &  & \cmark &  &  &  &  &  &  \\ \hline
+MHMD & \cmark &  &  &  &  &  &  &  &  &  &  &  \\ \hline
+DECODE & \cmark & \cmark &  &  & \cmark &  &  &  &  &  &  &  \\ \hline
+Consent Receipt & \cmark & \cmark &  &  &  &  &  &  &  &  & \cmark & \cmark \\ \hline
+
+\end{tabularx}
+\end{table}
 1> consent attributes modelled in individual projects
 2> does not meet all criteria of consent for GDPR
 3> no semantic web vocabularies
@@ -940,11 +1005,45 @@ SPECIAL logs ex-ante compliance checks using PROV-O
 \subsubsection{Querying of information associated with GDPR Compliance}
 
 \subsubsection{Evaluation of GDPR Compliance}\label{sota:analysis:compliance}
+Column headings are as follows - (M): Method used for evaluation, (Sc): Scope of evaluation, (EA): Ex-Ante, (EP): Ex-post, (MR): Machine-readable outcome, (R): Suggests remedies and recommendations, (LG): Links results to GDPR.
+\begin{table}[htbp]
+\footnotesize
+\centering
+\caption{Compliance evaluation in SotA}\label{table:sota:analysis:overview}
+\begin{tabularx}{\textwidth}{|l|l|l|X|X|X|X|X|X|X|X|}
+\hline
+
+Work & Method & Scope & EA & EP & MR & R & LG \\ \hline
+SPECIAL & OWL & Consent & \cmark & \cmark & \cmark &  &  \\ \hline
+SPL+SERAMIS & ODRL & Obligations & \cmark &  & \cmark & \cmark & \cmark \\ \hline
+SPL+Vos et al. & OWL, ASP & Obligations & \cmark &  & \cmark & \cmark &  \\ \hline
+SPL+CitySPIN & OWL & Consent & \cmark & \cmark & \cmark &  &  \\ \hline
+MIREL & RuleML & Obligations & \cmark & \cmark & \cmark & \cmark & \cmark \\ \hline
+MRL+DAPRECO & RuleML & Obligations & \cmark & \cmark & \cmark & \cmark & \cmark \\ \hline
+BPR4GDPR & OWL & Process Flows & \cmark & \cmark &  & \cmark &  \\ \hline
+Lodge et al & SDK & Process Flows & \cmark &  & \cmark & \cmark &  \\ \hline
+Tom et al & BPMN & Process Flows & \cmark &  & \cmark & \cmark &  \\ \hline
+Corrales et al & Questionnaire & Obligations & \cmark &  &  &  &  \\ \hline
+LUCE & Smart Contracts & Data Shraing & \cmark & \cmark & \cmark &  &  \\ \hline
+AdvoCATE & Smart Contracts & Consent &  & \cmark & \cmark &  &  \\ \hline
+Sion et al & UML, DFD & Process Flows & \cmark &  & \cmark & \cmark &  \\ \hline
+privacyTracker & Access Control & Data Sharing &  & \cmark & \cmark &  &  \\ \hline
+Robol et al & STS & Process Flows & \cmark &  & \cmark &  &  \\ \hline
+GuideMe & Questionnaire & Process Flows & \cmark &  &  & \cmark &  \\ \hline
+Basin et al & Algorithm & Process Flows & \cmark &  &  &  &  \\ \hline
+RestAssured & \cmarkACML & Process Flows & \cmark & \cmark & \cmark &  &  \\ \hline
+DEFeND & Questionnaire & Obligations & \cmark &  & \cmark &  &  \\ \hline
+OPERANDO & Access Control & Process Flows &  & \cmark & \cmark &  &  \\ \hline
+PoSEID-on & Smart Contracts & Data Sharing &  & \cmark & \cmark &  &  \\ \hline
+DECODE & Smart Contracts & Consent &  & \cmark & \cmark &  &  \\ \hline
+
+\end{tabularx}
+\end{table}
 1> approaches to evaluate
 2> no approach for documentation - potentials exist
 3> linking information back to GDPR 
 
-\subsection{Identification of Opportunities based on Gaps}
+\subsection{Gaps and Opportunities for Further Work}
 The following section provides a discussion on the identified opportunities and gaps based on an analysis of the state of the art.
 
 (1) no machine-readable representation of GDPR exists
