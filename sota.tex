@@ -41,7 +41,7 @@ The survey paper provides comments on the applicability as well as limitation of
 \subsubsection*{Discussion}
 While the survey paper in \autoref{sec:sota:models:approaches} does not explicitly mention or refer to the linked data principles \cite{bizer_linked_2011}, some of its objectives are fulfilled by utilising them in a given approach. Namely, linked data and semantic web provide an interoperable representation based in standards which can be used to define the required metadata regarding legislations, as demonstrated by EuroVoc, which addresses \textit{REO.1}, \textit{REO.2}, and \textit{REO.6} to some extent.
 
-The use of structured representation to define legislations for \textit{REO.3} and \textit{REO.7} is possible using XML and ontologies such as ELI and Akoma Ntoso. However, ELI does not currently offer a way to represent the hierarchical structure of regulations, such as representation of individual articles or clauses, though the European Commission's Publication Office has stated their intention to provide this feature in the future.
+The use of structured representation to define legislations for \textit{REO.3} and \textit{REO.7} is possible using standards such as XML and ontologies such as ELI and Akoma Ntoso. However, ELI does not currently offer a way to represent the hierarchical structure of regulations, such as representation of individual articles or clauses, though the European Commission's Publication Office has stated their intention to provide this feature in the future.
 This also limits the applications of \textit{REO.4} and \textit{REO.5} which require the above representation.
 For creation of glossaries from legal text, the requirements of \textit{REO.6} are addressed through existing efforts such as EuroVoc and Interactive Terminology for Europe\footnote{\url{https://iate.europa.eu/}} (IATE), which provide consistent use of terms across domains, though there are no mechanisms to derive definitions from legislations or common interpretations of terms.
 
@@ -899,16 +899,23 @@ Based on these, the questions described below are used to categorise and assess 
 \subsubsection{Overview}
 An overview of the state of the art from \autoref{sec:sota:gdpr-semweb} and \autoref{sec:sota:gdpr-other} is presented in \autoref{table:sota:analysis:overview}. The column headings represent the following - (T): type of work where PRJ is research project and RES is research publication, (R): Representation of GDPR, (MG): Modelling of Concepts, (EA): Ex-Ante Compliance, (EP): Ex-Post Compliance, (P): Process Flows, (C): Consent, (Cm): Evaluates Compliance, (Rq): Specifies Requirements, (O): open \& accessible resources, and (Ref) indicating the section where the work is described within the thesis. 
 The overview provides a comparison and basis for analysis of approaches, and brings attention to the following:
-% \begin{itemize}
-%     \item There are a significant number of research projects addressing or incorporating aspects of GDPR compliance (column T).
-%     \item There are only three approaches that utilise a representation of GDPR in a machine-readable format (column R)
-%     \item Most approaches model concepts from the GDPR (column M)
-%     \item A significant number of approaches model or work with process flows (column P)
-%     \item A significant number of approaches model or work with metadata about consent (column C)
-%     \item Evaluation of compliance is carried out by most approaches (column Cm)
-%     \item A significant number of approaches provide requirements and suggestions for compliance (column Rq)
-%     \item Very few works provide their resources in an open and accessible format (column O)
-% \end{itemize}
+\begin{itemize}
+    \item There are a significant number of research projects addressing or incorporating aspects of GDPR compliance (column T).
+    \item There are only three approaches that utilise a representation of GDPR in a machine-readable format (column R)
+    \item Most approaches model concepts from the GDPR (column M)
+    \item A significant number of approaches model or work with process flows (column P)
+    \item A significant number of approaches model or work with metadata about consent (column C)
+    \item Evaluation of compliance is carried out by most approaches (column Cm)
+    \item A significant number of approaches provide requirements and suggestions for compliance (column Rq)
+    \item Most approaches do not provide their resources in an open and accessible format (column O)
+\end{itemize}
+% \subsubsection{European Research Projects}
+The overview also shows a significant number of European research projects addressing or incorporating the GDPR. Given that the GDPR is itself an European law, it is not surprising to have research projects funded by the EU researching applications of technology for its compliance. These projects represent dedicated resources in terms of funding and personnel, as well as collaboration between universities, research institutes, and the industry - which often also includes participation of legal experts and legal organisations.
+In terms of output, the deliverables of such research projects represent a wider consensus between stakeholders and evaluation in terms of use-cases that are often provided by the commercial partners.
+These also provide valuable insights into stakeholder requirements and developed solutions within the state of the art, as well as indication of motivation and further work in the future.
+% Table X4 outlines time of operation for the research projects as well as the work presented in this thesis for a perspective on their comparison and analysis.
+% TODO: Table table of EU research projects
+
 \begin{table}[]
 \footnotesize
 \centering
@@ -969,15 +976,8 @@ Consent Receipt &  &  &  &  &  &  & \cmark &  &  & \cmark & \ref{sec:sota:CR} \\
 \end{table}
 % TODO: delete EA and EP from overview table
 
-\subsubsection{European Research Projects}
-The overview also shows a significant number of European research projects addressing or incorporating the GDPR. Given that the GDPR is itself an European law, it is not surprising to have research projects funded by the EU researching applications of technology for its compliance. These projects represent dedicated resources in terms of funding and personnel, as well as collaboration between universities, research institutes, and the industry - which often also includes participation of legal experts and legal organisations.
-In terms of output, the deliverables of such research projects represent a wider consensus between stakeholders and evaluation in terms of use-cases that are often provided by the commercial partners.
-An overview of such research projects provides valuable insights into stakeholder requirements and developed solutions within the state of the art, as well as indication of motivation and further work in the future.
-Table X4 outlines time of operation for the research projects as well as the work presented in this thesis for a perspective on their comparison and analysis.
-% TODO: Table table of EU research projects
-
 \subsubsection{Representation of GDPR}\label{sota:analysis:representation}
-The overview presented in \autoref{table:sota:analysis:overview} shows only three approaches representing the structure of GDPR and enabling machine-readable linking of information to specific parts of its text. Of these, two (MIREL and DAPRECO) are utilise the framework provided by PrOnto \cite{palmirani_pronto:_2018,palmirani_pronto:_2018-1} and can therefore be consolidated into a single work for the purposes of analysis. Therefore, there are only two distinct approaches for representation of GDPR in the state of the art. 
+The overview presented in \autoref{table:sota:analysis:overview} shows only three approaches representing the structure of GDPR and enabling machine-readable linking of information to specific parts of its text. Of these, two (MIREL and DAPRECO) utilise the framework provided by PrOnto \cite{palmirani_pronto:_2018,palmirani_pronto:_2018-1} and can therefore be consolidated into a single work for the purposes of analysis. Therefore, there are only two distinct approaches for representation of GDPR in the state of the art. 
 
 \autoref{table:sota:analysis:GDPR} presents an overview of these approaches, along with the 
 ELI ontology \cite{} % TODO: citation ELI
@@ -1032,12 +1032,17 @@ RestAssured &  &  &  & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hlin
 
 The table shows the use of BPMN notation and semantic web ontologies to model process flows for GDPR, which includes reuse of existing ontologies PROV-O \cite{lebo_prov-o:_2013} and 
 PWO. % TODO: citation for PWO
-The approaches model process flows across both - ex-ante and ex-post - phases, though modelling of both within the same approach is less prevalent.
-Approaches modelling process flows also do not necessarily model their concepts to match or align with the terminology utilised by the GDPR. 
+The approaches model process flows across both - ex-ante and ex-post - phases, with 4 instances of modelling both phases within the same approach.
+
+Approaches modelling process flows also do not necessarily model their concepts to match or align with the terminology utilised by the GDPR. In cases where terminology is relevant to GDPR compliance, the source of concepts and relationships used are not provided. Therefore, it is left up to the `common sense' of the adopter to interpret the terms correctly, and to  manually align such ontologies with other legal resources.
+
+In approaches that utilise PROV-O and PWO to represent process flows, the developed ontologies extend the existing ontologies by defining concepts relevant to GDPR. As PROV-O represents provenance information, and therefore records information about activities that have already been carried out (in the past), the use of PROV-O to represent ex-ante activities involves recording information of the planned activity as a provenance record. PROV-O contains the concept of a Plan to represent a plan of activities, but is not utilised by any approach. P-Plan, an extension of PROV-O which further expands on the concept of Plan to define templates of activities using the framework of workflows, is also not utilised by any approach. PWO, by comparison, provides the concept of workflows and is therefore capable of expressing ex-ante information. However, the use of PROV-O provides commonality and interoperability by virtue of being a standardised vocabulary whereas PWO is not.
+
+Most approaches model the purpose, processing activities, data item or category involved, data sharing, recipients, and storage within their process flow. In comparison, the representation of rights and legal basis associated with the process flow is not common, with only a few approaches providing concepts for their representation. This is justified by the use of consent as the implicit legal basis in approaches such as SPECIAL, and the assumption that activities associated with rights are separate and distinct operations from processing activities. Approaches such as SPECIAL and BPR4GDPR demonstrate the possibility and advantages of using process flows for representing activities associated with both processing and rights.
 
 \subsubsection{Representation of Consent}\label{sota:analysis:consent}
-Column headings are as follows - (PD): Personal Data, (Pu): Purpose, (Pr): Processing, (Sh): Data Sharing, (St): Data Storage, (Rp): Recipients, (S): Data Source, (W): Withdrawal of consent, (D): Delegation, (V): Visualisation, (SE): Significant effects of processing, (Ct): Context, (T): Type.
-\begin{table}
+Representation of consent in SotA is further elaborated in \autoref{table:sota:analysis:consent}, with the column headings as follows - (PD): Personal Data, (Pu): Purpose, (Pr): Processing, (Sh): Data Sharing, (St): Data Storage, (Rp): Recipients, (S): Data Source, (W): Withdrawal of consent, (D): Delegation, (V): Visualisation, (SE): Significant effects of processing, (Ct): Context, (T): Type.
+\begin{table}[htbp]
 \footnotesize
 \centering
 \caption{Representation of consent in SotA}\label{table:sota:analysis:consent}
@@ -1060,15 +1065,27 @@ Consent Receipt & \cmark & \cmark &  &  &  &  &  &  &  &  & \cmark & \cmark \\ \
 
 \end{tabularx}
 \end{table}
-1> consent attributes modelled in individual projects
-2> does not meet all criteria of consent for GDPR
-3> no semantic web vocabularies
+
+In the analysed approaches, there is no specific vocabulary to represent all attributes of consent as required for compliance with the GDPR. Instead, aspects of given consent are represented in view of compliance requirements - such as within provenance of process flows or as a record of given consent. In this, all approaches define the personal data involved, and most define the purpose of processing. 
+
+However, overall, approaches lack metadata regarding consent required to evaluate its validity as defined by the requirements within GDPR. Few approaches explicitly define the processing activities involved, data storage, data sharing and recipients. Only one approach enables representation of data source, and few approaches define the right to withdraw consent.  Furthermore, only one approach defines significant effects of processing as required to be provided for obtaining valid consent. There are only Two approaches capture the context - such as medium - associated with consent. Only one approach has the notion of consent types (explicit or implicit), with the other approaches assuming the default type to be explicit consent. No approach considers the possibility of delegation - such as when a parent or guardian provides consent in lieu of a minor/child.
+
+Given consent, which includes information about the choices made by the data subject, is required to be recorded in order to demonstrate compliance. Furthermore, the mechanism used to provide and obtain consent is also required to be recorded in order to assess its validity with the requirements of given consent under GDPR. Therefore, process flows associated with provision of consent choices and obtaining consent are needed to be recorded, and can utilise the same mechanism as for defining process flows regarding processing activities. In this, existing approaches combine the two process flows by implicitly assuming the legal basis of their processing activity to be consent, but do not capture the context of given consent. In comparison, the Consent Receipt is specifically designed to capture a record of given consent to be given to the individual as a receipt of transaction. However, it does not contain the required fields to express such consent as required by GDPR.
+
+From this, it is clear that the existing state of the art does not provide sufficient means to represent information required to assess the compliance of consent as defined by the GDPR. 
 
 \subsubsection{Querying of information associated with GDPR Compliance}
+The approaches described in the state of the art do not provide guidelines or directions on the querying of information as compared to representation of information and evaluation of compliance. Approaches that use RDF for information representation demonstrate use of SPARQL for retrieval of information but do not provide evidence of practical applications of such queries being used to answer questions associated with compliance. 
+
+Approaches related to privacy policies focus on querying as part of their objective in retrieving relevant information from the text of a privacy policy. In this, the UsablePrivacy project is notable in its use of SPARQL to retrieve information. 
+
+Research projects usually utilise legal experts to provide questions which are then translated into queries using the developed ontologies and technology. Projects such as SPECIAL and MIREL use competency questions in the development of ontologies which are then represented using SPARQL for retrieving information defined using using developed ontologies. An approach uses queries derived from GDPR-compliance checklists provided by ICO to identify coverage of GDPR within privacy policies \cite{linden_privacy_2018}.
+
+From this, it can be summarised that while projects focus on the automation of information representation and compliance evaluation, the utilisation of querying to assist in the compliance process has not seen significant development in the legal compliance domain. Approaches involving privacy policies, by comparison, utilise querying to simplify information retrieval and understanding and demonstrate its potential application towards legal compliance documentation.
 
 \subsubsection{Evaluation of GDPR Compliance}\label{sota:analysis:compliance}
-Column headings are as follows - (M): Method used for evaluation, (Sc): Scope of evaluation, (EA): Ex-Ante, (EP): Ex-post, (MR): Machine-readable outcome, (R): Suggests remedies and recommendations, (LG): Links results to GDPR.
-\begin{table}
+The evaluation of GDPR compliance in analysed approaches is summarised in \autoref{table:sota:analysis:compliance}, with column headings are as follows - (M): Method used for evaluation, (Sc): Scope of evaluation, (EA): Ex-Ante, (EP): Ex-post, (MR): Machine-readable outcome, (R): Suggests remedies and recommendations, (LG): Links results to GDPR.
+\begin{table}[htbp]
 \footnotesize
 \centering
 \caption{Compliance evaluation in SotA}\label{table:sota:analysis:compliance}
@@ -1093,7 +1110,7 @@ privacyTracker & Access Control & Data Sharing &  & \cmark & \cmark &  &  \\ \hl
 Robol et al & STS & Process Flows & \cmark &  & \cmark &  &  \\ \hline
 GuideMe & Questionnaire & Process Flows & \cmark &  &  & \cmark &  \\ \hline
 Basin et al & Algorithm & Process Flows & \cmark &  &  &  &  \\ \hline
-RestAssured & \cmark XACML & Process Flows & \cmark & \cmark & \cmark &  &  \\ \hline
+RestAssured & XACML & Process Flows & \cmark & \cmark & \cmark &  &  \\ \hline
 DEFeND & Questionnaire & Obligations & \cmark &  & \cmark &  &  \\ \hline
 OPERANDO & Access Control & Process Flows &  & \cmark & \cmark &  &  \\ \hline
 PoSEID-on & Smart Contracts & Data Sharing &  & \cmark & \cmark &  &  \\ \hline
@@ -1101,17 +1118,24 @@ DECODE & Smart Contracts & Consent &  & \cmark & \cmark &  &  \\ \hline
 
 \end{tabularx}
 \end{table}
-1> approaches to evaluate
-2> no approach for documentation - potentials exist
-3> linking information back to GDPR 
+
+From the table, most approaches focus on evaluation of process flows followed by fulfilled obligations and given consent. In terms of method or formalism used, semantic web (OWL, RuleML) show significant development, along with utilisation of smart contracts. It can be summarised that approaches evaluate compliance in either ex-ante and ex-post phase, with some approaches covering both phases.
+Most approach produce a machine-readable outcome or artefact from the evaluation process that can be persisted for documentation purposes. Some approaches suggest remedial measures to correct or rectify lapses in compliance based on the evaluation. Only three approaches link the evaluation and its outcomes to GDPR. Based on this, it can be concluded that the state of the art provides numerous approaches for evaluating GDPR compliance in ex-ante and ex-post phases.
+
+While most approaches record a machine-readable representation of compliance evaluation, there is a lack of work regarding how such information can be used in the documentation and demonstration of compliance. In approaches that link the evaluation with GDPR, none explore the possibility of compliance coverage of GDPR carried out using the recorded information. The links used in these approaches are either textual or based on interpretation of the GDPR using developed ontologies - such as in PrOnto.
+
+The source of compliance criteria within research projects are the developed requirements and specifications provided by legal experts. The methodologies specified within these approaches do not provide the specific queries or criteria fulfilled by the compliance evaluation nor how such evaluation frameworks can be adapted to assess additional criteria as they arise.
+Additionally, these approaches do not demonstrate or indicate how such compliance evaluations can be used to fulfil requirements of certifications and seals as provided by the GDPR. In approaches that produce recommendations or remedies from the evaluation, it is unclear as to how these are recorded against the evaluation and tracked in terms of changes made to the processes across time. 
+
+From this, it can be concluded that the state of the art demonstrates the possibility to automate the evaluation of GDPR compliance and producing machine-readable outcomes. These provide opportunities for utilising the evaluation outcomes in the documentation of ongoing compliance and documenting coverage of compliance GDPR. Furthermore, evaluation in these approaches is carried out under the assumption of validity of existing data and does not consider absence of required information. This also provides an opportunity for assisting with the compliance process by carrying out evaluations that check for validity of information in terms of existence and correctness.
 
 \subsection{Gaps and Opportunities for Further Work}
-The following section provides a discussion on the identified opportunities and gaps based on an analysis of the state of the art.
-
-(1) no machine-readable representation of GDPR exists
-(2) no glossary of terms and concepts associated with GDPR exists
-(3) no ontology for ex-ante and ex-post phases exists
-(4) Lack of authoritative compliance queries
-(5) No methodology for recording of compliance assessment as documentation
-- no semantics or methods for certification \& seals
-- coverage of GDPR articles
+The following list provides avenues for carrying out research based on opportunities identified from gaps within the state of the art:
+\begin{enumerate}
+\item \textbf{Machine-readable representation of GDPR:} A linked-data representation of GDPR based on existing ELI ontology with sufficient granularity to represent recitals and sub-paragraphs within articles. This will provide an ELI-compatible resource to link information with GDPR.
+\item \textbf{Glossary of terms and concepts associated with GDPR:} A thesauri of terms and concepts relevant to GDPR compliance that can provide interoperability between machine-readable approaches, and using the above representation of GDPR to indicate source of information.
+\item \textbf{Process flows in ex-ante and ex-post phases:} A cohesive representation of process flows across both ex-ante and ex-post phases that can indicate the relationship between a plan and its execution. Existing vocabularies of PROV-O and P-Plan can be extended with the above glossary to implement this.
+\item \textbf{Representation of consent information:} An ontology for representing information associated with consent covering all the requirements of GDPR. This can incorporate the representation of process flows from above to indicate activities.
+\item \textbf{Demonstration using authoritative compliance queries:} Implementing retrieval of information for compliance using questions and checklists published by data protection offices to demonstrate practical application of research in the compliance process.
+\item \textbf{Validating information for compliance evaluation:} An approach to validate information to ensure its existence and correctness in order for it to be used in evaluating compliance. The approach needs to incorporate both ex-ante and ex-post phases, and can incorporate the relationship between the two phases to demonstrate continuous ongoing compliance.
+\end{enumerate}
