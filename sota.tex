@@ -1,9 +1,9 @@
 \chapter{State of the Art}\label{chapter:sota}
 This chapter presents the state of the art (SotA) regarding approaches for GDPR compliance.
 The first section (\autoref{sec:sota:models}) presents an overview of technological approaches for legal compliance to date.
-The second section (\autoref{sec:sota:gdpr-semweb}) presents an overview of approaches for GDPR compliance utilising semantic web, with the third section (\autoref{sec:sota:gdpr-other}) presenting other approaches for GDPR compliance,
-while the fourth section (\autoref{sec:sota:other}) presents approaches regarding regulatory compliance which do not directly concern the GDPR but are relevant towards understanding the SotA.
-The chapter concludes (\autoref{sec:sota:analysis}) with an analysis of presented approaches and a discussion on the identified gaps for further work in the domain of utilising semantic web for GDPR compliance.
+The second section (\autoref{sec:sota:gdpr-semweb}) presents an overview of approaches for GDPR compliance utilising semantic web, the third section (\autoref{sec:sota:gdpr-other}) presents other approaches for GDPR compliance,
+and the fourth section (\autoref{sec:sota:other}) presents approaches which do not directly concern the GDPR but present relevant approaches and technology regarding regulatory compliance.
+The chapter concludes (\autoref{sec:sota:analysis}) with an analysis of presented approaches and a discussion on research opportunities from identified gaps in the SotA.
 
 \section{Overview of Technological Approaches for Legal Compliance}\label{sec:sota:models}
 This section provides an overview of technological approaches utilised for addressing legal compliance. It presents the different methodologies and frameworks for interpreting requirements from legal documents, and using technological frameworks towards the management of information and compliance.
@@ -11,7 +11,7 @@ To that end, the section utilises surveys and key publications in the last decad
 
 \subsection{Classification of Approaches}\label{sec:sota:models:approaches}
 % 1> surveys of high level approaches to legal compliance
-A survey of approaches within the last 50 years (from 2007) for addressing legal requirements \cite{otto_addressing_2007} provides the following categorisation:
+A survey of approaches for legal compliance within the last 50 years from 1957-2007 for addressing legal requirements \cite{otto_addressing_2007} provides the following categorisation:
 \begin{itemize}
     \item \textbf{symbolic or mathematical logic}:  This approach attempts to balance use of natural language in legal documents with symbolic logic in an attempt to avoid ambiguities in interpretation. One of the earliest approaches, it was the precursor to later representations for machine and human readability.
     \item \textbf{knowledge representation}: This approach attempts to represent legal text as computer programs or algorithms by using logic programming techniques, primarily using Prolog, to avoid ambiguities in interpretation. The approach has been applied only within rigid domains where the law has minimal changes and does not rely on case law for interpretation. Additionally, the approach requires manual construction of logic rules from legal text, which prevents traceability. These challenges have limited its application to areas requiring requirements for system design, such as in software.
@@ -39,9 +39,9 @@ The survey paper provides comments on the applicability as well as limitation of
 \end{enumerate}
 
 \subsubsection*{Discussion}
-While the survey paper in \autoref{sec:sota:models:approaches} does not explicitly mention or refer to the linked data principles \cite{bizer_linked_2011}, some of its objectives are fulfilled by utilising them in a given approach. Namely, linked data and semantic web provide an interoperable representation based in standards which can be used to define the required metadata regarding legislations, as demonstrated by EuroVoc, which addresses \textit{REO.1}, \textit{REO.2}, and \textit{REO.6} to some extent.
+While the survey paper in \autoref{sec:sota:models:approaches} does not explicitly mention or refer to the linked data principles \cite{bizer_linked_2011}, some of its objectives are fulfilled by utilising them in a given approach. Namely, linked data and semantic web provide an interoperable representation based in standards which can be used to define the required metadata regarding legislations, as demonstrated by EuroVoc \cite{}, which addresses \textit{REO.1}, \textit{REO.2}, and \textit{REO.6} to some extent.
 
-The use of structured representation to define legislations for \textit{REO.3} and \textit{REO.7} is possible using standards such as XML and ontologies such as ELI and Akoma Ntoso. However, ELI does not currently offer a way to represent the hierarchical structure of regulations, such as representation of individual articles or clauses, though the European Commission's Publication Office has stated their intention to provide this feature in the future.
+The use of structured representation to define legislations for \textit{REO.3} and \textit{REO.7} is possible using standards such as XML and ontologies such as ELI (European Legislation Identifier) and Akoma Ntoso. ELI and Akoma Ntoso are official metadata standards for European and United Nations legislation documents respectively, and are maintained by the publications offices of their respective bodies. ELI does not currently offer a way to represent the hierarchical structure of regulations, such as representation of individual articles or clauses, though the European Commission's Publication Office has stated their intention to provide this feature in the future.
 This also limits the applications of \textit{REO.4} and \textit{REO.5} which require the above representation.
 For creation of glossaries from legal text, the requirements of \textit{REO.6} are addressed through existing efforts such as EuroVoc and Interactive Terminology for Europe\footnote{\url{https://iate.europa.eu/}} (IATE), which provide consistent use of terms across domains, though there are no mechanisms to derive definitions from legislations or common interpretations of terms.
 
@@ -725,7 +725,7 @@ Deliverable D2.1 \cite{noauthor_poseid-on_d2.1-use-cases-analysis-and-user-scena
 
 % non sem-web, relevant
 \subsection{STAR \& STAR II}
-STAR\footnote{\url{https://projectstareu.wordpress.com/}} (Support Training Activities on the data protection Reform) is an European project that had the aim to provide materials to support training of DPAs and DPOs for the GDPR. To this end, it has created and published its resources consisting of training materials in an open and publicly accessible form\footnote{\url{http://www.project-star.eu/training-materials}}. The resources also provide a compliance checklist \cite{noauthor_gdpr_2019-1}, which provides a list of questions and criterion to assess preparedness with the requirements of the GDPR. 
+STAR\footnote{\url{https://projectstareu.wordpress.com/}} (Support Training Activities on the data protection Reform) is an European project that had the aim to provide materials to support training of DPAs and DPOs for the GDPR. To this end, it has created and published its resources consisting of training materials in an open and publicly accessible form\footnote{\url{http://www.project-star.eu/training-materials}}. The project has also produced a handbook for assisting stakeholders in understanding the GDPR and preparing for its compliance. The project also provides an evaluation questionnaire and compliance checklist \cite{noauthor_gdpr_2019-1}consisting of a list of questions and criterion to assess preparedness with the requirements of the GDPR. 
 
 \section{Approaches of Relevance}\label{sec:sota:other}
 % non sem-web
@@ -829,7 +829,7 @@ Analysis of the state of the art is based on assessing these approaches with a p
 Approaches that do not concern or address the GDPR, but are relevant within the domain are also included (\autoref{sec:sota:other}) to provide additional information useful in representing the state of the art.
 
 The surveys presented in \autoref{sec:sota:models} regarding classification of approaches for legal compliance \cite{otto_addressing_2007} and phases of compliance \cite{fellmann_state---art_2014} provide context for the analysis. In addition, the information disseminated by authoritative bodies, presented in \autoref{sec:background:GDPR}, provides an investigative framework to analyse information regarding GDPR compliance.
-Based on these, the questions described below are used to categorise and assess the approaches. Following this, each category represented by the question is analysed and discussed in detail to present its state of the art, and for identification of further opportunities and gaps.
+Based on these, the questions described below are used to categorise and assess the approaches. Following this, each category represented by the question is analysed and discussed in detail to present its state of the art with identification of research opportunities from identified gaps.
 \begin{enumerate}
     \item Which aspects of GDPR compliance does the approach target?
     \item How does the approach represent information associated with GDPR and its compliance?
@@ -840,61 +840,6 @@ Based on these, the questions described below are used to categorise and assess 
 \end{enumerate}
 
 \subsection{Analysis of existing work}
-% For ease of use and understanding, the following labels are used when referring to the work in its entirety as presented in the state of the art instead of individual references.
-% \begin{table}[htbp]
-%     \centering
-%     \begin{tabular}{|c|c|c|}
-%         \hline
-%         \textbf{Work} & \textbf{Comment} & \textbf{Reference} \\ \hline
-%         SPECIAL & SPECIAL H2020 project & \ref{sec:sota:SPECIAL} \\ \hline
-%         SPL+SERAMIS & Collaboration of SPECIAL with SERAMIS project & \ref{sec:sota:SPECIAL} \\ \hline
-%         SPL+Vos et al. & Collaboration of SPECIAL with Vos et al. & \ref{sec:sota:SPECIAL} \\ \hline
-%         SPL+CitySPIN & Collaboration of SPECIAL with CitySPIN project & \ref{sec:sota:SPECIAL} \\ \hline
-%         MIREL & MIREL H2020 project & \ref{sec:sota:MIREL} \\ \hline
-%         MRL+DAPRECO & Collaboration of MIREL with DAPRECO project & \ref{sec:sota:DAPRECO} \\ \hline
-%         BPR4GDPR & BPR4GDPR H2020 project & \ref{sec:sota:BPR4GDPR} \\ \hline
-%         Elluri et al. & Work presented by Elluri et al. & \ref{sec:sota:Elluri} \\ \hline
-%         Ujcich et al. & Work presented  by Ujcich et al. & \ref{sec:sota:Ujcich} \\ \hline
-%         PICS & Personal Information Controll Service & \ref{sec:sota:PICS} \\ \hline
-%         Geko and Tjoa & Work presented by Geko and Tjoa &  \\ \hline
-%         LPL & & \\ \hline
-%         Lodge et al & & \\ \hline
-%         Peras & & \\ \hline
-%         Tom et al & & \\ \hline
-%         Coletti et al & & \\ \hline
-%         Corrales et al & & \\ \hline
-%         LUCE & & \\ \hline
-%         AdvoCATE & & \\ \hline
-%         Singh et al & & \\ \hline
-%         Sion et al & & \\ \hline
-%         privacyTracker & & \\ \hline
-%         Spagnuelo et al & & \\ \hline
-%         Diamantopulou et al & & \\ \hline
-%         Robol et al & & \\ \hline
-%         GuideMe & & \\ \hline
-%         Basin et al & & \\ \hline
-%         RestAssured & & \\ \hline
-%         Fox et al & & \\ \hline
-%         DEFeND & & \\ \hline
-%         OPERANDO & & \\ \hline
-%         PDP4E & & \\ \hline
-%         PoSEID-on & & \\ \hline
-%         STAR+STAR-II & & \\ \hline
-%         MHMD & & \\ \hline
-%         PAPAYA & & \\ \hline
-%         SMOOTH & & \\ \hline
-%         SODA & & \\ \hline
-%         DECODE & & \\ \hline
-%         PRIPARE & & \\ \hline
-%         Galle et al & & \\ \hline
-%         Polisis & & \\ \hline
-%         Linden et al & & \\ \hline
-%         PrivacyGuide & & \\ \hline
-        
-%     \end{tabular}
-%     \caption{Labels used to refer to work in the SotA}
-%     \label{table:sota:analysis:labels}
-% \end{table}
 
 \subsubsection{Overview}
 An overview of the state of the art from \autoref{sec:sota:gdpr-semweb} and \autoref{sec:sota:gdpr-other} is presented in \autoref{table:sota:analysis:overview}. The column headings represent the following - (T): type of work where PRJ is research project and RES is research publication, (R): Representation of GDPR, (MG): Modelling of Concepts, (EA): Ex-Ante Compliance, (EP): Ex-Post Compliance, (P): Process Flows, (C): Consent, (Cm): Evaluates Compliance, (Rq): Specifies Requirements, (O): open \& accessible resources, and (Ref) indicating the section where the work is described within the thesis. 
@@ -1075,11 +1020,11 @@ Given consent, which includes information about the choices made by the data sub
 From this, it is clear that the existing state of the art does not provide sufficient means to represent information required to assess the compliance of consent as defined by the GDPR. 
 
 \subsubsection{Querying of information associated with GDPR Compliance}
-The approaches described in the state of the art do not provide guidelines or directions on the querying of information as compared to representation of information and evaluation of compliance. Approaches that use RDF for information representation demonstrate use of SPARQL for retrieval of information but do not provide evidence of practical applications of such queries being used to answer questions associated with compliance. 
+The approaches described in the state of the art do not provide guidelines or directions on the querying of information as compared to representation of information and evaluation of compliance. Approaches that use RDF for information representation demonstrate use of SPARQL for retrieval of information but do not provide evidence of practical applications of such queries being used to answer questions associated with compliance.
 
-Approaches related to privacy policies focus on querying as part of their objective in retrieving relevant information from the text of a privacy policy. In this, the UsablePrivacy project is notable in its use of SPARQL to retrieve information. 
+In comparison, approaches related to privacy policies focus on querying as part of their objective in retrieving relevant information from the text of a privacy policy. In this, the UsablePrivacy project is notable in its use of SPARQL to retrieve information. An approach uses queries derived from GDPR-compliance checklists provided by ICO to identify coverage of GDPR within privacy policies \cite{linden_privacy_2018}.
 
-Research projects usually utilise legal experts to provide questions which are then translated into queries using the developed ontologies and technology. Projects such as SPECIAL and MIREL use competency questions in the development of ontologies which are then represented using SPARQL for retrieving information defined using using developed ontologies. An approach uses queries derived from GDPR-compliance checklists provided by ICO to identify coverage of GDPR within privacy policies \cite{linden_privacy_2018}.
+Research projects usually utilise legal experts to provide questions which are then translated into competency questions and used in the development of ontologies and technology. Projects such as SPECIAL and MIREL demonstrate use of SPARQL queries derived from competency questions to retrieve information using developed ontologies. However, none of the existing approaches demonstrate an application of such queries to assist in the compliance process by adopting the checklist or questionnaires, such as those provided by data protection offices and the STAR project, to assist and evaluate GDPR compliance preparedness.
 
 From this, it can be summarised that while projects focus on the automation of information representation and compliance evaluation, the utilisation of querying to assist in the compliance process has not seen significant development in the legal compliance domain. Approaches involving privacy policies, by comparison, utilise querying to simplify information retrieval and understanding and demonstrate its potential application towards legal compliance documentation.
 
@@ -1120,12 +1065,12 @@ DECODE & Smart Contracts & Consent &  & \cmark & \cmark &  &  \\ \hline
 \end{table}
 
 From the table, most approaches focus on evaluation of process flows followed by fulfilled obligations and given consent. In terms of method or formalism used, semantic web (OWL, RuleML) show significant development, along with utilisation of smart contracts. It can be summarised that approaches evaluate compliance in either ex-ante and ex-post phase, with some approaches covering both phases.
-Most approach produce a machine-readable outcome or artefact from the evaluation process that can be persisted for documentation purposes. Some approaches suggest remedial measures to correct or rectify lapses in compliance based on the evaluation. Only three approaches link the evaluation and its outcomes to GDPR. Based on this, it can be concluded that the state of the art provides numerous approaches for evaluating GDPR compliance in ex-ante and ex-post phases.
+Most approaches produce a machine-readable outcome or artefact from the evaluation process that can be persisted for documentation purposes. Some approaches suggest remedial measures to correct or rectify lapses in compliance based on the evaluation. Only three approaches link the evaluation and its outcomes to GDPR. Based on this, it can be concluded that the state of the art provides numerous approaches for evaluating GDPR compliance in ex-ante and ex-post phases.
 
 While most approaches record a machine-readable representation of compliance evaluation, there is a lack of work regarding how such information can be used in the documentation and demonstration of compliance. In approaches that link the evaluation with GDPR, none explore the possibility of compliance coverage of GDPR carried out using the recorded information. The links used in these approaches are either textual or based on interpretation of the GDPR using developed ontologies - such as in PrOnto.
 
-The source of compliance criteria within research projects are the developed requirements and specifications provided by legal experts. The methodologies specified within these approaches do not provide the specific queries or criteria fulfilled by the compliance evaluation nor how such evaluation frameworks can be adapted to assess additional criteria as they arise.
-Additionally, these approaches do not demonstrate or indicate how such compliance evaluations can be used to fulfil requirements of certifications and seals as provided by the GDPR. In approaches that produce recommendations or remedies from the evaluation, it is unclear as to how these are recorded against the evaluation and tracked in terms of changes made to the processes across time. 
+The source of compliance criteria within research projects are the requirements and specifications provided by legal experts. The methodologies specified within these approaches do not provide the specific queries or criteria fulfilled by the compliance evaluation nor how such evaluation frameworks can be adapted to assess additional criteria as they arise.
+Additionally, these approaches do not demonstrate or indicate how such compliance evaluations can be used to assist in the maintenance and demonstration of compliance - such as by ensuring adherence to requirements published by authoritative bodies or evaluation fulfilment towards certifications and seals as provided by the GDPR. In approaches that produce recommendations or remedies from the evaluation, it is unclear as to how these are recorded against the evaluation and tracked in terms of changes made to the processes across time. 
 
 From this, it can be concluded that the state of the art demonstrates the possibility to automate the evaluation of GDPR compliance and producing machine-readable outcomes. These provide opportunities for utilising the evaluation outcomes in the documentation of ongoing compliance and documenting coverage of compliance GDPR. Furthermore, evaluation in these approaches is carried out under the assumption of validity of existing data and does not consider absence of required information. This also provides an opportunity for assisting with the compliance process by carrying out evaluations that check for validity of information in terms of existence and correctness.
 
