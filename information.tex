@@ -7,21 +7,20 @@ This chapter presents an analysis of information about activities associated wit
 
 This section presents an analyses of the GDPR in terms of information requirements of stakeholders and presents a model of interoperability between them. The model enables understanding the role of stakeholders in the compliance process and provides a framework to analyse approaches in the state of the art to meet requirements. The model also provides motivation to incorporate interoperability as a core requirement within representations of information towards GDPR compliance.
 The work described in this section was published in a conference paper
-\cite{} which was later expanded upon in a journal article \cite{}. % EURAS, IJSR
+\cite{pandit_gdpr_2018} which was later expanded upon in a journal article \cite{pandit_exploration_2018}. % EURAS, IJSR
 
-\subsection{Model of Information Interoperability}
 The entity in terms of GDPR compliance are as follows: Data Subject (DS), Data Controller (DC), Data Processor (DP) and Supervisory Authority\footnote{Supervisory Authority are also referred to as Data Protection Commission or Regulatory Body} (SA). In addition to this, if a controller or processor uses a Data Management (DM) interface or service for their compliance operations, it can be a considered as a separate entity given its autonomous operations and possible provision by a third party. Though the GDPR does not mention or allude to the functionality of DM, it is included as a virtual entity in the analyses for practical reasons as a point of interoperability between entities.
 
 With this, there are 11 possible points of interactions between entities, as summarised in Figure \ref{fig:info:interoperability-model}.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.75\linewidth]{img/interoperability-model.png}
-    \caption{Model of information interoperability between entities based on requirements of GDPR \cite{x}}
+    \caption{Model of information interoperability between entities based on requirements of GDPR \cite{pandit_exploration_2018}}
     \label{fig:info:interoperability-model}
 \end{figure}
 These points of interactions consist of information exchange between entities, are are guided by the requirements of compliance. For example, the interaction between data subject and data controller consists of the data subject providing personal data to the controller, while the controller is required to provide a copy of provided personal data for fulfilment of rights granted by the GDPR.
 
-Requirements gathered from GDPR guiding information flows between entities at points of interactions are categorised as follows:
+Requirements gathered from GDPR \cite{pandit_exploration_2018} provide the following categories of information flows between entities at points of interactions:
 \begin{itemize}
     \item Provenance records: GDPR requires controllers and processors to maintain provenance records of processing activities carried out under their responsibility in order to maintain and demonstrate compliance to supervisory authorities. Provenance records are also required to be maintained to enable provision of rights to the data subject, and for information sharing between controllers and third parties.
     \item Data sharing agreements: A controller and processor are required to have specific data sharing agreements in place that specify the processing activities to be carried out by the processor. 
@@ -31,14 +30,33 @@ Requirements gathered from GDPR guiding information flows between entities at po
 \end{itemize}
 
 % opportunities for commonality and interoperability
-% role of process flows, especially for processing activities regarding personal data and consent
+The model and analyses of information flows between entities provides the motivation for establishing interoperability in the representation of information to be exchanged. In particular, provenance records regarding activities associated with personal data and consent are associated with interactions between all entities - data subjects, controllers, processors, and supervisory authorities. Thus, provenance records are important to the documentation of compliance for all stakeholders. 
 
-\subsection{Suitability of existing standards}
-% bodies: W3C, ISO, ISA2
+While provenance information is usually taken to refer to processing of personal data, information about other categories, namely - consent, data sharing agreements, compliance, and certifications - also can be represented using the same representation. This provides the advantage of using a single representation leading to a cohesive management of compliance information.
 
-% W3C standards for representing + state of the art analyses
+The use of process flows (ex-ante and ex-post) to represent information about processing activities is documented in the state of the art (see \autoref{chapter:sota}). In this, approaches have utilised existing standards such as PROV and BPMN. However, these approaches do not realise the potential to reuse the same representation towards other information categories.
+For the scope of the thesis, the focus of representations is on categories of provenance records and consent information, while ensuring potential of reuse towards other categories through future extensions. This provides the broad motivation of developing an interoperable ontology for representing activities associated with personal data and consent - such that they can be utilised to also represent data sharing agreements and compliance agreements in the future.
 
 \section{Compliance Questions}\label{sec:info:compliance-questions}
+This section presents `compliance questions' whose answers provide information necessary for evaluating GDPR compliance. The questions are essential to the development of information representations within compliance management systems by providing requirements for the structuring of information and its validation. Within this thesis, they are used to guide the development of ontologies through creation of competency questions (see \autoref{sec:info:competency-questions}) and validation of information (see \autoref{sec:info:constraints}).
+
+The questions were collected from authoritative sources such as data protection commissions, legal experts and agencies - that have published guidelines and resources to assist organisations with the process of establishing and maintaining GDPR compliance.
+Amongst the provided resources are checklists or criteria to self-assess measure of GDPR compliance within an organisation. These were utilised as the primary source for compliance questions.
+For the questions presented in this thesis, the following sources were used or referenced:
+\begin{itemize}
+    \item A % TODO: sources of compliance questions
+\end{itemize}
+
+The collected questions were found to be generic and abstract, and were therefore rephrased and divided into smaller more granular questions that were more suitable towards establishment of information requirements and constraints. 
+Each question was assigned an ID to enable referencing its use in competency questions presented in \autoref{sec:info:competency-questions}.
+
+\subsection{Questions regarding articles of GDPR}
+
+\subsection{Questions regarding processing activities}
+
+\subsection{Questions regarding consent}
+
+\subsection{Questions regarding rights}
 
 \section{Competency Questions}\label{sec:info:competency-questions}
 
