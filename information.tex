@@ -1,7 +1,7 @@
 \chapter{Analysing GDPR Compliance Requirements}
 \label{chapter:information}
 
-This chapter presents an analysis of information about activities associated with personal data and consent towards generating requirements for GDPR compliance. \autoref{sec:info:model} presents an analysis of GDPR in terms of stakeholders and interoperability of information between them along with an analysis of suitability of existing standards to represent it. Following this, \autoref{sec:info:compliance-questions} frames `compliance questions' that provide information requirements necessary to evaluate compliance. \autoref{sec:info:competency-questions} uses the compliance questions and identified gaps within the state of the art to formulate competency questions towards developing necessary ontologies for information representation of GDPR and activities involving personal data and consent. Finally, \autoref{sec:info:constraints} presents the assumptions and constraints over information that can be used to validate the information for correctness and completeness.
+This chapter presents an analysis of information about activities associated with personal data and consent towards generating requirements for GDPR compliance. \autoref{sec:info:model} presents an analysis of GDPR in terms of stakeholders and interoperability of information between them along with an analysis of suitability of existing standards to represent it. Following this, \autoref{sec:info:compliance-questions} frames `compliance questions' that provide information requirements necessary to evaluate compliance, with the methodology presented in \autoref{sec:info:compliance-questions-methodology}, and \autoref{sec:info:constraints} presenting assumptions and constraints that can be used to validate the information for correctness and completeness. \autoref{sec:info:competency-questions} uses the compliance questions and identified gaps within the state of the art to formulate competency questions towards developing necessary ontologies for information representation of GDPR and activities involving personal data and consent. 
 
 \section{Interoperability Model of Information based on GDPR}\label{sec:info:model}
 
@@ -40,7 +40,7 @@ For the scope of the thesis, the focus of representations is on categories of pr
 \section{Compliance Questions}\label{sec:info:compliance-questions}
 This section presents `compliance questions' whose answers provide information necessary for evaluating GDPR compliance. The questions are essential to the development of information representations within compliance management systems by providing requirements for the structuring of information and its validation. Within this thesis, they are used to guide the development of ontologies through creation of competency questions (see \autoref{sec:info:competency-questions}) and validation of information (see \autoref{sec:info:constraints}).
 
-\subsection{Methodology}
+\subsection{Methodology}\label{sec:info:compliance-questions-methodology}
 The questions were collected from authoritative sources such as data protection commissions, legal experts and agencies - that have published guidelines and resources to assist organisations with the process of establishing and maintaining GDPR compliance.
 Amongst the provided resources are checklists or criteria to self-assess measure of GDPR compliance within an organisation. These were utilised as the primary source for compliance questions.
 For the questions presented in this thesis, the following sources were used or referenced in addition to the text of GDPR:
@@ -55,13 +55,13 @@ For the questions presented in this thesis, the following sources were used or r
 \end{itemize}
 
 The collected questions were rephrased and divided into smaller more granular questions towards establishment of information requirements and constraints. 
-Each question was assigned an ID to enable referencing its use in competency questions presented in \autoref{sec:info:competency-questions} and further clarification of assumptions and constraints for validation presented in \autoref{sec:info:constraints}.
-Where possible, each question was associated with specific clauses of the GDPR.
+Each question was assigned an ID to enable referencing its use in the creation of competency questions as presented in \autoref{sec:info:competency-questions}.
+Where possible, each question was associated with specific clauses of the GDPR. Each question was analysed in terms of information requirements to identify assumptions that clarify interpretations and create constraints for use in validation. For identified constraints, scenarios were identified that do not satisfy the constraint and fail its validation. 
+% TODO: upload all documents to Zenodo and put link here.
 
-After collecting each question...
-% constraints and assumptions, reference to section
+The list of questions is presented in \autoref{sec:info:compliance-questions-list} with the assumptions and constraints presented in \autoref{sec:info:constraints}. Along with compliance questions regarding activities associated with processing of personal data and consent, the list also contains questions about additional activities associated with right to be informed and reporting of data breach by controllers. These are provided so as to demonstrate the application of a common approach to represent activities related to GDPR compliance. 
 
-\subsection{List of Questions}
+\subsection{List of Questions}\label{sec:info:compliance-questions-list}
 % COMPLIANCCE QUESTIONS - CONTROLLERS
 \subsubsection{Compliance questions pertaining to records of processing activities to be kept by controllers}
 \begin{enumerate}[label={\textit{CMQ.\theenumi}}]
@@ -157,6 +157,7 @@ After collecting each question...
 
 % COMPLIANCE QUESTIONS - CHANGE IN CONSENT STATE
 \subsubsection{Compliance questions pertaining to change in consent state}
+In this, the definition of change in consent is where the state/status of consent is changed. Example: unknown to not asked or not given, from given to withdrawn, from given to invalidated. Except from anything to given as that is considered under given consent.
 \begin{enumerate}[label={\textit{CMQ.\theenumi}},resume]
     \item Who is the Data Subject associated with consent? (A4-11)
     \item What are the Personal Data associated with consent? (R32,A4-11)
@@ -221,7 +222,197 @@ After collecting each question...
     \item What steps were taken to prevent or mitigate the effects of the data breach?
 \end{enumerate}
 
-\subsection{Constraints \& Assumptions for Validation}\label{sec:info:constraints}
+\subsection{Assumptions \& Constraints}\label{sec:info:constraints}
+
+\subsubsection{Assumptions}
+\begin{enumerate}[label={\textit{A.\theenumi}}]
+    \item Processing activities as a whole can involve multiple controllers - (CMQ2)
+    \item Data recipient categories refer to a collection or abstraction of recipients based on some context such as purpose e.g. “our ad partners” or requirement e.g. “law agencies” - (CMQ8)
+    \item Data recipients cannot be a collective or a group whose identity cannot be represented as a list of its members e.g. “our partners” vs “our partners – A, B, C” - (CMQ9)
+    \item Identity of the recipients does not need to be associated with the processing record if category of recipients is already documented. However, the identity of recipients within the category at that point of time must be recorded (somewhere). - (CMQ10)
+    \item Where data is stored, its erasure can depend on a condition or an event e.g. “XX days after your last sign-in”, or “as long as your account is active” - (CMQ12)
+    \item Processing carried out for a specific purpose adopts the legal basis of the purpose - (CMQ26)
+    \item Personal data may not have the source information associated with it directly. It must have some link (chain, path) to the information and its source from which it was obtained. - (CMQ28)
+    \item If there are multiple categories of personal data, consent is granted for all (union) of them - (CMQ36)
+    \item If a consent is given for multiple purposes, consent is considered given for all (union) of them - (CMQ37)
+    \item If a consent is given for multiple processing, consent is considered given for all (union) of them - (CMQ38)
+    \item Valid status of consent are when it is given (explicitly or implicitly) by the data subject, or by delegation - (CMQ39)
+    \item Invalid status of consent are when it its status is unknown, refused, not offerred, withdrawn, invalidated, terminated, or expired. - (CMQ39)
+    \item The status of consent indicates whether it can be used as a legal basis for processing - (CMQ39)
+    \item Consent provided by a Person that is not the Data Subject is consent by Delegation - (CMQ41)
+    \item A delegation can involve another delegation for the provision of consent - (CMQ42)
+    \item If consent is provided to an actor not the data controller associated with consent, the actor is considered as acting on behalf of the controller - (CMQ46)
+    \item Specifying location for obtained consent is optional - (CMQ53)
+    \item Specifying medium for obtained consent is optional - (CMQ54)
+    \item Consent may not have a tangible expiry - (CMQ56)
+    \item Consent may have multiple forms of expiry depending on conditions or events - (CMQ56)
+    \item A purpose or processing may be associated with zero or more third parties - (CMQ57)
+    \item Processing of data may involve storage of data - (CMQ59)
+    \item Different personal data, processing, or purpose may have different storage of data - (CMQ60)
+    \item Storage duration may not be a tangible instance in time, it can depend on conditions or event - (CMQ60)
+    \item Processing may involve transfer of data to a third country or international organisation - (CMQ63)
+    \item Personal data associated with consent may belong to a special category - (CMQ65)
+    \item A data subject may be a minor or a child - (CMQ67)
+    \item The data subject may have a relationship of relevance with the Data Controller - (CMQ69)
+    \item If there are multiple categories of personal data, consent is granted for all (union) of them - (CMQ71)
+    \item If a consent is given for multiple purposes, consent is considered given for all (union) of them - (CMQ72)
+    \item If a consent is given for multiple processing, consent is considered given for all (union) of them - (CMQ73)
+    \item Valid status of consent are when it is given (explicitly or implicitly) by the data subject, or by delegation - (CMQ74)
+    \item Invalid status of consent are when it its status is unknown, refused, not offerred, withdrawn, invalidated, terminated, or expired. - (CMQ74)
+    \item The status of consent indicates whether it can be used as a legal basis for processing - (CMQ74)
+    \item Consent state/status can be changed by Delegation - (CMQ76)
+    \item A delegation can involve another delegation for the provision of consent - (CMQ77)
+    \item Specifying location for changed consent is optional - (CMQ84)
+    \item Specifying medium for changed consent is optional - (CMQ85)
+    \item Consent may not have a tangible expiry - (CMQ87)
+    \item Consent may have multiple forms of expiry depending on conditions or events - (CMQ87)
+\end{enumerate}
+
+\subsubsection{Constraints}
+\begin{enumerate}[label={\textit{C.\theenumi}}]
+    \item Processing carried out by a controller must have information on how its records are being maintained - (CMQ1)
+    \item Records of processing activity under the responsibility of a controller must have the names/identity of all associated controllers - (CMQ2)
+    \item Each controller associated record of processing activities under the responsibility of (this) controller must have one or more contact details - (CMQ3)
+    \item Each controller associated with records of processing activities under the responsibility of (this) controller must have the identity and one or more contact details of the DPO - (CMQ4)
+    \item Processing under the responsibility of a controller must have one or more purposes of processing associated with it - (CMQ3)
+    \item Processing under the responsibility of a controller must have one or more categories of data subjects associated with it - (CMQ4)
+    \item Processing under the responsibility of a controller must have one or more categories of personal data associated with it - (CMQ5)
+    \item Processing under the responsibility of a controller must explicitly state when data is shared - (CMQ6)
+    \item Processing under the responsibility of a controller where data is shared must have the category of recipients to whom the data is or will be disclosed - (CMQ7)
+    \item Processing under the responsibility of a controller where data is shared must have the identities of recipients to whom the data is or will be disclosed - (CMQ8)
+    \item Processing under the responsibility of a controller where the recipients to whom the data is or will be disclosed are based in a Third Country or International Organisation must explicitly specified it as such - (CMQ9)
+    \item Processing under the responsibility of a controller must specify the identity of the Third Country or International Organisation to whom the data is or will be disclosed - (CMQ10)
+    \item Processing under the responsibility of a controller where personal data is transferred to a third country or an international organisation must specify the safeguards present for the transfer - (CMQ10)
+    \item Processing under the responsibility of a controller must explicitly state when data is stored - (CMQ11)
+    \item Processing under the responsibility of a controller where data is stored must specify the criteria for its erasure - (CMQ12)
+    \item Each category of data associated with a record of processing must have a time limit or a condition or an event specified for its erasure - (CMQ13)
+    \item The record of processing must have technical and organisational security measures associated with it - (CMQ14)
+    \item Every sharing of personal data must specify the purposes of sharing with the recipients - (CMQ15)
+    \item Every processing must have information on how its records are being maintained - (CMQ16)
+    \item Each record of processing activity under the responsibility of a processor must have the names/identity of all associated processors under its responsibility - (CMQ17)
+    \item Each processor associated with a record of processing activity under the responsibility of a processor must have one or more contact details - (CMQ17)
+    \item Each processor associated with a record of processing activity under the responsibility of a processor must have the identity and one or more contact details of the DPO - (CMQ17)
+    \item Each record of processing activity under the responsibility of a processor must have the names/identity of the controller(s) it is acting on behalf of - (CMQ18)
+    \item Each record of processing activity under the responsibility of a processor must have name and contact details of the controller's representative and DPO - (CMQ18)
+    \item Each record of processing carried out by a processor on behalf of a controller must specify categories of processing associated with it - (CMQ19)
+    \item Each record of processing under the responsibility of a processor where data is shared must have the identity of recipients to whom the data is or will be disclosed - (CMQ20)
+    \item The identities of the recipients to whom data is or will be disclosed must be specified - (CMQ21)
+    \item If the recipients to whom the data is or will be disclosed are based in a Third Country, or International Organisation, this must be specified as such - (CMQ22)
+    \item The identity of the Third Country or International Organisation to whom the data is or will be disclosed must be specified - (CMQ22)
+    \item The transfer of personal data to a third country or an international organisation must specify its safeguards - (CMQ23)
+    \item The record of processing must have technical and organisational security measures associated with it - (CMQ24)
+    \item Every sharing of personal data must specify the purposes of sharing with the recipients - (CMQ25)
+    \item Each processing of data must have an associated legal basis - (CMQ26)
+    \item Each purpose for processing of data must have an associated legal basis - (CMQ27)
+    \item Each personal data must have information about its source - (CMQ28)
+    \item Personal data collected from the data subject must be clearly specified as such - (CMQ29)
+    \item Every anonymisation of data must specify the techniques used for anonymisation - (CMQ31)
+    \item Where pseudo-anonymised data can be de-anonymised by the organisation, it must be clearly specified as such - (CMQ32)
+    \item Every consent must be associated with only one Data Subject - (CMQ35)
+    \item Every consent must have one or more categories or types of personal data associated with it - (CMQ36)
+    \item Every consent must have one or more purposes associated with it - (CMQ37)
+    \item Every consent must have one or more processing associated with it - (CMQ38)
+    \item Every consent must have one and only one state/status - (CMQ39)
+    \item Every consent must be associated with one or more Controllers - (CMQ40)
+    \item Consent is given by exactly one Person - (CMQ41)
+    \item Consent provided by delegation must be clearly specified as such - (CMQ42)
+    \item Consent provided by delegation must have a single chain of delegation - (CMQ42)
+    \item Delegate in a consent has to play one or more roles that are associated with the Data Subject - (CMQ43)
+    \item Every delegation must have information on how it was executed - (CMQ44)
+    \item A delegate must be authenticated to act on behalf of the data subject in a delegation - (CMQ45)
+    \item Every consent must have information on who it was provided to - (CMQ46)
+    \item An entity collecting consent on behalf of the Data Controller must have information on the relationship - (CMQ47)
+    \item Every given consent must have information on how it was obtained - (CMQ48)
+    \item Every consent must have some artefacts associated with how it was given/obtained - (CMQ49)
+    \item Every consent must have information on what choices were provided to the data subject - (CMQ50)
+    \item Every consent must have a statement or affirmative action indicating given consent - (CMQ51)
+    \item Every consent must have information on how the right to withdraw was communicated - (CMQ52)
+    \item Consent must not have more than one location it was provided at - (CMQ53)
+    \item Consent must not have more than one medium it was provided in - (CMQ54)
+    \item Every consent must have a timestamp indicating when it was given/obtained - (CMQ55)
+    \item Every purpose or processing associated with Third Party must have information on the role played by the Third Party - (CMQ58)
+    \item If data is being stored, it must have information on how long it will be stored for - (CMQ60)
+    \item Every storage of data must have information on its storage location - (CMQ61)
+    \item Processing of personal data which is of automated nature must be clearly indicated as such - (CMQ62)
+    \item Every processing of data involving transfer to a third country or international organisation must have the identity of the third country or international organisation specified - (CMQ64)
+    \item Every personal data belonging to a special category must be clearly indicated as such - (CMQ65)
+    \item Every personal data must have information on one or more identifiers that link it to a particular data subject - (CMQ66)
+    \item A data subject who is not of legal age to provide their own consent must be clearly indicated as such - (CMQ67)
+    \item There must be information on the relevant laws that determine the legal age of consent - (CMQ68)
+    \item Every consent must be associated with only one Data Subject - (CMQ70)
+    \item Every consent must have one or more categories or types of personal data associated with it - (CMQ71)
+    \item Every consent must have one or more purposes associated with it - (CMQ72)
+    \item Every consent must have one or more processing associated with it - (CMQ73)
+    \item Every consent must have one and only one state/status - (CMQ74)
+    \item Every consent must be associated with one or more Controllers - (CMQ75)
+    \item Every change in the state/status of consent must be attributed to one or more agents - (CMQ76)
+    \item Consent changed by delegation must be clearly specified as such - (CMQ77)
+    \item Consent provided by delegation must have a single chain of delegation - (CMQ77)
+    \item Delegate in a consent has to play one or more roles that are associated with the Data Subject - (CMQ78)
+    \item Every delegation must have information on how it was executed - (CMQ79)
+    \item A delegate must be authenticated to act on behalf of the data subject in a delegation - (CMQ80)
+    \item Every change in the state/status of consent must have information on how it was changed - (CMQ81)
+    \item Every change in state/status of consent must have some artefacts associated with how it was changed - (CMQ82)
+    \item Every change to consent by the Data Subject must have a statement or affirmative action indicating the change - (CMQ83)
+    \item Consent must not have more than one location it was changed at - (CMQ84)
+    \item Consent must not have more than one medium it was changed in - (CMQ85)
+    \item Every consent must have a timestamp indicating when it was changed - (CMQ86)
+    \item Information about how the right to be informed was implemented must be specified - (CMQ88)
+    \item Information part of right to be informed must be concise - (CMQ88)
+    \item Information part of right to be informed must be transparent - (CMQ88)
+    \item Information part of right to be informed must be intelligible - (CMQ88)
+    \item Information part of right to be informed must be easily accessible - (CMQ88)
+    \item Information part of right to be informed must use clear and plain language - (CMQ88)
+    \item When the information relevant to the right to be informed was provided to the data subject must be specified - (CMQ89)
+    \item Information relevant to the right to be informed was provided to the data subject must be provided at most within one month of obtaining the data - (CMQ89)
+    \item If information relevant to the right to be informed is to be communicated to the data subject, it must be provided at most during the first communication with the data subject - (CMQ89)
+    \item If data is to be disclosed to someone else, information relevant to the right to be informed must be communicated to the data subject at latest when the data is disclosed - (CMQ89)
+    \item Information part of right to be informed must contain name and contact details of the controller’s representative - (CMQ90)
+    \item Information part of right to be informed must contain name and contact details of the DPO - (CMQ91)
+    \item Information part of right to be informed must contain purposes for processing - (CMQ92)
+    \item Information part of right to be informed must contain legal basis for processing - (CMQ93)
+    \item Information part of right to be informed must specify processing whose legal basis is legitimate interest - (CMQ94)
+    \item Where personal data is not obtained from the data subject, information part of right to be informed must specify categories of personal data obtained - (CMQ95)
+    \item Where personal data is not obtained from the data subject, information part of right to be informed must specify the sources of such data - (CMQ96)
+    \item Where personal data is shared, information part of right to be informed must specify the identity of the recipients or categories of recipients - (CMQ97)
+    \item Where personal data is transferred to a third country or international organisation, information part of right to be informed must specify the identity of the third country or international organisation - (CMQ98)
+    \item Where personal data is stored, information part of right to be informed must specify the retention period - (CMQ99)
+    \item Information part of right to be informed must specify the available rights - (CMQ100)
+    \item Where consent is obtained from the data subject, information part of right to be informed must specify the right to withdraw consent - (CMQ101)
+    \item Information part of right to be informed must specify right to lodge a complaint with the supervisory authority - (CMQ102)
+    \item Information part of right to be informed must specify where personal data is obtained under statutory or contractual obligation, - (CMQ103)
+    \item Information part of right to be informed must specify where personal data is obtained from the data subject under statutory or contractual obligation - (CMQ104)
+    \item Information part of right to be informed must specify if automated-decision making, including profiling is being used - (CMQ105)
+    \item Every record of a data breach must have a timestamp indicating when it occurred - (CMQ106)
+    \item Every record of a data breach must have a timestamp indicating when the controller became aware of the breach - (CMQ107)
+    \item Every data breach must be notified to the supervisory authority - (CMQ108)
+    \item Every record of a data breach must have a timestamp indicating when it was notified to the supervisory authority - (CMQ109)
+    \item Every record of a data breach must specify how the notification was provided to the supervisory authority - (CMQ110)
+    \item Every record of a data breach must specify the identities of the supervisory authorities it was communicated to - (CMQ110)
+    \item Every record of a data breach must specify if it is likely to result in a high risk to the rights and freedoms of the natural persons whose data is associated with it - (CMQ111)
+    \item Every record of a data breach must specify the process used to determine if it is likely to result in a high risk to the rights and freedoms of the natural persons whose data is associated with it - (CMQ111)
+    \item Every data breach must specify the data subjects affected by the data breach - (CMQ112)
+    \item Every data breach must be notified to the data subjects whose personal data was associated with the breach - (CMQ113)
+    \item Every record of a data breach must have a timestamp indicating when it was notified to the data subjects - (CMQ114)
+    \item Every record of a data breach must specify how the notification was provided to the data subjects - (CMQ115)
+    \item Every notification of a data breach to the data subject must provide information about the data breach - (CMQ116)
+    \item Every notification of a data breach to the data subject must provide information about mitigating potential effects of the data breach - (CMQ117)
+    \item Every record of a data breach must specify the data involved in the breach - (CMQ118)
+    \item Every record of a data breach must specify the technical measures for the protection of data involved in the data breach - (CMQ119)
+    \item Every record of a data breach must specify the steps taken to prevent or mitigate the effects of the data breach - (CMQ120)
+\end{enumerate}
 
 \section{Competency Questions}\label{sec:info:competency-questions}
+With the information identified using the compliance questions, assumptions, and constraints in \autoref{sec:info:compliance-questions}, the creation of ontological representations utilised the well established method of competency questions for ontology engineering \cite{noy,neon}.
+The ontological representations of information associated with GDPR were categorised into the following three distinct but related ontologies based on their aim and intended function, as outlined within $RO3$ in \autoref{sec:intro:RO}:
+\begin{enumerate}
+    \item concepts and text of the GDPR: representation of concepts within GDPR and associated with its compliance, representation of links between information and specific clauses of GDPR
+    \item activities associated with personal data: representation of activities associated with processing of personal data in both ex-ante and ex-post phases
+    \item information associated with consent: representation of information necessary to evaluate compliance of consent in its various states (given or otherwise)
+\end{enumerate}
 
+\subsection{Competency Questions for GDPR concepts and representation}
+
+\subsection{Competency Questions for processing activities involving personal data}
+
+\subsection{Competency Questions for consent}
