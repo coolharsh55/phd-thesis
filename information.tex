@@ -68,15 +68,16 @@ The use of process flows (ex-ante and ex-post) to represent information about pr
 For the scope of the thesis, the focus of representations is on categories of provenance records and consent information, while ensuring potential of reuse towards other categories through future extensions. This provides the broad motivation of developing an interoperable ontology for representing activities associated with personal data and consent - such that they can be utilised to also represent data processing agreements and compliance agreements in the future.
 
 \section{Compliance Questions}\label{sec:info:compliance-questions}
-This section presents `compliance questions' whose answers provide information necessary for evaluating GDPR compliance. The questions are essential to the development of information representations within compliance management systems by providing requirements for the structuring of information and its validation. Within this thesis, they are used to guide the development of ontologies as competency questions (see \autoref{chapter:vocabularies}) and validation of information (see \autoref{chapter:testing}).
+This section presents `compliance questions' whose answers provide information necessary for evaluating GDPR compliance. The questions are essential to the development of information representations within compliance management systems by providing requirements for the structuring of information and its validation. Within this thesis, they are used to guide the development of ontologies as competency questions (see \autoref{chapter:vocabularies}) and validation of information (see \autoref{chapter:testing}). The questions presented here are by no means exhaustive but represent gathered requirements from authoritative sources. As supervisory authorities and courts continue to clarify and interpret the compliance requirements of GDPR, these questions are expected to change and expand in the future.
 
 \subsection{Methodology}\label{sec:info:compliance-questions-methodology}
 The questions were collected from authoritative sources such as data protection commissions, legal experts and agencies - that have published guidelines and resources to assist organisations with the process of establishing and maintaining GDPR compliance.
-Amongst the provided resources are checklists or criteria to self-assess measure of GDPR compliance within an organisation. These were utilised as the primary source for compliance questions.
+Some resources - such  as checklists or criteria to self-assess measure of GDPR compliance within an organisation - already provide questions which were adopted for use. In other cases, questions were derived from the reading and understanding of compliance requirements. 
+
 For the questions presented in this thesis, the following sources were used or referenced in addition to the text of GDPR:
 \begin{itemize}
-    \item Guidelines, clarifications, and discussions published by European Data Protection Board\footnote{\url{https://edpb.europa.eu/}} (EDPB)
-    \item Guidelines, clarifications, and discussions published by Article 29 Working Party\footnote{\url{https://ec.europa.eu/newsroom/article29/news.cfm?item_type=1360}} and endorsed by EDPB
+    \item Guidelines, clarifications, and discussions on the interpretation of GDPR published by European Data Protection Board\footnote{\url{https://edpb.europa.eu/}} (EDPB)
+    \item Guidelines, clarifications, and discussions on the interpretation of GDPR published by Article 29 Working Party\footnote{\url{https://ec.europa.eu/newsroom/article29/news.cfm?item_type=1360}} and endorsed by EDPB
     \item Resources published Data Protection Commission\footnote{\url{https://dataprotection.ie/}} (Ireland) - with particular focus on document `GDPR guidance for SMEs'\footnote{\url{https://dataprotection.ie/en/guidance-landing/guidance-smes}}
     \item Resources published by Information Commissioners Office\footnote{\url{https://dataprotection.ie/}} (United Kingdom), with particular use of `Data protection self assessment for organisations'\footnote{\url{https://ico.org.uk/for-organisations/data-protection-self-assessment/}}
     \item Resources published by federated data protection offices in Germany, in particular the audit checklist published by Lower Saxony Data Protection Authority\footnote{\url{https://lfd.niedersachsen.de/download/146715/}} which was self-translated from German to English\footnote{\url{https://doi.org/10.5281/zenodo.3380469}}
@@ -85,9 +86,10 @@ For the questions presented in this thesis, the following sources were used or r
 \end{itemize}
 
 The collected questions were rephrased and divided into smaller more granular questions towards establishment of information requirements and constraints. 
-Each question was assigned an ID to enable referencing its use in the creation of competency questions as presented in \autoref{sec:info:competency-questions}.
-Where possible, each question was associated with specific clauses of the GDPR. Each question was analysed in terms of information requirements to identify assumptions that clarify interpretations and create constraints for use in validation. For identified constraints, scenarios were identified that do not satisfy the constraint and fail its validation. 
+Each question was assigned an ID to enable tracking its use.
+Where possible, each question was associated with specific clauses of the GDPR by denoting the article or recital relevant to it. Each question was analysed in terms of information requirements to identify assumptions that clarify interpretation of the question, and constraints that express a condition that can be tested and used to validate the information. For each identified constraint, a failing test case was identified that did not satisfy the condition and could be used to test its validation.
 % TODO: upload all documents to Zenodo and put link here.
+A spreadsheet was used to collect and organise the questions, assumptions, and constraints - and is available as an open resource\footnote{\url{TODO: upload spreadsheet to Zenodo and post link here}}.
 
 The list of questions is presented in \autoref{sec:info:compliance-questions-list} with the assumptions and constraints presented in \autoref{sec:info:constraints}. Along with compliance questions regarding activities associated with processing of personal data and consent, the list also contains questions about additional activities associated with right to be informed and reporting of data breach by controllers. These are later used in the development of ontologies that demonstrate the application of a common approach to represent activities related to processing of personal data, consent, data breach, and provision of rights for GDPR compliance. 
 
@@ -187,7 +189,7 @@ The list of questions is presented in \autoref{sec:info:compliance-questions-lis
 
 % COMPLIANCE QUESTIONS - CHANGE IN CONSENT STATE
 \subsubsection{Compliance questions pertaining to change in consent state}
-In this, the definition of change in consent is where the state/status of consent is changed. Example: unknown to not asked or not given, from given to withdrawn, from given to invalidated. Except from anything to given as that is considered under given consent.
+In this, the definition of change in consent is where the state/status of consent is changed. Example: unknown to not asked or not given, from given to withdrawn, from given to invalidated. Changes where the result is given consent or obtained consent where none existed is considered as given consent with compliance questions listed in the previous section.
 \begin{enumerate}[label={\textit{CMQ.\theenumi}},resume]
     \item Who is the Data Subject associated with consent? (A4-11)
     \item What are the Personal Data associated with consent? (R32,A4-11)
@@ -253,6 +255,7 @@ In this, the definition of change in consent is where the state/status of consen
 \end{enumerate}
 
 \subsection{Assumptions \& Constraints}\label{sec:info:constraints}
+An assumption is defined as information or condition that always holds true and is useful in the interpretation of the compliance question. A constraint is defined as a condition that the information pertaining to compliance question must satisfy in order for it to be valid. The assumptions and constraints are listed with reference to the relevant compliance question at the end in brackets.
 
 \subsubsection{Assumptions}
 \begin{enumerate}[label={\textit{A.\theenumi}}]
