@@ -23,38 +23,39 @@ UPON Lite \cite{} is a lightweight methodology for rapid ontology engineering th
 
 Compared with methodologies used in comparative work such as SPECIAL \autoref{} and MIREL \autoref{} within the SotA, the ontology development methodology used in this research lacked resources and access to legal experts which could be utilised to shape the legal interpretation of the developed work. To compensate for this, the developed ontologies have been sufficiently documented to indicate their aims, motivation, methodology, resources used to shape conceptualisations and rationalisations, and published in an open and accessible manner.
 
+\subsubsection*{Summarisation of Methodology}
 From above, the methodology used for ontology engineering and development can be summarised through the following steps:
 \begin{enumerate}
-    \item \textbf{Identification of aims, objectives, scope}
-    \item \textbf{Identify and analyse relevant information}
-    \item \textbf{Create use-cases and competency questions}
-    \item \textbf{Identify concepts and relationships}
-    \item \textbf{Create Ontology}
-    \item \textbf{Evaluate}
-    \item \textbf{Iteratively develop ontology using steps 2 to 6}
+    \item \textbf{Identification of aims, objectives, scope:} The first step was to identify the aim and objectives of information to be represented, followed by deciding on the scope regarding relation to GDPR compliance. For the ontologies presented in this chapter, the aims and objectives are listed in \autoref{}. % introduction
+    \item \textbf{Identify and analyse relevant information:} Using the scope, relevant information was gathered from various sources - including authoritative, community, and publications - and analysed to identify terms of importance and requirements regarding GDPR compliance. The information is presented partially as background of the GDPR in \autoref{} and analysed with regards to compliance in \autoref{}.
+    \item \textbf{Create use-cases and competency questions:} From the analysed information, different use-cases were identified to better understand the application of information in compliance scenarios and the requirements of different stakeholders in this process. This was done using the information interoperability model presented in \autoref{}. The analysed information was used to create compliance questions, as presented in \autoref{}, which identify relevant information for evaluation of compliance. These compliance questions were utilised as competency questions in the development and evaluation of ontologies.
+    \item \textbf{Identify concepts and relationships:} Relevant concepts and relationships were identified to express information required to answer compliance questions in identified use-cases. This was an iterative and cyclic process where identified concepts and relationships were re-purposed to better suit some design pattern or compliance requirements.
+    \item \textbf{Create Ontology:} The identified concepts and relationships were formalised as an ontology in OWL2 using the Protégé ontology development environment. In this process, a semantic reasoner - such as Pellet\footnote{\url{}} and HermiT\footnote{\url{}} - was used to identify inconsistencies in the ontology. Minor inconsistencies were fixed by changing the appropriate relationships between concepts, while major inconsistencies required evaluation of information identified in step 4. Development of the ontology utilised best practices advocated by the semantic web community in terms of ontology metadata \cite{}, documentation \cite{}, design patterns \cite{}, publication \cite{}, and dissemination \cite{}.
+    \item \textbf{Evaluate:} The ontology was evaluated for sufficiency using competency questions, and by publishing as peer-reviewed publications. It was also evaluated for quality using guidelines and tools provided by the community.
+    \item \textbf{Iteratively develop ontology using steps 2 to 6:} Following an iteration of an ontology and its evaluation, changes were integrated by following steps 2 to 6 in an development cycle. New concepts and relationships as well as changes to existing ones were integrated through this method. Previous versions of the ontology were documented for provenance where relevant and possible.
 \end{enumerate}
 
-* use of compliance questions identified in Ch 4 as competency questions for the development of GDPRov and GConsent. Competency questions used for GDPRtEXT are listed in that section
-
-* Development through Protege, which can test for inconsistencies using reasoner (HermiT and Pellet being two popular choices)
-
 \subsubsection*{Ontology Quality Considerations}
-* Ontology quality - follow community guidelines such as W3C, detection using OOPS! which suggests ontology patterns errors, some papers about ODP
+The quality of an ontology refers to the quality of its design of concepts and relationships. While following a suitable ontology engineering methodology provides a structured ontology, it still needs to be inspected for quality in terms of ontology as well as for intended use-cases and scenarios. For this, existing publications \cite{jeremy quality paper, vredicic thesis} list various methods of ontology quality detection, evaluation, and suggest solutions to fix identified problems.
 
-* Use persistent identifiers - purl.org at first, then switch to w3id as purl.org had issues with maintainence and w3id was a better community choice
+OOPS!\footnote{\url{}} \cite{} is an useful tool for ontology evaluation which detects common pitfalls in the design of concepts and relationships and provides a documented output which can be persisted for provenance of ontology development. Each pitfall detected by OOPS! is categorised along  structural, functional, and usability-profiling dimensions. The tool also provides an indicative measure of importance regarding the pitfall in terms of critical, important, and minor levels.
+
+OOPS! was used for detecting catalogued common pitfalls in the preiodic evaluation of developed ontologies. Identified pitfalls were corrected by changing the underlying relationships and iteratively developing the ontology to remove them. Other pitfalls were inspected manually from published sources \cite{}. 
 
 \subsubsection*{Ontology Documentation}
-* Documentation - follow best practices, WIDOCO guidelines, use WIDOCO to publish HTML and other serialisations on the web following content negotiation
+Ontology documentation was created by using the WIDOCO\footnote{\url{}} \cite{} tool which uses ontology metadata to create HTML documents listing its classes and properties. Ontology metadata consists of information regarding the ontology as well as its concepts and properties integrated into the serialisation as annotations. WIDOCO provides a document of suggested metadata indicating best practices for ontology documentation, which the developed ontologies utilised. It builds upon the LODE\footnote{\url{}} tool and library\footnote{\url{}} which is also a popular ontology documentation service.
+
+The output of the WIDOCO tool is a HTML document along with various serialisations of the ontology for content negotiation which were published as an online resource. Additional information was manually added to the HTML documentation regarding aims and methodologies used in the development of ontologies, as well as examples of use-cases and diagrams. WIDOCO integrates OOPS! to detect pitfalls in the ontology and documents the output. It also provides an interactive visualisation of the ontology using WebVOWL\footnote{\url{}}.
 
 \subsubsection*{Dissemination}
-* Publish using linked open data principles, LOD cloud principles, FAIR principles
+The ontology was published on the internet using a stable IRI through persistent identifiers on servers hosted by ADAPT Research Centre and School of Computer Science \& Statistics within Trinity College Dublin. Initially, these were provided through the purl\footnote{\url{}} service, which later had issues regarding maintenance and frequent problems with URL resolution. Later the ontologies utilised the w3id\footnote{\url{}} persistent identifiers which are the current community recommendation and see active maintenance and development. The ontologies published in this manner followed the best practices and principles related to use of Linked Open Data\footnote{\url{}}, Linked Open Vocabularies\footnote{\url{}}, and FAIR\footnote{\url{}}.
 
-* License: open license CC-by
-
-* Open access: upload to public repositories - Zenodo, institution website - OpenScience, repositories showing work and code - Github, OpenGogs (institution)
+Each ontology was added to the Linked Open Vocabularies community listing which catalogues vocabularies in the semantic web community. Each ontology was published in Zenodo which is a public open repositories and through which each iteration of the ontology was provided a DOI. The ontoloy development and resources were also added to public hosting services such as Github and an instance of OpenGogs hosted on institution servers. Each ontology was provided under an open and permissive license (CC-by-4.0\footnote{\url{}}) to promote its use and adoption.
 
 \subsubsection*{Evaluation}
-* Evaluation through creation of use-cases based on real-world situations and suitability of developed ontology to answer competency questions, through peer-reviewed publishing
+Evaluation was carried out by analysing whether the information expressed using the ontologies was sufficient to answer the collected competency questions. This was carried out in an interactive manner where the ontology was first developed and evaluated, and then the results of evaluation were used as feedback to further develop the ontology. Following the evaluation, changes to the ontology were made based on missing concepts and relationships, or incorrect assumptions expressed in existing ones. 
+
+The ontology was also evaluated against common pitfalls as expressed in the section about ontology quality. Documentation and publishing standards were evaluated by assessing whether the ontologies met existing criteria advocated by the community (such as 5-star principle for linked data \cite{} and the FAIR principles \cite{}). Finally, each ontology was published and presented in a peer-reviewed venue and publication.
 
 \section{GDPRtEXT - Linked Open Dataset of GDPR text \& Glossary of Concepts}\label{sec:voc:GDPRtEXT}
 aim/objective: 
