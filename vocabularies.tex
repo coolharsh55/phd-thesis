@@ -5,31 +5,67 @@ Intro: this chapter X Y Z
 
 * presents the created ontologies for achieving aims listed in RO2
 
+* \autoref{sec:voc:methodology} - Methodology
+* \autoref{sec:voc:GDPRtEXT} - GDPRtEXT
+* \autoref{sec:voc:GDPRov} - GDPRov
+* \autoref{sec:voc:GConsent} - GConsent
+* \autoref{sec:voc:DPV} - DPV
+
 \section{Methodology for Ontology Engineering}\label{sec:voc:methodology}
+This section expands on the ontology engineering methodology described in \autoref{sec:intro:ontology-engineering} regarding construction of ontologies described in this chapter.
 
-* process - Ontology 101, NeOn, compare with PrOnto, list steps
+\subsubsection*{Utilisation of Existing Ontology Engineering Methodologies}
+The creation of ontologies followed guidelines and methodologies deemed `best practice' by the semantic web community. In this, `Ontology development 101: A guide to creating your first ontology' by Noy and McGuiness \cite{} - was utilised as the seminal guide for ontology engineering. It provides a series of steps for the creation of ontologies, which includes attention to avoid bad design decisions and pitfalls. It also advocates the use of competency questions to determine the scope of an ontology and evaluate it after creation. For this, the compliance questions presented in \autoref{} were used as competency questions. The guide also mentions use of Protégé\footnote{\url{}} \cite{} - a popular tool for ontology development - which also provides a semantic reasoner to detect inconsistencies in the ontology.
 
-* use of competency questions identified in Ch 4
+Another commonly adapted resource that was used is the NeOn methodology \cite{} which provides a flexible workflow through the use of scenarios which can be adapted for ontology development. The scenarios include from implementing using a specification, reusing and re-engineering existing ontological and non-ontological resources, and utilisation of ontological design patterns.
 
-* aim to fill gaps in the state of the art
+UPON Lite \cite{} is a lightweight methodology for rapid ontology engineering that was used in combination with NeOn for iteratively developing the presented ontologies. It consists of six steps from identification of domain terminology, construction of domain glossary, creating a taxonomy, predication as properties, meronymy for complex components, and conceptualisation into an ontology.
 
-* Evaluation through creation of use-cases based on real-world situations
+Compared with methodologies used in comparative work such as SPECIAL \autoref{} and MIREL \autoref{} within the SotA, the ontology development methodology used in this research lacked resources and access to legal experts which could be utilised to shape the legal interpretation of the developed work. To compensate for this, the developed ontologies have been sufficiently documented to indicate their aims, motivation, methodology, resources used to shape conceptualisations and rationalisations, and published in an open and accessible manner.
 
-* Evaluation through peer-reviewed publishing
+From above, the methodology used for ontology engineering and development can be summarised through the following steps:
+\begin{enumerate}
+    \item \textbf{Identification of aims, objectives, scope}
+    \item \textbf{Identify and analyse relevant information}
+    \item \textbf{Create use-cases and competency questions}
+    \item \textbf{Identify concepts and relationships}
+    \item \textbf{Create Ontology}
+    \item \textbf{Evaluate}
+    \item \textbf{Iteratively develop ontology using steps 2 to 6}
+\end{enumerate}
 
-* Protege to create ontology, test for inconsistencies using reasoner
+* use of compliance questions identified in Ch 4 as competency questions for the development of GDPRov and GConsent. Competency questions used for GDPRtEXT are listed in that section
 
-* Ontology quality - follow community guidelines, OOPS!
+* Development through Protege, which can test for inconsistencies using reasoner (HermiT and Pellet being two popular choices)
 
-* Documentation - follow best practices, WIDOCO guidelines, use WIDOCO to publish HTML and other serialisations on the web
+\subsubsection*{Ontology Quality Considerations}
+* Ontology quality - follow community guidelines such as W3C, detection using OOPS! which suggests ontology patterns errors, some papers about ODP
 
-* Use persistent identifiers - purl.org at first, then switch to w3id
+* Use persistent identifiers - purl.org at first, then switch to w3id as purl.org had issues with maintainence and w3id was a better community choice
+
+\subsubsection*{Ontology Documentation}
+* Documentation - follow best practices, WIDOCO guidelines, use WIDOCO to publish HTML and other serialisations on the web following content negotiation
+
+\subsubsection*{Dissemination}
+* Publish using linked open data principles, LOD cloud principles, FAIR principles
 
 * License: open license CC-by
 
 * Open access: upload to public repositories - Zenodo, institution website - OpenScience, repositories showing work and code - Github, OpenGogs (institution)
 
-\section{GDPRtEXT}\label{sec:voc:GDPRtEXT}
+\subsubsection*{Evaluation}
+* Evaluation through creation of use-cases based on real-world situations and suitability of developed ontology to answer competency questions, through peer-reviewed publishing
+
+\section{GDPRtEXT - Linked Open Dataset of GDPR text \& Glossary of Concepts}\label{sec:voc:GDPRtEXT}
+aim/objective: 
+a) link information with individual clauses of the GDPR
+b) link information with terms and concepts related to GDPR compliance
+
+\subsection{Requirements Gathering \& Ontology Engineering}
+identify suitable representation format - ELI already exists as an ontology used to publish metadata about legislations, is OWL2 vocabulary, available open access
+extend that with necessary concepts
+
+additional CQ developed
 
 With the information identified using the compliance questions, assumptions, and constraints in \autoref{sec:info:compliance-questions}, competency questions were established to identify necessary concepts and relationships to create ontological representations using established procedures \cite{noy,neon}.
 The competency questions presented in the following sections areare based on the three objectives as outlined within $RO3$ in \autoref{sec:intro:RO}.  
@@ -39,7 +75,6 @@ The competency questions presented in the following sections areare based on the
     \item information associated with consent: representation of information necessary to evaluate compliance of consent in its various states (given or otherwise)
 \end{enumerate}
 
-\subsection{Competency Questions for GDPR concepts and representation}
 These competency questions are concerned with the representation of concepts within GDPR and its compliance, and association of information with specific clauses of the GDPR.
 
 \subsubsection{Structure of GDPR text}
@@ -87,18 +122,92 @@ These competency questions are concerned with the representation of concepts wit
     \item What concepts are defined regarding seals and certifications?
 \end{enumerate}
 
-\subsection{Competency Questions for processing activities involving personal data}
-\begin{enumerate}[label={\textit{CQ.\theenumi}},resume]
-    \item x.
-\end{enumerate}
+\subsection{Ontology Description \& Application}
+Overview - copy from paper
 
-\subsection{Competency Questions for consent}
-\begin{enumerate}[label={\textit{CQ.\theenumi}},resume]
-    \item x.
-\end{enumerate}
+In-depth items - copy from paper
 
-\section{GDPRov}\label{sec:voc:GDPRov}
+\subsection{Evaluation}
+Did it meet its objective?
+Did it meet the CQ?
+What gaps did it fill within the sota? Cite paper by V. Leone on ontology survey
+Peer-reviewed publication
+Published in ireland open data portal which gave it 5 star rating (LOD)
 
-\section{GConsent}\label{sec:voc:GConsent}
+\subsection*{Summary}
 
+% GDPRov
+\section{GDPRov - Ontology for GDPR activities associated with Personal Data and Consent}\label{sec:voc:GDPRov}
+
+aim/objective: provide representations of activities in ex-ante and ex-post phases associated with processing of personal data and consent for GDPR compliance
+
+\subsection{Requirements Gathering \& Ontology Engineering}
+
+* identify activities using analysis in Ch 4 and  background in Ch 2; use compliance questions in Ch4 as comptency questions
+* identfiy suitable represenations of ex-ante and ex-post activities --> PROV-O and P-Plan
+* formulate ontological representations
+
+\subsection{Ontology Description \& Application}
+
+* copy from paper
+
+\subsection{Evaluation}
+
+* adherence to CQ
+* compare against sota
+* peer reviewed publication
+
+\subsection*{Summary}
+
+% GConsent
+\section{GConsent - Ontology for Consent Information for GDPR Compliance}\label{sec:voc:GConsent}
+
+aim/objective: representation of contextual information about consent according to requirements of GDPR compliance
+
+* inform that GDPRov is not sufficient to evaluate consent compliance
+
+\subsection{Requirements Gathering \& Ontology Engineering}
+
+* identfiy information required for compliance - ch2 background
+* use analysis in ch 4 and ch 2 background
+* use compliance questions in ch 4 as competency questions
+* semi-formal consultation with legal expert (law prof. TCD)
+
+\subsection{Ontology Description \& Application}
+
+* copy from paper
+
+\subsection{Evaluation}
+
+* CQ, use-cases
+* compare against SotA
+* peer-reviewed publication
+
+\subsection*{Summary}
+
+* only vocab in sota
+* further work ongoing to combine with CR standard to adopt GDPR and other emerging laws
+* ??? to mention ??? consultaition with research Mastercard on semantic representation of consent
+
+% DPV
 \section{Data Privacy Vocabulary (DPV)}\label{sec:voc:DPV}
+
+* intro as to why this is relevant
+* What is the DPVCG
+* What is DPV
+* My role
+
+\subsection{W3C Data Privacy Vocabularies and Controls CG}
+* What is the CG
+* Aims, objectives, how it started, when, SPECIAL
+* members???
+* cite SW4SG paper
+
+\subsection{Description of Data Privacy Vocabulary}
+* copy from ODBASE paper
+
+\subsection{Comparison with GDPRtEXT, GDPRov, GConsent, and SotA}
+
+\subsection*{Summary}
+
+\section{Chapter Summary}
