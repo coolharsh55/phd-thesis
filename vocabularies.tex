@@ -58,25 +58,18 @@ Evaluation was carried out by analysing whether the information expressed using 
 The ontology was also evaluated against common pitfalls as expressed in the section about ontology quality. Documentation and publishing standards were evaluated by assessing whether the ontologies met existing criteria advocated by the community (such as 5-star principle for linked data \cite{} and the FAIR principles \cite{}). Finally, each ontology was published and presented in a peer-reviewed venue and publication.
 
 \section{GDPRtEXT - Linked Open Dataset of GDPR text \& Glossary of Concepts}\label{sec:voc:GDPRtEXT}
-aim/objective: 
-a) link information with individual clauses of the GDPR
-b) link information with terms and concepts related to GDPR compliance
 
-\subsection{Requirements Gathering \& Ontology Engineering}
-identify suitable representation format - ELI already exists as an ontology used to publish metadata about legislations, is OWL2 vocabulary, available open access
-extend that with necessary concepts
+This section describes the GDPRtEXT vocabulary and dataset, which provides a linked open data version of the text of the GDPR and a SKOS glossary of concepts associated with its compliance. The section describes the motivation and creation of this work, its publication and dissemination, and a comparison with relevant approaches in the state of the art. GDPRtEXT is available online\footnote{\url{https://w3id.org/GDPRtEXT/}} with its documentation and code repository\footnote{\url{https://github.com/coolharsh55/GDPRtEXT/}}.
 
-additional CQ developed
+\subsection{Motivation}
+GDPR as a legislation consists of text which is structured into 173 Recitals, 99 Articles (further grouped into Chapters and Sections), and 21 Citations. Each Article may have one or more Paragraphs, which itself may have one or more Sub-Paragraphs. As is the norm for legislations, each individual clause - whether an article, paragraph, or sub-paragraph - is identified with an alphanumeric number if provided. These are commonly referenced in textual notation by mentioning these identifiers present in the text of the legislation, such as for Article 8 Paragraph 2 Sub-Paragraph c the following textual notations can be used: A8(2-c), A(8-2c), A8-2(c), Art.8 2(c), Art-8-2-c. As there is no standard or accepted commonality in the approach, and because such notations are intended towards human readability and interpretation - there is no defined set of notations. This presents difficulty when representing such information in machine-readable formats.
 
-With the information identified using the compliance questions, assumptions, and constraints in \autoref{sec:info:compliance-questions}, competency questions were established to identify necessary concepts and relationships to create ontological representations using established procedures \cite{noy,neon}.
-The competency questions presented in the following sections areare based on the three objectives as outlined within $RO3$ in \autoref{sec:intro:RO}.  
-\begin{enumerate}
-    \item concepts and text of the GDPR: representation of concepts within GDPR and associated with its compliance, representation of links between information and specific clauses of GDPR
-    \item activities associated with personal data: representation of activities associated with processing of personal data in both ex-ante and ex-post phases
-    \item information associated with consent: representation of information necessary to evaluate compliance of consent in its various states (given or otherwise)
-\end{enumerate}
+The EU Publications Office currently publishes legislation metadata at the document level - which provides information about GDPR as a legislation using the ELI ontology and standard \cite{} - but do not specify granular information about its contents. While the EU Publications Office has indicated its intention to provide such granular metadata in the future, currently the state of the art contains primarily two approaches as presented and analysed in \autoref{}. While these provide granular information representation of GDPR clauses, the information model used is not compatible with the ELI model used by EU Publications Office.
 
-These competency questions are concerned with the representation of concepts within GDPR and its compliance, and association of information with specific clauses of the GDPR.
+With this as the motivation, and the research question establish in \autoref{}, this section presents the GDPRtEXT vocabulary and dataset which fulfils research objective $RO3(a)$ regarding creation of OWL2 ontology for expressing information about concepts and text of the GDPR. It also fulfils the aim/objective of linking information with individual clauses of the GDPR as well as with terms and concepts related to GDPR compliance.
+
+\subsection{Ontology Engineering and Creation of Resource}
+Following the methodology described in \autoref{sec:voc:methodology}, the development of competency questions was achieved through understanding and analysis of how legal articles are referenced in text in relation to compliance. The competency questions concern representation of concepts within GDPR and its compliance, and association of information with specific clauses of the GDPR. They are categorised as pertaining to structure of GDPR text and regarding concepts associated with GDPR. The collected competency questions are outlined below:
 
 \subsubsection{Structure of GDPR text}
 \begin{enumerate}[label={\textit{CQ.\theenumi}}]
@@ -95,6 +88,14 @@ These competency questions are concerned with the representation of concepts wit
     \item How to associate information regarding given consent to relevant clauses in the GDPR?
     \item How to associate information regarding compliance to a specific article of the GDPR?
 \end{enumerate}
+
+Based on these, the following requirements were identified for the ontology with regards to structure:
+\begin{itemize}
+    \item Structure of text must be specified with granularity and a hierarchy of Document, Chapter, Section, Article, Paragraph, Sub-Paragraph along with Recitals and Citations.
+    \item Relations between clauses must be specified e.g. Paragraph belongs to an Article.
+    \item Relations must be transitive e.g. Paragraph belonging to an Article must also belong to the Chapter the Article is in.
+    \item Each individual clause must have a unique IRI to enable linking of information to it.
+\end{itemize}
 
 \subsubsection{Concepts associated with GDPR}
 \begin{enumerate}[label={\textit{CQ.\theenumi}},resume]
@@ -123,10 +124,80 @@ These competency questions are concerned with the representation of concepts wit
     \item What concepts are defined regarding seals and certifications?
 \end{enumerate}
 
-\subsection{Ontology Description \& Application}
-Overview - copy from paper
+Based on these, the following requirements were identified for the ontology with regards to structure:
+\begin{itemize}
+    \item The ontology should express concepts in a hierarchy of relation as associated with compliance. This hierarchy is based on which additional concepts are relevant to the given concept. For example, all principles are referred to when referring to the concept of 'Principle', and - activities and actions associated with compliance are referred to when using the concept of 'Compliance'.
+    \item The ontology should reference concepts with their definitions within the clauses of the GDPR.
+    \item The ontology should indicate concepts of relevance for a given concept.
+    \item The ontology provide concepts regarding:
+    \begin{itemize}
+        \item types of data
+        \item types of consent
+        \item types of entities
+        \item types of activities associated with - consent, data, processing, data breaches
+        \item actions associated with compliance
+        \item principles defined in the GDPR
+        \item rights provided by the GDPR
+        \item obligations mentioned in the GDPR
+        \item conditions required for valid consent
+        \item conditions associated with seals and certifications
+    \end{itemize}
+\end{itemize}
 
-In-depth items - copy from paper
+\subsubsection{Extending ELI}
+Following this, the suitability of extending the existing ELI ontology for representing hierarchy of clauses in GDPR was evaluated and found to be feasible. Existing resources associated with the information model used by ELI - namely the FORMEX\footnote{\url{https://op.europa.eu/en/web/eu-vocabularies/formex//}} and Common Data Model\footnote{\url{https://op.europa.eu/en/web/eu-vocabularies/model/-/resource/dataset/cdm}} - were used to formulate an extension mechanism that ensured compatibility.
+The extension intended to be language agnostic and therefore did not follow the language specifications provided by FRBR model\footnote{\url{https://www.ifla.org/publications/functional-requirements-for-bibliographic-records}}, though such functionality can be integrated in the future if needed. For the glossary of concepts, SKOS\footnote{\url{}} was selected based on its status as a standard and accepted usage by the community towards specification of thesauri.
+
+\subsubsection{Creation of datasets}
+Three outputs were decided based on the requirements - an OWL2 ontology for representing structure of GDPR text, a dataset of GDPR text using this ontology, and a SKOS glossary of concepts associated with compliance. The OWL2 ontology and SKOS glossary were combined within a single deliverable - namely the GDPRtEXT ontology, and the representation of GDPR text was provided as a RDF dataset with metadata defined using the DCAT\footnote{\url{https://www.w3.org/TR/vocab-dcat/}} and VoID\footnote{\url{https://www.w3.org/TR/void/}} standards.
+
+Extracting the text of the GDPR in the form of individual clauses proved to be a challenge due to the way the official legislation is structured. The official publication provides the legislation as HTML, PDF, and XML. The task of extracting individual clauses and annotating their structure (e.g. chapter, article, paragraph) was automated using a python script.
+
+Three datasets were produced and published through this process. The first provides description of canonical versions of the official legislation i.e. published by the EU Publications Office, and describes the GDPR legislation in its HTML, PDF, and XML formats. The second provides a copy of the GDPR text hosted on institution servers and provides identifiers for individual clauses in the GDPR in HTML, JSON, and plain-text formats. The third provides RDF serialisations of the text of GDPR using the GDPRtEXT ontology in RDF/XML, N3, Turtle, JSON-LD formats.
+
+The glossary published using SKOS utilised the IRIs of individual clauses of the GDPR to indicate source, definitions, and related concepts. Definitions were declared using the \textit{rdfs:isDefinedBy} property, and a new property called \textit{involves} was created to indicate associations between concepts. 
+
+\subsubsection{Publication \& Dissemination}
+The ontology and dataset were provided through a SPARQL end-point on a triple-store hosted on the institution servers. Pubby\footnote{\url{http://wifo5-03.informatik.uni-mannheim.de/pubby/}} was used to provide a front-end for browsing the legislation. The dataset was provided under the CC-by-4.0 license to provide resources in an open and reusable manner. It was also published in the Irish Open Data Portal\footnote{\url{https://data.gov.ie/dataset/gdprtext}} which rated it as a 5-star linked open dataset. The documentation for the ontology and dataset was generated using WIDOCO, and published on institution servers.
+
+\subsection{Resource Description \& Application}
+
+\subsubsection{Concepts for description structure of text}
+GDPRtEXT extends the European Legislation Identifier (ELI) \cite{} ontology published by the European Publications Office with granular concepts to represent each individual clause within the GDPR. 
+ELI provides the class \textit{LegalResource} to indicate a legislative document and its sub-class \textit{LegalSubResource} to indicate a component or part of that resource. GDPRtEXT extends the \textit{LegalSubResource} concept with classes Chapter, Section, Article, Point (indicates Paragraph), SubPoint (indicates Sub-Paragraph), Recital, and Citation using the sub-class mechanism.
+
+The ELI provides properties \textit{has\_part} and its inverse \textit{is\_part\_of} to indicate connections between two legal resources. GDPRtEXT extends these to indicate hierarchical relations between chapters, sections, articles, points, and sub-points.
+
+\subsubsection{Concepts about Data}
+GDPR mentions different types of data, based on which various obligations and requirements are set forth in relation to compliance. GDPRtEXT provides the top-level concept of \textit{Data} to indicate the abstract term of `data'.
+
+The crux of GDPR is based on personal data, which is defined in Article 4(11) and is represented by  \textit{PersonalData}, with special categories defined in Article 9(11) requiring additional obligations regarding its processing and handling, and represented by \textit{SpecialCategoryPersonalData} in GDPRtEXT. Types of special categories mentioned include criminal data, genetic data, health data, and racial data which are defined as sub-classes in GDPRtEXT.
+
+GDPR also mentions data in the context of anonymising and pseudo-anonymising processes, with their outcomes specified using the \textit{AnonymousData} and \textit{PseudoAnonymousData} concepts.
+
+\subsubsection{Concepts about Consent}
+The top-level concept of `consent' is represented by \textit{Consent} class in GDPRtEXT with its definitions based in Articles 4(11), 6(1) and Recitals 32, 40. It is sub-classed to indicate `given consent' - which is a legal basis and is therefore a sub-class of both \textit{Consent} and \textit{LegalBasis}. \textit{GivenConsent} is further sub-classed to indicate `valid consent' which carries obligations of ensuring the consent is valid and meets the requirements of GDPR and is therefore also defined as the sub-class of \textit{ObligationForObtainingConsent}. These obligations are represented by sub-classing the \textit{ValidConsent} concept regarding conditions of - freely given, informed, specific, voluntary, and opt-in.
+
+\subsubsection{Concepts about Entities}
+\textit{Entity} represents the top-level concept of `entity' indicating any institution, company, corporation, partnership, government agency, university, or any other organization including individuals. 
+It is sub-classed to indicate entities mentioned in GDPR, which are - Data Subject, Controller, Processor, Sub-Processor, Data Protection Officer (DPO), and Data Protection Authority (DPA). Additionally, relevant concepts associated with entities are also defined, which are -  Representative of Controller, Representative of Processor, Certification Body, and Regulatory Authority.
+
+\subsubsection{Concepts about Activities}
+
+
+\subsubsection{Concepts about Compliance}
+
+\subsubsection{Concepts about Principles}
+
+\subsubsection{Concepts about Rights}
+
+\subsubsection{Concepts about Obligations}
+
+\subsubsection{Concepts about Seals and Certifications}
+
+\subsubsection{Example Use-Case: Compliance Reporting}
+
+\subsubsection{Example Use-Case: Mapping between DPD and GDPR obligations}
 
 \subsection{Evaluation}
 Did it meet its objective?
@@ -134,6 +205,8 @@ Did it meet the CQ?
 What gaps did it fill within the sota? Cite paper by V. Leone on ontology survey
 Peer-reviewed publication
 Published in ireland open data portal which gave it 5 star rating (LOD)
+
+GDPRtEXT was published in the resource track at Extended Semantic Web Conference \cite{}. The publication described the creation of the resource, summarised its contents, and also provided mapping of DPD obligations with GDPR using a linked data approach and XACML to denote which obligations from DPD could be re-used towards GDPR compliance.
 
 \subsection*{Summary}
 
