@@ -68,7 +68,7 @@ The EU Publications Office currently publishes legislation metadata at the docum
 
 With this as the motivation, and the research question establish in \autoref{}, this section presents the GDPRtEXT vocabulary and dataset which fulfils research objective $RO3(a)$ regarding creation of OWL2 ontology for expressing information about concepts and text of the GDPR. It also fulfils the aim/objective of linking information with individual clauses of the GDPR as well as with terms and concepts related to GDPR compliance.
 
-\subsection{Ontology Engineering and Creation of Resource}
+\subsection{Ontology Engineering and Creation of Resource}\label{sec:voc:gdprtext-engineering}
 Following the methodology described in \autoref{sec:voc:methodology}, the development of competency questions was achieved through understanding and analysis of how legal articles are referenced in text in relation to compliance. The competency questions concern representation of concepts within GDPR and its compliance, and association of information with specific clauses of the GDPR. They are categorised as pertaining to structure of GDPR text and regarding concepts associated with GDPR. The collected competency questions are outlined below:
 
 \subsubsection{Structure of GDPR text}
@@ -160,7 +160,30 @@ The glossary published using SKOS utilised the IRIs of individual clauses of the
 \subsubsection{Publication \& Dissemination}
 The ontology and dataset were provided through a SPARQL end-point on a triple-store hosted on the institution servers. Pubby\footnote{\url{http://wifo5-03.informatik.uni-mannheim.de/pubby/}} was used to provide a front-end for browsing the legislation. The dataset was provided under the CC-by-4.0 license to provide resources in an open and reusable manner. It was also published in the Irish Open Data Portal\footnote{\url{https://data.gov.ie/dataset/gdprtext}} which rated it as a 5-star linked open dataset. The documentation for the ontology and dataset was generated using WIDOCO, and published on institution servers.
 
+The GDPRtEXT ontology and datasets (in various serialisations) were hosted on institution servers and provided through a public a SPARQL endpoint\footnote{\url{}} hosted using the OpenLink Virtuoso triple-store.
+Along with a HTML version of GDPR, the RDF version of text was provided for human consumption using the Pubby\footnote{\url{}} framework, as shown in Fig.\ref{fig:vocab:gdprtext-pubby}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/gdprtext-pubby}
+    \caption{Article 12(3) in GDPRtEXT as RDF displayed using Pubby \cite{}}
+    \label{fig:vocab:gdprtext-pubby}
+\end{figure}
+
 \subsection{Resource Description \& Application}
+A visual summary of the concepts within GDPRtEXT is presented in Figures \ref{fig:vocab:gdprtext-summary-a} and \ref{fig:vocab:gdprtext-summary-b}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{img/gdprtext-summary-a}
+    \caption{Visual overview of concepts in GDPRtEXT - part (a) \cite{}}
+    \label{fig:vocab:gdprtext-summary-a}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{img/gdprtext-summary-b}
+    \caption{Visual overview of concepts in GDPRtEXT - part (b) \cite{}}
+    \label{fig:vocab:gdprtext-summary-b}
+\end{figure}
 
 \subsubsection{Concepts for description structure of text}
 GDPRtEXT extends the European Legislation Identifier (ELI) \cite{} ontology published by the European Publications Office with granular concepts to represent each individual clause within the GDPR. 
@@ -220,19 +243,120 @@ The concept \textit{ObligationForSecurityOfPersonalData} represents the obligati
 GDPRtEXT provides concepts of \textit{Seal} and \textit{Certification} for representing seals and certifications as provided by GDPR to assist with the maintenance and demonstration of compliance. It also provides concepts to represent conditions for seals and certifications, represented by the concept \textit{ConditionsForSealsAndCertifications} which consist of concepts related to adherence to seal/certification, having a maximum validity of 3 years, and a voluntary system of accreditation. 
 
 \subsubsection{Example Use-Case: Compliance Reporting}
+This example use-case takes a look at how references to GDPR can aid in creation of reports which document information regarding compliance. Consider a system for creation of compliance reports that stores information related to each of the obligations it addresses from the GDPR. It uses the EARL\footnote{\url{}} vocabulary for expressing results of conformance checks within the report. GDPRtEXT is used to link the resources in EARL reports with articles and points within the GDPR as well as to express and define concepts related to compliance in a suitable and comprehensible manner. Through this, the information about compliance checks is linked and associated with the specific articles of GDPR.
+
+EARL provides a standardized vocabulary to describe specific resources and relationships that are relevant to test reporting. The core construct of EARL is an \textit{Assertion}, which describes the context and outcome of an individual test execution. It contains the following information (copied verbatim from EARL website):
+
+\begin{itemize}
+    \item \textit{Assertor} - This can include information about who or what ran the test. For example human evaluators, automated accessibility checkers, or combinations of these.
+    \item \textit{Test Subject} - This can include web content (such as web pages, videos, applets, etc.), software (such as authoring tools, user agents, etc.), or other things being tested.
+    \item \textit{Test Criterion} - What are we evaluating the test subject against? This could be a specification, a set of guidelines, a test from a test suite, or some other testable statement.
+    \item \textit{Test Result} - What was the outcome of the test? A test result could also include contextual information such as error messages or relevant locations within the test subject.
+\end{itemize}
+
+Taking the example of Right to Data Portability, the EARL report in Listing.\ref{listing:vocab:gdprtext-earl} represents compliance checks for conditions associated with linked articles in GDPR (Article 20). The compliance system has a module \textit{\_system\_dataportability} that checks the software that handles the provision of a copy of personal data \textit{\_org\_dataportability} through the test case \textit{\_test\_provide\_data\_copy} and generates the report which shows that the test has passed through \textit{\_result\_pass}.
+
+\begin{lstlisting}[label={listing:vocab:gdprtext-earl},caption={Use of GDPRtEXT to link tests with GDPR Articles in EARL report}]
+@prefix earl: http://www.w3.org/ns/earl# .
+@prefix dct:  http://purl.org/dc/terms/ .
+@prefix gdprtext: http://purl.org/adaptcentre/resources/GDPRtEXT# .
+
+:_org_dataportability
+    a    earl:TestSubject, earl:Software ;
+    dct:description """System that handles data portability requests"""@en ;
+    dct:title "Data Portability Handler"@en .
+
+:_system_dataportability
+    a    earl:Assertor ;
+    dct:description """Module checking data portability obligations"""@en ;
+    dct:hasVersion "1.4" ;
+    dct:title "DataPortability Module"@en ;
+    earl:asserts { :_org_dataportability :_result_pass :_test_provide_data_copy } .
+
+:_result_pass
+    a    earl:ResultProperty ;
+    earl:date "2018-01-01" ;
+    earl:validity earl:Pass ;
+    earl:confidence earl:High .
+
+:_test_provide_data_copy
+    a    earl:TestCase ;
+    earl:testMode earl:automatic ;
+    dct:title "Test provision of data copy"@en ;
+    dct:description """Tests whether system provides a copy of personal data on exercising right to data portability"""@en ;
+    dct:subject gdprtext:article20 .
+\end{lstlisting}
+
+Now to gather such related resources together, a SPARQL query (simplified) would focus on the link between \textit{TestCase} and its result using \textit{earl:validity}, as shown in Listing.\ref{listing:vocabs:gdprtext-sparql}.
+These tests can be further combined into test suites to group compliance checks related to each article or a particular concept and structure the documentation around this form of logical grouping of concepts.
+In this manner, the use of GDPRtEXT to link tests and results with documentation enables automation of information retrieval and management.
+
+\begin{lstlisting}[label={listing:vocabs:gdprtext-sparql},caption={SPARQL query and results showing retrieved GDPR test results by article}]
+SELECT ?gdpr ?result ?confidence ?mode WHERE {
+    ?assertor a earl:Assertor .
+    ?assertor earl:asserts ?assertion .
+
+    ?testcase rdf:predicate ?assertion .
+    ?testcase a earl:TestCase .
+    ?testcase dct:subject ?gdpr .
+    ?testcase ear:testMode ?mode .
+
+    ?testresult rdf:object ?assertion .
+    ?testresult a earl:ResultProperty .
+    ?testresult earl:validity ?result .
+    ?testresult earl:confidence ?confidence .
+}
+
+| gdpr          | result     | confidence     | mode          |
+|-----------    |--------    |------------    |-----------    |
+| article16     | pass       | low            | automatic     |
+| article17     | pass       | high           | automatic     |
+| article18     | fail       | high           | manual        |
+| article19     | pass       | high           | automatic     |
+\end{lstlisting}
 
 \subsubsection{Example Use-Case: Mapping between DPD and GDPR obligations}
+The second application of GDPRtEXT demonstrates the linking of obligations between the GDPR and Data Protection Directive (DPD), which is the previous data protection legislation. Given that DPD was adopted in 1995, and was superseded by the GDPR in 2016, there are a large number of solutions and approaches regarding compliance with DPD that already exist and are used in practice. By linking the obligations between DPD and GDPR it is possible to investigate reuse of these existing solutions for GDPR compliance. To that end, a mapping from DPD obligations to GDPR obligations containing annotations that describe the nature of change between the two is constructed by linking the articles of DPD and GDPR.
+
+To model the annotations as a RDF resource, a linked data version of the DPD was created similar to GDPRtEXT which assigned URIs for every resource in the legislation. This enabled referring to each individual clause in the DPD and linking it with relevant clauses in the GDPR. 
+The annotations, available online\footnote{\url{https://openscience.adaptcentre.ie/projects/GDPRtEXT/dpd_mapping.html}}, are consist of references from a clause in DPD to its corresponding clause in the GDPR with an expression of change between the two. The nature of change is represented by the values of: same - indicating no change, reduced - indicating reduction of obligation, slightly changed - indicating minor change, completely changed - indicating major change, and extended - indicating addition of obligations.
+
+To demonstrate the application of existing work regarding DPD compliance towards meeting GDPR obligations, previous existing work using XACML rules to denote DPD compliance \cite{}\cite{} were utilised to assess their suitability in meeting GDPR requirements.
+For each link between DPD and GDPR obligations in the annotation, a record was also added to indicate whether the corresponding XACML rule for DPD compliance needed to be changed. The notation \textit{N/A} was used to denote the case where no XACML rules existed for a particular DPD obligation and the corresponding obligation in GDPR had changed and had additional requirements. 
+% The value \textit{No} was used to indicate no changes in the GDPR obligation compared to the DPD obligation, so that the existing XACML rule would be sufficient to meet GDPR requirements. Similarly \textit{Yes} was used to indicate a change required in the XACML rule to handle the obligation.
+
+The class \textit{DPDToGDPR\_Annotation} represents annotations between DPD and GDPR, with an example instance depicted in Listing.\ref{listing:vocabs:gdprtext-xacml}. The property \textit{resourceInDPD} is used to refer to the particular clause within DPD through its URI. Similarly, the property \textit{resourceInGDPR} is used to refer to the corresponding clause in GDPR. The nature of change is defined using the property \textit{hasChange} whose value is an instance of the class \textit{ChangeInObligation}, with defined instances for Extended, Same, Reduced, CompletelyChanged, and SlightlyChanged. Similarly, the change in the XACML rules is defined as a property whose values are one of Yes, No, and N/A defined as instances of the class \textit{ChangeInXACMLRule}. Comments are defined using the \textit{rdfs:comment} property.
+\begin{lstlisting}[label={listing:vocabs:gdprtext-xacml},caption={Example annotation of associating obligation between DPD and GDPR with indication of corresponding changes required to reuse DPD compliance XACML rules for GDPR requirements}]
+@prefix gdpr: https://w3id.org/GDPRtEXT/gdpr# .
+@prefix dpd: https://w3id.org/GDPRtEXT/dpd# .
+@prefix rdfs: http://www.w3.org/2000/01/rdf-schema# .
+
+dpd:mappingrule6
+    a dpd:DPDToGDPR_Annotation ;
+    dpd:hasChange dpd:ChangeExtended ;
+    dpd:hasXACMLChange dpd:XACMLNoChange ;
+    dpd:resourceInDPD dpd:Article7 - a ;
+    dpd:resourceInGDPR gdpr:Article6-1-a ;
+    rdfs:comment "added consent given to ..." .
+\end{lstlisting}
+
 
 \subsection{Evaluation}
-Did it meet its objective?
-Did it meet the CQ?
-What gaps did it fill within the sota? Cite paper by V. Leone on ontology survey
-Peer-reviewed publication
-Published in ireland open data portal which gave it 5 star rating (LOD)
+The assessment of the extent to which GDPRtEXT meets the requirements outlined in \autoref{sec:voc:gdprtext-engineering} consists of evaluating whether the ontology and dataset produced is sufficient to enable granular linking of information with the concepts and clauses of the GDPR. Based on the presented work, GDPRtEXT meets these requirements and enables answering the competency questions related to use of GDPR in the compliance process.
 
-GDPRtEXT was published in the resource track at Extended Semantic Web Conference \cite{}. The publication described the creation of the resource, summarised its contents, and also provided mapping of DPD obligations with GDPR using a linked data approach and XACML to denote which obligations from DPD could be re-used towards GDPR compliance.
+In terms of ontology assessment, the methodology outlined in \autoref{sec:voc:methodology} provides the criterion for evaluation of the quality of ontology as well as its documentation. GDPRtEXT fulfils these, based on tests undertaken using the OOPS! tool and by following the best practices community guidelines for ontology documentation.
+The publication of GDPRtEXT in Irish open data portal demonstrates the quality of the work, based on the 5 star rating given to it as a linked open dataset.
+
+GDPRtEXT, and the work described in this section, was published in the resource track at Extended Semantic Web Conference \cite{}. The publication described the creation of the resource, summarised its contents, and also provided mapping of DPD obligations with GDPR using a linked data approach and XACML to denote which obligations from DPD could be re-used towards GDPR compliance. Through this, the research and developed resources were peer-reviewed and adopted.
+Further validation is provided through a survey of legal approaches and works in the state of the art \cite{} which includes GDPRtEXT as one of the resources surveyed and demonstrates that GDPRtEXT is unique in its provision of GDPR as a machine-readable resource.
 
 \subsection*{Summary}
+The GDPRtEXT resource represents the first major contribution of this thesis. It provides a linked data version of the text of GDPR and a vocabulary of its concepts, and fulfils research objectives $RO3(a)$ and $RO5(b)$ - as outlined in \autoref{sec:intro:RQ}. It enables exposing each individual article or point within the GDPR as a unique resource through URIs provided using semantic web notations.
+GDPRtEXT thus enables machine-readable links to be established between information and the text of GDPR as well as concepts pertaining to its compliance.
+
+The use of GDPRtEXT makes it possible to create approaches that automate the generation and querying of information associated with GDPR - such as for compliance, management of business processes, or generation of privacy policies. The compatibility offered by use of ELI ontology ensures alignment with official documents produced by the European Publications Office in the future.
+Finally, GDPRtEXT fills an important gap in the state of the art regarding machine-readable approaches for linking information with legal text.
+GDPRtEXT has been released as an open resource under the permissive CC-by-4.0 license. It has been published in Zenodo, Datahub, and has been incorporated into Ireland’s open data portal as a 5-star linked open dataset.
 
 % GDPRov
 \section{GDPRov - Ontology for GDPR activities associated with Personal Data and Consent}\label{sec:voc:GDPRov}
