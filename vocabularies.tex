@@ -360,23 +360,157 @@ GDPRtEXT has been released as an open resource under the permissive CC-by-4.0 li
 
 % GDPRov
 \section{GDPRov - Ontology for GDPR activities associated with Personal Data and Consent}\label{sec:voc:GDPRov}
+This section describes the GDPRov ontology for representing activities in ex-ante and ex-post phases associated with processing of personal data and consent for GDPR compliance. GDPRov stands for GDPR Provenance - which is a reference to the requirement of maintaining provenance information of processes in both ex-ante and ex-post phases representing for demonstrating GDPR compliance. This section presents the motivation, description, publication, and evaluation of the GDPRov ontology. It also presents comparisons with relevant approaches in the state of the art. GDPRov is available online\footnote{\url{}} with its documentation and code repository\footnote{\url{}}.
 
-aim/objective: provide representations of activities in ex-ante and ex-post phases associated with processing of personal data and consent for GDPR compliance
+Following the motivation arising from importance of documenting activities associated with personal data processing and consent, the research objectives $RO3(b)$ and $RO3(c)$ in \autoref{sec:intro:RQ} outline the requirement for an ontology to represent this information.
+To ensure such an ontology meets the requirements of the GDPR, an analysis of information regarding GDPR compliance requirements was carried out to identify the requirements.
+The result of this exercise were the information regarding GDPR presented in \autoref{chapter:background} and the compliance questions presented in \autoref{sec:info:compliance-questions}.
+These compliance questions were then used as competency questions to identify requirements for the ontology.
+Simultaneously, an analysis of state of the art was carried out to identify existing semantic web representations of activities which were suitable for representing the information for GDPR compliance, which could be reused or extended compatible manner, and which were published in an open and permissive license permitting their usage in this research.
 
-\subsection{Requirements Gathering \& Ontology Engineering}
+The identified concepts and relationships were combined to create the GDPRov ontology. It utilised GDPRtEXT to provide definitions from within the text of the GDPR, thereby linking the ontology to relevant clauses and concepts of the GDPR. 
 
-* identify activities using analysis in Ch 4 and  background in Ch 2; use compliance questions in Ch4 as comptency questions
-* identfiy suitable represenations of ex-ante and ex-post activities --> PROV-O and P-Plan
-* formulate ontological representations
+\subsection{Identification of requirements from competency questions}
+The compliance questions presented in \autoref{} provided the competency questions for deriving concepts and relationships regarding processes associated with personal data and consent in the context of GDPR compliance requirements. 
+These concepts and relationships were collected, combined, and analysed to ensure their cohesion as an ontology and evaluated against the compliance questions to ensure they satisfied requirements regarding GDPR compliance and documentation of associated processes.
+In this, the aspect of ex-ante and ex-post processes provides a form of duplication as most processes have their counterparts in both phases, and which is linked and documented in a manner so as to demonstrate the prior planning of processes to ensure their compliance and their execution which also needs to be documented to demonstrate compliance.
+Therefore, while GDPR requirements and the compliance questions do no explicitly mention or provide clues to the ex-ante and ex-post phases, the development of ontology explicitly considers each activity to have representations in both phases as a compliance requirement.
+
+In each of the sub-sections below, the relevant concepts arising from the denoted compliance question are described along with relevant relationships associated with those concepts. This is followed by an analysis of their role in ex-ante and ex-post phases. The section provides the analysis of concepts and relationships which act as requirements towards the construction of the GDPRov ontology, and serve to describe the motivation behind its design and implementation.
+
+\subsubsection{Actors and Agents involved in activities}
+\begin{itemize} 
+    \item \textit{CMQ2} - Provides the concept of Controller as an agent controlling the processes as defined by and its representative Data Protection Officer (DPO).
+    \item CMQ17 - Describes the Processor as an executor of processes and its representative DPO. In this relationship, the Controller provides such processes to the Processor to execute, which is governed by a Data Processing Agreement (DPA) between the two.
+    \item CMQ35 - Describes Data Subject as an agent who is associated with the provision of personal data, consent, and who is related to the exercising of rights.
+\end{itemize}
+
+\subsubsection{Details of processing}
+\begin{itemize}
+    \item \textit{CMQ3} and \textit{CMQ37} provide the concept of Purpose which describes the purpose of personal data processing. Each purpose can incorporate multiple processing operations, and each processing operation taking place can be associated with multiple purposes.
+    \item \textit{CMQ4} describe the necessity to specify data subject categories whose personal data is being processed.
+    \item \textit{CMQ36} describes personal data, while \textit{CMQ5} describes categories of personal data being processed. \textit{CMQ34} specifies special categories of personal data as a sub-category of personal data which needs to be explicitly stated as being processed.
+    \item \textit{CMQ38} defines processing of personal data as defined by Article 4-2 of GDPR. The GDPR definition of processing provides types of operations considered under processing, as specified by ``any operation or set of operations which is performed on personal data or on sets of personal data, whether or not by automated means, such as collection, recording, organisation, structuring, storage, adaptation or alteration, retrieval, consultation, use, disclosure by transmission, dissemination or otherwise making available, alignment or combination, restriction, erasure or destruction;''.
+    \item \textit{CMQ6} defines sharing of data as a type of processing. Additional information associated with sharing of data is provided by - \textit{CMQ7} and \textit{CMQ20} for categories of recipients; \textit{CMQ8},\textit{CMQ21} for identifies of recipients, \textit{CMQ9} and \textit{CMQ22} for location where data is being sharing to; \textit{CMQ10} and \textit{CMQ23} for safeguards associated with data transfer; \textit{CMQ15} and \textit{CMQ25} for purposes of sharing, which is the same concept as purpose of processing except applied for sharing of personal data.
+    \item \textit{CMQ11} defines data storage, with additional concepts provided by \textit{CMQ12} for existence of time limits or conditions for erasure and \textit{CMQ13} for specification of time limits or conditions for erasure for categories of data.
+    \item \textit{CMQ26} defines legal basis for justifying the processing of personal data, and \textit{CMQ27} specifies legal basis associated with a particular purpose. Each purpose can have one or more legal basis associated with it.
+\end{itemize}
+
+\subsubsection{Lifecycle of data}
+\begin{itemize}
+    \item \textit{CMQ28} and \textit{CMQ30} describe source of personal data which in turn implies an activity that collects data and specifies the actor or agent providing the data.
+    \item \textit{CMQ29} specifically refers to personal data collected from data subject.
+\end{itemize}
+
+\subsubsection{Anonymisation}
+\begin{itemize}
+    \item \textit{CMQ31} specifies anonymisation of personal data, with \textit{CMQ32} inquiring about different `levels' of anonymisation which affect the application of obligations and requirements of compliance. 
+    \item The levels are specified based on their application in the process of compliance, and include data which is completely anonymised, data which is pseudo-anonymised, and data which is not anonymised. In this, data that is pseudo-anonymised can be considered and used as anonymous data under the condition that the organisation does not have additional information to de-anonymise it. 
+    \item From this, the processing associated with anonymisation and de-anonymisation of personal data are defined.
+\end{itemize}
+
+\subsubsection{Activities associated with Consent}
+\begin{itemize}
+    \item Regarding consent, \textit{CMQ48} inquires about activities associated with the provision and collection of consent. This includes information about how the consent is requested and collected, used within processes as a legal basis, and is archived for future demonstration of compliance.
+    \item \textit{CMQ49} and \textit{CMQ50} inquire about artefacts associated with the collection of consent as determination of validity of consent under GDPR require investigation of how choices for consent were offered. This also includes the form in which consent is provided or collected from the data subject. The artefacts are associated with the processes where consent choices are offered or requested and whose result is the collection of consent.
+\end{itemize}
+
+\subsubsection{Provision of Rights}
+\begin{itemize}
+    \item The rights associated with GDPR need processes to internally (from the perspective of the organisation) handle their execution as well as for interaction with the data subject. Therefore, such processes need to be defined and documented for compliance purposes.
+    \item In the case of right to be informed, \textit{CMQ88 - CMQ105} provide the competency questions regarding how the right is provided and how it is executed or implemented.
+    \item This includes activities associated with the provision of information to the data subject, artefacts associated with information provision, inclusion of details such as controller and DPO, purposes, processing, legal basis, personal data categories.
+    \item It also includes information about sources of personal data (where not obtained directly from the data subject), and whether the legal basis is legitimate interest.
+    \item Regarding data sharing, the information to be specified includes categories of recipients , and their location.
+    \item The right to be informed also includes provision of information regarding the existence and application of rights.
+    \item The information associated with the right to be informed is common to other information documented in the due course of processing of personal data, and therefore does not specifically require separate notation or representation of this information in order to execute the right. the existing information or concepts can be reused for specifying the required information. However, activities associated with the right need to be defined to demonstrate the existence of processes for handling the right.
+\end{itemize}
+
+\subsubsection{Compliance procedures such as Reporting of Data Breach}
+\begin{itemize}
+    \item The reporting of data breach requires information about data breach to be maintained, as specified by \textit{CMQ106 - CMQ120}.
+    \item This includes information about the data breach, which includes timestamp of when the breach occurred (\textit{CMQ106}), timestamp of when the controller became aware of it (\textit{CMQ107}), timestamp and method of it being notified to supervisory authority (\textit{CMQ108}).
+    \item Information about \vspace{5in}
+\end{itemize}
+
+\subsubsection{Specifying requirements for ex-ante and ex-post phases}
+
+\subsection{Extending PROV-O and P-Plan}
+Provenance is information about entities, activities, and people (or software)
+involved in producing data or a component which can be used to form an
+assessment about its quality, reliability, or trustworthiness. The PROV ontology,
+which is a W3C recommendation since 30 th April 2013, provides definitions
+for interchange of provenance information. Using PROV, we can define entities
+and the various relations and operations between them such as generated by,
+derived from, and attributions. PROV has been successfully utilised in several
+domains and applications 5 including encapsulation of scientific workflows [2, 11]
+and provenance repositories [3,6] as well as in publication of experiment workflows.
+An Entity in PROV-O is defined as being physical, digital, conceptual, or other
+kind of thing with some fixed aspects. PROV-O defines an Activity as something
+that occurs over a period of time and acts upon or with entities; it may include
+consuming, processing, transforming, modifying, relocating, using, or generating
+entities.
+
+
+PROV-O was designed to be generic and domain independent, and needs
+to be extended to address the requirements of representing consent and data
+lifecycles based on GDPR. Additionally, provenance in PROV-O only refers to
+executions that have already happened, but does not offer a vocabulary to express
+the ‘plan’ or ‘template’ that the execution was supposed to follow. PROV-O does
+contain the term prov:Plan, but the ontology itself does not elaborate on how
+the plans can be structured or used to relate to other provenance terms used in
+an execution.
+
+P-Plan is an ontology that extends PROV-O to describe abstract scientific
+workflows as plans and link them to their past executions. A p-plan:Plan is a
+subclass of prov:Plan and is composed of smaller activities or steps (p-plan:Step)
+that use and produce (as inputs or outputs of steps) variables (p-plan:Variable).
+Together with the steps and variables, a p-plan:Plan represents provenance
+information of ‘how’ something should happen or a ‘template’ for executions. A
+p-plan:Activity is a subclass of prov:Activity and represents the execution of the
+process planned in a p-plan:Step. A p-plan:Entity is a subclass of prov:Entity
+that corresponds to a p-plan:Variable in the overall p-plan:Plan. Therefore, a
+p-plan:Step may describe the template including inputs and outputs which can
+then be instantiated into multiple instances of p-plan:Activity that can have
+distinct inputs to produce different outputs.
+As p-plan:Plan extends prov:Plan, which itself extends prov:Entity, it can be
+used to treat the p-plan:Plan as an object whose provenance can be tracked using
+PROV-O or P-Plan. This makes it possible to express provenance of provenance,
+thereby creating a history of how activities and their interactions changed over
+time.
+
+Extending provenance ontologies allows GDPRov to express a ‘template’
+or ‘plan’ of what should happen (using p-plan:Plan) describing a model of all
+activities (as p-plan:Step) that can take place. This template is then instantiated
+for (using p-plan:Activity) each specific use of the activity, such as obtaining
+consent or data for a particular user. Additionally, the provenance of the activities
+themselves can be expressed (using PROV-O and P-Plan) to record how they
+change over time, making it possible to trace the change in activities along with
+how they interact with consent and data. This is beneficial in documenting the
+state of a system as a set of activities that deal with consent and data, and
+can be helpful in determining changes in consent when the interactions between
+data and an activity change over time. For example, differences in provenance
+of an activity can show that it uses personal data it did not previously use.
 
 \subsection{Ontology Description \& Application}
+% based on requirements, GDPRov ontology constructed
+% provide similar introduction as GDPRtEXT
 
-* copy from paper
+\subsubsection{Overview of Ontology}
+
+\subsubsection{Depicting Data Lifecycle}
+
+\subsubsection{Depicting Consent Lifecycle}
+
+\subsubsection{Depicting Compliance-related processes}
+
+\subsubsection{Documentation \& Dissemination}
 
 \subsection{Evaluation}
 
 * adherence to CQ
 * compare against sota
+
 * peer reviewed publication
 
 \subsection*{Summary}
