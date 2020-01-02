@@ -443,12 +443,18 @@ With this, the requirements for representing processes can be summarised with th
 \begin{enumerate}
     \item Represent process in ex-ante phase as log or record.
     \item Represent process in ex-post phase as plan or template.
-    \item Link ex-post plan with its instantiation or execution in ex-post phase as logs.
+    \item Link ex-post plan with its instantiations or executions in ex-post phase as logs.
     \item Track the provenance of ex-ante plans i.e. changes in plans of processes.
     \item Enable tracking changes in ex-post logs based on corresponding changes in ex-ante plans.
+    \item Associate information with processes as artefacts.
+    \item Associate actors/agents with processes.
+    \item Link processes based on dependency, order of execution, and composition.
 \end{enumerate}
 
 \subsection{Extending PROV-O and P-Plan}
+Based on the above stated requirements for representing activities or processes in ex-ante and ex-post phases, the existing semantic web vocabularies of PROV-O \cite{} and P-Plan \cite{} were chosen to be extended with relevant GDPR terminology. A brief overview of PROV-O and P-Plan is provided below in order to understand the underlying concepts and the need to extend them for GPDR.
+
+\subsubsection{PROV - W3C standard for representing provenance information}
 Provenance is information about entities, activities, and people (or software)
 involved in producing data or a component which can be used to form an
 assessment about its quality, reliability, or trustworthiness. The PROV ontology,
@@ -464,7 +470,6 @@ that occurs over a period of time and acts upon or with entities; it may include
 consuming, processing, transforming, modifying, relocating, using, or generating
 entities.
 
-
 PROV-O was designed to be generic and domain independent, and needs
 to be extended to address the requirements of representing consent and data
 lifecycles based on GDPR. Additionally, provenance in PROV-O only refers to
@@ -474,6 +479,7 @@ contain the term prov:Plan, but the ontology itself does not elaborate on how
 the plans can be structured or used to relate to other provenance terms used in
 an execution.
 
+\subsubsection{P-Plan - extending PROV-O Plans as Workflows}
 P-Plan is an ontology that extends PROV-O to describe abstract scientific
 workflows as plans and link them to their past executions. A p-plan:Plan is a
 subclass of prov:Plan and is composed of smaller activities or steps (p-plan:Step)
@@ -491,6 +497,9 @@ used to treat the p-plan:Plan as an object whose provenance can be tracked using
 PROV-O or P-Plan. This makes it possible to express provenance of provenance,
 thereby creating a history of how activities and their interactions changed over
 time.
+
+\subsubsection{Creating GDPRov as an extension of PROV-O and P-Plan}
+At the time of this undertaking, no other vocabulary was found that represented information about activities associated with GDPR compliance. The decision to extend PROV-O and P-Plan with GDPR concepts was made as both vocabularies contain generic concepts associated with provenance of activities and workflows, which can be used for representing information about GDPR compliance, but will not enable distinguishing between the different types of activities and their relationships in association with compliance.
 
 Extending provenance ontologies allows GDPRov to express a ‘template’
 or ‘plan’ of what should happen (using p-plan:Plan) describing a model of all
