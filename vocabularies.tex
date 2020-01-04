@@ -507,35 +507,114 @@ As \textit{p-plan:Plan} extends \textit{prov:Plan}, which itself extends \textit
 used to treat the \textit{p-plan:Plan} as an object whose provenance can be tracked using
 PROV-O or P-Plan. This makes it possible to express provenance of processes that themselves also describe provenance, thereby creating a history of how plans were formulated and executed over time.
 
-\subsubsection{}
+\subsubsection{Extending ontologies for GDPR}
 The PROV-O and P-Plan ontologies were extended to represent concepts and relationships of ex-ante and ex-post activities associated with personal data and consent based on requirements of GDPR compliance.
 The decision to extend PROV-O and P-Plan with GDPR concepts was made as both ontologies contain generic concepts associated with activities and workflows which can be used for representing information about GDPR compliance, but doing so would be not be intuitive due to the difference in terminology and structuring of information as expected for GDPR compliance.
 
 Extending existing ontologies of PROV-O and P-Plan enables expressing a `template'
 or `plan' using \textit{p-plan:Plan} describing ex-ante activities (as \textit{p-plan:Step}) that can take place. This template can then be used to denote execution of activities in ex-post phase using \textit{p-plan:Activity}.
 This provides a machine-readable and documented data model of both ex-ante and ex-post activities, whose provenance itself can be expressed (using PROV-O and P-Plan) to record how they were created and how they  change over time.
-This is beneficial in documenting the
-state of a system at a given time as a set of activities that deal with consent and personal data, and
-can be helpful in determining changes when the interactions between
-personal data and an activity change over time.
+This is beneficial in documenting the state of a system at a given time as a set of activities that deal with consent and personal data, and
+can be helpful in determining changes when the interactions between personal data and an activity change over time.
 
 The extended ontology derived from PROV-O and P-Plan incorporates concepts and relationships associated with GDPR in order to normalise the terminology for representing information associated with GDPR compliance.
-It also preserves the existing concepts and relationships of PROV-O and P-Plan so as to provide compatibility and reuse. This is particularly important in the case of PROV-O as it is the W3C standard for representing provenance information and therefore is more likely to used and expected within the community.
-The compatibility also enables packaging the information defined using the ontology as an artefact and defining its provenance as well as planning to provide meta-documentation about how compliance is to be planned and maintained. This is particularly useful to maintain periodic snapshots of organisational processes associated with compliance, and provides the opportunity to automate the querying and validation of inforamtion checks within a use-case.
+The concepts and relationships are derived from the competency questions and linked with their relevant clauses within the GDPR through the use of GDPRtEXT by using \textit{rdfs:isDefinedBy} and \textit{rdfs:seeAlso}.
+This provides a form of documentation regarding the origin of concepts and their use in the representation of information associated with those clauses of the GDPR.
+It also provides a machine-readable link from the ontology to GDPR, which can be used to compare, analyse, and align relevant ontologies.
+
+The extension consists of subclassing existing concepts in PROV-O and P-Plan to represent specific activities associated with GDPR compliance. 
+The use of subclass mechanism preserves the existing concepts and relationships of PROV-O and P-Plan so as to provide compatibility and reuse. This is particularly important in the case of PROV-O as it is the W3C standard for representing provenance information and therefore is more likely to used and expected within the community.
+The compatibility also enables packaging the information defined using the ontology as an artefact and defining its provenance as well as planning to provide meta-documentation about how compliance is to be planned and maintained. This is particularly useful to maintain periodic snapshots of organisational processes associated with compliance, and provides the opportunity to automate the querying and validation of information checks within a use-case.
 
 \subsection{Ontology Description \& Application}
 The resulting ontology is named GDPRov (GDPR Provenance Ontology) and is published online along with its documentation at \url{https://w3id.org/GDPRov/} under the open and permissive CC-by-4.0 license.
 The ontology was created, documented, and published using the methodology presented in \autoref{sec:voc:methodology}.
-The concepts and relationships were defined based on the competency questions and linked with their relevant clauses within the GDPR through the use of GDPRtEXT by using \textit{rdfs:isDefinedBy} and \textit{rdfs:seeAlso}.
-% provide similar introduction as GDPRtEXT
+The aim of GDPRov is to provide representations of ex-ante and ex-post activities regarding personal data and consent for GDPR compliance.
+It uses the GDPRtEXT ontology to define concepts based on their origin and relevance to clauses within the text of GDPR.
 
-\subsubsection{Overview of Ontology}
+\subsubsection{Overview of GDPRov concepts}
+Process
+Agent
+Step-Activity
+    is part of process
+    refers to process
+Step
+    Automated Step
+    user interaction - user input, user output
+Variable-Entity
+
+has legal basis
 
 \subsubsection{Depicting Data Lifecycle}
+process -> p-plan Plan
+    data access
+    data archival
+    data erasure
+    data rectification
+
+data activity -> p-plan activity
+cross border transfer
+data collection
+data deletion
+data sharing
+    data sharing activity -> has shared data with -> prov Agent
+data storage -- data archival
+data transfer
+data transformation -- anonymisation, data archival de-anonymisation
+    anonymity level -- anonymised, deanonymised, pseudo-anonymised, pseudo-organisational-anonymised
+    has anonymity level
+data usage
+rectify data
+
+data entity -- p-plan entity
+personal data -- anonymised, sensitive, useridentifier
+
+lawful basis for processing
 
 \subsubsection{Depicting Consent Lifecycle}
+consent activity -> p-plan activity
+acquire, archive, modify -- withdraw
+
+given consent / consent agreement
+given consent template / consent agreement template
+terms and conditions
+
+process --
+    consent withdrawal
+    handle data breach
+        report data breach
+    handle rights - data portability, erasure, access personal data, basic info about processing, no automated processing, object to direct marketting, object processing, rectification, restrict processing, transparency, SAR
+    Impact Assessment
+    Marketing
+        Direct Marketing
+    Monitor Compliance
+
+Consent Step -> Step
+    consent acquisition
+    consent archival
+    consent modification
+        consent withdrawal
+    
 
 \subsubsection{Depicting Compliance-related processes}
+data breach -> p-plan activity
+notify controller
+notify data subject
+notify DPA
+
+process --
+    appoint processor
+
+\subsubsection{Actors and Agents}
+Controller Representative
+Data Subject
+DPO
+Processor Representative
+Third Party
+    Controller
+        Joint Controller
+    Processor
+        SubProcessor
 
 \subsubsection{Documentation \& Dissemination}
 
