@@ -533,101 +533,119 @@ The aim of GDPRov is to provide representations of ex-ante and ex-post activitie
 It uses the GDPRtEXT ontology to define concepts based on their origin and relevance to clauses within the text of GDPR.
 
 \subsubsection{Overview of GDPRov concepts}
-Process
-Agent
-Step-Activity
-    is part of process
-    refers to process
-Step
-    Automated Step
-    user interaction - user input, user output
-Variable-Entity
-
-has legal basis
+GDPRov extends concepts from PROV-O and P-Plan to represent activities associated with GDPR compliance, with a visual overview provided in \autoref{fig:vocabs:gdprov-overview}.
+To that end, it extends the concept of \textit{p-plan:Plan} in the form of \textit{Process} to represent ex-ante plans of activities that will take place.
+Each \textit{Process} can contain `step' (represented by \textit{p-plan:Step}) which represent activities that interact with data and agents (actors in provenance terminology).
+To associate steps with a process, the property \textit{p-plan:isStepOfPlan} is extended as \textit{isPartOfProcess}.
+Another additional property - \textit{refersToProcess} is also used to enable referring to a process without being a part of it.
+Similarly, to associate data (defined in P-Plan as \textit{p-plan:Variable}) the properties \textit{p-plan:hasInputVar} and \textit{p-plan:isOutputVarOf} are extended for activities using inputs and producing outputs respectively.
+The ex-post activities in P-Plan are represented by \textit{p-plan:Activity}.
+Data interactions with these activities is represented by \textit{p-plan:Entity} and the properties \textit{prov:used} and \textit{prov:wasGeneratedBy} are used to indicate inputs and outputs respectively.
+GDPRov defines steps to indicate automated execution and user interactions regarding collecting data from the user (input) and providing data (output).
+To indicate the legal basis associated with a process or a step, the property \textit{hasLegalBasis} is provided.
+\begin{figure}[htbp]
+    \centering
+    \missingfigure[figcolor=white]{}
+    \caption{Figure describing GDPRov concepts by extending PROV-O and P-Plan}
+    \label{fig:vocabs:gdprov-overview}
+\end{figure}
 
 \subsubsection{Depicting Data Lifecycle}
-process -> p-plan Plan
-    data access
-    data archival
-    data erasure
-    data rectification
+Activities associated with the lifecycle of personal data constitute of collecting, processing or using it, storing, sharing, deleting, transferring, transforming, anomymising, and rectifying it. GDPR defines several more categories of actions on data in Article 4-2 in its definition of `processing'.
+GDPRov provides broad and abstract processes to represent data access, data archival, data erasure, and data rectification given the need to execute these using several more steps.
+GDPRov also provides representations of actions in ex-ante phase as \textit{DataStep} which extends \textit{p-plan:Step} and in ex-post phase as \textit{DataActivity} which extends \textit{p-plan:Activity}.
+These are further extended to distinguish between data collection, data deletion, data sharing, data storage, data archival, data transfer, data transformation, data usage, and rectification of data.
+A visual summary of these is provided in \autoref{fig:vocabs:gdprov-data-lifecycle}.
 
-data activity -> p-plan activity
-cross border transfer
-data collection
-data deletion
-data sharing
-    data sharing activity -> has shared data with -> prov Agent
-data storage -- data archival
-data transfer
-data transformation -- anonymisation, data archival de-anonymisation
-    anonymity level -- anonymised, deanonymised, pseudo-anonymised, pseudo-organisational-anonymised
-    has anonymity level
-data usage
-rectify data
+The anonymisation of data is defined as a sub-class of data transformation to indicate the transformation of data that takes place when anonymising it.
+As GDPR obligations are based on the level of anonymity and the capability of de-anonymising it from an organisation's point of view, GDPRov provides the concept of \textit{anonymisation level} to indicate the state of anonymity the data is in.
+GDPRov defines four levels of anonymisation based on existing work in representing anonymous data \cite{}, which constitute of data that is completely anonymised, completely deanonymised, pseudo-anonymised, and pseudo-organisational-anonymised where the organisation does not have the data required to de-anonymise it and can thus internally utilise it as if it were completely anonymous data.
+The sharing of data consists of interactions with actors or agents, which are represented by \textit{prov:Agent} and associated with the respective steps and activities using extended properties.
+\begin{figure}[htbp]
+    \centering
+    \missingfigure[figcolor=white]{}
+    \caption{Figure describing data lifecycle defined using GDPRov}
+    \label{fig:vocabs:gdprov-data-lifecycle}
+\end{figure}
 
-data entity -- p-plan entity
-personal data -- anonymised, sensitive, useridentifier
-
-lawful basis for processing
+The personal data used within activities is represented by \textit{PersonalData} which is sub-classed from \textit{p-plan:Variable} for ex-ante representation and by \textit{PersonalDataEntity} which is sub-classed from \textit{prov:Entity} for ex-post representation.
+Further categorisation of personal data into anonymised, sensitive, and representing user identifier is provided through sub-classes.
 
 \subsubsection{Depicting Consent Lifecycle}
-consent activity -> p-plan activity
-acquire, archive, modify -- withdraw
+Activities associated with consent and its lifecycle are represented in ex-ante phase by sub-classing \textit{p-plan:Step} as \textit{ConsentStep} and in ex-post phase by sub-classing \textit{p-plan:Activity} as \textit{ConsentActivity}.
+These are further sub-classed to represent the acquisition, archival, modification, and withdrawal of consent.
+Amongst these, withdrawal of consent is defined as sub-class of modification since it modifies the state of consent.
+A visual summary of these is provided in \autoref{fig:vocabs:gdprov-consent-lifecycle}.
 
-given consent / consent agreement
-given consent template / consent agreement template
-terms and conditions
-
-process --
-    consent withdrawal
-    handle data breach
-        report data breach
-    handle rights - data portability, erasure, access personal data, basic info about processing, no automated processing, object to direct marketting, object processing, rectification, restrict processing, transparency, SAR
-    Impact Assessment
-    Marketing
-        Direct Marketing
-    Monitor Compliance
-
-Consent Step -> Step
-    consent acquisition
-    consent archival
-    consent modification
-        consent withdrawal
-    
+The artefacts associated with consent and used in activities include the choices or offer of consent provided to the individual and the subsequent consent given by the individual.
+To represent these in ex-ante phase, GDPRov provides the concepts of \textit{ConsentAgreementTemplate} to represent the template offered to collect consent, \textit{ConsentAgreement} to indicate the given consent, and \textit{TermsAndConditions} to indicate the policies or terms and conditions.
+The corresponding concepts in ex-post phase are \textit{GivenConsentTemplate}, \textit{GivenConsent}, and \textit{TermsAndConditionsEntity}.
+\begin{figure}[htbp]
+    \centering
+    \missingfigure[figcolor=white]{}
+    \caption{Figure describing consent lifecycle defined using GDPRov}
+    \label{fig:vocabs:gdprov-consent-lifecycle}
+\end{figure}
 
 \subsubsection{Depicting Compliance-related processes}
-data breach -> p-plan activity
-notify controller
-notify data subject
-notify DPA
+In addition to representing activities associated with personal data and consent, GDPRov also provides reprentations for compliance-related processes.
+These include actions such as appointing processor (by a controller), carrying out an impact assessment, marketting and its special case of direct marketting, and monitoring compliance.
+Processes are also provided for handling data breaches, which include notifying the controller (by a processor), notifying the data subject, and notifying the data protection authority.
+The handling of right provided by the GPDR is represented through sub-classes of \textit{Process} for data portability, erasure, access personal data, basic info about processing, no automated processing, object to direct marketting, object processing, rectification, restrict processing, transparency, SAR (subject access request).
 
-process --
-    appoint processor
+% \subsubsection{Actors and Agents}
+% Controller Representative
+% Data Subject
+% DPO
+% Processor Representative
+% Third Party
+%     Controller
+%         Joint Controller
+%     Processor
+%         SubProcessor
 
-\subsubsection{Actors and Agents}
-Controller Representative
-Data Subject
-DPO
-Processor Representative
-Third Party
-    Controller
-        Joint Controller
-    Processor
-        SubProcessor
-
-\subsubsection{Documentation \& Dissemination}
+% \subsubsection{Documentation \& Dissemination}
 
 \subsection{Evaluation}
+The ontology assessment was based on the methodology outlined in \autoref{sec:voc:methodology} regarding the criterion for evaluation of the quality of ontology and its documentation.
+The ontology satisfies the requirements of the competency questions in representing activities associated with personal data and consent.
+It goes further in providing relevant and useful concepts associated with other activities and processes associated with GDPR compliance such as those associated with data breaches and handling of rights, which shows its applicability in other use-cases.
+GDPRov was published \cite{} in a peer-reviewed publication and has been cited in other relevant works within the state of the art, which lends credence to its contributions.
+Subsequent revisions included addition of new concepts associated with practical real-world implementation of GDPR compliance, particularly those associated with consent mechanisms on the internet.
 
-* adherence to CQ
-* compare against sota
+The applicability and usefulness of GDPRov is demonstrated through its use for querying and validation of information for GDPR compliance in \autoref{chapter:testing}.
+A simplified example demonstrating such an application was published along with the ontology in the peer-reviewed publication \cite{}, and which is presented in \autoref{listing:vocabs:gdprov-query} demonstrate how GDPRov can assist in the answering of compliance questions for GDPR.
 
-* peer reviewed publication
+\begin{lstlisting}[label={listing:vocabs:gdprov-query},caption={SPARQL query demonstrating use of GDPRov in representing and retrieving steps, data, anonymity level, and anonymisation process based on sharing of data \cite{}}]
+PREFIX gdprov: <https://w3id.org/GDPRov#>
+
+SELECT ?data ?sharestep ?isAnonymised ?anonymisationStep
+WHERE {
+    ?data a gdprov:Data .
+    ?sharestep a gdprov:DataSharingStep .
+    ?sharestep gdprov:sharesData ?data. 
+    BIND (
+        EXISTS { ?data a gdprov:AnonymisedData . }
+        as ?isAnonymised ) .
+    OPTIONAL {
+        ?anonymisationStep
+        gdprov:generatesAnonymisedData ?data .
+    }
+}
+\end{lstlisting}
 
 \subsection*{Summary}
+GDPRov represents the second major contribution of this thesis by providing an ontological representation of ex-ante and ex-post activities associated with personal data and consent for GDPR compliance.
+It thus fulfils the research objective $RO3(b)$ as outlined in \autoref{sec:intro:RQ}. 
+The use of GDPRov makes it possible to indicate the plans associated with how personal data and consent is collected, used, stored, shared, and erased.
+It also enables the representation of logs for activities that act over personal data and consent.
+
+
 At the time of this undertaking (in 2016-2017), no other vocabulary was found that represented information about activities associated with GDPR compliance.
 The work presented as state of the art in \autoref{chapter:sota} and demonstrating existence of approaches for representing information about GDPR processes were published after this period, and were thus subsequently used to compare and analyse the approaches. Of these approaches, some also utilise PROV-O to represent provenance of activities. The differentiating factor of GDPRov is the use of PROV-O and P-Plan to represent ex-ante and ex-post activities based on the scientific workflow model. Another differentiating factor is the use of GDPRtEXT to define concepts and relationships within GDPRov, thereby linking the use of ontology with the legal concepts it was derived from.
+
+Approaches within the state of the art, such as SPECIAL \cite{}, demonstrate the applicability of provenance vocabularies in maintaining, querying, and assessing provenance logs represented using PROV-O for GDPR compliance.
+While SPECIAL also provides ex-ante compliance assessment by using the same data model and logging it as a request instead of execution \cite{}, GDPRov further expands on the use of provenance to include the representation of plans or templates to indicate the association between activities in ex-ante and ex-post phases of compliance.
 
 % GConsent
 \section{GConsent - Ontology for Consent Information for GDPR Compliance}\label{sec:voc:GConsent}
