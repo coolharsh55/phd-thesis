@@ -902,7 +902,9 @@ These were further categorised as questions about consent itself, questions abou
 
 \subsection{Ontology Description \& Application}
 \subsubsection{Core Concepts}
-The core ontology concepts and relationships describe the essential entities and their relationship with consent. The concept of 'consent' itself does not necessarily mean "given consent", and can also refer to consent whose state is unknown, or that has been refused, withdrawn, or invalidated by the Data Subject or even the Controller itself. This definition of consent is closer to managing consent as a data entity rather than as a semantic concept. In this definition, consent is represented using a set of 5 associated entities - Data Subject, Personal Data, Purpose, Processing, and Status.
+The core concepts and relationships in GConsent describe the common and primary attributes associated with consent.
+In this case, `consent' by itself does not refer to only the state of `given consent' but also stands as a representation of consent whose state is unknown or is refused, withdrawn, or invalidated by the Data Subject, Controller, or an authority such as the court. This definition of consent is based on managing consent as a data entity rather than as a semantic concept reflecting the data subjects choices. 
+The core concepts associated with consent in all its state refer to the information necessary to express what the consent is about, which comprises of the 5 attributes visualised in \autoref{fig:vocabs:gconsent-core} - Data Subject, Personal Data, Purpose, Processing, and Status.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\linewidth]{img/gconsent_core.png}
@@ -910,16 +912,24 @@ The core ontology concepts and relationships describe the essential entities and
     \label{fig:vocabs:gconsent-core}
 \end{figure}
 
-The Data Subject is the person that the consent is associated with. It is not necessarily the entity that gave the consent. The DataSubject class is defined as a subclass of prov:Person, and has the subclass MinorDataSubject to denote a data subject that is a minor (such as a child). A consent can only be associated with a single data subject, which will also be the only data subject associated with all its related instances, such as those that are its predecessors and successors. Once a consent is associated with a data subject, it cannot be changed. Other associated entities are mutable to an extent.
+The \textit{DataSubject} is the person the consent is associated with as an agreement of their choices. This person may or may not be the same entity that gave the consent, as in the case of parental or guardian giving consent for a child or the act of delegation. The \textit{DataSubject} class is defined as a subclass of \textit{prov:Person}, and has the subclass \textit{MinorDataSubject} to denote a data subject that is legally a minor or a child.
+Each instance of \textit{Consent} can only be associated with one and only one \textit{DataSubject}, and any further changes or modifications to the state of consent will continue to be associated with the same \textit{DataSubject}.
+The \textit{PersonalData} is the set of personal data associated with the consent. Where multiple personal data are associated with a single instance of consent, it is interpreted to mean the union of these sets of personal data. Similarly, \textit{Purpose} and \textit{Processing} are also to be interpreted as union rather than intersection.
+The `status' or `state' of consent indicates the suitability of using that specific instance of consent as a legal basis for the processing of personal data defined by the consent attributes.
 
-The Personal Data is the set of personal data associated with the consent. Where multiple personal data are associated with a single instance of consent, it is interpreted to mean the union of these sets of personal data. Similarly, Purpose and Processing are also to be interpreted as union rather than intersection. Whether such multiple instances should be defined using a single property with a list as the predicate, or through multiple properties each having a single predicate is a matter of semantics and is left to the practical adopter of this vocabulary.
+\textit{Purpose} and \textit{Processing} are concepts that have semantic meaning based upon their use within the GDPR.
+`Processing' is defined by Article 4-2, while `Purpose' has no specific definition provided but can be summarised as the intent or aim of why the set of personal data is needed or to be used for. In practice, purpose is generally defined at a higher abstract level, and often encompasses several types or categories of data. An example of this is a privacy policy specifying `account information' and `location of service use' - which are data categories, and that are `collected' and `used' - which are processing operations on the personal data, `to ensure security of the account' - which is the purpose the personal data will be processed for. The relation between a purpose and its associated processing operations is quite opaque. It is difficult to determine which processing operations a purpose entails and vice versa, and their usage may not always be implied or commonly understood. Therefore, GConsent provides purpose and processing as self-declarative high-level concepts which can be extended with additional information.
 
-Purpose and Processing are concepts that have semantic meaning based upon the use of the word within the GDPR. Purpose, in this case, is the intent or aim of why the set of personal data is needed or to be used for. It is generally defined at a higher abstract level, and often encompasses several types or categories of data. An example of this, as worded within a privacy policy, is where "account information" and "location of service use" are data categories that are "collected" and "used" - which are processing operations on the personal data - to ensure "security of the account" - which is the purpose. The relation between a purpose and processing operations is quite opaque. It is difficult to determine which processing operations a purpose entails and vice versa. Therefore, GConsent provides purpose and processing as self-declarative high-level concepts, which the adopter can extend with additional information. For example, Purpose as a class can be defined to be a subclass of gdprov:Process which itself is a subclass of p-plan:Plan. This can allow a 'purpose' to be defined as a series of other plans and steps towards a definite goal.
-
-The status of consent indicates the suitability of using it as a legal basis for the processing of personal data. To faciliate this, GConsent provides several instances of useful status types divided across two subclass to indicate the valid and invalid states. Additional categories can be defined by extending any of the classes as required.
+% To faciliate this, GConsent provides several instances of useful status types divided across two subclass to indicate the valid and invalid states. Additional categories can be defined by extending any of the classes as required.
 
 \subsubsection{Context of Consent}
-The context of consent refers to the environmental attributes such as the location or time when the consent was created / invalidated / generated / changed / modified / given / recorded. GConsent provides concepts for location, medium, and a timestamp for instant of creation (or invalidation, etc.) along with capturing the expiry of consent as either a instant of time or a duration (using the TIME vocabulary). It also captures how the consent was "provided" by an agent, in the form of a Person or Data Subject or Delegation. A delegation is the transfer of responsiblity to provide consent to an entity other than the data subject the consent is about. This includes a parent or a guardian giving the consent in lieu of a minor. Additional contexts can be captured by using or extending the generic property hasContext.
+The context of consent refers to the environmental attributes such as the location or time when the instance of consent was created, invalidated, generated, changed, modified, given, or recorded.
+GConsent provides concepts for location, medium, and timestamp to indicate instant of creation or invalidation along with capturing the `expiry' of consent as either a instant of time or a duration using the Time vocabulary \cite{}. The context also represents how consent was `provided' by a Person or Data Subject or Delegation. 
+The provided contexts in GConsent are visualised in \autoref{fig:vocabs:gconsent-context}.
+
+% A delegation is the transfer of responsiblity to provide consent to an entity other than the data subject the consent is about. This includes a parent or a guardian giving the consent in lieu of a minor. 
+Context is associated with an instance of consent using the generic property \textit{hasContext}, with specialised properties extending it to indicate provision, expiry, location, time, and medium. 
+Additional contexts can be represented and associated by extending \textit{hasContext} in a similar manner.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\linewidth]{img/gconsent_context.png}
@@ -928,7 +938,16 @@ The context of consent refers to the environmental attributes such as the locati
 \end{figure}
 
 \subsubsection{Consent States}
-GConsent provides instances of valid status as - explicitly given, implicitly given, and given by delegation. Instances of invalid status are - unknown, not given, withdrawn, expired, invalidated, refused, and requested. These states are defined as distinct individuals to reflect their semantic uniqueness as representations of specific states regarding consent. For example, unknown is the state where the status of consent is not known - which can occur when importing data from another source. This is distinct from not given, which indicates that the data subject has been offered the option to give consent, but has not provided any actionable response yet. This is distinct from refused, which indicates that the data subject has not accepted the offered terms and has "refused to give consent" through a clear indicative action. In the context of the GDPR, it is not necessary to capture states such as unknown or refused. GConsent, however, provides them with a view towards better management of consent information.
+The state of consent determines the suitability of its usage as a legal basis in the processing of personal data.
+From a compliance perspective, there are only two categories of states - one which permits legal processing of personal data, and one which is not sufficient or prohibits such processing.
+GConsent represents these using the concepts by sub-classing \textit{Consent} as \textit{StatusValidForProcessing} and \textit{StatusInvalidForProcessing} to indicate use of an consent instance as a valid or invalid legal basis, as depicted in \autoref{fig:vocabs:gconsent-status}.
+Instances provided to represent states of valid consent to indicate legal processing, and include - explicitly given, implicitly given, and given by delegation.
+Instances provided that represent invalid states of consent to indicate processing should not be carried out include - unknown, not given, withdrawn, expired, invalidated, refused, and requested.
+
+The use of state refers to tracking the consent of a data subject from the legal perspective, and is aimed to aid in the management of consent as an entity. For example, `unknown' reflects a situation where the status of consent is not known - which can occur when importing consent information data from another source.
+This is distinct from `not given' which indicates an offer has been made for obtaining consent but the data subject has not yet provided any actionable response that could indicate acceptance or refusal - which are themselves represented by the states for `given' and `refused' respectively.
+For meeting the obligations and requirements of GDPR compliance, it is not necessary to represent consent instances with states such as unknown or refused.
+GConsent provides them based on the practical management of consent information where a Controller may wish to track the consent status of its processing operations throughout its lifecycle.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\linewidth]{img/gconsent_status.png}
@@ -938,8 +957,14 @@ GConsent provides instances of valid status as - explicitly given, implicitly gi
 
 GDPR requires keeping track of state change for consent. For example, when the status changes from given to withdrawn or when the state if changed to invalidated because of the choice of the controller or some legal requirement. Therefore, whenever a consent status changes, this results in a new consent instance being created, which also assists in capturing the context of the new consent (such as time instant). Therefore, this leads to a chain of consent instances, where the "latest" consent is at the "end" of this chain, and will have the most recent timestamp of creation. It is vital to record such provenance to demonstrate past processing was in compliance with the state of consent at that point in time.
 
-\subsubsection{Example Applications}
-This example shows the association of a third party in the role of a data processor with whom the data is shared for the purpose of advertising. The association is captured by ex:AdvertisingArrangement which is of type prov:Association, and has ex:AdPartner as a gdprov:Processor defined with the role as gdprtext:Processor. It is also possible to list out the specific arrangement for this association using the prov:hadPlan property and gdprov:Process to list out the specific steps and entities involved in the data sharing arrangement. Note - this is in the context of the given consent and does not involve the data sharing agreement between the two parties.
+\subsubsection{Example Application}
+The documentation of GConsent provides example applications of the ontology in four use-cases to demonstrate  how information can be represented. The examples provided include (i) change in consent state, (ii) capturing given consent, (iii) capturing consent given via delegation, and (iv) capturing consent when data is shared with a third party.
+The fourth example is presented here to explain the application of GConsent and the use of its concepts to represent information towards GDPR compliance.
+
+The example, as visually represented in \autoref{fig:vocabs:gconsent-example}, shows association of a third party in the role of a data processor\footnote{Under GDPR, a processor is not considered a third party, but has its own defined role as an entity associated with the Controller. However, from a lay person's perspective, the individual is the first party, the Controller is the second party, and any other entity is a third party. GConsent reflects this use in its structuring of entities where a Processor is considered a special type of Third Party.}
+with whom the data is shared for the purpose of advertising. The association is captured by the instance \textit{ex:AdvertisingArrangement} of type \textit{prov:Association}, and has \textit{ex:AdPartner} defined as a \textit{gdprov:Processor} defined with the role as \textit{gdprtext:Processor}. It is also possible to list out the specific arrangement for this association using the \textit{prov:hadPlan} property and a \textit{gdprov:Process} instance to list out the specific steps and entities involved in the data sharing arrangement.
+
+The example serves to demonstrate the practical use of GConsent in representing information about consent, where PROV-O is used to specify relationships with a Processor. GConsent can be combined or supplemented by other ontologies to define such associations and practical reflections of data sharing agreements between parties. The defined instance of consent in the example enables a Controller to track the state of consent as the data subject is provided with the choice of whether to agree to this arrangement or to refuse it, and where upon agreement the option to exercise the right to modify and withdraw the consent is also provided.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\linewidth]{img/gconsent_third_party_datasharing.png}
@@ -948,9 +973,8 @@ This example shows the association of a third party in the role of a data proces
 \end{figure}
 
 \subsection{Evaluation}
-The ontology was evaluated regarding its capability to express information about consent using a set of competency questions based on the methodology outlined in \autoref{sec:voc:methodology}.
-The validation of GConsent was done by exploring the suitability of using the ontology to define the information required by each competency question.
-This was an iterative process where the ontology was tested and modified to accommodate the requirements of the competency questions. Changes were made to the ontology where information was found to be missing or incorrectly modelled. 
+GConsent as an ontology was evaluated regarding its capability to express information about consent using the methodology outlined in \autoref{sec:voc:methodology}.
+This was an iterative process where the ontology was tested and modified to accommodate the requirements of the competency questions. Changes were made to the ontology where information was found to be missing or incorrectly modelled.
 
 GConsent was published in the Extended Semantic Web Conference as a peer-reviewed publication \cite{} which described the motivation, methodology, and creation of the ontology. Along with this, the documentation of GConsent, available online, also provides extensive information about the ontology and its potential applications. It also provides a brief comparison of the ontology with relevant approaches within the state of the art.
 
@@ -962,6 +986,7 @@ Other than these, GConsent also received input through a semi-formal consultatio
 GConsent is an ontology for the representation of consent and its associated information for GDPR compliance.
 It is currently the only approach within the state of the art to provide representations of attributes of consent and its states as required by the GDPR.
 GConsent has been published in a peer-reviewed publication, and is available online as an open and reusable resource along with an extensive and descriptive documentation.
+It fulfils the research objective $RO3(c)$ and forms the third major contribution of this thesis.
 
 There is currently an ongoing effort to combine the existing standard of Consent Receipt \cite{} with the representation of consent for GDPR as offered by GConsent. The aim of this work is the creation of a GDPR-version of Consent Receipt, which is to then be further extended to create an international version of Consent Receipt that would be applicable to the emerging privacy laws across the globe. 
 % * ??? to mention ??? consultaition with research Mastercard on semantic representation of consent
