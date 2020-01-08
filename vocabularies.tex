@@ -1071,9 +1071,47 @@ The concepts associated with consent provide terms to describe consent provision
 The structure of these was adapted from an analysis of existing work in the form of Consent Receipt \cite{lizar_consent_2017} and GConsent \cite{pandit_gconsent_2019} with the intention to enable documenting attributes associated with consent which can demonstrate and evaluate its validity based on requirements of the GDPR.
 
 \subsection{Comparison of GDPRtEXT, GDPRov, and GConsent with and DPV}
+DPV has several commonalities with the ontologies presented in this thesis arising from the common aim of representing information for legal compliance with laws such as the GDPR.
+However, the aim and granularity of representing information about all attributes relevant to the processing of personal data differentiates the DPV from the specific focus of ontologies presented in this thesis.
+Given the high-level and abstract nature of DPV in its concepts, and the more granular and representative focus of developed ontologies, there is a possibility of aligning or combining the two.
+While there have been no efforts to carry out an exercise to combine or align the developed ontologies with DPV, their comparison as presented here demonstrates the possibility and applicability of such an approach.
+
+\subsubsection{Representing information about GDPR concepts}
+GDPRtEXT provides a linked data version of GDPR and a SKOS glossary of concepts associated with GDPR compliance, which can be used to link information to the clauses and concepts of GDPR.
+This has been used by GDPRov and GConsent to define the source of its concepts within the text of GDPR.
+
+The DPV, whose concepts represent a generic legal term, does not link its concepts to the GDPR except in cases where the defined concept was directly taken from the definition provided by GDPR.
+In such cases, it uses the URI format prescribed by the EU Publications Office to indicate the specific clause of GDPR. The URI format\footnote{The format is based on using templates to indicate the alphanumeric characters of articles and clauses. The template format can be represented as: \texttt{https://eur-lex.europa.eu/eli/reg/\{year\}/\{number\}/art\_\{X\}/par\_\{X\}/pnt\_\{X\}/oj}}, similar in its structuring of contents with GDPRtEXT, is based on an upcoming iteration\footnote{The information is based on a private communication between the author of the thesis with members of the EU Publications Office. The prescribed IRI, while not officially published or documented, currently resolves to the web-page of the legislation, which in this case is the GDPR.} of the ELI vocabulary which will be used in all EU published legislations to offer granular linking to their clauses.
+Since the format prescribed by EU Publications Office is authoritative in its nature, the links provided by GDPRtEXT need to be aligned or replaced with those defined using the newer ELI format.
+This also offers further advantages in provision of concepts and granularity as described in \autoref{}.
+
+One of the aims of the DPVCG is to provide a glossary of concepts associated with legal personal data handling. For this, the concepts of DPV itself can be considered as a glossary of terms, though not defined as such within the ontology. This use of `glossary' refers to providing the concepts to an adopter in order to represent the required information. Since these terms do not necessarily arise from a particular legislation, their sources are based more on their use as a commonly understood concept or notion within the legal domain.
+In terms of coverage, GDPRtEXT focuses more on terms directly obtained through the text of the GDPR while the DPV focuses on the modelling of concepts based on their relevance to defining personal data handling.
+Therefore, while there is a small overlap in the concepts directly associated with GDPR, the two vocabularies differ in their provision of terms. To further exemplify this distinction, the DPV aims to offer terms that reflect real-world practices while GDPRtEXT focuses on the legal text of GDPR. This is evident from the hierarchical taxonomy of concepts in DPV, such as for personal data categories and purposes.
+
+\subsubsection{Representing information about activities}
+The DPV does not provide representation of activities through which it can be compared with GDPRov.
+Instead, DPV provides concepts to represent `processes' taking place within an organisation, such as those for ensuring technical and organisational measures, purposes, and processing.
+The modelling of an instance of personal data handling, which consists of specifying the purpose, processing, and technical \& organisational measures, can be compared with the modelling of plans in GDPRov where a purpose represents a plan and its steps represent processing activities - which can be further annotated with measures and legal bases.
+Through this, it can be summarised that the focus of GDPRov is on representing the activities with arbitrary granularity, and that of DPV on providing metadata about the processing without dealing with the underlying details of implementation. With this, it is possible to define an instance of personal data processing using DPV to indicate the high-level summary of associated information and further expand it using GDPRov to represent details of processes and capture their provenance in ex-ante/ex-post phases.
+
+\subsubsection{Representing information about consent}
+The DPV and GConsent both provide concepts to represent information about consent based on the requirements specified by GDPR.
+In this, both share the aim to document the context of consent with a view towards establishing its validity and compliance.
+The difference between the two is based on the granularity and use of existing vocabularies to represent this information.
+
+The DPV utilises the model provided by its core or base vocabulary to represent information by specifying consent as the legal base used to justify processing of personal data.
+In addition to this, it provides properties to indicate the specific notice displayed to obtain consent, its expiry, the obtaining or provision of consent, and its withdrawal.
+In this, attributes such as timestamp, method used to carry out the provision and withdrawal are used to indicate information regarding how the consent was obtained.
+This is based on notion of providing a form of the Consent Receipt based on requirements of the GDPR.
+
+The DPV does not prescribe or utilise any existing vocabulary to specify information.
+In contrast, GConsent provides similar concepts as the DPV base vocabulary and uses vocabularies of PROV-O and GDPRov to represent the information about activities.
+Given that GConsent was an input to the DPV and by extension influential in its modelling of consent, there is a degree of compatibility between the two based on the similarity of concepts.
+In this, GConsent is a more verbose and detailed vocabulary while DPV provides a minimal set of concepts regarding consent but is more expressive in representing the overall information regarding data processing.
 
 \section{Comparing developed ontologies with SotA}
+This section provides a comparison of the developed ontologies of GDPRtEXT, GDPRov, GConsent, and DPV with the state of the art presented in \autoref{chapter:sota}.
+The comparison is based on the criteria used to analyse the existing approaches with a particular focus on assessing the extent to which the developed ontologies address the identified gaps and contribute to the state of the art.
 
-\subsection*{Summary}
-
-\section{Chapter Summary}
+\section*{Chapter Summary}
