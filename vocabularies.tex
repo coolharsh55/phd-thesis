@@ -993,22 +993,86 @@ There is currently an ongoing effort to combine the existing standard of Consent
 
 % DPV
 \section{Data Privacy Vocabulary (DPV)}\label{sec:voc:DPV}
+\subsection{Relevance of DPV to this thesis}
+The Data Protection Vocabulary is a semantic web ontology for representing information about personal data handling based on the framework provided by requirements for GDPR compliance.
+It is the outcome of the work done by the W3C Data Privacy Vocabularies and Controls Community Group (DPVCG) which provides collaboration between a community of academics, researchers, industry stakeholders, and legal experts as initially described in \autoref{}.
+It aims to work towards establishment of \textit{interoperable standards} regarding representing information about personal data processing, for which there is no suitable standard present.
 
-* intro as to why this is relevant
-* What is the DPVCG
-* What is DPV
-* My role
+The DPV reflects a community consensus in its representation of information regarding data protection and personal data processing. While being a generic vocabulary, much of its design is based on and reflected by the requirements of the GDPR. The DPV, and by extension the DPVCG, reflect an ongoing effort to provide practical and useful semantic representations of information in an open and interoperable machine-readable form. 
 
-\subsection{W3C Data Privacy Vocabularies and Controls CG}
-* What is the CG
-* Aims, objectives, how it started, when, SPECIAL
-* members???
-* cite SW4SG paper
+The ontologies presented in this thesis as research contributions - namely GDPRtEXT, GDPRov, and GConsent - were part of the state of the art analysed by the DPVCG in its methodology \cite{}.
+In addition, by being an active member of the DPVCG and a contributor the creation of the DPV, the author of this thesis has applied the experience of developing presented research to influence the design and modelling of information within the DPVCG.
 
-\subsection{Description of Data Privacy Vocabulary}
-* copy from ODBASE paper
+The DPVCG currently has published two peer-reviewed publications, where the first \cite{} was published at the initiation of the community group and described the goal of the CG along its plans and aims. The second \cite{} publication presents the DPV along with its creation methodology and concepts, where the author of this thesis was a co-first author.
+In addition to these, the vocabulary specification lists the author of this thesis as an co-editor and author of the ontology.
 
-\subsection{Comparison with GDPRtEXT, GDPRov, GConsent, and SotA}
+The DPVCG was initiated as an outcome of the SPECIAL project \cite{}, and therefore bears close association and alignment with the SPECIAL vocabularies.
+In particular, the SPECIAL core vocabulary was used as the basis to create the DPV core vocabulary, providing the basis for alignment and compatibility.
+The deliverable D6.5 \cite{} of the SPECIAL project presents the work of the DPVCG by describing the DPV.
+It is based on the publication of DPV \cite{} and features the author of this thesis as one of the lead authors for the deliverable.
+
+This section describes the DPV and compares it with the ontologies presented in this thesis.
+It demonstrates the differences in representation of information, scope, and methodology of the two approaches of work, and their complimentary nature in addressing GDPR.
+\subsection{Overview of DPV}
+\subsubsection{Description of Data Privacy Vocabulary}
+The DPV ontology is published at the W3C namespace \url{http://w3.org/ns/dpv} with its documentation and uses the namespace prefix \textit{dpv}. 
+The current iteration of vocabulary provides classes and properties to annotate and categorise information about legally compliant personal data handling. In this context, personal data handling refers to all operations associated with the processing of personal data and its management - which includes organisational measures which do not directly affect the data or its processing.
+
+The DPV is a pseudo-modular ontology, with a set of core concepts referred to as the `Base Ontology', and modular extensions further expanding each concept in the form of a taxonomy. 
+The core concepts, visualised in \autoref{fig:vocabs:dpv-core}, consist of personal data category, processing, purpose, legal basis, data controller, recipient, data subject, technical and organisational measures, and the top-level concept of personal data handling which ties them together.
+The base ontology represents the top-level classes for defining a policy of legal personal data handling. Each of its concepts are further elaborated using sub-vocabularies within the DPV.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/dpv-personaldatahandling.png}
+    \caption{Core concepts in DPV \cite{}}
+    \label{fig:vocabs:dpv-core}
+\end{figure}
+
+\subsubsection{Personal Data Categories}
+DPV uses the taxonomy provided by EnterPrivacy~\cite{enterprivacy} to define a broad hierarchy of personal data categories based on the nature of information (financial, social, tracking) and to its inherent source (internal, external). 
+In addition to these, the class \texttt{dpv:Special\-Category\-Of\-PersonalData} represents categories that are `special' or `sensitive' based on GDPR’s Article 9.
+
+These personal data categories can be further extended by using the sub-class mechanism to depict specialised concepts such as `likes regarding movies'.
+Sub-classing also enables representation of specific contexts such as derivation of personal data as represented by the class \texttt{dpv:DerivedPersonalData}.
+This is useful to represent practical representation of personal data categories such as inference of opinions from social media.
+Similar classes can be additionally added to specify contexts such as use of machine learning, accuracy, and source.
+The aim of the providing such high-level concepts is to provide a sufficient coverage of abstract categories of personal data which can be extended using the subclass mechanism to represent concepts used in the real-world. 
+
+\subsubsection{Purposes}
+Purposes in DPV are organised hierarchically by using the sub-class mechanism to represent high-level and generic purposes of data handling.
+Purposes provided in DPV include service provision, R\&D, commercial interest, security, service optimisation, and service personalisation. These are further extended to provide a total of 31 generic purposes.
+These may be extended by further subclassing to create more specific purposes as applicable to a scenario.
+As GDPR requires a specific purpose to be declared in an understandable manner, specific purposes can be created using subclasses of one or several \texttt{dpv:Purpose} categories to make them as specific to the use-case as possible.
+ Purposes can be restricted to specific \emph{contexts} using the class \texttt{dpv:Context} and the property \texttt{dpv:hasContext}.
+Purposes can also be restricted to a specific \emph{business sector} using the class \texttt{dpv:Sector} and the property \texttt{dpv:hasSector}.
+
+\subsubsection{Processing Categories}
+DPV provides a hierarchy of processing categories based on the requirements of regulations such as GDPR. 
+DPV defines top-level classes to represent the following broad categories of processing - Disclose, Copy, Obtain, Remove, Store, Transfer, Transform, and Use.
+Each of these are then again further expanded using subclasses to provide 33 processing categories, which includes terms defined in the definition of processing in GDPR (Article 4-2).
+The DPV provides properties with a boolean range to indicate the nature of processing regarding \emph{Systematic Monitoring}, \emph{Evaluation or Scoring}, \emph{Automated Decision-Making}, \emph{Matching or Combining}, \emph{Large Scale processing}, and \emph{Innovative use of new solutions} - as these affect assessment of legal data processing under GDPR.
+
+\subsubsection{Technical and Organisational Measures}
+GDPR Article 32 requires implementing appropriate measures by taking into account the state of the art, the costs of implementation and the nature, scope, context and purposes of processing, as well as risks, rights and freedoms.
+These are represented as technical and organisational measures in the DPV.
+Examples include pseudonymisation and encryption of personal data, the ability to restore the availability and access to personal data in a timely manner in the event of a physical or technical incident, and a process for regularly testing, assessing and evaluating the effectiveness of technical and organisational measures for ensuring the security of the processing.
+The generic property \texttt{dpv:measureImplementedBy} enables referencing the implementation measure as a comment or IRI.
+The class \emph{StorageRestriction} provides expression of measures used for storage of data with two specific properties provided for storage location and duration restrictions.
+
+\subsubsection{Consent and Legal Bases}
+DPV provides \texttt{dpv:LegalBasis} as a top-level concept to represent various legal bases that can be used for justifying processing of personal data.
+The definition of a `legal basis' is based on the justification for processing which has a provision in the law. The concept itself is not based on any specific jurisdiction, but needs to be interpreted in terms of the legal bases defined and provided within the laws applicable within a jurisdiction.
+
+For the GDPR, which is a EU specific law, and therefore is not binding in the interpretation of legal bases across all use-cases, the DPV provides the legal bases specific to GDPR as a separate aligned vocabulary under the \url{https://www.w3.org/ns/dpv-gdpr} and namespace (prefix: \texttt{dpv-gdpr:}). 
+This vocabulary defines the legal bases defined by Articles 6 and 9 of the GDPR to represent the legal justification of processing personal data.
+
+Consent as a special case of legal basis provided by the GDPR is provided with additional properties and classes within the core DPV vocabulary to reflect the information requirements associated with its validity as a legal basis.
+The concepts associated with consent provide terms to describe consent provision, withdrawal, and expiry.
+The structure of these was adapted from an analysis of existing work in the form of Consent Receipt \cite{lizar_consent_2017} and GConsent \cite{pandit_gconsent_2019} with the intention to enable documenting attributes associated with consent which can demonstrate and evaluate its validity based on requirements of the GDPR.
+
+\subsection{Comparison of GDPRtEXT, GDPRov, and GConsent with and DPV}
+
+\section{Comparing developed ontologies with SotA}
 
 \subsection*{Summary}
 
