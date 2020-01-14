@@ -1,27 +1,30 @@
 \chapter{Representing Information using Ontologies}
 \label{chapter:vocabularies}
 
-Intro: this chapter X Y Z
+This chapter presents the ontologies developed to fulfil the research objective $RO3$ defined in \autoref{sec:intro:RO}.
+Section \autoref{sec:voc:methodology} expands on the methodology presented in \autoref{sec:intro:ontology-engineering} for developing and evaluating the ontologies.
+The ontologies present consist of GDPRtEXT (\autoref{sec:voc:GDPRtEXT}) which provides a linked data representation of GDPR text and a thesauri of GDPR compliance concepts; GDPRov \autoref{sec:voc:GDPRov} for representing provenance of activities associated with personal data and consent in ex-ante and ex-post phases; and GConsent (\autoref{sec:voc:GConsent}) for representing information regarding consent.
 
-* presents the created ontologies for achieving aims listed in RO2
+In addition to these, Data Privacy Vocabulary (DPV) is also included in this thesis as a community standard based on the work of W3C Data Protection Vocabularies and Controls Community Group. The DPVCG and DPV include participation of the author of this thesis which was earlier summarised in \autoref{sec:intro:dpvcg}. \autoref{sec:voc:DPV} presents a summary of the DPV and compares it with the GDPRtEXT, GDPRov, and GConsent ontologies to demonstrate their complementary nature.
 
-* \autoref{sec:voc:methodology} - Methodology
-* \autoref{sec:voc:GDPRtEXT} - GDPRtEXT
-* \autoref{sec:voc:GDPRov} - GDPRov
-* \autoref{sec:voc:GConsent} - GConsent
-* \autoref{sec:voc:DPV} - DPV
+The chapter concludes with an evaluation of the developed ontologies based on the methodology in \autoref{sec:voc:methodology} and a comparison with relevant work in the state of the art in \autoref{sec:voc:sota}.
+It demonstrates that the developed ontologies and DPV extend the scope of existing work and fill gaps in the state of the art as identified through its analysis in \autoref{sec:sota:analysis}.
 
 \section{Methodology for Ontology Engineering}\label{sec:voc:methodology}
-This section expands on the ontology engineering methodology described in \autoref{sec:intro:ontology-engineering} regarding construction of ontologies described in this chapter.
 
 \subsubsection*{Utilisation of Existing Ontology Engineering Methodologies}
-The creation of ontologies followed guidelines and methodologies deemed `best practice' by the semantic web community. In this, `Ontology development 101: A guide to creating your first ontology' by Noy and McGuiness \cite{} - was utilised as the seminal guide for ontology engineering. It provides a series of steps for the creation of ontologies, which includes attention to avoid bad design decisions and pitfalls. It also advocates the use of competency questions to determine the scope of an ontology and evaluate it after creation. For this, the compliance questions presented in \autoref{} were used as competency questions. The guide also mentions use of Protégé\footnote{\url{}} \cite{} - a popular tool for ontology development - which also provides a semantic reasoner to detect inconsistencies in the ontology.
+The creation of ontologies followed guidelines and methodologies deemed `best practice' by the semantic web community. In this, `Ontology development 101: A guide to creating your first ontology' by Noy and McGuiness \cite{} was utilised as the guiding document for ontology creation. It provided a series of steps for construction of an ontology with attention on avoiding bad design decisions and common pitfalls. It also suggested the use of competency questions to determine the scope of an ontology and to evaluate it after creation. 
+% For this, the compliance questions presented in \autoref{} were used as competency questions.
+The guide suggests use of Protégé\footnote{\url{}} \cite{} as a popular tool for ontology development which provides a semantic reasoner to detect inconsistencies in the ontology.
+Use of the guide provided a foundational basis for initiating the ontology development process by using the compliance questions from \autoref{sec:info:compliance-questions} as competency questions to identify concepts and relationships, test them for inconsistencies using Protégé, and iteratively combine them to create an ontology. 
 
-Another commonly adapted resource that was used is the NeOn methodology \cite{} which provides a flexible workflow through the use of scenarios which can be adapted for ontology development. The scenarios include from implementing using a specification, reusing and re-engineering existing ontological and non-ontological resources, and utilisation of ontological design patterns.
+The development of ontologies followed a combination of the NeOn methodology \cite{} and UPON Lite methodology \cite{}. NeOn provides a flexible workflow through the use of scenarios which can be adapted for ontology development. The scenarios include implementing using a specification, reusing and re-engineering existing ontological and non-ontological resources, and utilisation of ontological design patterns. 
+UPON Lite \cite{} is a lightweight for rapid ontology engineering that was used in combination with NeOn for iteratively developing the presented ontologies. It consists of six steps from identification of domain terminology, construction of domain glossary, creating a taxonomy, predication as properties, meronymy for complex components, and conceptualisation into an ontology.
+The combination of two consisted of identifying the development scenario from NeOn for gathering requirements, and using UPON Lite to derive actionable tasks for ontology creation.
 
-UPON Lite \cite{} is a lightweight methodology for rapid ontology engineering that was used in combination with NeOn for iteratively developing the presented ontologies. It consists of six steps from identification of domain terminology, construction of domain glossary, creating a taxonomy, predication as properties, meronymy for complex components, and conceptualisation into an ontology.
-
-Compared with methodologies used in comparative work such as SPECIAL \autoref{} and MIREL \autoref{} within the SotA, the ontology development methodology used in this research lacked resources and access to legal experts which could be utilised to shape the legal interpretation of the developed work. To compensate for this, the developed ontologies have been sufficiently documented to indicate their aims, motivation, methodology, resources used to shape conceptualisations and rationalisations, and published in an open and accessible manner.
+The methodologies of relevant approaches presented in the SotA include research projects such as SPECIAL \autoref{} and MIREL \autoref{} which have access to resources and legal experts which can act as domain experts to validate the developed ontologies and their interpretation. Such projects also involve commercial partners who provide real-world use-cases and data to inform and evaluate the developed research.
+Others - such as Ujcich et al. \cite{} - take a more technical approach towards the interpretation of GDPR compliance in their modelling of information.
+The aims and motivations of this thesis (see \autoref{sec:intro:background}) are towards representation of information for assisting with the compliance process rather than an evaluation of compliance itself. Therefore, to offset the lack of access to legal experts, the research has been documented methodologically to indicate its aims, motivations, methodology, and resources used to shape conceptualisations and rationalisations, and published in an open and accessible manner to enable transparency and reuse. 
 
 \subsubsection*{Summarisation of Methodology}
 From above, the methodology used for ontology engineering and development can be summarised through the following steps:
@@ -32,47 +35,51 @@ From above, the methodology used for ontology engineering and development can be
     \item \textbf{Identify concepts and relationships:} Relevant concepts and relationships were identified to express information required to answer compliance questions in identified use-cases. This was an iterative and cyclic process where identified concepts and relationships were re-purposed to better suit some design pattern or compliance requirements.
     \item \textbf{Create Ontology:} The identified concepts and relationships were formalised as an ontology in OWL2 using the Protégé ontology development environment. In this process, a semantic reasoner - such as Pellet\footnote{\url{}} and HermiT\footnote{\url{}} - was used to identify inconsistencies in the ontology. Minor inconsistencies were fixed by changing the appropriate relationships between concepts, while major inconsistencies required evaluation of information identified in step 4. Development of the ontology utilised best practices advocated by the semantic web community in terms of ontology metadata \cite{}, documentation \cite{}, design patterns \cite{}, publication \cite{}, and dissemination \cite{}.
     \item \textbf{Evaluate:} The ontology was evaluated for sufficiency using competency questions, and by publishing as peer-reviewed publications. It was also evaluated for quality using guidelines and tools provided by the community.
-    \item \textbf{Iteratively develop ontology using steps 2 to 6:} Following an iteration of an ontology and its evaluation, changes were integrated by following steps 2 to 6 in an development cycle. New concepts and relationships as well as changes to existing ones were integrated through this method. Previous versions of the ontology were documented for provenance where relevant and possible.
+    \item \textbf{Progressive iterations:} Following an iteration of an ontology and its evaluation, changes were integrated by following steps 2 to 6 in an development cycle. New concepts and relationships as well as changes to existing ones were integrated through this method. Previous versions of the ontology were documented for provenance where relevant and possible.
+    \item \textbf{Dissemination:} The ontology and its documentation were published online with a persistent identifier as a FAIR resource with an open and permissive license. This included publication of the ontology, datasets, and code in a public repository accompanied by human-readable documentation about its creation and utilisation.
 \end{enumerate}
 
-\subsubsection*{Ontology Quality Considerations}
-The quality of an ontology refers to the quality of its design of concepts and relationships. While following a suitable ontology engineering methodology provides a structured ontology, it still needs to be inspected for quality in terms of ontology as well as for intended use-cases and scenarios. For this, existing publications \cite{jeremy quality paper, vredicic thesis} list various methods of ontology quality detection, evaluation, and suggest solutions to fix identified problems.
+\subsubsection*{Ontology Quality}
+The quality of an ontology refers to the quality of its design of concepts and relationships, and quality as a semantic dataset. While following a suitable ontology engineering methodology provides a structured ontology, it still needs to be inspected for quality in terms of ontology as well as for intended use-cases and scenarios. For this, existing publications \cite{jeremy quality paper, vredicic thesis} list various methods of ontology quality detection, evaluation, and suggest solutions to fix identified problems.
 
 OOPS!\footnote{\url{}} \cite{} is an useful tool for ontology evaluation which detects common pitfalls in the design of concepts and relationships and provides a documented output which can be persisted for provenance of ontology development. Each pitfall detected by OOPS! is categorised along  structural, functional, and usability-profiling dimensions. The tool also provides an indicative measure of importance regarding the pitfall in terms of critical, important, and minor levels.
+OOPS! was used for detecting catalogued common pitfalls in the periodic evaluation of developed ontologies. Identified pitfalls were corrected by changing the underlying relationships and iteratively developing the ontology to remove them. 
 
-OOPS! was used for detecting catalogued common pitfalls in the preiodic evaluation of developed ontologies. Identified pitfalls were corrected by changing the underlying relationships and iteratively developing the ontology to remove them. Other pitfalls were inspected manually from published sources \cite{}. 
+Quality was also assessed and maintained by asserting the sufficiency of developed ontology to represent and query based on collected use-cases. Where the ontology was found deficient in concepts and relationships, these were added in the next iteration. Where existing models were found to be insufficient or incorrect, these were rectified by either removing the offending parts or re-designing them - based on its impact on compatibility with previous versions.
 
 \subsubsection*{Ontology Documentation}
-Ontology documentation was created by using the WIDOCO\footnote{\url{}} \cite{} tool which uses ontology metadata to create HTML documents listing its classes and properties. Ontology metadata consists of information regarding the ontology as well as its concepts and properties integrated into the serialisation as annotations. WIDOCO provides a document of suggested metadata indicating best practices for ontology documentation, which the developed ontologies utilised. It builds upon the LODE\footnote{\url{}} tool and library\footnote{\url{}} which is also a popular ontology documentation service.
+Ontology documentation was created by using the WIDOCO\footnote{\url{}} \cite{} tool which uses ontology metadata to create HTML documents listing its classes and properties. Ontology metadata consists of information regarding the ontology as well as its concepts and properties integrated into the serialisation as annotations. WIDOCO provides a document of suggested metadata indicating best practices for ontology documentation, which the developed ontologies utilised. It builds upon the LODE\footnote{\url{}} tool and library\footnote{\url{}} which is itself a popular ontology documentation service.
 
-The output of the WIDOCO tool is a HTML document along with various serialisations of the ontology for content negotiation which were published as an online resource. Additional information was manually added to the HTML documentation regarding aims and methodologies used in the development of ontologies, as well as examples of use-cases and diagrams. WIDOCO integrates OOPS! to detect pitfalls in the ontology and documents the output. It also provides an interactive visualisation of the ontology using WebVOWL\footnote{\url{}}.
+The output of the WIDOCO tool is a HTML document along with various serialisations of the ontology for content negotiation which can be published and used as an online resource. Additional information was manually added to the HTML documentation regarding aims and methodologies used in the development of ontologies as well as examples of use-cases and diagrams intended for human consumption. WIDOCO integrates OOPS! to detect pitfalls in the ontology and documents the output. It also provides an interactive visualisation of the ontology using WebVOWL\footnote{\url{}}.
 
 \subsubsection*{Dissemination}
-The ontology was published on the internet using a stable IRI through persistent identifiers on servers hosted by ADAPT Research Centre and School of Computer Science \& Statistics within Trinity College Dublin. Initially, these were provided through the purl\footnote{\url{}} service, which later had issues regarding maintenance and frequent problems with URL resolution. Later the ontologies utilised the w3id\footnote{\url{}} persistent identifiers which are the current community recommendation and see active maintenance and development. The ontologies published in this manner followed the best practices and principles related to use of Linked Open Data\footnote{\url{}}, Linked Open Vocabularies\footnote{\url{}}, and FAIR\footnote{\url{}}.
+The ontologies were published on the internet using a stable IRI through persistent identifiers on servers hosted by ADAPT Research Centre and School of Computer Science \& Statistics within Trinity College Dublin. Initially, these were provided through the purl\footnote{\url{}} service, which later had issues regarding maintenance and frequent problems with URL resolution. The ontologies were then re-engineered to utilise the W3ID\footnote{\url{}} persistent identifiers maintained by the W3C Permanent Identifier Community Group\footnote{\url{}}. The ontologies published in this manner followed the best practices and principles related to use of Linked Open Data\footnote{\url{}}, Linked Open Vocabularies\footnote{\url{}}, and FAIR\footnote{\url{}} principles.
 
-Each ontology was added to the Linked Open Vocabularies community listing which catalogues vocabularies in the semantic web community. Each ontology was published in Zenodo which is a public open repositories and through which each iteration of the ontology was provided a DOI. The ontoloy development and resources were also added to public hosting services such as Github and an instance of OpenGogs hosted on institution servers. Each ontology was provided under an open and permissive license (CC-by-4.0\footnote{\url{}}) to promote its use and adoption.
+Each ontology was added to the Linked Open Vocabularies (LOV) community listing which catalogues vocabularies in the semantic web community. Each ontology was published in Zenodo\footnote{\url{}} which provides public open repositories and assigns a unique DOI for the repository as well each of its iterations. The ontoloy development and resources were also added to public hosting services such as Github\footnote{\url{}} and an instance of OpenGogs\footnote{\url{}} hosted on institution servers. Each ontology was published under an open and permissive license (CC-by-4.0\footnote{\url{}}) to promote its use and adoption.
 
 \subsubsection*{Evaluation}
-Evaluation was carried out by analysing whether the information expressed using the ontologies was sufficient to answer the collected competency questions. This was carried out in an interactive manner where the ontology was first developed and evaluated, and then the results of evaluation were used as feedback to further develop the ontology. Following the evaluation, changes to the ontology were made based on missing concepts and relationships, or incorrect assumptions expressed in existing ones. 
+Evaluation was carried out by analysing the extent of ontologies to represent information that answered the collected competency questions. This was carried out in an interactive manner where the ontology was first developed and evaluated, and then the results of evaluation were used as feedback to further develop the ontology. Following the evaluation, changes to the ontology were made based on missing concepts and relationships, or incorrect assumptions expressed in existing ones. Outcomes of this process are presented in the evaluation section of each ontology.
 
-The ontology was also evaluated against common pitfalls as expressed in the section about ontology quality. Documentation and publishing standards were evaluated by assessing whether the ontologies met existing criteria advocated by the community (such as 5-star principle for linked data \cite{} and the FAIR principles \cite{}). Finally, each ontology was published and presented in a peer-reviewed venue and publication.
+The ontology was also evaluated against common pitfalls using the OOPS! service as described earlier regarding ontology quality. The OOPS! ontology report is published alongside the ontology documentation, and can also be manually generated by using the online service. Documentation and publishing standards were evaluated by assessing whether the ontologies met existing criteria advocated by the community (such as 5-star principle for linked data \cite{} and the FAIR principles \cite{}). Finally, each ontology was published and presented in a peer-reviewed venue and publication.
+
+Evaluation of the work as a research contribution was carried out based on whether it satisfied the research objectives which motivated its development and whether it provided novel contributions compared to the existing approaches within the state of the art. The details of this are presented in the evaluation section of each ontology.
 
 \section{GDPRtEXT - Linked Open Dataset of GDPR text \& Glossary of Concepts}\label{sec:voc:GDPRtEXT}
 
-This section describes the GDPRtEXT vocabulary and dataset, which provides a linked open data version of the text of the GDPR and a SKOS glossary of concepts associated with its compliance. The section describes the motivation and creation of this work, its publication and dissemination, and a comparison with relevant approaches in the state of the art. GDPRtEXT is available online\footnote{\url{https://w3id.org/GDPRtEXT/}} with its documentation and code repository\footnote{\url{https://github.com/coolharsh55/GDPRtEXT/}}.
+This section describes the GDPRtEXT vocabulary and dataset which provides a linked open data version of the text of GDPR and a SKOS glossary of concepts associated with its compliance. The section presents the motivation and creation of GDPRtEXT, its publication and dissemination, and comparison with relevant approaches in the state of the art. GDPRtEXT is available online\footnote{\url{https://w3id.org/GDPRtEXT/}} with its documentation and code repository\footnote{\url{https://github.com/coolharsh55/GDPRtEXT/}}.
 
 \subsection{Motivation}
-GDPR as a legislation consists of text which is structured into 173 Recitals, 99 Articles (further grouped into Chapters and Sections), and 21 Citations. Each Article may have one or more Paragraphs, which itself may have one or more Sub-Paragraphs. As is the norm for legislations, each individual clause - whether an article, paragraph, or sub-paragraph - is identified with an alphanumeric number if provided. These are commonly referenced in textual notation by mentioning these identifiers present in the text of the legislation, such as for Article 8 Paragraph 2 Sub-Paragraph c the following textual notations can be used: A8(2-c), A(8-2c), A8-2(c), Art.8 2(c), Art-8-2-c. As there is no standard or accepted commonality in the approach, and because such notations are intended towards human readability and interpretation - there is no defined set of notations. This presents difficulty when representing such information in machine-readable formats.
+GDPR as a legislation consists of text which is structured into 173 Recitals, 99 Articles (further grouped into Chapters and Sections), and 21 Citations. Each Article may have one or more Paragraphs, which itself may have one or more Sub-Paragraphs. As is the norm for legislations, each individual clause - whether an article, paragraph, or sub-paragraph - is identified with an alphanumeric number if provided. These are commonly referenced in textual notation by mentioning these identifiers present in the text of the legislation, such as for \texttt{Article 8 Paragraph 2 Sub-Paragraph c} the following textual notations can be used: \texttt{A8(2-c), A(8-2c), A8-2(c), Art.8 2(c), Art-8-2-c}. As there is no standard or accepted commonality in the approach, and because such notations are intended towards human readability and interpretation - a strict set of such notations does not exist. This presents difficulty when representing such information in machine-readable formats.
 
-The EU Publications Office currently publishes legislation metadata at the document level - which provides information about GDPR as a legislation using the ELI ontology and standard \cite{} - but do not specify granular information about its contents. While the EU Publications Office has indicated its intention to provide such granular metadata in the future, currently the state of the art contains primarily two approaches as presented and analysed in \autoref{}. While these provide granular information representation of GDPR clauses, the information model used is not compatible with the ELI model used by EU Publications Office.
+The EU Publications Office currently publishes legislation metadata at the document level which provides information about GDPR as a legislation using the ELI ontology and standard \cite{} but does not specify granular information about its contents - such as its articles. The EU Publications Office has indicated its intention to provide such granular metadata in the future, the state of the art contains primarily two approaches as presented and analysed in \autoref{}. These provide granular information representation of GDPR clauses but are not compatible with the ELI model used by EU Publications Office. Furthermore, the concepts arising from the legislation as well as those used in the context of GDPR compliance have no standardised reference to provide commonality between two representations in different use-cases. 
 
-With this as the motivation, and the research question establish in \autoref{}, this section presents the GDPRtEXT vocabulary and dataset which fulfils research objective $RO3(a)$ regarding creation of OWL2 ontology for expressing information about concepts and text of the GDPR. It also fulfils the aim/objective of linking information with individual clauses of the GDPR as well as with terms and concepts related to GDPR compliance.
+With this motivation the research question was established in \autoref{} as $RO3(a)$ and is fulfilled by the GDPRtEXT - which provides an OWL2 ontology for granular representation of GDPR text and a dataset created using this ontology for a linked data representation of GDPR. GDPRtEXT also provides a SKOS vocabulary of terms associated with compliance and links them with their definition and use using the developed ontology. Thus, it fulfils the objective of enabling linking of information with individual clauses of the GDPR and with terms related to GDPR compliance.
 
 \subsection{Ontology Engineering and Creation of Resource}\label{sec:voc:gdprtext-engineering}
-Following the methodology described in \autoref{sec:voc:methodology}, the development of competency questions was achieved through understanding and analysis of how legal articles are referenced in text in relation to compliance. The competency questions concern representation of concepts within GDPR and its compliance, and association of information with specific clauses of the GDPR. They are categorised as pertaining to structure of GDPR text and regarding concepts associated with GDPR. The collected competency questions are outlined below:
+Following the methodology described in \autoref{sec:voc:methodology}, the development of competency questions was based on the understanding and analysis of how legal articles are referenced in text in relation to compliance. The competency questions are categorised based on whether they concern structure of GDPR or representation of concepts associated with compliance. The collected competency questions are outlined below with the identified requirements:
 
 \subsubsection{Structure of GDPR text}
-\begin{enumerate}[label={\textit{CQ.\theenumi}}]
+\begin{enumerate}[label={\texttt{CQ.\theenumi}}]
     \item How many Recitals are there within GDPR?
     \item How many Chapters are there within GDPR?
     \item How many Sections are there within GDPR?
@@ -89,16 +96,16 @@ Following the methodology described in \autoref{sec:voc:methodology}, the develo
     \item How to associate information regarding compliance to a specific article of the GDPR?
 \end{enumerate}
 
-Based on these, the following requirements were identified for the ontology with regards to structure:
+Based on these, the following requirements were identified with regards to extending the existing ELI ontology to represent granular structure:
 \begin{itemize}
     \item Structure of text must be specified with granularity and a hierarchy of Document, Chapter, Section, Article, Paragraph, Sub-Paragraph along with Recitals and Citations.
     \item Relations between clauses must be specified e.g. Paragraph belongs to an Article.
-    \item Relations must be transitive e.g. Paragraph belonging to an Article must also belong to the Chapter the Article is in.
+    \item Relations must be transitive e.g. Paragraph in an Article must also be in the Article's Chapter.
     \item Each individual clause must have a unique IRI to enable linking of information to it.
 \end{itemize}
 
 \subsubsection{Concepts associated with GDPR}
-\begin{enumerate}[label={\textit{CQ.\theenumi}},resume]
+\begin{enumerate}[label={\texttt{CQ.\theenumi}},resume]
     \item What type of data does the GDPR define?
     \item What types of consent does the GDPR define?
     \item What are the different entities referred to within GDPR?
@@ -124,12 +131,12 @@ Based on these, the following requirements were identified for the ontology with
     \item What concepts are defined regarding seals and certifications?
 \end{enumerate}
 
-Based on these, the following requirements were identified for the ontology with regards to structure:
+Based on these, the following requirements were identified with regards to representing concepts using the W3C SKOS standard as a glossary or taxonomy or thesauri:
 \begin{itemize}
-    \item The ontology should express concepts in a hierarchy of relation as associated with compliance. This hierarchy is based on which additional concepts are relevant to the given concept. For example, all principles are referred to when referring to the concept of 'Principle', and - activities and actions associated with compliance are referred to when using the concept of 'Compliance'.
-    \item The ontology should reference concepts with their definitions within the clauses of the GDPR.
-    \item The ontology should indicate concepts of relevance for a given concept.
-    \item The ontology provide concepts regarding:
+    \item The glossary should express concepts in a hierarchy of relation as associated with compliance. This hierarchy is based on which additional concepts are relevant to the given concept. For example, all principles are referred to when referring to the concept of `Principle', and - activities and actions associated with compliance are referred to when using the concept of `Compliance'.
+    \item The glossary should reference concepts with their definitions within the clauses of the GDPR.
+    \item The glossary should indicate concepts of relevance for a given concept.
+    \item The glossary provide concepts regarding:
     \begin{itemize}
         \item types of data
         \item types of consent
@@ -145,24 +152,20 @@ Based on these, the following requirements were identified for the ontology with
 \end{itemize}
 
 \subsubsection{Extending ELI}
-Following this, the suitability of extending the existing ELI ontology for representing hierarchy of clauses in GDPR was evaluated and found to be feasible. Existing resources associated with the information model used by ELI - namely the FORMEX\footnote{\url{https://op.europa.eu/en/web/eu-vocabularies/formex//}} and Common Data Model\footnote{\url{https://op.europa.eu/en/web/eu-vocabularies/model/-/resource/dataset/cdm}} - were used to formulate an extension mechanism that ensured compatibility.
-The extension intended to be language agnostic and therefore did not follow the language specifications provided by FRBR model\footnote{\url{https://www.ifla.org/publications/functional-requirements-for-bibliographic-records}}, though such functionality can be integrated in the future if needed. For the glossary of concepts, SKOS\footnote{\url{}} was selected based on its status as a standard and accepted usage by the community towards specification of thesauri.
+The suitability of extending the existing ELI ontology for representing hierarchy of clauses in GDPR was evaluated and found to be feasible based on continued compatibility of concepts. Existing resources associated with the information model used by ELI - namely the FORMEX\footnote{\url{https://op.europa.eu/en/web/eu-vocabularies/formex//}} and Common Data Model\footnote{\url{https://op.europa.eu/en/web/eu-vocabularies/model/-/resource/dataset/cdm}} were used to formulate an extension mechanism that ensured compatibility.
+The extension was modelled to be language agnostic with labels in English. Therefore the several language specifications provided by FRBR model\footnote{\url{https://www.ifla.org/publications/functional-requirements-for-bibliographic-records}} were not modelled nor included as labels, though this functionality can be integrated in the future if needed.
 
 \subsubsection{Creation of datasets}
 Three outputs were decided based on the requirements - an OWL2 ontology for representing structure of GDPR text, a dataset of GDPR text using this ontology, and a SKOS glossary of concepts associated with compliance. The OWL2 ontology and SKOS glossary were combined within a single deliverable - namely the GDPRtEXT ontology, and the representation of GDPR text was provided as a RDF dataset with metadata defined using the DCAT\footnote{\url{https://www.w3.org/TR/vocab-dcat/}} and VoID\footnote{\url{https://www.w3.org/TR/void/}} standards.
 
-Extracting the text of the GDPR in the form of individual clauses proved to be a challenge due to the way the official legislation is structured. The official publication provides the legislation as HTML, PDF, and XML. The task of extracting individual clauses and annotating their structure (e.g. chapter, article, paragraph) was automated using a python script.
+Extracting the text of GDPR as individual clauses proved to be a challenge due to the way the official legislation is structured and provided in HTML, PDF, and XML serialisations. The task of extracting individual clauses and annotating their structure (e.g. chapter, article, paragraph) was automated using a javascript\footnote{\url{https://github.com/coolharsh55/GDPRtEXT/blob/master/scripts/parse_gdpr.js}}.
 
-Three datasets were produced and published through this process. The first provides description of canonical versions of the official legislation i.e. published by the EU Publications Office, and describes the GDPR legislation in its HTML, PDF, and XML formats. The second provides a copy of the GDPR text hosted on institution servers and provides identifiers for individual clauses in the GDPR in HTML, JSON, and plain-text formats. The third provides RDF serialisations of the text of GDPR using the GDPRtEXT ontology in RDF/XML, N3, Turtle, JSON-LD formats.
+Three datasets were produced and published through this process. The first provides description of canonical versions of the official legislation i.e. published by the EU Publications Office, and describes the GDPR legislation in its HTML, PDF, and XML formats. The second provides a copy of the GDPR text hosted on institution servers and provides identifiers for individual clauses in the GDPR in HTML, JSON, and plain-text formats. The third provides RDF serialisations of the text of GDPR using the GDPRtEXT ontology in RDF/XML, N3, Turtle, and JSON-LD formats.
 
-The glossary published using SKOS utilised the IRIs of individual clauses of the GDPR to indicate source, definitions, and related concepts. Definitions were declared using the \textit{rdfs:isDefinedBy} property, and a new property called \textit{involves} was created to indicate associations between concepts. 
+The glossary published using SKOS utilised the IRIs of individual clauses of the GDPR to indicate source, definitions, and related concepts. Definitions were declared using the \texttt{rdfs:isDefinedBy} property, and a new property called \texttt{gdprtext:involves} was created to indicate associations. 
 
 \subsubsection{Publication \& Dissemination}
-The ontology and dataset were provided through a SPARQL end-point on a triple-store hosted on the institution servers. Pubby\footnote{\url{http://wifo5-03.informatik.uni-mannheim.de/pubby/}} was used to provide a front-end for browsing the legislation. The dataset was provided under the CC-by-4.0 license to provide resources in an open and reusable manner. It was also published in the Irish Open Data Portal\footnote{\url{https://data.gov.ie/dataset/gdprtext}} which rated it as a 5-star linked open dataset. The documentation for the ontology and dataset was generated using WIDOCO, and published on institution servers.
-
-The GDPRtEXT ontology and datasets (in various serialisations) were hosted on institution servers and provided through a public a SPARQL endpoint\footnote{\url{}} hosted using the OpenLink Virtuoso triple-store.
-Along with a HTML version of GDPR, the RDF version of text was provided for human consumption using the Pubby\footnote{\url{}} framework, as shown in Fig.\ref{fig:vocab:gdprtext-pubby}
-\begin{figure}[htbp]
+The ontology and dataset were made available through a SPARQL end-point\footnote{\url{https://w3id.org/GDPRtEXT/sparql}} on a triple-store hosted on the institution servers. Pubby\footnote{\url{http://wifo5-03.informatik.uni-mannheim.de/pubby/}} was used to provide a front-end for browsing the RDF serialisation of GDPRtEXT, as shown in Fig.\ref{fig:vocab:gdprtext-pubby}. The dataset was provided under the CC-by-4.0 license to provide resources in an open and reusable manner and was published in the Irish Open Data Portal\footnote{\url{https://data.gov.ie/dataset/gdprtext}} which rated it as a 5-star linked open dataset indicating the highest quality rating. \begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{img/gdprtext-pubby}
     \caption{Article 12(3) in GDPRtEXT as RDF displayed using Pubby \cite{}}
@@ -187,22 +190,19 @@ A visual summary of the concepts within GDPRtEXT is presented in Figures \ref{fi
 
 \subsubsection{Concepts for description structure of text}
 GDPRtEXT extends the European Legislation Identifier (ELI) \cite{} ontology published by the European Publications Office with granular concepts to represent each individual clause within the GDPR. 
-ELI provides the class \textit{LegalResource} to indicate a legislative document and its sub-class \textit{LegalSubResource} to indicate a component or part of that resource. GDPRtEXT extends the \textit{LegalSubResource} concept with classes Chapter, Section, Article, Point (indicates Paragraph), SubPoint (indicates Sub-Paragraph), Recital, and Citation using the sub-class mechanism.
-
-The ELI provides properties \textit{has\_part} and its inverse \textit{is\_part\_of} to indicate connections between two legal resources. GDPRtEXT extends these to indicate hierarchical relations between chapters, sections, articles, points, and sub-points.
+ELI provides the class \texttt{LegalResource} to indicate a legislative document and its sub-class \texttt{LegalSubResource} to indicate a component or part of that resource. GDPRtEXT extends the \texttt{LegalSubResource} concept with classes \texttt{Chapter}, \texttt{Section}, \texttt{Article}, \texttt{Point} (indicates Paragraph), \texttt{SubPoint} (indicates Sub-Paragraph), \texttt{Recital}, and \texttt{Citation} using the sub-class mechanism.
+The ELI ontology provides properties \texttt{has\_part} and its inverse \texttt{is\_part\_of} to indicate connections between two legal resources. GDPRtEXT extends these to indicate hierarchical relations between chapters, sections, articles, points, and sub-points.
 
 \subsubsection{Concepts about Data}
-GDPR mentions different types of data, based on which various obligations and requirements are set forth in relation to compliance. GDPRtEXT provides the top-level concept of \textit{Data} to indicate the abstract term of `data'.
-
-The crux of GDPR is based on personal data, which is defined in Article 4(11) and is represented by  \textit{PersonalData}, with special categories defined in Article 9(11) requiring additional obligations regarding its processing and handling, and represented by \textit{SpecialCategoryPersonalData} in GDPRtEXT. Types of special categories mentioned include criminal data, genetic data, health data, and racial data which are defined as sub-classes in GDPRtEXT.
-
-GDPR also mentions data in the context of anonymising and pseudo-anonymising processes, with their outcomes specified using the \textit{AnonymousData} and \textit{PseudoAnonymousData} concepts.
+GDPR mentions different types of data, based on which various obligations and requirements are set forth in relation to compliance. GDPRtEXT provides the top-level concept of \texttt{Data} to indicate the abstract term of `data'.
+The GDPR primarily focuses on personal data as defined in Article 4(1) - which is represented in GDPRtEXT as \texttt{PersonalData}, with special categories defined in Article 9(1) requiring additional obligations regarding its processing and handling and represented by \texttt{SpecialCategoryPersonalData}. Types of special categories mentioned include criminal data, genetic data, health data, and racial data which are defined as sub-classes in GDPRtEXT.
+GDPR also mentions data in the context of anonymising and pseudo-anonymising processes, with their outcomes specified using the \texttt{AnonymousData} and \texttt{PseudoAnonymousData} concepts.
 
 \subsubsection{Concepts about Consent}
-The top-level concept of `consent' is represented by \textit{Consent} class in GDPRtEXT with its definitions based in Articles 4(11), 6(1) and Recitals 32, 40. It is sub-classed to indicate `given consent' - which is a legal basis and is therefore a sub-class of both \textit{Consent} and \textit{LegalBasis}. \textit{GivenConsent} is further sub-classed to indicate `valid consent' which carries obligations of ensuring the consent is valid and meets the requirements of GDPR and is therefore also defined as the sub-class of \textit{ObligationForObtainingConsent}. These obligations are represented by sub-classing the \textit{ValidConsent} concept regarding conditions of - freely given, informed, specific, voluntary, and opt-in.
+The top-level concept of `consent' is represented by \texttt{Consent} in GDPRtEXT with its definitions based in Articles 4(11), 6(1) and Recitals 32, 40. It is sub-classed to indicate `given consent' - which is a legal basis and is therefore a sub-class of both \texttt{Consent} and \texttt{LegalBasis}. \texttt{GivenConsent} is further sub-classed to indicate `valid consent' which carries obligations of ensuring the consent is valid and meets the requirements of GDPR and is therefore also defined as the sub-class of \texttt{ObligationForObtainingConsent}. These obligations are represented by sub-classing the \texttt{ValidConsent} concept regarding conditions of - freely given, informed, specific, voluntary, and opt-in.
 
 \subsubsection{Concepts about Entities}
-\textit{Entity} represents the top-level concept of `entity' indicating any institution, company, corporation, partnership, government agency, university, or any other organization including individuals. 
+\texttt{Entity} represents the top-level concept of `entity' indicating any institution, company, corporation, partnership, government agency, university, or any other organization including individuals. 
 It is sub-classed to indicate entities mentioned in GDPR, which are - Data Subject, Controller, Processor, Sub-Processor, Data Protection Officer (DPO), and Data Protection Authority (DPA). Additionally, relevant concepts associated with entities are also defined, which are -  Representative of Controller, Representative of Processor, Certification Body, and Regulatory Authority.
 
 \subsubsection{Concepts about Activities}
@@ -213,39 +213,40 @@ Consent activities defined within GDPRtEXT consist of obtaining consent and with
 GDPRtEXT also provides activities associated with reporting of data breach, which include obligations and actions such as - report data breach, maintain record of breach, notify data subject of breach, report breach to controller (for processors), and report breach to DPA within 72 hours. Other activities provided are - security of personal data, appointment of processors, demonstrating consent, exercise rights, identification of data subject, impact assessment, marketing, direct marketing, monitor compliance, propagate rights to third parties, and systematic monitoring.
 
 \subsubsection{Concepts about Compliance}
-Concepts associated with compliance are provided to indicate actions or terms used in the process of maintaining, documenting, evaluating, and demonstrating compliance. The top-level concept \textit{Compliance} represents the abstract notion of compliance. Other terms derived from this include - Demonstration of Consent, Monitor Compliance, and Report Data Breach.
+Concepts associated with compliance are provided to indicate actions or terms used in the process of maintaining, documenting, evaluating, and demonstrating compliance. The top-level concept \texttt{Compliance} represents the abstract notion of compliance. Other terms derived from this include - Demonstration of Consent, Monitor Compliance, and Report Data Breach.
 
 \subsubsection{Concepts about Principles}
-GDPRtEXT represents principles using the top-level concept of \textit{Principle}, which are specialised to indicate principles associated with - Accountability; Accuracy; Data Minimisation; Integrity and Confidentiality; Lawfulness, Fairness, and Transparency; Purpose Limitation; and Storage Limitation.
+GDPRtEXT represents principles using the top-level concept of \texttt{Principle}, which are specialised to indicate principles associated with - Accountability; Accuracy; Data Minimisation; Integrity and Confidentiality; Lawfulness, Fairness, and Transparency; Purpose Limitation; and Storage Limitation.
 
 \subsubsection{Concepts about Rights}
-To represent rights, GDPRtEXT provides top-level concepts representing each of the rights, with further concepts associated with the rights represented as sub-classes. The right of data portability is represented by the concept \textit{RightOfDataPortability} with related concepts regarding providing copy of personal data, commonly used data format, machine readable format, structured, and supporting reuse.
+To represent rights, GDPRtEXT provides top-level concepts representing each of the rights, with further concepts associated with the rights represented as sub-classes. The right of data portability is represented by the concept \texttt{RightOfDataPortability} with related concepts regarding providing copy of personal data, commonly used data format, machine readable format, structured, and supporting reuse.
 
-The right of erasure is represented by the concept \textit{RightOfErasure} with related concepts provided regarding obligation to erase data when consent is withdrawn, or when data is no longer needed for original purpose. The right to access personal data is represented by the concept \textit{RightToAccessPersonalData} with related concepts for indicating if and where controller is processing data, whether there is automated processing with significant effects on data subject, categories of data being processed, categories of recipients data is shared with, existence of rights, information about processing, source of data, storage period, and ensuring no charges are levied for provision of rights.
+The right of erasure is represented by the concept \texttt{RightOfErasure} with related concepts provided regarding obligation to erase data when consent is withdrawn, or when data is no longer needed for original purpose. The right to access personal data is represented by the concept \texttt{RightToAccessPersonalData} with related concepts for indicating if and where controller is processing data, whether there is automated processing with significant effects on data subject, categories of data being processed, categories of recipients data is shared with, existence of rights, information about processing, source of data, storage period, and ensuring no charges are levied for provision of rights.
 
-The right to basic information about processing is represented by the concept \textit{RightToBasicInformationAboutProcessing} and is accompanied with its related concept regarding information about third parties. The concept \textit{RightToRestrictProcessing} represents the right to restrict processing, and is accompanied with conditions such as - accuracy is contested, data no longer needed for original purpose, and processing is unlawful. The right to transparency is represented by the concept \textit{RightToTransparency} with related concepts regarding conditions of concise, easily accessible, intelligible, and transparent. Other rights provided correspond with right to - not be evaluated through automated processing, object to direct marketing,  object to processing, and right of rectification.
+\texttt{RightToBasicInformationAboutProcessing} represents the right to basic information about processing and is accompanied with its related concept regarding information about third parties. The concept \texttt{RightToRestrictProcessing} represents the right to restrict processing, and is accompanied with conditions such as - accuracy is contested, data no longer needed for original purpose, and processing is unlawful. The right to transparency is represented by the concept \texttt{RightToTransparency} with related concepts regarding conditions of concise, easily accessible, intelligible, and transparent. Other rights provided correspond with right to - not be evaluated through automated processing, object to direct marketing,  object to processing, and right of rectification.
 
 \subsubsection{Concepts about Obligations}
-GDPRtEXT defines concepts regarding obligations of controllers, processors, DPOs, consent, and compliant processing of personal data based on a legal basis. Obligations of controllers are represented by the concept \textit{ControllerObligation} with related concepts also provided regarding  appointment of processors, accountability, controller responsibility, co-operation with DPA, data protection by design and default, data security, liability of joint controller(s), maintaining records of processing activities, privacy by design, propagate rights to third parties, and reporting data breach.
+GDPRtEXT defines concepts regarding obligations of controllers, processors, DPOs, consent, and compliant processing of personal data based on a legal basis. Obligations of controllers are represented by the concept \texttt{ControllerObligation} with related concepts also provided regarding  appointment of processors, accountability, controller responsibility, co-operation with DPA, data protection by design and default, data security, liability of joint controller(s), maintaining records of processing activities, privacy by design, propagate rights to third parties, and reporting data breach.
 
-For rights of processors, the concept \textit{ProcessorObligaion} is provided along with its related concepts for appointing sub-processors, assisting in complying with rights, compliance with controller's instructions, co-operate with DPA, data security, impose confidentiality on personnel, inform controller of conflict with law, maintain records of processing activities, only act on documented instructions, propagate rights to third parties, provide controller with information for compliance, report data breach to controller, restrictions on cross-border transfers, and return or destroy personal data at end of term.
+For rights of processors, the concept \texttt{ProcessorObligaion} is provided along with its related concepts for appointing sub-processors, assisting in complying with rights, compliance with controller's instructions, co-operate with DPA, data security, impose confidentiality on personnel, inform controller of conflict with law, maintain records of processing activities, only act on documented instructions, propagate rights to third parties, provide controller with information for compliance, report data breach to controller, restrictions on cross-border transfers, and return or destroy personal data at end of term.
 
-The concept \textit{DPOObligation} represents obligations of a DPO, for which the concept \textit{MonitoringCompliance} is provided to indicate monitoring of compliance. The obligations related to lawful basis for processing are represented by \textit{LawfulBasisForProcessing} along with related concepts for contract with data subject, exempted by national law, employment law, given consent, historic, statistical, or scientific purposes, legal claims, legal obligation, legitimate interest, made public by data subject, medical, diagnostic, or treatment, not for profit org., public interest, purpose of new processing, and vital interest.
+The concept \texttt{DPOObligation} represents obligations of a DPO, which include the monitoring of compliance represented by \texttt{MonitoringCompliance} . The obligations related to lawful basis for processing are represented by \texttt{LawfulBasisForProcessing} along with related concepts for contract with data subject, exempted by national law, employment law, given consent, historic, statistical, or scientific purposes, legal claims, legal obligation, legitimate interest, made public by data subject, medical, diagnostic, or treatment, not for profit org., public interest, purpose of new processing, and vital interest.
 
-Obligations regarding valid consent are represented by \textit{ValidConsent} with related concepts to indicate that consent should be freely given, informed, specific, voluntary, and opt-in. 
-Obligations for obtaining consent are represented by \textit{ObligationForObtainingConsent} and include concepts for information about third parties, indicating consent can be withdrawn easily, and conditions regarding information provided for obtaining consent such as - it should be clear, providing explanation of processing, should not be from silence or inactivity, should be demonstrable, should be distinguishable from other matters, and that is should produce valid consent.
+Obligations regarding valid consent are represented by \texttt{ValidConsent} with related concepts to indicate that consent should be freely given, informed, specific, voluntary, and opt-in. 
+Obligations for obtaining consent are represented by \texttt{ObligationForObtainingConsent} and include concepts for information about third parties, indicating consent can be withdrawn easily, and conditions regarding information provided for obtaining consent such as - it should be clear, providing explanation of processing, should not be from silence or inactivity, should be demonstrable, should be distinguishable from other matters, and that is should produce valid consent.
 
-Obligations for data collection are represented by \textit{ObligationForDataCollection}, which is accompanied with related concepts for indicating accurate collection, specification of explicit purpose, ensuring legitimate purpose, ensuring it is not further processed than original purpose, and ensuring it is limited to specified purpose.
-Obligations for retention of personal data are represented by \textit{ObligationForRetentionOfPersonalData} and include related concepts about    retention of personal data, ensuring it is adequate for processing, ensuring it is identifiable for required processing, obligation to kept it up to date, ensuring it is limited for processing, obligation to rectify inaccuracies, and ensuring it is relevant for processing. 
-The concept \textit{ObligationForSecurityOfPersonalData} represents the obligation regarding security of personal data, which consists of related concepts regarding accidental loss, damage, destruction, and unlawful processing.
+Obligations for data collection are represented by \texttt{ObligationForDataCollection}, which is accompanied with related concepts for indicating accurate collection, specification of explicit purpose, ensuring legitimate purpose, ensuring it is not further processed than original purpose, and ensuring it is limited to specified purpose.
+Obligations for retention of personal data are represented by \texttt{ObligationForRetentionOfPersonalData} and include related concepts about    retention of personal data, ensuring it is adequate for processing, ensuring it is identifiable for required processing, obligation to kept it up to date, ensuring it is limited for processing, obligation to rectify inaccuracies, and ensuring it is relevant for processing. 
+The concept \texttt{ObligationForSecurityOfPersonalData} represents the obligation regarding security of personal data, which consists of related concepts regarding accidental loss, damage, destruction, and unlawful processing.
 
 \subsubsection{Concepts about Seals and Certifications}
-GDPRtEXT provides concepts of \textit{Seal} and \textit{Certification} for representing seals and certifications as provided by GDPR to assist with the maintenance and demonstration of compliance. It also provides concepts to represent conditions for seals and certifications, represented by the concept \textit{ConditionsForSealsAndCertifications} which consist of concepts related to adherence to seal/certification, having a maximum validity of 3 years, and a voluntary system of accreditation. 
+GDPRtEXT provides concepts of \texttt{Seal} and \texttt{Certification} for representing seals and certifications as provided by GDPR to assist with the maintenance and demonstration of compliance.
+The conditions of these are represented by \texttt{ConditionsForSealsAndCertifications}, which is further expanded to consist of concepts related to adherence to seal/certification such as having a maximum validity of 3 years and having a voluntary system of accreditation. 
 
 \subsubsection{Example Use-Case: Compliance Reporting}
-This example use-case takes a look at how references to GDPR can aid in creation of reports which document information regarding compliance. Consider a system for creation of compliance reports that stores information related to each of the obligations it addresses from the GDPR. It uses the EARL\footnote{\url{}} vocabulary for expressing results of conformance checks within the report. GDPRtEXT is used to link the resources in EARL reports with articles and points within the GDPR as well as to express and define concepts related to compliance in a suitable and comprehensible manner. Through this, the information about compliance checks is linked and associated with the specific articles of GDPR.
+This example use-case takes a look at how references to GDPR can aid in creation of reports which document information regarding compliance. Consider a system for creation of compliance reports that stores information related to each of the obligations it addresses from the GDPR. It uses the EARL\footnote{\url{https://www.w3.org/TR/EARL10-Schema/}} vocabulary for expressing results of conformance checks within the report. GDPRtEXT is used to link the resources in EARL reports with articles and points within the GDPR as well as to express and define concepts related to compliance in a suitable and comprehensible manner. Through this, the information about compliance checks is linked and associated with the specific articles of GDPR.
 
-EARL provides a standardized vocabulary to describe specific resources and relationships that are relevant to test reporting. The core construct of EARL is an \textit{Assertion}, which describes the context and outcome of an individual test execution. It contains the following information (copied verbatim from EARL website):
+EARL provides a standardised vocabulary to describe specific resources and relationships that are relevant to test reporting. The core construct of EARL is an \texttt{Assertion}, which describes the context and outcome of an individual test execution. It contains the following information (copied verbatim from EARL website):
 
 \begin{itemize}
     \item \textit{Assertor} - This can include information about who or what ran the test. For example human evaluators, automated accessibility checkers, or combinations of these.
@@ -254,7 +255,7 @@ EARL provides a standardized vocabulary to describe specific resources and relat
     \item \textit{Test Result} - What was the outcome of the test? A test result could also include contextual information such as error messages or relevant locations within the test subject.
 \end{itemize}
 
-Taking the example of Right to Data Portability, the EARL report in Listing.\ref{listing:vocab:gdprtext-earl} represents compliance checks for conditions associated with linked articles in GDPR (Article 20). The compliance system has a module \textit{\_system\_dataportability} that checks the software that handles the provision of a copy of personal data \textit{\_org\_dataportability} through the test case \textit{\_test\_provide\_data\_copy} and generates the report which shows that the test has passed through \textit{\_result\_pass}.
+Taking the example of Right to Data Portability, the EARL report in Listing.\ref{listing:vocab:gdprtext-earl} represents compliance checks for conditions associated with linked articles in GDPR (Article 20). The compliance system has a module \texttt{\_system\_dataportability} that checks the software that handles the provision of a copy of personal data \texttt{\_org\_dataportability} through the test case \texttt{\_test\_provide\_data\_copy} and generates the report which shows that the test has passed through \texttt{\_result\_pass}.
 
 \begin{lstlisting}[label={listing:vocab:gdprtext-earl},caption={Use of GDPRtEXT to link tests with GDPR Articles in EARL report}]
 @prefix earl: http://www.w3.org/ns/earl# .
@@ -287,7 +288,7 @@ Taking the example of Right to Data Portability, the EARL report in Listing.\ref
     dct:subject gdprtext:article20 .
 \end{lstlisting}
 
-Now to gather such related resources together, a SPARQL query (simplified) would focus on the link between \textit{TestCase} and its result using \textit{earl:validity}, as shown in Listing.\ref{listing:vocabs:gdprtext-sparql}.
+Now to gather such related resources together, a SPARQL query (simplified) would focus on the link between \texttt{TestCase} and its result using \texttt{earl:validity}, as shown in \autoref{listing:vocabs:gdprtext-sparql}.
 These tests can be further combined into test suites to group compliance checks related to each article or a particular concept and structure the documentation around this form of logical grouping of concepts.
 In this manner, the use of GDPRtEXT to link tests and results with documentation enables automation of information retrieval and management.
 
@@ -308,7 +309,7 @@ SELECT ?gdpr ?result ?confidence ?mode WHERE {
 }
 
 | gdpr          | result     | confidence     | mode          |
-|-----------    |--------    |------------    |-----------    |
+---------------------------------------------------------------
 | article16     | pass       | low            | automatic     |
 | article17     | pass       | high           | automatic     |
 | article18     | fail       | high           | manual        |
@@ -322,10 +323,10 @@ To model the annotations as a RDF resource, a linked data version of the DPD was
 The annotations, available online\footnote{\url{https://openscience.adaptcentre.ie/projects/GDPRtEXT/dpd_mapping.html}}, are consist of references from a clause in DPD to its corresponding clause in the GDPR with an expression of change between the two. The nature of change is represented by the values of: same - indicating no change, reduced - indicating reduction of obligation, slightly changed - indicating minor change, completely changed - indicating major change, and extended - indicating addition of obligations.
 
 To demonstrate the application of existing work regarding DPD compliance towards meeting GDPR obligations, previous existing work using XACML rules to denote DPD compliance \cite{}\cite{} were utilised to assess their suitability in meeting GDPR requirements.
-For each link between DPD and GDPR obligations in the annotation, a record was also added to indicate whether the corresponding XACML rule for DPD compliance needed to be changed. The notation \textit{N/A} was used to denote the case where no XACML rules existed for a particular DPD obligation and the corresponding obligation in GDPR had changed and had additional requirements. 
-% The value \textit{No} was used to indicate no changes in the GDPR obligation compared to the DPD obligation, so that the existing XACML rule would be sufficient to meet GDPR requirements. Similarly \textit{Yes} was used to indicate a change required in the XACML rule to handle the obligation.
+For each link between DPD and GDPR obligations in the annotation, a record was also added to indicate whether the corresponding XACML rule for DPD compliance needed to be changed. The notation \texttt{N/A} was used to denote the case where no XACML rules existed for a particular DPD obligation and the corresponding obligation in GDPR had changed and had additional requirements. 
+% The value \texttt{No} was used to indicate no changes in the GDPR obligation compared to the DPD obligation, so that the existing XACML rule would be sufficient to meet GDPR requirements. Similarly \texttt{Yes} was used to indicate a change required in the XACML rule to handle the obligation.
 
-The class \textit{DPDToGDPR\_Annotation} represents annotations between DPD and GDPR, with an example instance depicted in Listing.\ref{listing:vocabs:gdprtext-xacml}. The property \textit{resourceInDPD} is used to refer to the particular clause within DPD through its URI. Similarly, the property \textit{resourceInGDPR} is used to refer to the corresponding clause in GDPR. The nature of change is defined using the property \textit{hasChange} whose value is an instance of the class \textit{ChangeInObligation}, with defined instances for Extended, Same, Reduced, CompletelyChanged, and SlightlyChanged. Similarly, the change in the XACML rules is defined as a property whose values are one of Yes, No, and N/A defined as instances of the class \textit{ChangeInXACMLRule}. Comments are defined using the \textit{rdfs:comment} property.
+The class \texttt{DPDToGDPR\_Annotation} represents annotations between DPD and GDPR, with an example instance depicted in \autoref{listing:vocabs:gdprtext-xacml}. The property \texttt{resourceInDPD} is used to refer to the particular clause within DPD through its URI. Similarly, the property \texttt{resourceInGDPR} is used to refer to the corresponding clause in GDPR. The nature of change is defined using the property \texttt{hasChange} whose value is an instance of the class \texttt{ChangeInObligation}, with defined instances for Extended, Same, Reduced, CompletelyChanged, and SlightlyChanged. Similarly, the change in the XACML rules is defined as a property whose values are one of Yes, No, and N/A defined as instances of the class \texttt{ChangeInXACMLRule}. Comments are defined using the \texttt{rdfs:comment} property.
 \begin{lstlisting}[label={listing:vocabs:gdprtext-xacml},caption={Example annotation of associating obligation between DPD and GDPR with indication of corresponding changes required to reuse DPD compliance XACML rules for GDPR requirements}]
 @prefix gdpr: https://w3id.org/GDPRtEXT/gdpr# .
 @prefix dpd: https://w3id.org/GDPRtEXT/dpd# .
@@ -342,13 +343,18 @@ dpd:mappingrule6
 
 
 \subsection{Evaluation}
-The assessment of the extent to which GDPRtEXT meets the requirements outlined in \autoref{sec:voc:gdprtext-engineering} consists of evaluating whether the ontology and dataset produced is sufficient to enable granular linking of information with the concepts and clauses of the GDPR. Based on the presented work, GDPRtEXT meets these requirements and enables answering the competency questions related to use of GDPR in the compliance process.
-
 In terms of ontology assessment, the methodology outlined in \autoref{sec:voc:methodology} provides the criterion for evaluation of the quality of ontology as well as its documentation. GDPRtEXT fulfils these, based on tests undertaken using the OOPS! tool and by following the best practices community guidelines for ontology documentation.
-The publication of GDPRtEXT in Irish open data portal demonstrates the quality of the work, based on the 5 star rating given to it as a linked open dataset.
+The publication of GDPRtEXT in Irish open data portal demonstrates the quality of the work based on the 5 star rating given to it as a linked open dataset.
 
 GDPRtEXT, and the work described in this section, was published in the resource track at Extended Semantic Web Conference \cite{}. The publication described the creation of the resource, summarised its contents, and also provided mapping of DPD obligations with GDPR using a linked data approach and XACML to denote which obligations from DPD could be re-used towards GDPR compliance. Through this, the research and developed resources were peer-reviewed and adopted.
 Further validation is provided through a survey of legal approaches and works in the state of the art \cite{} which includes GDPRtEXT as one of the resources surveyed and demonstrates that GDPRtEXT is unique in its provision of GDPR as a machine-readable resource.
+
+\subsubsection{Fulfilment of Competency Questions}
+The assessment of GDPRtEXT consists of evaluating the extent to which it answers the competency questions outlined in \autoref{sec:voc:gdprtext-engineering}.
+The table XX. shows the competency question with the concepts and relationships of GDPRtEXT relevant towards answering it.
+Based on this and the described use-cases, GDPRtEXT meets requirements of representing and linking information with the text and concepts of GDPR in a granular manner.
+
+\subsubsection{Comparison with SotA}
 
 \subsection*{Summary}
 The GDPRtEXT resource represents the first major contribution of this thesis. It provides a linked data version of the text of GDPR and a vocabulary of its concepts, and fulfils research objectives $RO3(a)$ and $RO5(b)$ - as outlined in \autoref{sec:intro:RQ}. It enables exposing each individual article or point within the GDPR as a unique resource through URIs provided using semantic web notations.
@@ -360,65 +366,64 @@ GDPRtEXT has been released as an open resource under the permissive CC-by-4.0 li
 
 % GDPRov
 \section{GDPRov - Ontology for GDPR activities associated with Personal Data and Consent}\label{sec:voc:GDPRov}
-This section describes the GDPRov ontology for representing activities in ex-ante and ex-post phases associated with processing of personal data and consent for GDPR compliance. GDPRov stands for GDPR Provenance - which is a reference to the requirement of maintaining provenance information of processes in both ex-ante and ex-post phases representing for demonstrating GDPR compliance. This section presents the motivation, description, publication, and evaluation of the GDPRov ontology. It also presents comparisons with relevant approaches in the state of the art. GDPRov is available online\footnote{\url{}} with its documentation and code repository\footnote{\url{}}.
+This section describes the GDPRov ontology for representing activities in ex-ante and ex-post phases associated with processing of personal data and consent for GDPR compliance. GDPRov stands for GDPR Provenance - a reference to the requirement of maintaining provenance information of processes in both ex-ante and ex-post phases for demonstrating GDPR compliance. This section presents the motivation, overview, dissemination, and evaluation of the GDPRov ontology. It also presents comparisons with relevant approaches in the state of the art. 
 
-Following the motivation arising from importance of documenting activities associated with personal data processing and consent, the research objectives $RO3(b)$ and $RO3(c)$ in \autoref{sec:intro:RQ} outline the requirement for an ontology to represent this information.
-To ensure such an ontology meets the requirements of the GDPR, an analysis of information regarding GDPR compliance requirements was carried out to identify the requirements.
-The result of this exercise were the information regarding GDPR presented in \autoref{chapter:background} and the compliance questions presented in \autoref{sec:info:compliance-questions}.
-These compliance questions were then used as competency questions to identify requirements for the ontology.
-Simultaneously, an analysis of state of the art was carried out to identify existing semantic web representations of activities which were suitable for representing the information for GDPR compliance, which could be reused or extended compatible manner, and which were published in an open and permissive license permitting their usage in this research.
-
-The identified concepts and relationships were combined to create the GDPRov ontology. It utilised GDPRtEXT to provide definitions from within the text of the GDPR, thereby linking the ontology to relevant clauses and concepts of the GDPR. 
+GDPRov is available online\footnote{\url{http://w3id.org/GDPRov}} with its documentation and code repository\footnote{\url{https://github.com/coolharsh55/GDPRov}}.
+The ontology satisfies the research objectives $RO3(b)$ presented in \autoref{sec:intro:RQ}.
+It uses the compliance questions presented in \autoref{sec:info:compliance-questions} as competency questions to identify requirements and for evaluation.
+GDPRtEXT is used to define and associate the source of concepts within the text of GDPR.
 
 \subsection{Identification of requirements from competency questions}
 The compliance questions presented in \autoref{} provided the competency questions for deriving concepts and relationships regarding processes associated with personal data and consent in the context of GDPR compliance requirements. 
 These concepts and relationships were collected, combined, and analysed to ensure their cohesion as an ontology and evaluated against the compliance questions to ensure they satisfied requirements regarding GDPR compliance and documentation of associated processes.
-In this, the aspect of ex-ante and ex-post processes provides a form of duplication as most processes have their counterparts in both phases, and which is linked and documented in a manner so as to demonstrate the prior planning of processes to ensure their compliance and their execution which also needs to be documented to demonstrate compliance.
-Therefore, while GDPR requirements and the compliance questions do no explicitly mention or provide clues to the ex-ante and ex-post phases, the development of ontology explicitly considers each activity to have representations in both phases as a compliance requirement.
+In this, the aspect of ex-ante and ex-post processes provides a form of duplication as most processes have their counterparts in both phases, and which is linked and documented in a manner so as to demonstrate the prior planning of processes to ensure their compliance and their execution - which both need to be documented to demonstrate compliance.
+Therefore, while GDPR requirements and the compliance questions do no explicitly mention the existence of ex-ante and ex-post phases for each activity, the development of GDPRov explicitly considers each activity to have representations in both phases.
 
-In each of the sub-sections below, the relevant concepts arising from the denoted compliance question are described along with relevant relationships associated with those concepts. This is followed by an analysis of their role in ex-ante and ex-post phases. The section provides the analysis of concepts and relationships which act as requirements towards the construction of the GDPRov ontology, and serve to describe the motivation behind its design and implementation.
+The sub-sections below present the concepts arising from competency questions. 
+This is followed by an analysis of discovered concepts in ex-ante and ex-post phases.
+The analysis leads to requirements towards the construction of the GDPRov ontology, and serves to describe the motivation behind its design and implementation.
 
 \subsubsection{Actors and Agents involved in activities}
 \begin{itemize} 
-    \item \textit{CMQ2} - Provides the concept of Controller as an agent controlling the processes as defined by and its representative Data Protection Officer (DPO).
-    \item CMQ17 - Describes the Processor as an executor of processes and its representative DPO. In this relationship, the Controller provides such processes to the Processor to execute, which is governed by a Data Processing Agreement (DPA) between the two.
-    \item CMQ35 - Describes Data Subject as an agent who is associated with the provision of personal data, consent, and who is related to the exercising of rights.
+    \item \texttt{CMQ2} - Provides the concept of \textit{Controller} as an agent controlling the processes as defined by and its representative \textit{Data Protection Officer (DPO)}.
+    \item \texttt{CMQ17} - Describes the \textit{Processor} as an executor of processes and its representative \textit{DPO}. In this relationship, the \textit{Controller} provides such processes to the \textit{Processor} to execute, which is governed by a \textit{Data Processing Agreement (DPA)} between the two.
+    \item \texttt{CMQ35} - Describes \textit{Data Subject} as an agent who is associated with the provision of personal data, consent, and who is related to the exercising of rights.
 \end{itemize}
 
 \subsubsection{Details of processing}
 \begin{itemize}
-    \item \textit{CMQ3} and \textit{CMQ37} provide the concept of Purpose which describes the purpose of personal data processing. Each purpose can incorporate multiple processing operations, and each processing operation taking place can be associated with multiple purposes.
-    \item \textit{CMQ4} describe the necessity to specify data subject categories whose personal data is being processed.
-    \item \textit{CMQ36} describes personal data, while \textit{CMQ5} describes categories of personal data being processed. \textit{CMQ34} specifies special categories of personal data as a sub-category of personal data which needs to be explicitly stated as being processed.
-    \item \textit{CMQ38} defines processing of personal data as defined by Article 4-2 of GDPR. The GDPR definition of processing provides types of operations considered under processing, as specified by ``any operation or set of operations which is performed on personal data or on sets of personal data, whether or not by automated means, such as collection, recording, organisation, structuring, storage, adaptation or alteration, retrieval, consultation, use, disclosure by transmission, dissemination or otherwise making available, alignment or combination, restriction, erasure or destruction;''.
-    \item \textit{CMQ6} defines sharing of data as a type of processing. Additional information associated with sharing of data is provided by - \textit{CMQ7} and \textit{CMQ20} for categories of recipients; \textit{CMQ8},\textit{CMQ21} for identifies of recipients, \textit{CMQ9} and \textit{CMQ22} for location where data is being sharing to; \textit{CMQ10} and \textit{CMQ23} for safeguards associated with data transfer; \textit{CMQ15} and \textit{CMQ25} for purposes of sharing, which is the same concept as purpose of processing except applied for sharing of personal data.
-    \item \textit{CMQ11} defines data storage, with additional concepts provided by \textit{CMQ12} for existence of time limits or conditions for erasure and \textit{CMQ13} for specification of time limits or conditions for erasure for categories of data.
-    \item \textit{CMQ26} defines legal basis for justifying the processing of personal data, and \textit{CMQ27} specifies legal basis associated with a particular purpose. Each purpose can have one or more legal basis associated with it.
+    \item \texttt{CMQ3} and \texttt{CMQ37} provide the concept of \textit{Purpose} which describes the purpose of personal data processing. Each purpose can incorporate multiple processing operations, and each processing operation taking place can be associated with multiple purposes.
+    \item \texttt{CMQ4} describe the necessity to specify data subject categories whose personal data is being processed.
+    \item \texttt{CMQ36} describes personal data, while \texttt{CMQ5} describes categories of personal data being processed. \texttt{CMQ34} specifies special categories of personal data as a sub-category of personal data which needs to be explicitly stated as being processed.
+    \item \texttt{CMQ38} defines processing of personal data as defined by Article 4-2 of GDPR. The GDPR definition of processing provides types of operations considered under processing, as specified by ``\textit{any operation or set of operations which is performed on personal data or on sets of personal data, whether or not by automated means, such as collection, recording, organisation, structuring, storage, adaptation or alteration, retrieval, consultation, use, disclosure by transmission, dissemination or otherwise making available, alignment or combination, restriction, erasure or destruction;}''.
+    \item \texttt{CMQ6} defines sharing of data as a type of processing. Additional information associated with sharing of data is provided by - \texttt{CMQ7} and \texttt{CMQ20} for categories of recipients; \texttt{CMQ8},\texttt{CMQ21} for identifies of recipients, \texttt{CMQ9} and \texttt{CMQ22} for location where data is being sharing to; \texttt{CMQ10} and \texttt{CMQ23} for safeguards associated with data transfer; \texttt{CMQ15} and \texttt{CMQ25} for purposes of sharing, which is the same concept as purpose of processing except applied for sharing of personal data.
+    \item \texttt{CMQ11} defines data storage, with additional concepts provided by \texttt{CMQ12} for existence of time limits or conditions for erasure and \texttt{CMQ13} for specification of time limits or conditions for erasure for categories of data.
+    \item \texttt{CMQ26} defines legal basis for justifying the processing of personal data, and \texttt{CMQ27} specifies legal basis associated with a particular purpose. Each purpose can have one or more legal basis associated with it.
 \end{itemize}
 
 \subsubsection{Lifecycle of data}
 \begin{itemize}
-    \item \textit{CMQ28} and \textit{CMQ30} describe source of personal data which in turn implies an activity that collects data and specifies the actor or agent providing the data.
-    \item \textit{CMQ29} specifically refers to personal data collected from data subject.
+    \item \texttt{CMQ28} and \texttt{CMQ30} describe source of personal data which in turn implies an activity that collects data and specifies the actor or agent providing the data.
+    \item \texttt{CMQ29} specifically refers to personal data collected from data subject.
 \end{itemize}
 
 \subsubsection{Anonymisation}
 \begin{itemize}
-    \item \textit{CMQ31} specifies anonymisation of personal data, with \textit{CMQ32} inquiring about different `levels' of anonymisation which affect the application of obligations and requirements of compliance. 
+    \item \texttt{CMQ31} specifies anonymisation of personal data, with \texttt{CMQ32} inquiring about different `levels' of anonymisation which affect the application of obligations and requirements of compliance. 
     \item The levels are specified based on their application in the process of compliance, and include data which is completely anonymised, data which is pseudo-anonymised, and data which is not anonymised. In this, data that is pseudo-anonymised can be considered and used as anonymous data under the condition that the organisation does not have additional information to de-anonymise it. 
     \item From this, the processing associated with anonymisation and de-anonymisation of personal data are defined.
 \end{itemize}
 
 \subsubsection{Activities associated with Consent}
 \begin{itemize}
-    \item Regarding consent, \textit{CMQ48} inquires about activities associated with the provision and collection of consent. This includes information about how the consent is requested and collected, used within processes as a legal basis, and is archived for future demonstration of compliance.
-    \item \textit{CMQ49} and \textit{CMQ50} inquire about artefacts associated with the collection of consent as determination of validity of consent under GDPR require investigation of how choices for consent were offered. This also includes the form in which consent is provided or collected from the data subject. The artefacts are associated with the processes where consent choices are offered or requested and whose result is the collection of consent.
+    \item Regarding consent, \texttt{CMQ48} inquires about activities associated with the provision and collection of consent. This includes information about how the consent is requested and collected, used within processes as a legal basis, and is archived for future demonstration of compliance.
+    \item \texttt{CMQ49} and \texttt{CMQ50} inquire about artefacts associated with the collection of consent as determination of validity of consent under GDPR require investigation of how choices for consent were offered. This also includes the form in which consent is provided or collected from the data subject. The artefacts are associated with the processes where consent choices are offered or requested and whose result is the collection of consent.
 \end{itemize}
 
 \subsubsection{Provision of Rights}
 \begin{itemize}
     \item The rights associated with GDPR need processes to internally (from the perspective of the organisation) handle their execution as well as for interaction with the data subject. Therefore, such processes need to be defined and documented for compliance purposes.
-    \item In the case of right to be informed, \textit{CMQ88 - CMQ105} provide the competency questions regarding how the right is provided and how it is executed or implemented.
+    \item In the case of right to be informed, \texttt{CMQ88 - CMQ105} provide the competency questions regarding how the right is provided and how it is executed or implemented.
     \item This includes activities associated with the provision of information to the data subject, artefacts associated with information provision, inclusion of details such as controller and DPO, purposes, processing, legal basis, personal data categories.
     \item It also includes information about sources of personal data (where not obtained directly from the data subject), and whether the legal basis is legitimate interest.
     \item Regarding data sharing, the information to be specified includes categories of recipients , and their location.
@@ -428,25 +433,25 @@ In each of the sub-sections below, the relevant concepts arising from the denote
 
 \subsubsection{Compliance procedures such as Reporting of Data Breach}
 \begin{itemize}
-    \item The reporting of data breach requires information about data breach to be maintained, as specified by \textit{CMQ106 - CMQ120}.
-    \item This includes information about the data breach, which includes timestamp of when the breach occurred (\textit{CMQ106}), timestamp of when the controller became aware of it (\textit{CMQ107}), timestamp and method of it being notified to supervisory authority (\textit{CMQ108}).
-    \item Information about contents of breach include information about its affected personal data and categories of data subject (\textit{CMQ112}).
-    \item This information is associated with the process of reporting and documenting data breach in the form of artefacts. This information also needs to be provided to the supervisory authority and in some cases to the data subject based on the extent of the breach (\textit{CMQ113}) and therefore requires prior plans to execute the process and handle a data breach and send the information to data subjects along with any remedial measures (\textit{CMQ116}).
+    \item The reporting of data breach requires information about data breach to be maintained, as specified by \texttt{CMQ106 - CMQ120}.
+    \item This includes information about the data breach, which includes timestamp of when the breach occurred (\texttt{CMQ106}), timestamp of when the controller became aware of it (\texttt{CMQ107}), timestamp and method of it being notified to supervisory authority (\texttt{CMQ108}).
+    \item Information about contents of breach include information about its affected personal data and categories of data subject (\texttt{CMQ112}).
+    \item This information is associated with the process of reporting and documenting data breach in the form of artefacts. This information also needs to be provided to the supervisory authority and in some cases to the data subject based on the extent of the breach (\texttt{CMQ113}) and therefore requires prior plans to execute the process and handle a data breach and send the information to data subjects along with any remedial measures (\texttt{CMQ116}).
 \end{itemize}
 
 \subsubsection{Specifying requirements for ex-ante and ex-post phases}
-Process logs are a convenient and demonstrable form of information to store and document the compliant processing of personal data. By verifying such logs, it is possible to evaluate, document, and demonstrate that the executed processes were compliance with the requirements of the GDPR. This constitutes as ex-post documentation of compliance. Along with this, it is also essential to demonstrate that the executed processes were based on a pre-conceived plan or template that was ensured to be compliant before the actual execution. Storing such plans is essential to demonstrate prior planning and maintaining compliance. This constitutes as ex-ante documentation and demonstration of compliance.
+Process logs are a convenient and demonstrable form of information to store and document the compliant processing of personal data. By verifying such logs, it is possible to document, evaluate, and demonstrate that the executed processes were compliant with the requirements of GDPR. This constitutes as ex-post phase of compliance. Along with this, it is also essential to demonstrate that the executed processes were based on a preconceived plan or template that was ensured to be compliant before the actual execution. Storing such plans is essential to demonstrate prior planning and maintenance of a compliant processing system. This constitutes as ex-ante phase of compliance.
 
-Associating the executed processes with their plans allows demonstration of compliance throughout the lifecycle of the process. It also enables to document the change in plans and its effects on execution of processes - i.e. when a plan changes, it also brings about corresponding changes in the executed processes. In the context of GDPR compliance, the requirements of compliance require documentation, maintenance, and demonstration of processes across both ex-ante (planning) and ex-post (execution) phases. The ex-ante plans of processes are described as an organisational measure and their compliance is associated with ensuring processes meet legal requirements before they are actually carried out. In some instances, such as for DPIA, the existence of ex-ante information about processes is essential to the evaluation of compliance.
+Associating the executed processes with their plans allows demonstration of compliance throughout the lifecycle of the process i.e. from the planning of processes to their eventual execution. It also enables documenting change in plans and its effects on execution of processes - i.e. when a plan changes, it also brings about corresponding changes in the executed processes. In the context of GDPR compliance, the requirements of compliance require documentation, maintenance, and demonstration of processes across both ex-ante (planning) and ex-post (execution) phases. The ex-ante plans of processes are described as an organisational measure and their compliance is associated with ensuring processes meet legal requirements before they are actually carried out. In some instances, such as for a Data Protection Impact Assessment (DPIA), the existence of ex-ante information about processes is essential to the evaluation of compliance.
 
 With this, the requirements for representing processes can be summarised with the following points:
 \begin{enumerate}
-    \item Represent process in ex-ante phase as log or record.
-    \item Represent process in ex-post phase as plan or template.
-    \item Link ex-post plan with its instantiations or executions in ex-post phase as logs.
+    \item Represent process in ex-post phase as a log or record.
+    \item Represent process in ex-ante phase as plan or template.
+    \item Link ex-ante plan with its instantiations or executions in ex-post phase.
     \item Track the provenance of ex-ante plans i.e. changes in plans of processes.
     \item Enable tracking changes in ex-post logs based on corresponding changes in ex-ante plans.
-    \item Associate information with processes as artefacts.
+    \item Associate information with processes as artefacts in both ex-ante and ex-post phases.
     \item Associate actors/agents with processes.
     \item Link processes based on:
         \begin{enumerate}
@@ -457,54 +462,55 @@ With this, the requirements for representing processes can be summarised with th
 \end{enumerate}
 
 \subsection{Extending PROV-O and P-Plan}
-Based on the above stated requirements for representing activities or processes in ex-ante and ex-post phases, the existing semantic web ontologies of PROV-O \cite{} and P-Plan \cite{} were extended with relevant GDPR concepts and relationships to create the GDPRov ontology. The necessity of this process and a brief overview of PROV-O and P-Plan ontologies is described below along with the process of extending the two ontologies.
+Based on the above stated requirements for representing activities or processes in ex-ante and ex-post phases, the existing semantic web ontologies of PROV-O \cite{lebo_prov-o:_2013} and P-Plan \cite{garijo_p-plan_2014} were extended with relevant GDPR concepts and relationships to create the GDPRov ontology. The necessity of this process and a brief overview of PROV-O and P-Plan ontologies is presented below along with the process of extending the two ontologies.
 
 \subsubsection{PROV - W3C standard for representing provenance information}
 Provenance is information about entities, activities, and people (or software)
 involved in producing data or a component which can be used to form an
-assessment about its quality, reliability, or trustworthiness. The PROV-O ontology \cite{} along with PROV family\footnote{\url{https://www.w3.org/TR/2013/NOTE-prov-overview-20130430/}} of schemas and documents is the W3C recommendation since 30\textsuperscript{th} April 2013 for representing provenance information.
+assessment about its quality, reliability, or trustworthiness. The PROV-O ontology \cite{lebo_prov-o:_2013} along with PROV family\footnote{\url{https://www.w3.org/TR/2013/NOTE-prov-overview-20130430/}} of schemas and documents is the W3C recommendation since 30\textsuperscript{th} April 2013 for representing provenance information as has been seen significant adoption by the community.
 It provides definitions for interchange of provenance information by representing entities
 and relations between them such as generated by, derived from, and attributions.
 
-The core concepts of PROV-O are summarised in \autoref{fig:prov-o-model}, and consist of interactions between Activities, Entities, and Agents.
-An Entity in PROV-O is defined as being physical, digital, conceptual, or other
-kind of thing with some fixed aspects. PROV-O defines an Activity as something
+The core concepts of PROV-O are summarised in \autoref{fig:prov-o-model}, and consist of interactions between \textit{Activities}, \textit{Entities}, and \textit{Agents}.
+An \texttt{Entity} in PROV-O is defined as being physical, digital, conceptual, or other
+kind of thing with some fixed aspects. PROV-O defines an \texttt{Activity} as something
 that occurs over a period of time and acts upon or with entities; it may include
 consuming, processing, transforming, modifying, relocating, using, or generating
 entities.
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{img/prov-o-model.png}
-    \caption{Overview of PROV-O model \cite{}}
+    \includegraphics[width=0.8\linewidth]{img/prov-o-model.png}
+    \caption{Overview of PROV-O model \cite{lebo_prov-o:_2013}}
     \label{fig:prov-o-model}
 \end{figure}
 
 PROV-O is a generic and domain independent ontology for representing provenance information.
 In order for it to be applied to the domain of GDPR compliance, it needs to incorporate the relevant terminology and enable distinction between different types of activities and entities.
-Further, PROV-O as a provenance ontology, is intended to represent information about activities that have been executed in the past, and is therefore suitable to represent only the ex-post aspect of GPDR compliance processes.
-While PROV-O does provide the concept of `Plan' to represent ex-ante information, it does not provide further concepts or relationships to associate the plan with activities and entities.
-Therefore, in order to adopt PROV-O for representing information for GDPR compliance, it needs to be extended with the relevant concepts and relationships.
+Furthermore, PROV-O as a provenance ontology is intended to represent information about activities that have been executed in the past, and is therefore suitable to represent only the ex-post aspect of GPDR compliance processes.
+
+While PROV-O does provide the concept of \texttt{Plan}\footnote{PROV-O defines a \textit{plan} as a set of actions or steps towards some goal. It clarifies on the lack of concepts relevant to plans as - ``\textit{There exist no prescriptive requirement on the nature of plans, their representation, the actions or steps they consist of, or their intended goals.''}} to represent ex-ante information, it does not provide further concepts or relationships to associate the plan with activities and entities\footnote{PROV-O provides the concept of \texttt{Association} which assigns responsibility to an agent for an activity and indicates that the agent had a role in the activity, which can include a \texttt{Plan} associated using the \texttt{hasPlan} property.}.
+In order to adopt PROV-O and use the concept of \texttt{Plan} for representing ex-ante information for GDPR compliance, it needs to be extended with the additional concepts and relationships.
 
 \subsubsection{P-Plan - extending PROV-O Plans as Workflows}
-P-Plan \cite{} extends the concepts of `Plan' in PROV-O towards representing scientific
-workflows, which enables creating a template of a `step' and linking it to executions of activities.
-A \textit{p-plan:Plan} is a subclass of \textit{prov:Plan} and is composed of smaller activities or steps (\textit{p-plan:Step}) that use and generate (as inputs or outputs of steps) variables (\textit{p-plan:Variable}).
+P-Plan \cite{garijo_p-plan_2014} extends the concept of \texttt{Plan} in PROV-O towards representing scientific
+workflows which enable creating a template of a `step' and linking it to executions of activities.
+A \texttt{p-plan:Plan} is a subclass of \texttt{prov:Plan} and is composed of smaller activities or steps (\texttt{p-plan:Step}) that use and generate (as inputs or outputs) variables (\texttt{p-plan:Variable}).
 An overview of the relationship between PROV-O and P-Plan is described in \autoref{fig:p-plan-model}.
 P-Plan enables the representation of provenance information associated with both ex-ante and ex-post processes by representing them as scientific workflows. It also enables associating plans with their executions, thereby providing a link between ex-ante and ex-post provenance information.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.75\linewidth]{img/p-plan-model.png}
-    \caption{Overview of P-Plan model and its relationship with PROV-O \cite{}}
+    \caption{Overview of P-Plan model and its relationship with PROV-O \cite{garijo_p-plan_2014}}
     \label{fig:p-plan-model}
 \end{figure}
 
-A \textit{p-plan:Plan} represents information of `how’ something should happen or a ‘template’ for executions. A \textit{p-plan:Activity} is a subclass of \textit{prov:Activity} and represents the execution of the process described in a \textit{p-plan:Step}.
-A \textit{p-plan:Entity} is a subclass of \textit{prov:Entity} that corresponds to a \textit{p-plan:Variable} in the \textit{p-plan:Plan}. Therefore, a
-\textit{p-plan:Step} may describe the template including inputs and outputs which can
-then be instantiated into multiple instances of \textit{p-plan:Activity} that can have
+A \texttt{p-plan:Plan} represents information of `how’ something should happen or a `template’ for executions. A \texttt{p-plan:Activity} is a subclass of \texttt{prov:Activity} and represents the execution of the process described in a \texttt{p-plan:Step}.
+A \texttt{p-plan:Entity} is a subclass of \texttt{prov:Entity} that corresponds to a \texttt{p-plan:Variable} in the \texttt{p-plan:Plan}. Therefore, a
+\texttt{p-plan:Step} may describe the template including inputs and outputs which can
+then be instantiated into multiple instances of \texttt{p-plan:Activity} that can have
 distinct inputs to produce different outputs.
-As \textit{p-plan:Plan} extends \textit{prov:Plan}, which itself extends \textit{prov:Entity}, it can be
-used to treat the \textit{p-plan:Plan} as an object whose provenance can be tracked using
+As \texttt{p-plan:Plan} extends \texttt{prov:Plan}, which itself extends \texttt{prov:Entity}, it can be
+used to treat the \texttt{p-plan:Plan} as an object whose provenance can be tracked using
 PROV-O or P-Plan. This makes it possible to express provenance of processes that themselves also describe provenance, thereby creating a history of how plans were formulated and executed over time.
 
 \subsubsection{Extending ontologies for GDPR}
@@ -512,13 +518,13 @@ The PROV-O and P-Plan ontologies were extended to represent concepts and relatio
 The decision to extend PROV-O and P-Plan with GDPR concepts was made as both ontologies contain generic concepts associated with activities and workflows which can be used for representing information about GDPR compliance, but doing so would be not be intuitive due to the difference in terminology and structuring of information as expected for GDPR compliance.
 
 Extending existing ontologies of PROV-O and P-Plan enables expressing a `template'
-or `plan' using \textit{p-plan:Plan} describing ex-ante activities (as \textit{p-plan:Step}) that can take place. This template can then be used to denote execution of activities in ex-post phase using \textit{p-plan:Activity}.
+or `plan' using \texttt{p-plan:Plan} describing ex-ante activities (as \texttt{p-plan:Step}) that can take place. This template can then be used to denote execution of activities in ex-post phase using \texttt{p-plan:Activity}.
 This provides a machine-readable and documented data model of both ex-ante and ex-post activities, whose provenance itself can be expressed (using PROV-O and P-Plan) to record how they were created and how they  change over time.
 This is beneficial in documenting the state of a system at a given time as a set of activities that deal with consent and personal data, and
 can be helpful in determining changes when the interactions between personal data and an activity change over time.
 
 The extended ontology derived from PROV-O and P-Plan incorporates concepts and relationships associated with GDPR in order to normalise the terminology for representing information associated with GDPR compliance.
-The concepts and relationships are derived from the competency questions and linked with their relevant clauses within the GDPR through the use of GDPRtEXT by using \textit{rdfs:isDefinedBy} and \textit{rdfs:seeAlso}.
+The concepts and relationships are derived from the competency questions and linked with their relevant clauses within the GDPR through the use of GDPRtEXT by using \texttt{rdfs:isDefinedBy} and \texttt{rdfs:seeAlso}.
 This provides a form of documentation regarding the origin of concepts and their use in the representation of information associated with those clauses of the GDPR.
 It also provides a machine-readable link from the ontology to GDPR, which can be used to compare, analyse, and align relevant ontologies.
 
@@ -534,15 +540,15 @@ It uses the GDPRtEXT ontology to define concepts based on their origin and relev
 
 \subsubsection{Overview of GDPRov concepts}
 GDPRov extends concepts from PROV-O and P-Plan to represent activities associated with GDPR compliance, with a visual overview provided in \autoref{fig:vocabs:gdprov-overview}.
-To that end, it extends the concept of \textit{p-plan:Plan} in the form of \textit{Process} to represent ex-ante plans of activities that will take place.
-Each \textit{Process} can contain `step' (represented by \textit{p-plan:Step}) which represent activities that interact with data and agents (actors in provenance terminology).
-To associate steps with a process, the property \textit{p-plan:isStepOfPlan} is extended as \textit{isPartOfProcess}.
-Another additional property - \textit{refersToProcess} is also used to enable referring to a process without being a part of it.
-Similarly, to associate data (defined in P-Plan as \textit{p-plan:Variable}) the properties \textit{p-plan:hasInputVar} and \textit{p-plan:isOutputVarOf} are extended for activities using inputs and producing outputs respectively.
-The ex-post activities in P-Plan are represented by \textit{p-plan:Activity}.
-Data interactions with these activities is represented by \textit{p-plan:Entity} and the properties \textit{prov:used} and \textit{prov:wasGeneratedBy} are used to indicate inputs and outputs respectively.
+To that end, it extends the concept of \texttt{p-plan:Plan} in the form of \texttt{Process} to represent ex-ante plans of activities that will take place. The terminology is based on the use of term in commonly used expressions such as `business processes' and `compliance processes'.
+Each \texttt{Process} can contain steps (represented by \texttt{p-plan:Step}) to represent activities that interact with data and agents.
+To associate steps with a process, the property \texttt{p-plan:isStepOfPlan} is extended as \texttt{isPartOfProcess}.
+Another additional property - \texttt{refersToProcess} is also used to enable referring to a process without being a part of it.
+Similarly, to associate data (defined in P-Plan as \texttt{p-plan:Variable}) the properties \texttt{p-plan:hasInputVar} and \texttt{p-plan:isOutputVarOf} are extended for activities using inputs and producing outputs respectively.
+The ex-post activities in P-Plan are represented by \texttt{p-plan:Activity}.
+Data interactions with these activities is represented by \texttt{p-plan:Entity} and the properties \texttt{prov:used} and \texttt{prov:wasGeneratedBy} are used to indicate inputs and outputs respectively.
 GDPRov defines steps to indicate automated execution and user interactions regarding collecting data from the user (input) and providing data (output).
-To indicate the legal basis associated with a process or a step, the property \textit{hasLegalBasis} is provided.
+To indicate the legal basis associated with a process or a step, the property \texttt{hasLegalBasis} is provided.
 \begin{figure}[htbp]
     \centering
     \missingfigure[figcolor=white]{}
@@ -553,14 +559,14 @@ To indicate the legal basis associated with a process or a step, the property \t
 \subsubsection{Depicting Data Lifecycle}
 Activities associated with the lifecycle of personal data constitute of collecting, processing or using it, storing, sharing, deleting, transferring, transforming, anomymising, and rectifying it. GDPR defines several more categories of actions on data in Article 4-2 in its definition of `processing'.
 GDPRov provides broad and abstract processes to represent data access, data archival, data erasure, and data rectification given the need to execute these using several more steps.
-GDPRov also provides representations of actions in ex-ante phase as \textit{DataStep} which extends \textit{p-plan:Step} and in ex-post phase as \textit{DataActivity} which extends \textit{p-plan:Activity}.
+GDPRov also provides representations of actions in ex-ante phase as \texttt{DataStep} which extends \texttt{p-plan:Step} and in ex-post phase as \texttt{DataActivity} which extends \texttt{p-plan:Activity}.
 These are further extended to distinguish between data collection, data deletion, data sharing, data storage, data archival, data transfer, data transformation, data usage, and rectification of data.
 A visual summary of these is provided in \autoref{fig:vocabs:gdprov-data-lifecycle}.
 
 The anonymisation of data is defined as a sub-class of data transformation to indicate the transformation of data that takes place when anonymising it.
-As GDPR obligations are based on the level of anonymity and the capability of de-anonymising it from an organisation's point of view, GDPRov provides the concept of \textit{anonymisation level} to indicate the state of anonymity the data is in.
-GDPRov defines four levels of anonymisation based on existing work in representing anonymous data \cite{}, which constitute of data that is completely anonymised, completely deanonymised, pseudo-anonymised, and pseudo-organisational-anonymised where the organisation does not have the data required to de-anonymise it and can thus internally utilise it as if it were completely anonymous data.
-The sharing of data consists of interactions with actors or agents, which are represented by \textit{prov:Agent} and associated with the respective steps and activities using extended properties.
+As GDPR obligations are based on the level of anonymity and the capability of de-anonymising it from an organisation's point of view, GDPRov provides the concept of \texttt{anonymisation level} to indicate the state of anonymity the data is in.
+GDPRov defines four levels of anonymisation based on existing work in representing anonymous data \cite{hintze_meeting_2017}, which constitute of data that is completely anonymised, completely de-anonymised, pseudo-anonymised, and pseudo-organisational-anonymised where the organisation does not have the data required to de-anonymise it and can thus internally utilise it as if it were completely anonymous data.
+The sharing of data consists of interactions with actors or agents, which are represented by \texttt{prov:Agent} and associated with the respective steps and activities using extended properties.
 \begin{figure}[htbp]
     \centering
     \missingfigure[figcolor=white]{}
@@ -568,18 +574,18 @@ The sharing of data consists of interactions with actors or agents, which are re
     \label{fig:vocabs:gdprov-data-lifecycle}
 \end{figure}
 
-The personal data used within activities is represented by \textit{PersonalData} which is sub-classed from \textit{p-plan:Variable} for ex-ante representation and by \textit{PersonalDataEntity} which is sub-classed from \textit{prov:Entity} for ex-post representation.
+The personal data used within activities is represented by \texttt{PersonalData} which is sub-classed from \texttt{p-plan:Variable} for ex-ante representation and by \texttt{PersonalDataEntity} which is sub-classed from \texttt{prov:Entity} for ex-post representation.
 Further categorisation of personal data into anonymised, sensitive, and representing user identifier is provided through sub-classes.
 
 \subsubsection{Depicting Consent Lifecycle}
-Activities associated with consent and its lifecycle are represented in ex-ante phase by sub-classing \textit{p-plan:Step} as \textit{ConsentStep} and in ex-post phase by sub-classing \textit{p-plan:Activity} as \textit{ConsentActivity}.
+Activities associated with consent and its lifecycle are represented in ex-ante phase by sub-classing \texttt{p-plan:Step} as \texttt{ConsentStep} and in ex-post phase by sub-classing \texttt{p-plan:Activity} as \texttt{ConsentActivity}.
 These are further sub-classed to represent the acquisition, archival, modification, and withdrawal of consent.
 Amongst these, withdrawal of consent is defined as sub-class of modification since it modifies the state of consent.
 A visual summary of these is provided in \autoref{fig:vocabs:gdprov-consent-lifecycle}.
 
 The artefacts associated with consent and used in activities include the choices or offer of consent provided to the individual and the subsequent consent given by the individual.
-To represent these in ex-ante phase, GDPRov provides the concepts of \textit{ConsentAgreementTemplate} to represent the template offered to collect consent, \textit{ConsentAgreement} to indicate the given consent, and \textit{TermsAndConditions} to indicate the policies or terms and conditions.
-The corresponding concepts in ex-post phase are \textit{GivenConsentTemplate}, \textit{GivenConsent}, and \textit{TermsAndConditionsEntity}.
+To represent these in ex-ante phase, GDPRov provides the concepts of \texttt{ConsentAgreementTemplate} to represent the template offered to collect consent, \texttt{ConsentAgreement} to indicate the given consent, and \texttt{TermsAndConditions} to indicate the policies or terms and conditions.
+The corresponding concepts in ex-post phase are \texttt{GivenConsentTemplate}, \texttt{GivenConsent}, and \texttt{TermsAndConditionsEntity}.
 \begin{figure}[htbp]
     \centering
     \missingfigure[figcolor=white]{}
@@ -591,7 +597,7 @@ The corresponding concepts in ex-post phase are \textit{GivenConsentTemplate}, \
 In addition to representing activities associated with personal data and consent, GDPRov also provides reprentations for compliance-related processes.
 These include actions such as appointing processor (by a controller), carrying out an impact assessment, marketting and its special case of direct marketting, and monitoring compliance.
 Processes are also provided for handling data breaches, which include notifying the controller (by a processor), notifying the data subject, and notifying the data protection authority.
-The handling of right provided by the GPDR is represented through sub-classes of \textit{Process} for data portability, erasure, access personal data, basic info about processing, no automated processing, object to direct marketting, object processing, rectification, restrict processing, transparency, SAR (subject access request).
+The handling of right provided by the GPDR is represented through sub-classes of \texttt{Process} for data portability, erasure, access personal data, basic info about processing, no automated processing, object to direct marketting, object processing, rectification, restrict processing, transparency, SAR (subject access request).
 
 % \subsubsection{Actors and Agents}
 % Controller Representative
@@ -606,15 +612,9 @@ The handling of right provided by the GPDR is represented through sub-classes of
 
 % \subsubsection{Documentation \& Dissemination}
 
-\subsection{Evaluation}
-The ontology assessment was based on the methodology outlined in \autoref{sec:voc:methodology} regarding the criterion for evaluation of the quality of ontology and its documentation.
-The ontology satisfies the requirements of the competency questions in representing activities associated with personal data and consent.
-It goes further in providing relevant and useful concepts associated with other activities and processes associated with GDPR compliance such as those associated with data breaches and handling of rights, which shows its applicability in other use-cases.
-GDPRov was published \cite{} in a peer-reviewed publication and has been cited in other relevant works within the state of the art, which lends credence to its contributions.
-Subsequent revisions included addition of new concepts associated with practical real-world implementation of GDPR compliance, particularly those associated with consent mechanisms on the internet.
-
+\subsubsection{Example Use-Cases}
 The applicability and usefulness of GDPRov is demonstrated through its use for querying and validation of information for GDPR compliance in \autoref{chapter:testing}.
-A simplified example demonstrating such an application was published along with the ontology in the peer-reviewed publication \cite{}, and which is presented in \autoref{listing:vocabs:gdprov-query} demonstrate how GDPRov can assist in the answering of compliance questions for GDPR.
+A simplified example demonstrating such an application was published along with the ontology in the peer-reviewed publication \cite{}, and which is presented in \autoref{listing:vocabs:gdprov-query} to demonstrate how GDPRov can assist in the answering of compliance questions for GDPR.
 
 \begin{lstlisting}[label={listing:vocabs:gdprov-query},caption={SPARQL query demonstrating use of GDPRov in representing and retrieving steps, data, anonymity level, and anonymisation process based on sharing of data \cite{}}]
 PREFIX gdprov: <https://w3id.org/GDPRov#>
@@ -633,6 +633,32 @@ WHERE {
     }
 }
 \end{lstlisting}
+
+Another example use-case is detecting the necessity of changes in given consent which would require updating an individual's consent based on updates to a plan such as when a purpose changes or a new processing operation is added to an existing purpose. By storing the plans of processing operations using GDPRov, it is possible to compare the old and new versions of a plan, detect changes, and identify whether corresponding updates to consent are needed. 
+
+An exploration of such change detection was published in the Managing the Evolution and and Preservation of the Data Web workshop co-located with ESWC 2018 \cite{}.
+It considered the representation of activities using P-Plan, which can be substituted with GDPRov for GDPR-specific activities. In the explored example, an existing plan is updated to remove the step of sending advertisements. The change detection, visualised in \autoref{fig:vocabs:gdprov-change-detection}, is based on identifying the differences between the two plans in terms of steps and variables and whether they have been added, removed, or modified.
+In the figure, the change reflects the removal of a step - which by itself does not require any changes to a given consent since no new purposes have been added to an existing given consent.
+Using this approach, the detected change can be analysed - manually for complex and legal interpretations while automatically for simpler or simplified graphs - and used to identify whether corresponding changes are necessary based on compliance obligations.
+\begin{figure}[htbp]
+    \centering
+    \missingfigure[figcolor=white]{}
+    \caption{Modelling changes in workflows using P-Plan \cite{}}
+    \label{fig:vocabs:gdprov-change-detection}
+\end{figure}
+
+\subsection{Evaluation}
+The ontology assessment was based on the methodology outlined in \autoref{sec:voc:methodology} regarding the criterion for evaluation of the quality of ontology and its documentation.
+The ontology satisfies the requirements of the competency questions in representing activities associated with personal data and consent.
+It provides relevant and useful concepts associated with other activities and processes associated with GDPR compliance such as those associated with data breaches and handling of rights, which shows its applicability in other use-cases of GDPR compliance.
+GDPRov was published \cite{} an a peer-reviewed publication in the Workshop on Society, Privacy and the Semantic Web - Policy and Technology (PrivOn) co-located with the 16th International Semantic Web Conference. It has been cited in other relevant works \cite{} within the state of the art, which lends credence to its contributions.
+Subsequent revisions included addition of new concepts associated with practical real-world implementation of GDPR compliance, particularly those associated with consent mechanisms on the internet.
+
+\subsubsection{Fulfilment of Competency Questions}
+An assessment of the extent to which GDPRov satisfies the competency questions by providing concepts and relationships to represent information for answering is presented through the Table XX.
+Based on these, it can be concluded that GDPRov satisfies the requirements set out for its creation and thus fulfils research objective $RO3(b)$.
+
+\subsubsection{Comparison with SotA}
 
 \subsection*{Summary}
 GDPRov represents the second major contribution of this thesis by providing an ontological representation of ex-ante and ex-post activities associated with personal data and consent for GDPR compliance.
@@ -897,7 +923,7 @@ A summary of these use-cases is as follow:
     required'')
   \end{enumerate}
 \end{enumerate}
-Based on these use-cases, a set of competency questions were developed from the compliance questions presented in \autoref{} pertaining to given consent (\textit{CMQ-CMQ}) and change in consent state (\textit{CMQ-CMQ}).
+Based on these use-cases, a set of competency questions were developed from the compliance questions presented in \autoref{} pertaining to given consent (\texttt{CMQ-CMQ}) and change in consent state (\texttt{CMQ-CMQ}).
 These were further categorised as questions about consent itself, questions about how the consent was created/given/changed/invalidated, questions about the context of how consent was created/given/invalidated, and questions related to third parties associated with the consent.
 
 \subsection{Ontology Description \& Application}
@@ -912,12 +938,12 @@ The core concepts associated with consent in all its state refer to the informat
     \label{fig:vocabs:gconsent-core}
 \end{figure}
 
-The \textit{DataSubject} is the person the consent is associated with as an agreement of their choices. This person may or may not be the same entity that gave the consent, as in the case of parental or guardian giving consent for a child or the act of delegation. The \textit{DataSubject} class is defined as a subclass of \textit{prov:Person}, and has the subclass \textit{MinorDataSubject} to denote a data subject that is legally a minor or a child.
-Each instance of \textit{Consent} can only be associated with one and only one \textit{DataSubject}, and any further changes or modifications to the state of consent will continue to be associated with the same \textit{DataSubject}.
-The \textit{PersonalData} is the set of personal data associated with the consent. Where multiple personal data are associated with a single instance of consent, it is interpreted to mean the union of these sets of personal data. Similarly, \textit{Purpose} and \textit{Processing} are also to be interpreted as union rather than intersection.
+The \texttt{DataSubject} is the person the consent is associated with as an agreement of their choices. This person may or may not be the same entity that gave the consent, as in the case of parental or guardian giving consent for a child or the act of delegation. The \texttt{DataSubject} class is defined as a subclass of \texttt{prov:Person}, and has the subclass \texttt{MinorDataSubject} to denote a data subject that is legally a minor or a child.
+Each instance of \texttt{Consent} can only be associated with one and only one \texttt{DataSubject}, and any further changes or modifications to the state of consent will continue to be associated with the same \texttt{DataSubject}.
+The \texttt{PersonalData} is the set of personal data associated with the consent. Where multiple personal data are associated with a single instance of consent, it is interpreted to mean the union of these sets of personal data. Similarly, \texttt{Purpose} and \texttt{Processing} are also to be interpreted as union rather than intersection.
 The `status' or `state' of consent indicates the suitability of using that specific instance of consent as a legal basis for the processing of personal data defined by the consent attributes.
 
-\textit{Purpose} and \textit{Processing} are concepts that have semantic meaning based upon their use within the GDPR.
+\texttt{Purpose} and \texttt{Processing} are concepts that have semantic meaning based upon their use within the GDPR.
 `Processing' is defined by Article 4-2, while `Purpose' has no specific definition provided but can be summarised as the intent or aim of why the set of personal data is needed or to be used for. In practice, purpose is generally defined at a higher abstract level, and often encompasses several types or categories of data. An example of this is a privacy policy specifying `account information' and `location of service use' - which are data categories, and that are `collected' and `used' - which are processing operations on the personal data, `to ensure security of the account' - which is the purpose the personal data will be processed for. The relation between a purpose and its associated processing operations is quite opaque. It is difficult to determine which processing operations a purpose entails and vice versa, and their usage may not always be implied or commonly understood. Therefore, GConsent provides purpose and processing as self-declarative high-level concepts which can be extended with additional information.
 
 % To faciliate this, GConsent provides several instances of useful status types divided across two subclass to indicate the valid and invalid states. Additional categories can be defined by extending any of the classes as required.
@@ -928,8 +954,8 @@ GConsent provides concepts for location, medium, and timestamp to indicate insta
 The provided contexts in GConsent are visualised in \autoref{fig:vocabs:gconsent-context}.
 
 % A delegation is the transfer of responsiblity to provide consent to an entity other than the data subject the consent is about. This includes a parent or a guardian giving the consent in lieu of a minor. 
-Context is associated with an instance of consent using the generic property \textit{hasContext}, with specialised properties extending it to indicate provision, expiry, location, time, and medium. 
-Additional contexts can be represented and associated by extending \textit{hasContext} in a similar manner.
+Context is associated with an instance of consent using the generic property \texttt{hasContext}, with specialised properties extending it to indicate provision, expiry, location, time, and medium. 
+Additional contexts can be represented and associated by extending \texttt{hasContext} in a similar manner.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\linewidth]{img/gconsent_context.png}
@@ -940,7 +966,7 @@ Additional contexts can be represented and associated by extending \textit{hasCo
 \subsubsection{Consent States}
 The state of consent determines the suitability of its usage as a legal basis in the processing of personal data.
 From a compliance perspective, there are only two categories of states - one which permits legal processing of personal data, and one which is not sufficient or prohibits such processing.
-GConsent represents these using the concepts by sub-classing \textit{Consent} as \textit{StatusValidForProcessing} and \textit{StatusInvalidForProcessing} to indicate use of an consent instance as a valid or invalid legal basis, as depicted in \autoref{fig:vocabs:gconsent-status}.
+GConsent represents these using the concepts by sub-classing \texttt{Consent} as \texttt{StatusValidForProcessing} and \texttt{StatusInvalidForProcessing} to indicate use of an consent instance as a valid or invalid legal basis, as depicted in \autoref{fig:vocabs:gconsent-status}.
 Instances provided to represent states of valid consent to indicate legal processing, and include - explicitly given, implicitly given, and given by delegation.
 Instances provided that represent invalid states of consent to indicate processing should not be carried out include - unknown, not given, withdrawn, expired, invalidated, refused, and requested.
 
@@ -962,7 +988,7 @@ The documentation of GConsent provides example applications of the ontology in f
 The fourth example is presented here to explain the application of GConsent and the use of its concepts to represent information towards GDPR compliance.
 
 The example, as visually represented in \autoref{fig:vocabs:gconsent-example}, shows association of a third party in the role of a data processor\footnote{Under GDPR, a processor is not considered a third party, but has its own defined role as an entity associated with the Controller. However, from a lay person's perspective, the individual is the first party, the Controller is the second party, and any other entity is a third party. GConsent reflects this use in its structuring of entities where a Processor is considered a special type of Third Party.}
-with whom the data is shared for the purpose of advertising. The association is captured by the instance \textit{ex:AdvertisingArrangement} of type \textit{prov:Association}, and has \textit{ex:AdPartner} defined as a \textit{gdprov:Processor} defined with the role as \textit{gdprtext:Processor}. It is also possible to list out the specific arrangement for this association using the \textit{prov:hadPlan} property and a \textit{gdprov:Process} instance to list out the specific steps and entities involved in the data sharing arrangement.
+with whom the data is shared for the purpose of advertising. The association is captured by the instance \texttt{ex:AdvertisingArrangement} of type \texttt{prov:Association}, and has \texttt{ex:AdPartner} defined as a \texttt{gdprov:Processor} defined with the role as \texttt{gdprtext:Processor}. It is also possible to list out the specific arrangement for this association using the \texttt{prov:hadPlan} property and a \texttt{gdprov:Process} instance to list out the specific steps and entities involved in the data sharing arrangement.
 
 The example serves to demonstrate the practical use of GConsent in representing information about consent, where PROV-O is used to specify relationships with a Processor. GConsent can be combined or supplemented by other ontologies to define such associations and practical reflections of data sharing agreements between parties. The defined instance of consent in the example enables a Controller to track the state of consent as the data subject is provided with the choice of whether to agree to this arrangement or to refuse it, and where upon agreement the option to exercise the right to modify and withdraw the consent is also provided.
 \begin{figure}[htbp]
@@ -996,7 +1022,7 @@ There is currently an ongoing effort to combine the existing standard of Consent
 \subsection{Relevance of DPV to this thesis}
 The Data Protection Vocabulary is a semantic web ontology for representing information about personal data handling based on the framework provided by requirements for GDPR compliance.
 It is the outcome of the work done by the W3C Data Privacy Vocabularies and Controls Community Group (DPVCG) which provides collaboration between a community of academics, researchers, industry stakeholders, and legal experts as initially described in \autoref{}.
-It aims to work towards establishment of \textit{interoperable standards} regarding representing information about personal data processing, for which there is no suitable standard present.
+It aims to work towards establishment of \texttt{interoperable standards} regarding representing information about personal data processing, for which there is no suitable standard present.
 
 The DPV reflects a community consensus in its representation of information regarding data protection and personal data processing. While being a generic vocabulary, much of its design is based on and reflected by the requirements of the GDPR. The DPV, and by extension the DPVCG, reflect an ongoing effort to provide practical and useful semantic representations of information in an open and interoperable machine-readable form. 
 
@@ -1015,7 +1041,7 @@ This section describes the DPV and compares it with the ontologies presented in 
 It demonstrates the differences in representation of information, scope, and methodology of the two approaches of work, and their complimentary nature in addressing GDPR.
 \subsection{Overview of DPV}
 \subsubsection{Description of Data Privacy Vocabulary}
-The DPV ontology is published at the W3C namespace \url{http://w3.org/ns/dpv} with its documentation and uses the namespace prefix \textit{dpv}. 
+The DPV ontology is published at the W3C namespace \url{http://w3.org/ns/dpv} with its documentation and uses the namespace prefix \texttt{dpv}. 
 The current iteration of vocabulary provides classes and properties to annotate and categorise information about legally compliant personal data handling. In this context, personal data handling refers to all operations associated with the processing of personal data and its management - which includes organisational measures which do not directly affect the data or its processing.
 
 The DPV is a pseudo-modular ontology, with a set of core concepts referred to as the `Base Ontology', and modular extensions further expanding each concept in the form of a taxonomy. 
@@ -1070,7 +1096,7 @@ Consent as a special case of legal basis provided by the GDPR is provided with a
 The concepts associated with consent provide terms to describe consent provision, withdrawal, and expiry.
 The structure of these was adapted from an analysis of existing work in the form of Consent Receipt \cite{lizar_consent_2017} and GConsent \cite{pandit_gconsent_2019} with the intention to enable documenting attributes associated with consent which can demonstrate and evaluate its validity based on requirements of the GDPR.
 
-\subsection{Comparison of GDPRtEXT, GDPRov, and GConsent with and DPV}
+\subsection{Comparison of DPV with GDPRtEXT, GDPRov, and GConsent}
 DPV has several commonalities with the ontologies presented in this thesis arising from the common aim of representing information for legal compliance with laws such as the GDPR.
 However, the aim and granularity of representing information about all attributes relevant to the processing of personal data differentiates the DPV from the specific focus of ontologies presented in this thesis.
 Given the high-level and abstract nature of DPV in its concepts, and the more granular and representative focus of developed ontologies, there is a possibility of aligning or combining the two.
@@ -1110,7 +1136,7 @@ In contrast, GConsent provides similar concepts as the DPV base vocabulary and u
 Given that GConsent was an input to the DPV and by extension influential in its modelling of consent, there is a degree of compatibility between the two based on the similarity of concepts.
 In this, GConsent is a more verbose and detailed vocabulary while DPV provides a minimal set of concepts regarding consent but is more expressive in representing the overall information regarding data processing.
 
-\section{Comparing developed ontologies with SotA}
+\subsection{Comparing DPV with SotA}\label{sec:voc:dpv-sota}
 This section provides a comparison of the developed ontologies of GDPRtEXT, GDPRov, GConsent, and DPV with the state of the art presented in \autoref{chapter:sota}.
 The comparison is based on the criteria used to analyse the existing approaches with a particular focus on assessing the extent to which the developed ontologies address the identified gaps and contribute to the state of the art.
 
