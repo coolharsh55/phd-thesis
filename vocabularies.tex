@@ -738,10 +738,9 @@ Subsequent revisions included addition of new concepts associated with practical
 \subsubsection{Fulfilment of Competency Questions}
 An assessment of the extent to which GDPRov satisfies the competency questions by providing concepts and relationships is presented as part of its evaluation.
 The competency questions, summarised in \autoref{sec:gdprov:cq}, were used to guide the development of the ontology and therefore used to evaluate if the ontology meets the requirements of representing this information.
-\autoref{table:gdprov:cq} lists the concepts and properties relevant to answer the competency question. Some questions which were not considered in scope regarding expression of activities are marked with \textit{N/S}. These questions either require more information to provide a concrete design pattern or have multiple possible representations of which it cannot be determined which is more useful from a legal compliance point of view. Examples include location of recipients - which can be expressed either through an property/annotation associated with a data sharing activity or attached with a particular third party; and specifying time limits or duration or conditional events associated with data storage and deletion periods. These have been identified as future work regarding further development of the ontology based on differing interpretations of representation, complexity of specifying values such as ``EU membership'' and  ``as long as required'', and the pending expert opinion of legal authorities on these issues through courts or executive decisions.
-% TODO: Table GDPRov CQ
-\begin{table}
-% \footnotesize
+\autoref{table:gdprov:cq} lists the concepts and properties relevant to answer the competency question. 
+\begin{table}[htbp]
+\footnotesize
 \centering
 \caption{Concepts in GDPRov for answering competency questions}
 \begin{tabularx}{\textwidth}{|l|X|p{5cm}|l|}
@@ -785,6 +784,8 @@ The competency questions, summarised in \autoref{sec:gdprov:cq}, were used to gu
 \label{table:gdprov:cq}
 \end{table}
 
+Some questions which were not considered in scope regarding expression of activities are marked with \textit{N/S}. These questions either require more information to provide a concrete design pattern or have multiple possible representations of which it cannot be determined which is more useful from a legal compliance point of view. Examples include location of recipients - which can be expressed either through an property/annotation associated with a data sharing activity or attached with a particular third party; and specifying time limits or duration or conditional events associated with data storage and deletion periods. These have been identified as future work regarding further development of the ontology based on differing interpretations of representation, complexity of specifying values such as ``EU membership'' and  ``as long as required'', and the pending expert opinion of legal authorities on these issues through courts or executive decisions.
+
 From the presented evaluation, it can be concluded that GDPRov satisfies the requirements of answering  competency questions and identifies those that are needed to be resolved as future work based on availability of legal opinion and decisions. GDPRov thus fulfils the research objective $RO3(b)$ by providing representations of activities associated with personal data and consent in ex-ante and ex-post phases.
 
 \subsubsection{Comparison with SotA}
@@ -796,7 +797,7 @@ A comparison of GDPRov with the SotA is provided in \autoref{table:gdprov:sota} 
 The table lists the features supported by each approach through the notation of a check mark (\cmark).
 The column headings corresponding with expression of information supported by an approach, and use the following abbreviations - (Repr): method used for representation of process flow; (EA): whether it permits Ex-ante modelling; (EP): whether it permits Ex-post modelling; (Pu): whether Purpose can be specified; (Pr): whether Processing can be specified; (DS): if Data Sharing can be modelled; (Rp): if Recipients are associated with data sharing; (St): whether Data Storage occurs; (Rg): if provision of Rights can be modelled; and (LB): if Legal Basis can be associated with a process flow.
 % Table GDPRov vs SotA
-\begin{table}
+\begin{table}[htbp]
 \footnotesize
 \centering
 \caption{Comparison of GDPRov with SotA}\label{table:gdprov:sota}
@@ -1181,7 +1182,40 @@ This was an iterative process where the ontology was tested and modified to acco
 GConsent was published in the Extended Semantic Web Conference as a peer-reviewed publication \cite{} which described the motivation, methodology, and creation of the ontology. Along with this, the documentation of GConsent, available online, also provides extensive information about the ontology and its potential applications. It also provides a brief comparison of the ontology with relevant approaches within the state of the art.
 
 \subsubsection{Fulfilment of Competency Questions}
-The assessment of the extent to which GConsent provides concepts and relationships to answer the competency questions is presented through Table XX. Through these, it can be concluded that GConsent satisfies the requirements of providing information for answering the compliance questions and thus fulfils research objective $RO3(c)$.
+The assessment of the extent to which GConsent provides concepts and relationships to answer the competency questions is presented in \autoref{table:gconsent:cq}. 
+Through these, it can be concluded that GConsent satisfies the requirements of providing information for answering the compliance questions and thus fulfils research objective $RO3(c)$.
+\begin{table}[htbp]
+\footnotesize
+\centering
+\caption{Concepts and relationships in GConsent for answering competency questions}
+\begin{tabularx}{\textwidth}{|p{1cm}|X|p{4cm}|p{3.5cm}|}
+\hline
+\textbf{CQ} & \textbf{Question} & \textbf{Concepts} & \textbf{Properties} \\ \hline
+\multicolumn{4}{|l|}{\textbf{Questions about consent}} \\ \hline
+\textit{CMQ35} & Who is the consent about? & \textit{DataSubject} & \textit{isConsentForDataSubject} \\ \hline
+\textit{CMQ36} & What type of Personal Data are associated with the Consent? & \textit{PersonalData} & \textit{forPersonalData} \\ \hline
+\textit{CMQ37} & What type of Purposes are associated with the Consent? & \textit{Purpose} & \textit{forPurpose} \\ \hline
+\textit{CMQ38} & What type of Processing are associated with the Consent? & \textit{Processing} & \textit{forProcessing} \\ \hline
+\textit{CMQ39} & What is the Status of Consent? & \textit{Status} & \textit{hasStatus} \\ \hline
+\textit{CMQ87} & Is the current status valid for processing? & \textit{StatusValidForProcessing, StatusInvalidForProcessing} & \textit{hasStatus} \\ \hline
+\textit{CMQ46} & Who is the consent given to? & \textit{prov:Person, DataController} & \textit{isProvidedTo} \\ \hline
+\multicolumn{4}{|l|}{\textbf{Questions about how the consent was created/given/acquired/changed/invalidated}} \\ \hline
+\textit{CMQ42, CMQ76} & Who created/gave/acquired/invalidated the consent? & \textit{DataSubject, Delegation} & \textit{isProvidedBy} \\ \hline
+\textit{CMQ41, CMQ77} & If consent was created/gave/acquired/invalidated through Delegation, who acted as the Delegate? & \textit{prov:Person, Delegation} & \textit{prov:agent} \\ \hline
+\textit{CMQ43} & If consent was created/gave/acquired/invalidated through Delegation, what was the role played by Delegate? & \textit{prov:Role} & \textit{prov:hadRole} \\ \hline
+\textit{CMQ44} & If consent was created/gave/acquired/invalidated through Delegation, how was the delegation executed? & \textit{prov:Activity} & \textit{prov:hadActivity} \\ \hline
+\multicolumn{4}{|l|}{\textbf{Questions about the context of how consent was created/gave/acquired/invalidated}} \\ \hline
+\textit{CMQ53, CMQ84} & What is the location of associated with consent? & \textit{prov:Location} & \textit{atLocation} \\ \hline
+\textit{CMQ54, CMQ85} & What is the medium associated with consent? & \textit{Medium} & \textit{inMedium} \\ \hline
+\textit{CMQ55, CMQ86} & What is the timestamp associated with the consent? & \textit{time:Instant} & \textit{atTime} \\ \hline
+\textit{CMQ56, CMQ87} & What is the expiry of the consent? & \textit{time:TemporalEntity} & \textit{hasExpiry} \\ \hline
+\textit{CMQ82} & What artefacts were shown when consent was acquired/changed/created/invalidated? & \textit{prov:Entity} & \textit{prov:used} \\ \hline
+\multicolumn{4}{|l|}{\textbf{Questions related to Third Party associated with the consent}} \\ \hline
+\textit{CMQ57} & Is the purpose or processing associated with a third party? & \textit{Association, ThirdParty} & \textit{hasAssociation, prov:agent} \\ \hline
+CMQ58 & What is the role played by the third party in the purpose or processing? & Role & prov:hadRole \\ \hline
+\end{tabularx}
+\label{table:gconsent:cq}
+\end{table}
 
 \subsubsection{Comparison with SotA}
 Compared to existing work regarding consent in the state of the art presented in \autoref{chapter:sota}, GConsent provides novel contributions regarding the representation of consent for GDPR compliance.
