@@ -17,7 +17,7 @@ The chapter concludes with a summary of the developed ontologies and DPV, and a 
 \subsubsection*{Utilisation of Existing Ontology Engineering Methodologies}
 The creation of ontologies followed guidelines and methodologies deemed `best practice' by the semantic web community. In this, `Ontology development 101: A guide to creating your first ontology' by Noy and McGuiness \cite{noy_ontology_2001} was utilised as the guiding document for ontology creation. It provided a series of steps for construction of an ontology with attention on avoiding bad design decisions and common pitfalls. It also suggested the use of competency questions to determine the scope of an ontology and to evaluate it after creation. 
 % For this, the compliance questions presented in \autoref{} were used as competency questions.
-The guide suggests use of Protégé\footnote{\url{}} \cite{} as a popular tool for ontology development which provides a semantic reasoner to detect inconsistencies in the ontology.
+The guide suggests use of Protégé\footnote{\url{https://protege.stanford.edu/}} as a popular tool for ontology development which supports using semantic reasoners to detect inconsistencies in the ontology.
 Use of the guide provided a foundational basis for initiating the ontology development process by using the compliance questions from \autoref{sec:info:compliance-questions} as competency questions to identify concepts and relationships, test them for inconsistencies using Protégé, and iteratively combine them to create an ontology. 
 
 The development of ontologies followed a combination of the NeOn methodology \cite{} and UPON Lite methodology \cite{}. NeOn provides a flexible workflow through the use of scenarios which can be adapted for ontology development. The scenarios include implementing using a specification, reusing and re-engineering existing ontological and non-ontological resources, and utilisation of ontological design patterns. 
@@ -353,8 +353,56 @@ Further validation is provided through a survey of legal approaches and works in
 
 \subsubsection{Fulfilment of Competency Questions}
 The assessment of GDPRtEXT consists of evaluating the extent to which it answers the competency questions outlined in \autoref{sec:voc:gdprtext-engineering}.
-The table XX. shows the competency question with the concepts and relationships of GDPRtEXT relevant towards answering it.
+The \autoref{table:gdprtext:eval-cq}. shows the competency question with the concepts and relationships of GDPRtEXT relevant towards answering it.
 Based on this and the described use-cases, GDPRtEXT meets requirements of representing and linking information with the text and concepts of GDPR in a granular manner.
+\begin{table}
+\centering
+\caption{TableName}
+\begin{tabular}{|l|l|l|}
+\hline
+
+CQ & Classes & Properties \\ \hline
+CQ1 & Recital &  \\ \hline
+CQ2 & Chapter &  \\ \hline
+CQ3 & Section &  \\ \hline
+CQ4 & Article &  \\ \hline
+CQ5 & Point &  \\ \hline
+CQ6 & SubPoint &  \\ \hline
+CQ7 & Reference, Citation &  \\ \hline
+CQ8 &  & isPartOfChapter \\ \hline
+CQ9 & PersonalData & rdfs:isDefinedBy \\ \hline
+CQ10 &  & hasPart,isPartOf \\ \hline
+CQ11 & Accountability & rdfs:isDefinedBy \\ \hline
+CQ12 & GivenConsent & rdfs:isDefinedBy \\ \hline
+CQ13 & GivenConsent &  \\ \hline
+CQ14 & Compliance &  \\ \hline
+CQ15 & Data, PersonalData, SensitivePersonalData, CriminalData, GeneticData, HealthData, RacialData, AnonymousData, PseudoAnonymousData & rdfs:subClassOf \\ \hline
+CQ16 & Consent, GivenConsent, WithdrawnConsent & rdfs:subClassOf \\ \hline
+CQ17 & Entity, DataSubject, Controller, JointController, Processor, SubProcessor, DPO, DPA, ControllerRepresentative, ProcessorRepresentative, CertificationBody, RegulatoryAuthority & rdfs:subClassOf \\ \hline
+CQ18 & DataActivity &  \\ \hline
+CQ19 & ConsentActivity &  \\ \hline
+CQ20 & Processing, AutomatedProcessing, AutomatedDecisionMakingWithSignificantEffect, ConfirmingOrMatchingDatasets, LargeScaleProcessing, ProcessingAffectedOrVulnerableIndividuals, ProcessingSensitiveData, ProcessingUsingUntestedTechnologies, Unlawful Processing & rdfs:subClassOf \\ \hline
+CQ21 & ReportDataBreach,MaintainRecordOfBreach… & rdfs:subClassOf \\ \hline
+CQ22 & Compliance, Demonstration, ConsentMonitor, Compliance, ReportDataBreach  & rdfs:subClassOf \\ \hline
+CQ23 & Principle, Accountability, Accuracy, DataMinimisation, IntegrityAndConfidentiality, LawfulnessFairnessAndTransparency, PurposeLimitation, StorageLimitation  & rdfs:subClassOf \\ \hline
+CQ24 & Rights, RightOfDataPortability, RightOfErasure, RightToAccessPersonalData, RightToTransparency, RightToBasicInformationAboutProcessing, RightToNotBeEvaluatedThroughAutomatedProcessing, RightToObjectForDirectMarketting, RightToObjectToProcessing, RightToRectify, RightToRestrictProcessing & rdfs:subClassOf \\ \hline
+CQ25 & RightOfDataPortability, ProvideCopyOfPersonalData, ShouldBeCommonlyUsedFormat, ShouldBeMachineReadable, ShouldBeStructured, ShouldSupportReuse  & rdfs:subClassOf \\ \hline
+CQ26 & RightToBasicInformationAboutProcessing, InformationAboutThirdParties  & rdfs:subClassOf \\ \hline
+CQ27 & Obligation &  \\ \hline
+CQ28 & ControllerObligation, AppointmentOfProcessors, Accountability, ControllerResponsibility, CooperateWithDPA, DataProtectionByDesignAndDefault, DataSecurityLiabilityOfJointControllers, MaintainRecordsOfProcessingActivities, PrivacyByDesign, PropogateRightsToThirdParties, ReportDataBreach & rdfs:subClassOf \\ \hline
+CQ29 & ProcessorObligation, AppointingSubprocessors, AssistInComplyingWithRights, ComplianceWithControllersInstructions, CooperateWithDpa, DataSecurity, ImposeConfidentialityOnPersonnel, InformControllerOfConflictWithLaw, MaintainRecordsOfProcessingActivities, OnlyActOnDocumentedInstructions, PropogateRightsToThirdParties, ProvideControllerWithInformationForCompliance, ReportDataBreachToController, RestrictionsOnCross-borderTransfers, ReturnOrDestroyPersonalDataAtEndTerm & rdfs:subClassOf \\ \hline
+CQ30 & DPOObligation, MonitorCompliance & rdfs:subClassOf \\ \hline
+CQ31 & LawfulBasisForProcessing, ContractWithDataSubject, ExemptedByNationalLaw, EmploymentLaw, GivenConsent, HistoricStatisticalOrScientificPurposes, LegalClaims, LegalObligation, LegitimateInterest, MadePublicByDataSubject, MedicalDiagnosticOrTreatement, NotForProfitOrg, PublicInterest, PurposeOfNewProcessing, VitalInterest & rdfs:subClassOf \\ \hline
+CQ32 & ValidConsent, FreelyGivenConsentObligation, InformedConsentObligation, SpecificConsentObligation, VoluntaryOptInConsentObligation  & rdfs:subClassOf \\ \hline
+CQ33 & ObligationForDataCollection, AccurateCollection, ExplicitPurpose, LegitimatePurpose, NotFurtherProcessedThanOriginalPurpose, SpecifiedPurpose & rdfs:subClassOf \\ \hline
+CQ34 & InformationAboutThirdParties, ConsentCanBeWithdrawnEasily, ClearExplanatinOfProcessing, NotFromSilenceOrInactivity, Demonstrable, DistinguishableFromOtherMatters, ValidConsent & rdfs:subClassOf \\ \hline
+CQ35 & RetentionOfPersonalData, AdequateForProcessing, IdentifiableForRequiredProcessing, KeptUpToDate, LimitedForProcessing, RectifyInaccuracies, RelevantForProcessing & rdfs:subClassOf \\ \hline
+CQ36 & SecurityofPersonalData, AccidentalLoss, Damage, Destruction, UnlawfulProcessing & rdfs:subClassOf \\ \hline
+CQ37 & Seal, Certification &  \\ \hline
+
+\end{tabular}
+\label{table:gdprtext:eval-cq}
+\end{table}
 
 \subsubsection{Comparison with SotA}
 
