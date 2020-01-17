@@ -1,19 +1,21 @@
 \chapter{Representing Information using Ontologies}
 \label{chapter:vocabularies}
 
-This chapter presents the ontologies developed to fulfil the research objective $RO3$ defined in \autoref{sec:intro:RO}.
-Section \autoref{sec:voc:methodology} expands on the methodology presented in \autoref{sec:intro:ontology-engineering} for developing and evaluating the ontologies.
-The ontologies present consist of GDPRtEXT (\autoref{sec:voc:GDPRtEXT}) which provides a linked data representation of GDPR text and a thesauri of GDPR compliance concepts; GDPRov \autoref{sec:voc:GDPRov} for representing provenance of activities associated with personal data and consent in ex-ante and ex-post phases; and GConsent (\autoref{sec:voc:GConsent}) for representing information regarding consent.
+This chapter presents the ontologies developed to fulfil research objective $RO3$ defined in \autoref{sec:intro:RO}.
 
-In addition to these, Data Privacy Vocabulary (DPV) is also included in this thesis as a community standard based on the work of W3C Data Protection Vocabularies and Controls Community Group. The DPVCG and DPV include participation of the author of this thesis which was earlier summarised in \autoref{sec:intro:dpvcg}. \autoref{sec:voc:DPV} presents a summary of the DPV and compares it with the GDPRtEXT, GDPRov, and GConsent ontologies to demonstrate their complementary nature.
+The chapter begins with \autoref{sec:voc:methodology} which expands on the methodology presented in \autoref{sec:intro:ontology-engineering} for developing and evaluating the ontologies.
+It then presents the developed ontologies which consist of - GDPRtEXT (\autoref{sec:voc:GDPRtEXT}) which provides a linked data representation of GDPR text and a thesauri of GDPR compliance concepts, and which satisfies research objective $RO3(a)$; GDPRov \autoref{sec:voc:GDPRov} which enables representing provenance of activities associated with personal data and consent in ex-ante and ex-post phases, and fulfils research objective $RO3(b)$; and GConsent (\autoref{sec:voc:GConsent}) which enables representing information regarding consent, and fulfils research objective $RO3(c)$.
+Each ontology is presented with a summary of its motivation, engineering process, and dissemination. The ontologies are presented with their evaluation based on the extent to which it satisfies the compliance questions presented in \autoref{sec:info:compliance-questions} and comparison with relevant approaches in the state of the art based on the analysis presented in \autoref{sec:sota:analysis}.
 
-The chapter concludes with an evaluation of the developed ontologies based on the methodology in \autoref{sec:voc:methodology} and a comparison with relevant work in the state of the art in \autoref{sec:voc:sota}.
-It demonstrates that the developed ontologies and DPV extend the scope of existing work and fill gaps in the state of the art as identified through its analysis in \autoref{sec:sota:analysis}.
+In addition to these, Data Privacy Vocabulary (DPV) (initially presented in \autoref{sec:intro:dpvcg}) is also included as a contribution based on the work done by the author within the W3C Data Protection Vocabularies and Controls Community Group (DPVCG) and the overlap of its work with the research objectives and developed ontologies presented in this thesis. \autoref{sec:voc:DPV} presents an overview of the DPV and compares it with the GDPRtEXT, GDPRov, and GConsent ontologies to demonstrate their complementary nature.
+The section also presents a comparison of DPV with the state of the art as identified in \autoref{chapter:sota}.
+
+The chapter concludes with a summary of the developed ontologies and DPV, and a description of how they provide novel contributions that fill gaps in the state of the art.
 
 \section{Methodology for Ontology Engineering}\label{sec:voc:methodology}
 
 \subsubsection*{Utilisation of Existing Ontology Engineering Methodologies}
-The creation of ontologies followed guidelines and methodologies deemed `best practice' by the semantic web community. In this, `Ontology development 101: A guide to creating your first ontology' by Noy and McGuiness \cite{} was utilised as the guiding document for ontology creation. It provided a series of steps for construction of an ontology with attention on avoiding bad design decisions and common pitfalls. It also suggested the use of competency questions to determine the scope of an ontology and to evaluate it after creation. 
+The creation of ontologies followed guidelines and methodologies deemed `best practice' by the semantic web community. In this, `Ontology development 101: A guide to creating your first ontology' by Noy and McGuiness \cite{noy_ontology_2001} was utilised as the guiding document for ontology creation. It provided a series of steps for construction of an ontology with attention on avoiding bad design decisions and common pitfalls. It also suggested the use of competency questions to determine the scope of an ontology and to evaluate it after creation. 
 % For this, the compliance questions presented in \autoref{} were used as competency questions.
 The guide suggests use of Protégé\footnote{\url{}} \cite{} as a popular tool for ontology development which provides a semantic reasoner to detect inconsistencies in the ontology.
 Use of the guide provided a foundational basis for initiating the ontology development process by using the compliance questions from \autoref{sec:info:compliance-questions} as competency questions to identify concepts and relationships, test them for inconsistencies using Protégé, and iteratively combine them to create an ontology. 
