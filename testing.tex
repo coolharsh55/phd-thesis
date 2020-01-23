@@ -124,7 +124,7 @@ C1 & ControllerObligations & Supplier Agreements & 27,28,29 \\ \hline
 C2 & ControllerObligations & Data Protection Officers & 37,38,39 \\ \hline
 C3 & ControllerObligations & Reasons for not having a DPO & 37,38,39 \\ \hline
 C4 & ControllerObligations & Escalation procedures & 37,38,39 \\ \hline
-C5 & ControllerObligations &  & 37,38,39 \\ \hline
+C5 & ControllerObligations & Escalation procedures through a DPO & 37,38,39 \\ \hline
 C6 & ControllerObligations & Data Protection Impact Assessments (DPIAs) & 35 \\ \hline
 S1 & DataSecurity & Risks involved in processing data & 32 \\ \hline
 S2 & DataSecurity & Documented Security Program & 32 \\ \hline
@@ -165,69 +165,69 @@ The column `\textit{GDPRov}' indicates whether the current iteration of GDPRov p
 \begin{tabularx}{\textwidth}{|l|l|X|l|l|l|l|}
 \hline
 ID & Type & Data & E/A & E/P & SPARQL & GDPRov \\ \hline
-G1 & Demn & personal data, data subjects & Y & N & Y & Y \\ \hline
-G2 & Demn & personal data & Y & N & Y & Y \\ \hline
-G3 & Demn & personal data, steps that collect data, entities that provde data & Y & Y & Y & Y \\ \hline
-G4 & Demn & results of G1, processes acting on data & Y & N & Y & Y \\ \hline
-G5 & Demn & results of G4, processes acting on data & Y & N & Y & Y \\ \hline
-G6 & Demn & special category personal data & Y & N & Y & Y \\ \hline
-G7 & Demn & results of G6, steps that collect data, steps that store data & Y & N & Y & Y \\ \hline
-G8 & N/I & results of G1, steps that store data &  &  & N & E \\ \hline
-G9 & N/I &  &  &  & N & N \\ \hline
-P1 & Asst & consent, steps that acquire consent & Y & N & Y & S \\ \hline
-P2 & N/I &  &  &  & N & S \\ \hline
-P3 & Eval & consent & Y & Y & Y & Y \\ \hline
-P4 & Eval & steps that withdraw consent & Y & N & Y & Y \\ \hline
-P5 & Eval & steps that acquire consent, steps for age verification & Y & N & Y & Y \\ \hline
-P6 & Asst & steps that process personal data & Y & N & Y & Y \\ \hline
-R1 & Asst & steps that handle SAR & Y & N & Y & Y \\ \hline
-R2 & Asst & steps that handle SAR & N & Y & N & Y \\ \hline
-R3 & Eval & steps that address right to data portability & Y & N & Y & Y \\ \hline
-R4 & Eval & steps that address right to rectification & Y & N & Y & Y \\ \hline
-R5 & Asst & data subjet request, steps that process personal data & N & Y & N & Y \\ \hline
-R6 & N/I &  &  &  & N & Y \\ \hline
-R7 & Eval & steps that process personal data & Y & N & Y & Y \\ \hline
-R8 & Asst & steps that make automated decisions, consent & Y & Y & Y & Y \\ \hline
-R9 & Asst & steps that make automated decisions, right to contest automated decisions & Y & N & Y & Y \\ \hline
-R10 & N/I &  &  &  & N & S \\ \hline
-A1 & Eval & personal data, consent, steps that involve personal data through use, share, store & Y & Y & Y & S \\ \hline
-A2 & Asst & personal data, steps that process personal data & Y & Y & Y & S \\ \hline
-A3 & N/I &  &  &  & N & S \\ \hline
-A4 & N/I &  &  &  & N & S \\ \hline
-A5 & N/I &  &  &  & N & S \\ \hline
-A6 & Asst & steps that delete data & Y & N & Y & N \\ \hline
-A7 & N/I &  &  &  & N & S \\ \hline
-T1 & N/I &  &  &  & N & S \\ \hline
-T2 & Asst & steps that collect personal data & Y & N & Y & N \\ \hline
-T3 & Asst & steps that collect personal data & Y & N & Y & N \\ \hline
-T4 & N/I &  &  &  & N & S \\ \hline
-T5 & N/I &  &  &  & N & N \\ \hline
-C1 & N/I &  &  &  & N & N \\ \hline
-C2 & N/I &  &  &  & N & Y \\ \hline
-C3 & N/I &  &  &  & N & S \\ \hline
-C4 & N/I &  &  &  & N & N \\ \hline
-C5 & N/I &  &  &  & N & N \\ \hline
-C6 & Asst & steps part of the DPIA process & Y & N & Y & N \\ \hline
-S1 & Asst & steps that process data & Y & N & Y & S \\ \hline
-S2 & N/I &  &  &  & N & N \\ \hline
-S3 & N/I &  &  &  & N & N \\ \hline
-S4 & N/I &  &  &  & N & N \\ \hline
-S5 & N/I & steps that share data &  &  & N & N \\ \hline
-S6 & N/I &  &  &  & N & N \\ \hline
-S7 & N/I &  &  &  & N & N \\ \hline
-B1 & Eval & processes or plan that address security incidents & Y & N & Y & N \\ \hline
-B2 & N/I &  &  &  & N & N \\ \hline
-B3 & Eval & processes or plans for notifying DPC & Y &  & Y & Y \\ \hline
-B4 & Eval & processes or plans for notifying data subjects of a data breach &  &  & Y & Y \\ \hline
-B5 & N/I &  &  &  & N & Y \\ \hline
-B6 & N/I &  &  &  & N & N \\ \hline
-I1 & Eval & steps that share data & Y & Y & Y & Y \\ \hline
-I2 & Eval & results from I1, category of personal data & Y & N & Y & Y \\ \hline
-I3 & Asst & steps that share data & Y & Y & Y & Y \\ \hline
-I4 & Eval & steps that share data & Y & Y & Y & Y \\ \hline
-I5 & N/I &  &  &  & N & Y \\ \hline
-I6 & N/I &  &  &  & N & Y \\ \hline
-I7 & N/I & steps that share data &  &  & N & S \\ \hline
+G1 & Demonstrative & personal data, data subjects & Y & N & Y & Y \\ \hline
+G2 & Demonstrative & personal data & Y & N & Y & Y \\ \hline
+G3 & Demonstrative & personal data, steps that collect data, entities that provde data & Y & Y & Y & Y \\ \hline
+G4 & Demonstrative & results of G1, processes acting on data & Y & N & Y & Y \\ \hline
+G5 & Demonstrative & results of G4, processes acting on data & Y & N & Y & Y \\ \hline
+G6 & Demonstrative & special category personal data & Y & N & Y & Y \\ \hline
+G7 & Demonstrative & results of G6, steps that collect data, steps that store data & Y & N & Y & Y \\ \hline
+G8 & Not-Implemented & results of G1, steps that store data &  &  & N & N \\ \hline
+G9 & Not-Implemented &  &  &  & N & S \\ \hline
+P1 & Assistive & consent, steps that acquire consent & Y & N & Y & Y \\ \hline
+P2 & Not-Implemented &  &  &  & N & S \\ \hline
+P3 & Evaluative & consent & Y & Y & Y & Y \\ \hline
+P4 & Evaluative & steps that withdraw consent & Y & N & Y & Y \\ \hline
+P5 & Evaluative & steps that acquire consent, steps for age verification & Y & N & Y & Y \\ \hline
+P6 & Assistive & steps that process personal data & Y & N & Y & Y \\ \hline
+R1 & Assistive & steps that handle SAR & Y & N & Y & Y \\ \hline
+R10 & Not-Implemented &  &  &  & N & S \\ \hline
+R2 & Assistive & steps that handle SAR & N & Y & N & Y \\ \hline
+R3 & Evaluative & steps that address right to data portability & Y & N & Y & Y \\ \hline
+R4 & Evaluative & steps that address right to rectification & Y & N & Y & Y \\ \hline
+R5 & Assistive & data subjet request, steps that process personal data & N & Y & N & Y \\ \hline
+R6 & Not-Implemented &  &  &  & N & Y \\ \hline
+R7 & Evaluative & steps that process personal data & Y & N & Y & Y \\ \hline
+R8 & Assistive & steps that make automated decisions, consent & Y & Y & Y & Y \\ \hline
+R9 & Assistive & steps that make automated decisions, right to contest automated decisions & Y & N & Y & Y \\ \hline
+A1 & Evaluative & personal data, consent, steps that involve personal data through use, share, store & Y & Y & Y & Y \\ \hline
+A2 & Assistive & personal data, steps that process personal data & Y & Y & Y & Y \\ \hline
+A3 & Not-Implemented &  &  &  & N & S \\ \hline
+A4 & Not-Implemented &  &  &  & N & S \\ \hline
+A5 & Not-Implemented &  &  &  & N & S \\ \hline
+A6 & Assistive & steps that delete data & Y & N & Y & Y \\ \hline
+A7 & Not-Implemented &  &  &  & N & S \\ \hline
+T1 & Not-Implemented &  &  &  & N & S \\ \hline
+T2 & Assistive & steps that collect personal data & Y & N & Y & Y \\ \hline
+T3 & Assistive & steps that collect personal data & Y & N & Y & Y \\ \hline
+T4 & Not-Implemented &  &  &  & N & S \\ \hline
+T5 & Not-Implemented &  &  &  & N & S \\ \hline
+C1 & Not-Implemented &  &  &  & N & S \\ \hline
+C2 & Not-Implemented &  &  &  & N & Y \\ \hline
+C3 & Not-Implemented &  &  &  & N & S \\ \hline
+C4 & Not-Implemented &  &  &  & N & S \\ \hline
+C5 & Not-Implemented &  &  &  & N & S \\ \hline
+C6 & Assistive & steps part of the DPIA process & Y & N & Y & Y \\ \hline
+S1 & Assistive & steps that process data & Y & N & Y & Y \\ \hline
+S2 & Not-Implemented &  &  &  & N & S \\ \hline
+S3 & Not-Implemented &  &  &  & N & S \\ \hline
+S4 & Not-Implemented &  &  &  & N & S \\ \hline
+S5 & Not-Implemented & steps that share data &  &  & N & N \\ \hline
+S6 & Not-Implemented &  &  &  & N & Y \\ \hline
+S7 & Not-Implemented &  &  &  & N & N \\ \hline
+B1 & Evaluative & processes or plan that address security incidents & Y & N & Y & Y \\ \hline
+B2 & Not-Implemented &  &  &  & N & S \\ \hline
+B3 & Evaluative & processes or plans for notifying DPC & Y &  & Y & Y \\ \hline
+B4 & Evaluative & processes or plans for notifying data subjects of a data breach &  &  & Y & Y \\ \hline
+B5 & Not-Implemented &  &  &  & N & Y \\ \hline
+B6 & Not-Implemented &  &  &  & N & S \\ \hline
+I1 & Evaluative & steps that share data & Y & Y & Y & Y \\ \hline
+I2 & Evaluative & results from I1, category of personal data & Y & N & Y & Y \\ \hline
+I3 & Assistive & steps that share data & Y & Y & Y & Y \\ \hline
+I4 & Evaluative & steps that share data & Y & Y & Y & Y \\ \hline
+I5 & Not-Implemented &  &  &  & N & Y \\ \hline
+I6 & Not-Implemented &  &  &  & N & Y \\ \hline
+I7 & Not-Implemented & steps that share data &  &  & N & S \\ \hline
 \end{tabularx}
 \label{table:sparql:dpc-2}
 \end{table}
@@ -236,7 +236,6 @@ I7 & N/I & steps that share data &  &  & N & S \\ \hline
 % This was used to update the GDPRov at a later date with additional concepts, such as for legal bases, data sharing, data transfers, or documentation of data breaches.
 The information regarding GDPRov is also provided since the creation of SPARQL queries from GDPR readiness guide was carried out in the earlier stages of GDPRov's iterations and before the enforcement of the GDPR in May 2018. Therefore, some questions were deemed to be ambiguous or lacking legal information on information necessary for compliance.
 The queries and constraints presented in \autoref{sec:testing:shacl} were developed at a later stage when GDPR had seen significant attention and interpretation and do not suffer from similar absences of implementation.
-Since the aim of the exercise was in demonstrating usefulness of SPARQL to represent compliance questions, and the minor role of such queries in the contributions of this research, this gap was rectified in future applications rather than the current one.
 
 \subsubsection{Creation of SPARQL queries}
 The creation of SPARQL queries involved analysis of the text of a question to identify relevant concepts and relationships in GDPRov useful towards expressing the question as a semantic query in SPARQL as well as representing the information required to answer the question.
@@ -277,12 +276,66 @@ SELECT DISTINCT ?process ?legal WHERE {
 \label{code:sparql:dpc-G5}
 \end{listing}
 
-\subsection{Demonstration using synthetic use-case}\label{sec:testing:sparql:demo}
+\subsection{Demonstration using synthetic use-case} \label{sec:testing:sparql:demo}
+To demonstrate the application of queries, a synthetic use-case was created using GDPRov and GDPRtEXT to represent information.
+The use-case is based on the scenario of an online shopping service that allows users to order products.
+RDF representations of the processes and personal data associated with the use-case were created and queried using the created SPARQL queries to retrieve information regarding compliance.
+The implementation was provided online\footnote{\url{https://w3id.org/GDPRep/checklist-demo}} along with its data and code in a public repository\footnote{\url{http://openscience.adaptcentre.ie/GDPR-checklist-demo/demo/}}.
 
+\subsubsection{Use-case: Online shopping service that shows ads}
+Within the use-case, users can shop for products using the online service i.e. a website. Users have the option to establish an account with the service to receive discounts and special offers for the products offered on the service.
+Ads are served to users and are generated by a Third Party.
+The sign-up process collects personal data such as name, address, email, and contact number.
+While ordering products, users are requested to provide sensitive information for transactions about their bank account or credit cards.
+
+The personal data is represented by extending \texttt{gdprov:PersonalData} as \texttt{CustomerInfo} for representing information about the user, and extending \texttt{SensitiveData} for representing banking and financial information as \texttt{gdprov:BankingInfo}.
+Processes for handling obligations and rights are expressed using the terms provided by GDPRov.
+The sign-up process enables an user to provide information which is used for personalisation and ads and collects the user's consent.
+As a final step, the Fact++\footnote{\url{http://owl.cs.manchester.ac.uk/tools/fact/}}
+reasoner was used to derive additional facts about the use-case and to ensure its consistency in terms of correct use of GDPRov (and by extension PROV-O and P-Plan) and GDPRtEXT.
+
+\subsubsection{Implementation}
+The online demo provides an execution of the created SPARQL queries over the data defined for the use-case.
+This represents automation of answering compliance questions using retrieved information.
+The demo intended to showcase how the static GDPR readiness checklist can be made more interactive and automated using semantic web technologies.
+
+The demo is provided as a single web page, with the questions from GDPR readiness checklist provided in their natural language form and ID followed by the corresponding SPARQL query.
+The results for each query are retrieved whenever the page loads from a
+SPARQL endpoint\footnote{\url{http://openscience.adaptcentre.ie/sparql}}
+containing the RDF data about the use-case.
+The demo uses YASQE\footnote{\url{http://yasqe.yasgui.org/}} to represent the SPARQL queries with syntax highlighting, and YASR\footnote{\url{http://yasr.yasgui.org/}} to represent the results of queries in an interactive fashion.
+
+The results of each query contain the information associated with answering the relevant compliance questions. For the SPARQL query regarding question \texttt{G5} presented in Listing. \autoref{code:sparql:dpc-G5} which enquired about legal obligations, the results express the steps and processes along with their legal obligations.
+The query and the results as presented in the demo are depicted in \autoref{fig:sparql:demo}.
+The results consist of five rows - of which three are processes that handle the various rights and therefore are not accompanied with any legal basis\footnote{The processes handling rights should utilise the legal basis of requirements specified by law since GDPR mandates the provision of rights.}.
+The remaining two results represent processes associated with the provision of the service, of which \textit{OrderProcess} reprents `ordering a product' and uses legitimate interest as its legal basis, and \textit{NewUserSignUpProcess} collects information about an user and uses the legal basis of given consent.
+\begin{figure}[htbp]
+\centering
+\fbox{\includegraphics[width=\textwidth]{img/sparql_query_demo.png}}
+\caption{Retrieving information using SPARQL for query G5 in GDPR readiness checklist}
+\label{fig:sparql:demo}
+\end{figure}
 
 \subsection{Evaluation}\label{sec:testing:sparql:evaluation}
+The aim of this work was to represent compliance questions using SPARQL in order to retrieve information represented in RDF regarding the processing of personal data.
+The demonstration using a synthetic use-case provided the basis for exploring the application of created SPARQL queries by using GDPRov and GDPRtEXT were utilised as the ontological representations of data.
+The evaluation of this work, while not being exhaustive, concerns the creation of SPARQL queries and their application over a given use-case.
+
+In terms of coverage of compliance questions represented as SPARQL queries, the exercise could not represent all of the questions within the GDPR readiness guide. The reasons were these lack of knowledge (at the time of implementation) regarding interpretation of GDPR compliance requirements, absence of concepts in GDPRov, and the context of the query being out of scope for the research question of this thesis - namely activities associated with personal data and consent.
+Of the total 63 questions within the GDPR readiness guide, 32 questions have corresponding SPARQL queries created and used in the demo.
+
+Of the 31 questions that were not implemented, 20 questions were considered out of scope, with the other 3 questions lacking corresponding concepts in GDPRov to create SPARQL queries.
+Of these, question \texttt{G8} concerning retention periods for personal data can be expressed using the Time ontology \cite{cox_time_2017}.
+The other two, \texttt{S5} and \texttt{S7} require specification of information associated with information management and governance procedures utilised within an organisation. While these are technically not outside the scope of GDPRov, they require a larger understanding of how such processes are specified and managed, and commonly involve use of ISO/IEC specifications to denote practices.
+Others, such as question \texttt{C1} concerning agreements between entities or question \texttt{C4} concerning escalation procedures involving DPO can be represented using the concepts provided by GDPRov, especially the representation of processes involving steps, but are not considered within the scope of the ontology.
+
+An evaluation of the results retrieved by the queries requires a legal expert who can interpret the extent to which the results are useful in the exercise of deciding or interpreting compliance.
+In addition to these, the requirements of legal compliance differ from that of organisational management of processes, and therefore also require a domain expert - regarding management of business processes - to analyse the results from the perspective of an organisation.
+Since neither of them could be availed of, the exercise of evaluating the queries within a real-world use case of an organisation and the process of evaluation of compliance was not carried out.
 
 \subsection*{Conclusion}
+The use of SPARQL ...
+lessons learned...
 
 \section{Validating Information for GDPR Compliance using SHACL}\label{sec:testing:shacl}
 
