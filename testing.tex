@@ -6,6 +6,7 @@ It represents information using the developed vocabularies of GDPRtEXT, GDPRov, 
 The queries are represented using SPARQL - a W3C standard for querying RDF - and are based on the compliance questions presented in \autoref{sec:info:compliance-questions}.
 Validation is carried out based on the identified assumptions and constraints presented in \autoref{sec:info:constraints} and is expressed using SHACL which is the W3C standard for representing constraints.
 The presented work represents minor contributions of this thesis, and fulfils the research objective $RO4$ regarding querying of information and $RO5$ regarding validation of information for GDPR compliance.
+The chapter ends with conclusions drawn from the research in terms of re-usability and interoperability are presented in \autoref{sec:sparql:conclusion}.
 
 \section{Querying Information for GDPR Compliance using SPARQL}\label{sec:testing:sparql}
 This section presents the creation and utilisation of SPARQL queries to retrieve information relevant for GDPR compliance.
@@ -311,7 +312,7 @@ The results consist of five rows - of which three are processes that handle the 
 The remaining two results represent processes associated with the provision of the service, of which \textit{OrderProcess} reprents `ordering a product' and uses legitimate interest as its legal basis, and \textit{NewUserSignUpProcess} collects information about an user and uses the legal basis of given consent.
 \begin{figure}[htbp]
 \centering
-\fbox{\includegraphics[width=\textwidth]{img/sparql_query_demo.png}}
+\fbox{\includegraphics[width=0.75\textwidth]{img/sparql_query_demo.png}}
 \caption{Retrieving information using SPARQL for query G5 in GDPR readiness checklist}
 \label{fig:sparql:demo}
 \end{figure}
@@ -333,24 +334,70 @@ An evaluation of the results retrieved by the queries requires a legal expert wh
 In addition to these, the requirements of legal compliance differ from that of organisational management of processes, and therefore also require a domain expert - regarding management of business processes - to analyse the results from the perspective of an organisation.
 Since neither of them could be availed of, the exercise of evaluating the queries within a real-world use case of an organisation and the process of evaluation of compliance was not carried out.
 
-\subsection*{Conclusion}
-The use of SPARQL ...
-lessons learned...
+% ---------------------------------------------------------------------------------
 
 \section{Validating Information for GDPR Compliance using SHACL}\label{sec:testing:shacl}
+This section presents the application of SHACL to validate information based on requirements of GDPR compliance.
+SHACL is utilised as a validation mechanism to create a test-driven approach where information regarding processing activities is represented using semantic representations, and is first checked for correctness and then for compliance.
+In this, the constraints presented in \autoref{sec:info:constraints} are utilised to determine the correctness and compliance of information, and questions presented in \autoref{sec:info:compliance-questions} are used to retrieve information for compliance.
+Both the constraints and the queries are linked to the GDPR using GDPRtEXT.
 
-\subsection{Methodology}\label{sec:testing:shacl:methodology}
+The results of SHACL validations are persisted to create a `compliance graph' which enables querying for information regarding compliance, and provides more efficient testing based on reuse of ex-ante tests in ex-post testing.
+The approach is demonstrated using a proof-of-concept implementation based on the evaluation of consent information on a real-world website and using GDPRov, GConsent, and GDPRtEXT to represent the information.
+This approach and the implementation have been published in peer-reviewed publications concerning the conceptual model \cite{pandit_exploring_2018}, construction of a knowledge graph from information about GDPR compliance \cite{pandit_towards_2018}, and implementation testing compliance of given consent on a real-world website \cite{pandit_test-driven_2019}.
+All resources regarding this work have been published online\footnote{\url{https://w3id.org/GDPRep/semantic-tests}} under an open and permissive license (CC-by-4.0).
+
+The work presented in this section fulfils the research objectives $RO5$ and demonstrates the following:
+\begin{enumerate}
+    \item Utilise SHACL to validate information for GDPR compliance.
+    \item Express compliance as a test-driven exercise similar to the concept of unit-testing in software engineering.
+    \item Utilise results of testing ex-ante information for testing of ex-post information in order to reduce the number of tests required.
+    \item Construct a compliance graph storing test results based on the concept of knowledge-graph.
+    \item Demonstrate the use of compliance graph in retrieving and documenting information regarding GDPR compliance.
+\end{enumerate}
+
+A description of the approach is provided in \autoref{sec:testing:shacl:approach} which presents the role of SHACL as a validation mechanism and the creation of a compliance graph from the validation test results. The creation of SHACL constraints to represent the natural language constraints in \autoref{sec:info:constraints} is presented in \autoref{sec:testing:shacl:constraints}.
+The utilisation of ex-ante validations for evaluation of ex-post information is presented in \autoref{sec:testing:shacl:combine}.
+The proof-of-concept implementation demonstrating application of the approach is presented in \autoref{sec:testing:shacl:demo} with a discussion on it presented in \autoref{sec:testing:shacl:eval}.
+
+\subsection{Validation Model}\label{sec:testing:shacl:approach}
+\autoref{fig:shacl:model} presents a visual overview of the approach for the validation model.
+In this ....
+% what is the data graph
+% role of compliance queries
+% validate using SHACL
+% create compliance graph
+% validate obligations and articles by checking the compliance graph, insert results back in to the compliance graph
+% generate report using information from compliance graph to answer compliance queries and get an overview of compliance
+\begin{figure}[htbp]
+    \centering
+    \fbox{\includegraphics[width=\textwidth]{img/SHACL-model.png}}
+    \caption{Overview of approach utilising SHACL to validate information for GDPR compliance}
+    \label{fig:shacl:model}
+\end{figure}
 
 \subsection{Creation of SHACL constraints}\label{sec:testing:shacl:constraints}
 
-\subsection{Exploring combination of ex-ante and ex-post validations}\label{sec:testing:shacl:combine}
+\subsection{Utilising ex-ante test results for ex-post validations}\label{sec:testing:shacl:combine}
 
-\subsubsection{Exploring creation of a compliance graph}\label{sec:testing:shacl:compliance-graph}
+\subsection{Proof-of-concept implementation}\label{sec:testing:shacl:demo}
 
-\subsection{Demonstrating using use-case of consent given on a website}\label{sec:testing:shacl:demo}
+\subsection{Discussion}\label{sec:testing:shacl:eval}
 
-\subsection{Evaluation}\label{sec:testing:shacl:eval}
+\section{Conclusion}\label{sec:sparql:conclusion}
 
-\subsection*{Conclusion}
 
-\section*{Chapter Summary}
+\subsubsection{Summary of work presented}
+% one line covering both, same as intro
+\autoref{sec:testing:sparql} presented the use of SPARQL queries for representing compliance queries and retrieving information associated with compliance that was represented using GDPRov and GDPRtEXT ontologies.
+The queries were based on questions from GDPR readiness guide published by the Data Protection Commission of Ireland in 2017 to assist organisations in assessing their adherence to compliance requirements of the GDPR.
+The methodology regarding the analysis of the questions from the document and representation using GDPRov was presented in \autoref{sec:testing:sparql:methodology}.
+An application of SPARQL queries was presented through an online demo using a synthetic use-case based on the scenario of an online shopping service.
+The queries and the demo were published in a peer-reviewed publication \cite{pandit_queryable_2018} at the SEMANTiCS conference.
+
+\subsubsection{Re-usability of developed resources}
+The interpretation of compliance questions in the GDPR readiness document using SPARQL and its application in the synthetic use-case demonstrates the potential application and usefulness of SPARQL queries to retrieve information relevant for compliance.
+However, the creation of SPARQL is highly dependant on utilising the same ontological concepts as the data it is querying. Therefore, such SPARQL queries are use-case dependant, and by definition do not have re-usability beyond the data they were created for.
+
+\subsubsection{Towards standardisation and interoperable resources}
+To counter this, it is essential to have a standardised interoperable representation which can be utilised to either 
