@@ -356,19 +356,13 @@ The work presented in this section fulfils the research objectives $RO5$ and dem
     \item Demonstrate the use of compliance graph in retrieving and documenting information regarding GDPR compliance.
 \end{enumerate}
 
-A description of the approach is provided in \autoref{sec:testing:shacl:approach} which presents the role of SHACL as a validation mechanism and the creation of a compliance graph from the validation test results. The creation of SHACL constraints to represent the natural language constraints in \autoref{sec:info:constraints} is presented in \autoref{sec:testing:shacl:constraints}.
-The utilisation of ex-ante validations for evaluation of ex-post information is presented in \autoref{sec:testing:shacl:combine}.
-The proof-of-concept implementation demonstrating application of the approach is presented in \autoref{sec:testing:shacl:demo} with a discussion on it presented in \autoref{sec:testing:shacl:eval}.
+A description of the approach is provided in \autoref{sec:testing:shacl:approach} which presents the role of SHACL as a validation mechanism and the creation of a compliance graph containing information relevant for compliance. The creation of SHACL constraints to represent the natural language constraints in \autoref{sec:info:constraints} is presented in \autoref{sec:testing:shacl:constraints}, with the argument for utilisation of ex-ante validations for evaluation of ex-post information presented in \autoref{sec:testing:shacl:combine}.
+A proof-of-concept implementation demonstrating application of the approach is presented in \autoref{sec:testing:shacl:demo}, with the creation of documentation and compliance reports presented in \autoref{sec:testing:shacl:reports}.
+The section concludes with a discussion on the approach and its potential usefulness in the compliance process in \autoref{sec:testing:shacl:eval}.
 
 \subsection{Validation Model}\label{sec:testing:shacl:approach}
 \autoref{fig:shacl:model} presents a visual overview of the approach for the validation model.
-In this ....
-% what is the data graph
-% role of compliance queries
-% validate using SHACL
-% create compliance graph
-% validate obligations and articles by checking the compliance graph, insert results back in to the compliance graph
-% generate report using information from compliance graph to answer compliance queries and get an overview of compliance
+The terminology consists of terms utilised by SHACL, with \textit{data graph} indicating the RDF data which is to be evaluated using SHACL, \textit{compliance graph} indicating RDF data containing information relevant for compliance, \textit{completeness} indicating the sufficiency of information i.e. all required data is present, \textit{validation} is the process of evaluating constraints on the data graph, and where \textit{testing} and \textit{evaluating} are used interchangeably with validation as synonyms to refer to the same process.
 \begin{figure}[htbp]
     \centering
     \fbox{\includegraphics[width=\textwidth]{img/SHACL-model.png}}
@@ -376,11 +370,202 @@ In this ....
     \label{fig:shacl:model}
 \end{figure}
 
+The approach described in the figure consists of three steps - (i) Querying, (ii) Validation, and (iii) Documentation. A data graph acts as the input and provides information about activities associated with processing of personal data and consent represented in RDF. The data graph needs to be first ensured for `completeness' - i.e. ensuring required information is present before it can be utilised for GDPR compliance.
+After this, the first step of querying retrieves information for answering compliance queries by using SPARQL. This information is then added to a `compliance graph' which is separate from the data graph and stores information for determining compliance.
+
+In the second step of validation, SHACL constraints representing obligations and requirements of the GDPR are executed over the compliance graph with the results added back to the compliance graph.
+The SHACL constraints and the evaluated results are linked to specific GDPR obligations and articles.
+At this point, the compliance graph contains information necessary to answer the compliance questions along with its evaluation using SHACL linked to GDPR.
+
+In the third and final step, the information within the compliance graph is used for documentation of compliance information based on compliance questions, fulfilment of obligations, or coverage of GDPR articles. It queries the compliance graph using SPARQL by and retrieves information linked to GDPR.
+The results of these can then be persisted or demonstrated using any presentation medium - such as a webpage, dashboard, or even a data file.
+
+The use of RDF makes SPARQL and SHACL the default choices for querying and validation respectively given their status as standards.
+However, the model presents a modular approach for querying, validating, and documenting information relevant to compliance. This is to enable the use of alternative technologies for carrying out the tasks associated in a particular step. 
+For example, ShEx - another validation standard - can be used in lieu of SHACL to express constraints over RDF data.
+
+The steps only represent a separation of concerns in the description of the model.
+In practical uses, such as one presented in this thesis, the first and second steps are combined to consolidate the validations associated with correctness and GDPR obligations.
+This is based on the assumption that missing information (which is checked by completeness validations) is a failing condition for the evaluation of compliance.
+The constraints presented in \autoref{sec:info:constraints} thus incorporate expression of validations for both completeness and obligations.
+
 \subsection{Creation of SHACL constraints}\label{sec:testing:shacl:constraints}
+\subsubsection{Ontologies for expressing SHACL constraints}
+\autoref{sec:testing:sparql} mentioned the dependency of SPARQL queries on the underlying data model which necessitated utilisation of the same ontological representations as those used in the information to be queried.
+The same argument applies for the validation of information using SHACL, where the constraints must utilise the same ontologies as those used in the RDF it aims to validate.
+An alternative is using mapping tables to convert the ontologies used in the data to a common ontology used in the validation constraints - however, this will be a difficult, if not impossible, exercise due to the complexities of finding a common model in all the ontologies that can be potentially used to represent information, such as those within the state of the art.
+
+The constraints presented here use the developed ontologies from \autoref{chapter:vocabularies}, namely GDPRov to represent activities associated with processing of personal data and consent, GConsent to represent information about consent relevant for compliance, and GDPRtEXT to link information with the concepts and clauses of GDPR.
+In this, the use of GDPRov and GConsent is complimentary in some of the constraints given their overlap in representing concepts associated with consent.
+GDPRtEXT is used to link the constraint to a particular clause within the GDPR to indicate its relevancy regarding compliance. It is also used to link the validation results with clauses in the GDPR to enable querying the results based on GDPR articles, as shown later in \autoref{sec:testing:shacl:reports}.
+
+\subsubsection{Extending SHACL concepts to associate information with GDPR}
+In the assessment of information for GDPR compliance, some constraints cannot be evaluated automatically based on their qualitative requirements. For example, constraints associated with given consent that aim to evaluate whether it was `freely given' or `unambiguous'. These constraints need to be manually evaluated and their results require to be stored within the compliance graph.
+To distinguish such constraints, the the SHACL concept of \texttt{NodeShape} was extended with a sub-class as \texttt{Constraint} with further sub-classes of \texttt{ManuallyCheckedConstraint} and \texttt{AutomaticallyCheckedConstraint} representing constraints that should be checked manually and automatically respectively. This is presented in Listing.\autoref{code:shacl:manual-constraint}.
+The property \texttt{linkToGDPR} was created to link information with the clauses of the GDPR with the range \texttt{eli:LegalResourceSubdivision} to enable associating it with any granular part of the GDPR - such as a chapter, article, paragraph, or sub-paragraph - as GDPRtEXT uses this concept as the parent class of its concepts representing structure of GDPR.
+\begin{listing}[htbp]
+\begin{minted}[
+    frame=single,
+    framesep=5mm,
+    baselinestretch=1,
+    linenos
+]{text}
+:Constraint rdfs:subClassOf sh:NodeShape ;
+    rdfs:label "Constraint" .
+:AutomaticallyCheckedConstraint rdfs:subClassOf :Constraint, sh:NodeShape ;
+    rdfs:label "Automatically Checked Constraint" .
+:ManuallyCheckedConstraint rdfs:subClassOf :Constraint, sh:NodeShape ;
+    rdfs:label "Manually Checked Constraint" .
+    
+:linkToGDPR a rdfs:Property ;
+    rdfs:range eli:LegalResourceSubdivision ;
+    rdfs:label "linkToGDPR" .
+\end{minted}
+\caption{Extending SHACL \texttt{NodeShape} to express manual and automated checking of constraints}
+\label{code:shacl:manual-constraint}
+\end{listing}
+
+The constraints utilise both GDPRov and GConsent where appropriate and possible so as to verify using both ontologies. For example, Listing.\autoref{code:shacl:gdprov-gconsent} presents a constraint for checking whether each instance of consent is associated with one and only one Data Subject. In it, the concept of Data Subject could be used from GDPRov or GConsent since they both feature it. Therefore, \texttt{sh:or} in SHACL enables representing the condition where either of those could be used to express a Data Subject.
+The constraint it linked to the Article 4-11 of GDPR using the property \texttt{linkToGDPR} mentioned above, and provides a human readable message when the constraint fails using the SHACL property \texttt{sh:message}.
+\begin{listing}[htbp]
+\begin{minted}[
+    frame=single,
+    framesep=5mm,
+    baselinestretch=1,
+    linenos
+]{text}
+:Constraint rdfs:subClassOf sh:NodeShape ;
+    rdfs:label "Constraint" .
+:AutomaticallyCheckedConstraint rdfs:subClassOf :Constraint, sh:NodeShape ;
+    rdfs:label "Automatically Checked Constraint" .
+:ManuallyCheckedConstraint rdfs:subClassOf :Constraint, sh:NodeShape ;
+    rdfs:label "Manually Checked Constraint" .
+    
+:linkToGDPR a rdfs:Property ;
+    rdfs:range eli:LegalResourceSubdivision ;
+    rdfs:label "linkToGDPR" .
+\end{minted}
+\caption{Extending SHACL \texttt{NodeShape} to express manual and automated checking of constraints}
+\label{code:shacl:gdprov-gconsent}
+\end{listing}
+
+\subsubsection{Using SHACL-SPARQL}
+
+SHACL-SPARQL\footnote{\url{https://www.w3.org/TR/shacl/\#shacl-sparql}} is an extension of SHACL core features and provides the use of SPARQL queries to retrieve information failing the associated constraint. Listing.\autoref{code:shacl:SHACL-SPARQL} presents alternative representations of the same constraint in SHACL core and SHACL-SPARQL.
+The constraint aims to ensure all consent instances have a timestamp.
+The SHACL-SPARQL constraint features a SPARQL query that filters instances that have a specified timestamp based on properties provided by GConsent, GDPRov, or PROV-O, while the SHACL core representation uses a \texttt{PropertyShape} to assess the same.
+\begin{listing}[htbp]
+\begin{minted}[
+    frame=single,
+    framesep=5mm,
+    baselinestretch=1,
+    linenos
+]{text}
+# SHACL-SPARQL
+sh:select """
+    SELECT $this WHERE {
+        FILTER NOT EXISTS { $this gc:atTime ?time } .
+        FILTER NOT EXISTS { $this prov:generatedAtTime ?time } .
+        FILTER NOT EXISTS { $this a gdprov:ConsentAgreementTemplate } .
+    } """ .
+
+# SHACL Core
+_:ConsentHasTimestamp a sh:PropertyShape ;
+    sh:or (
+        [ sh:path gc:AtTime . sh:minCount 1; ] ;
+        [ sh:path prov:generatedAtTime . sh:minCount 1; ] ;
+        [ sh:path gdprov:ConsentAgreementTemplate . sh:minCount 1; ] ;
+    ) .
+\end{minted}
+\caption{Expressing the same constraint in SHACL-SPARQL and in SHACL core}
+\label{code:shacl:SHACL-SPARQL}
+\end{listing}
+
+The advantages of using SPARQL queries in SHACL constraints is access to information in instances that fail the validation. This is useful in inserting information about the instance in the test reports, such as the ID or IRI, or even the specific triple that needs correction or verification.
+The use of SHACL-SPARQL also allows use of the SPARQL queries from \autoref{sec:testing:sparql} by modifying them to retrieve information that will fail the constraint.
+
+\subsubsection{Validating manually evaluated constraints}
+For the manually evaluated constraints represented using \texttt{ManuallyCheckedConstaint}, the result arising from its assessment indicates whether the constraint fails or passes, and is therefore a boolean value.
+Therefore, the assessment of manually checked constraints is based on verifying a boolean value associated with the constraint through the SHACL property \texttt{sh:hasValue} which indicates the expected value of a property.
+An example of this is presented in Listing.\autoref{code:shacl:boolean} which represents a constraint checking whether the given consent was freely given.
+The assessment is based on explicitly inserting a triple within the data graph that denotes the manually inspected condition of freely given through the property \texttt{m:consentIsFreelyGiven} whose value must be true to indicate compliance.
+The messages of a manually checked constraint are prefixed with \textit{(MANUAL-TEST)} to indicate their qualitative nature in human-intended messages.
+\begin{listing}[htbp]
+\begin{minted}[
+    frame=single,
+    framesep=5mm,
+    baselinestretch=1,
+    linenos
+]{text}
+:ValidconsentIsFreelyGiven a sh:PropertyShape, :ManuallyCheckedConstraint ;
+    :linkToGDPR gdpr:article4-11 ;
+    sh:name "Consent == Freely Given" ;
+    sh:path m:consentIsFreelyGiven ;
+    sh:hasValue true ;
+    sh:message "(MANUAL-TEST) Consent should be freely given" .
+\end{minted}
+\caption{Evaluating manually checked constraints using boolean values}
+\label{code:shacl:boolean}
+\end{listing}
 
 \subsection{Utilising ex-ante test results for ex-post validations}\label{sec:testing:shacl:combine}
+Based on distinguishing information about activities in ex-ante and ex-post phases, the constraints will also need to be expressed to evaluate these phases separately.
+This will cause duplication of evaluations based on testing of same information across both phases. 
+For example, in evaluating whether given compliance is compliant with the requirements of GDPR compliance - which is an ex-post evaluation of compliance - information about criteria such as whether the consent was informed are based on the artefacts shown during the request for consent. The information shown when consent was requested is (usually) part of ex-ante activities and (usually) is common to a large number of consent requests - such as the online consent request form shown to all users on a website. Therefore, the assessment of whether it fulfils the obligations associated with informed consent is also common to all instances of consent based on it. 
+By performing an evaluation of this artefact in the ex-ante phase, its (successful) results can be reused for evaluation of all consent based on it in the ex-post phase.
+This represents utilisation of ex-ante test results in ex-post validation of a constraint.
+
+The abstraction of this can be summarised based on considering the ex-ante information as that associated with the model or plan of activities, and the ex-post information to be regarding the execution of those activities. Since the model is a common template for all execution of the activities, some of the common ex-ante validations can be performed prior to the execution and the results persisted for use in ex-post validations.
+This information, which are expressed as SHACL validation reports for the purposes of this thesis, are persisted in the compliance graph in ex-ante phase validations, and are used as part of the data graph in the ex-post validations.
+
+An example of an ex-post validation incorporating ex-ante test results is presented in Listing.\autoref{code:shacl:model-constraint}.
+The constraint is automatically evaluates the outcome of a previous SHACL validation concerning the given consent model in ex-ante phase indicated by \texttt{sh:ValidationReport} with the property \texttt{sh:conforms} used by SHACL to indicate whether an evaluated data graph has passed or failed the given constraints.
+\begin{listing}[htbp]
+\begin{minted}[
+    frame=single,
+    framesep=5mm,
+    baselinestretch=1,
+    linenos
+]{text}
+:ConsentModelConstraints a sh:NodeShape ;
+    sh:targetClass sh:ValidationReport ; 
+    sh:property :ValidationReportConforms ;
+    rdfs:label "Given Consent following Consent Model constraints" .
+
+:ValidationReportConforms a sh:PropertyShape, :AutomaticallyCheckedConstraint ;
+    sh:path sh:conforms ;
+    sh:hasValue true ; 
+    sh:message "Consent Model should be compliant for given consent to be valid" ; 
+    sh:name "Check validation report says data conforms" .
+\end{minted}
+\caption{Utilising ex-ante test results for consent model in evaluating ex-post instances of given consent}
+\label{code:shacl:model-constraint}
+\end{listing}
 
 \subsection{Proof-of-concept implementation}\label{sec:testing:shacl:demo}
+For a proof-of-concept implementation of the approach, the consent dialogue on the Quantcast\footnote{Web archive snapshot \url{https://web.archive.org/web/20190430014325/https://www.quantcast.com/}} was utilised as an use-case and evaluated for GDPR compliance.
+Information from the consent dialogue was manually analysed and represented using GDPRov and GConsent to create the data graph. Additionally, information from other pages on the website were also analysed to identify more information about the purposes, processing, personal data, and third parties mentioned in the consent dialogue.
+Resources associated with the implementation are available in a public repository\footnote{\url{https://github.com/coolharsh55/GDPR-semantics-demo/}}.
+
+The choice of use-case was made based on Quantcast being a provider of GDPR consent collection mechanism using the IAB consent framework\footnote{\url{https://advertisingconsent.eu/}} - which is the largest consent framework in use and is based on the collection of consent and sharing of personal information using the internet. The Quantcast website was also one of the few (at the time and to the authors’ knowledge) that allowed changing/withdrawing consent using the same dialogue as the one used to request/provide it.
+
+The aim of this exercise is to demonstrate the use of SHACL in validating information for compliance, and the use of ex-ante test results in validating information in ex-post phase.
+It is not intended to act as a compliance evaluation\footnote{The Data Protection Commission of Ireland opened an enquiry on 02-May-2019 into the practices of Quantcast in relation to ``processing and aggregating of personal data for the purposes of profiling and utilising the profiles generated for targeted advertising is in compliance with the relevant provisions of the GDPR'' - source: \url{https://www.dataprotection.ie/en/news-media/press-releases/data-protection-commission-opens-statutory-inquiry-quantcast}. The enquiry was announced well after the completion of the presented work, but bears relevance in terms of its findings - which have not been announced as of yet.} of Quantcast, but serve as a demonstration of the usefulness of technological measures, and particularly the semantic web, in representing, querying, and documenting information for compliance.
+
+\subsubsection{Description of Consent Dialogue}
+The consent dialogue, depicted in X
+
+\subsubsection{Extracting Purposes, Processing, and Personal Data from Consent Dialogue}
+
+\subsubsection{Gathering additional information from Quantcast website}
+
+\subsubsection{Extracting Third-Parties from Consent Dialogue}
+
+\subsubsection{Representing Consent Choices using GConsent}
+
+\subsubsection{Validating using SHACL}
+
+\subsection{Generating reports using SPARQL}\label{sec:testing:shacl:reports}
 
 \subsection{Discussion}\label{sec:testing:shacl:eval}
 
