@@ -6,7 +6,10 @@ It represents information using the developed vocabularies of GDPRtEXT, GDPRov, 
 The queries are represented using SPARQL - a W3C standard for querying RDF - and are based on the compliance questions presented in \autoref{sec:info:compliance-questions}.
 Validation is carried out based on the identified assumptions and constraints presented in \autoref{sec:info:constraints} and is expressed using SHACL which is the W3C standard for representing constraints.
 The presented work represents minor contributions of this thesis, and fulfils the research objective $RO4$ regarding querying of information and $RO5$ regarding validation of information for GDPR compliance.
-The chapter ends with conclusions drawn from the research in terms of re-usability and interoperability are presented in \autoref{sec:sparql:conclusion}.
+
+\autoref{sec:testing:sparql} presents the use of SPARQL to query information for answering compliance questions.
+The use of SHACL to validate information for GDPR compliance is presented in \autoref{sec:testing:shacl}.
+The chapter ends with conclusions drawn from the research in terms of novelty of contributions in \autoref{sec:testing:conclusion}.
 
 \section{Querying Information for GDPR Compliance using SPARQL}\label{sec:testing:sparql}
 This section presents the creation and utilisation of SPARQL queries to retrieve information relevant for GDPR compliance.
@@ -33,7 +36,7 @@ While the compliance questions presented in \autoref{sec:info:compliance-questio
 \subsubsection{Utilising compliance questions from GDPR readiness guide published by DPC}
 We utilised the guide titled ``Preparing Your Organisation for the GDPR – A Guide for SMEs'' published by Data Protection Commission of Ireland (DPC) as the basis for compliance questions which were represented using SPARQL as semantic queries.
 The guide was published by the DPC in 2017 to help organisations in assessing their readiness towards GDPR compliance requirements.
-It is accessible online\footnote{\url{http://gdprandyou.ie/wp-content/uploads/2017/12/A-Guide-to-help-SMEs-Prepare-for-the-GDPR.pdf}} and consists of a `table' (see Fig. \ref{fig:sparql:guide}) containing questions regarding information about an organisations processing activities.
+It is accessible online\footnote{\url{http://gdprandyou.ie/wp-content/uploads/2017/12/A-Guide-to-help-SMEs-Prepare-for-the-GDPR.pdf}} and consists of a `table' (see  \autoref{fig:sparql:guide}) containing questions regarding information about an organisations processing activities.
 The guide divides the questions into contextual sections based on addressing specific GDPR articles and obligations.
 \begin{figure}[htbp]
 \centering
@@ -358,7 +361,6 @@ The work presented in this section fulfils the research objectives $RO5$ and dem
 
 A description of the approach is provided in \autoref{sec:testing:shacl:approach} which presents the role of SHACL as a validation mechanism and the creation of a compliance graph containing information relevant for compliance. The creation of SHACL constraints to represent the natural language constraints in \autoref{sec:info:constraints} is presented in \autoref{sec:testing:shacl:constraints}, with the argument for utilisation of ex-ante validations for evaluation of ex-post information presented in \autoref{sec:testing:shacl:combine}.
 A proof-of-concept implementation demonstrating application of the approach is presented in \autoref{sec:testing:shacl:demo}, with the creation of documentation and compliance reports presented in \autoref{sec:testing:shacl:reports}.
-The section concludes with a discussion on the approach and its potential usefulness in the compliance process in \autoref{sec:testing:shacl:eval}.
 
 \subsection{Validation Model}\label{sec:testing:shacl:approach}
 \autoref{fig:shacl:model} presents a visual overview of the approach for the validation model.
@@ -553,36 +555,247 @@ The aim of this exercise is to demonstrate the use of SHACL in validating inform
 It is not intended to act as a compliance evaluation\footnote{The Data Protection Commission of Ireland opened an enquiry on 02-May-2019 into the practices of Quantcast in relation to ``processing and aggregating of personal data for the purposes of profiling and utilising the profiles generated for targeted advertising is in compliance with the relevant provisions of the GDPR'' - source: \url{https://www.dataprotection.ie/en/news-media/press-releases/data-protection-commission-opens-statutory-inquiry-quantcast}. The enquiry was announced well after the completion of the presented work, but bears relevance in terms of its findings - which have not been announced as of yet.} of Quantcast, but serve as a demonstration of the usefulness of technological measures, and particularly the semantic web, in representing, querying, and documenting information for compliance.
 
 \subsubsection{Description of Consent Dialogue}
-The consent dialogue, depicted in X
+The consent dialogue, depicted in \autoref{fig:shacl:quantcast-consent-dialogue}, is presented to the user upon visit to the Quantcast website. The consent dialogue consists of multiple pages or panels presenting various abstractions of information and choices which the user can interact with.
+The first panel, depicted in the figure as \texttt{(a)}, presents a brief description of processing and purposes and provides an option to provide consent\footnote{Note for clarification: Clicking the `I Accept' button signals consent for all specified purposes, as can be verified by clicking on the `Change Consent' button at the bottom of the page to show the selected choices in the consent dialogue. We avoided the interpretation of qualitative assessments in evaluating whether the "I Accept" button fails consent requirements such as not having options pre-ticked or pre-chosen by default, though we believe this does not satisfy the requirements of valid consent under GDPR. We instead represent these qualitative constraints as \texttt{ManuallyCheckedConstraint} and assume their assessment to always be true.} using the `I Accept' button. Further information is made available through the `Show Purposes' button. Upon giving consent at any stage of the dialogue, clicking the `Change Consent' link in the footer at the bottom of the page shows the consent dialogue with the selected consent choices.
+\begin{figure}[ht]
+    \begin{minipage}[b]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/quantcast_consent_screen.png}
+        \vspace{0.35cm}
+    \end{minipage}
+    \begin{minipage}[b]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/quantcast_consent_I_agree.png}
+    \end{minipage}
+    \begin{minipage}[b]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/quantcast_third_parties.png}
+    \end{minipage}
+    \begin{minipage}[b]{0.5\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/quantcast_consent_info.png}
+    \end{minipage}
+    \caption{Consent dialogues on \url{quantcast.com} (clockwise from top-left) (a) first screen (b) default options on selecting “I Accept” (c) default options on selecting “Show Purposes” (d) Third parties listed for purpose “Personalisation”}
+    \label{fig:shacl:quantcast-consent-dialogue}
+\end{figure}
 
 \subsubsection{Extracting Purposes, Processing, and Personal Data from Consent Dialogue}
+Clicking the `Show Purposes' dialogue opens the second panel containing information about the  purposes and third parties associated with consent, displayed in figure as \texttt{(b-d)}.
+The first section provides information about processing of personal data carried out by Quantcast. Its structuring of information consists of the title specifying the purpose of processing, for example - ``\textit{Information storage}'', followed by a textual description of the persona data categories involved and the processing operations to be performed on them.
 
-\subsubsection{Gathering additional information from Quantcast website}
+The purpose was represented using GDPRov and GConsent as instances of \texttt{gdprov:Process} and \texttt{gc:Purpose} with the title from consent dialogue specified as its label using \texttt{rdfs:label}. 
+Information about processing and personal data categories was manually extracted from the text and represented as - \texttt{gdprov:Step} and \texttt{gc:Processing} for processing, and \texttt{gdprov:PersonalData} and \texttt{gc:PersonalData} for personal data.
+
+The consent dialogue was represented using GDPRov as \texttt{ConsentAgreementTemplate} to indicate an ex-ante artefact provided when requesting consent.
+Since the consent dialogue offers granular choices from which the user can choose any option individually, the question of its semantic representation leads to two solutions - first where the entire consent dialogue and all consent choices are considered a single instance of consent, and second where each individual and independent choice is considered an instance of consent.
+Since given consent for an individual option in the dialogue could be revoked without affecting other choices, each independent option was chosen to be modelled as an instance of consent.
+As the consent dialogue acts as a common template for all options, its representation as a `bundle' of consent templates was added to an updated version of GDPRov as \texttt{gdprov:ConsentAgreementTemplateBundle}. This enabled representing a common artefact used to request separate instances of consent.
+Listing \autoref{code:shacl:consent-dialogue} provides an example representation of the information from the consent dialogue using this data model.
+\begin{listing}[htbp]
+\begin{minted}[
+    frame=single,
+    framesep=5mm,
+    baselinestretch=1,
+    linenos
+]{text}
+:ConsentRequestDialog a gdprov:ConsentAgreementTemplateBundle ;
+    rdfs:label "Consent Dialog shown to the user" ;
+    rdfs:comment "Dialog that shows - We value your privacy...
+        ... customise their choice by clicking on 'Show Purposes'." ;
+    gdprov:usesConsentAgreementTemplate 
+        :CATQInfoStorageAccess, :CATQPersonalise, :CATQAds, 
+        :CATQMeasure, :CATTPInfoStorageAccess, :CATTPPersonalise, 
+        :CATTPAds, :CATTPContentSelection, :CATTPMeasure, :CATTPGoogle .
+
+:CATQInfoStorageAccess a gdprov:ConsentAgreementTemplate, gc:Consent ;
+    rdfs:label "consent for CATQInfoStorageAccess" ;
+    gc:forPurpose :InformationStorageAccess ;
+    gc:forProcessing :StoreIdentifiers, :UseIdentifiers ;
+    gc:forPersonalData :Cookie, :AdIdentifier, :DeviceIdentifier ;
+    gc:hasLocation <https://quantcast.com/> ;
+    gc:withdrawBy <https://www.quantcast.com/#displayConsentUI> ;
+    gc:inMedium "dialog box on website" ;
+    gc:hasStatus gc:ConsentStatusRequested .
+\end{minted}
+\caption{Representation of consent dialogue as a bundle of consent requests}
+\label{code:shacl:consent-dialogue}
+\end{listing}
 
 \subsubsection{Extracting Third-Parties from Consent Dialogue}
+In the bottom half of the second panel, the consent dialogue provides information about purposes of sharing data with third parties and a list of recipients for each purpose. This can be seen in the figure in panel \texttt{(c)}.
+Consent for each purpose for sharing data with third parties can be individually acted upon by means of a radio button or toggle. Opting to provide consent for a purpose is taken as providing consent for all listed third parties for that purpose, i.e. there is no granular control for consent for individual third parties. 
 
-\subsubsection{Representing Consent Choices using GConsent}
+The third parties were defined using \texttt{gdprov:ThirdParty} and \texttt{gc:ThirdParty}.
+Although the names of purposes are the same in sections describing processing by Quantcast (top-half) and by third parties (bottom-half), these were declared as separate instances to reflect separation of choices to provide consent.
+Third parties were associated with a particular process by first creating an instance of a data sharing step using \texttt{gdprov:DataSharingStep} and \texttt{gc:DataStep}, and then linking the third party using the property \texttt{gc:SharesDataWithThirdParty}.
+
+\subsubsection{Gathering additional information from Quantcast website}
+The consent dialogue does not provide information on how the personal data categories are collected, or the data sources for personal data. To investigate this, an analysis of information about products and services provided Quantcast on their website along with their policies was carried out to identify relevant information which could be added to complete the use-case.
+
+\textit{Measure} is a free service offered by Quantcast that provides analytics regarding audience (visitors) to websites. It uses the following categories of personal data: \textit{Demographics} (age, gender, family, location, income, education, and occupation), \textit{Psychographics} (purchase history, brand preference, cars driven, media consumption), \textit{Engagement} (categorise visitors as passers-by, regulars, and fanatics), and \textit{Traffic} (platform - web and mobile web, country, time period). Of these, data categories of Demographics and Psychographics were included in the data graph as being relevant to the information provided in the consent dialogue. Their source was not indicated by Quantcast and therefore was not added to the data graph.
+For Psychographics, Quantcast specifies that it uses information from third-parties (Experian, Mastercard, DLX, TiVo, and Netwise) to `augment' its profiles. The third parties were defined as the the source for this data based on this information.
+The profiles mentioned above are described on the webpage as broad categories of data in the form of Shopping Interests, Media Interests, Business \& Occupation, Geography, and Political Interests. These were added to the data graph as personal data categories.
+
+\textit{Targeting} is a service which provides selecting audiences/users based on personal data attributes (similar to those in Measure). While Quantcast\footnote{The service provided by Quantcast is in essence similar to that provided by Facebook - it acts as the mediator between providers and consumers by matching the criteria to user profiles. For example, it mentions an example where the target audience is ``women 18-34 who love shopping, traveling and wine'', which implies that it must know about a) gender b) age range c) website history d) purchase history e) travel history, It further elaborates, ``We build a custom model based on millions of available data points about your audience, such as their pre-search behaviors, demographics, and past purchases.''} does not explicitly say that it uses the same personal data collected and used in Measure, this implication was implicit in its description. However, since this is an assumption, it was not included in the data graph.
+
+\textit{Measurement} is a service similar to Measure and Targeting in its use of audience profile, with the key difference between provision of service beyond website audiences, such as for campaigns. It describes data categories such as Website Traffic, Demographics, Interests, Search behaviours, and Media consumption, which were added to the data graph.
+
+The privacy policy provided by Quantcast provides information regarding personal data categories as Cookies, Tags, and Log data - which were added to the data graph. 
+The use and collection of emails used to contact Quantcast were also incorporated.
+Data retention periods are provided as ``for as long as necessary'', with an explicit limit for log data provided as 13 months. Due to the ambiguity and pending legal resolution of temporal limits, this information was not added to the data graph.
+The privacy policy also described GDPR rights regarding right to access, right to rectify, right to restrict processing, right to deletion, right to data portability, and provided a link\footnote{NOTE: In reality, we could not access the rights information page, as the notice on the webpage specified - "No cookie found: We are unable to find a Quantcast measurement cookie on your browser and therefore will be unable to identify any data in our systems or process any request for data access or deletion."} for contact and more information. This link was used as the IRI for activities associated with these rights.
 
 \subsubsection{Validating using SHACL}
+As the use-case concerns consent, the constraints associated with consent in \autoref{sec:info:constraints} were used to validate the information using the approach described in \autoref{sec:testing:shacl:approach}.
+For evaluation, three sets of constraints were developed to validate: (a) only the ex-ante model of consent dialogue, (b) instances of given consent, and (c) reusing results of ex-ante consent dialogue tests to validate given consent.
+This allowed an analysis and comparison of combining ex-ante and ex-post validations, and to demonstrate the benefits in terms of reduced validations and reuse of compliance information.
+
+SHACL constraints were executed using the TopBraid SHACL binary\footnote{\url{https://github.com/TopQuadrant/shacl}}.
+A bash\footnote{\url{https://www.gnu.org/software/bash/}} script enabled automation in execution of constraints as different approaches (ex-ante, ex-post, combination of both) and persistence of test results as separate files.
+
+For ease of evaluation, a combined data graph was created consisting of data from Quantcast and the ontologies used - GDPRov, GConsent, GDPRtEXT. 
+The data graph and test results were enhanced using a semantic reasoner\footnote{HermiT \url{http://www.hermit-reasoner.com/}} to identify and add additional triples derived from inferences.
+The resulting data was added to a triple store\footnote{GraphDB Free Edition \url{http://graphdb.ontotext.com/}} in separate graphs representing the data graph and compliance graph respectively.
 
 \subsection{Generating reports using SPARQL}\label{sec:testing:shacl:reports}
+The triple store enabled querying of information to generate compliance reports and documentation.
+The use of GraphDB provided access to some in-built reasoning capabilities\footnote{\url{http://graphdb.ontotext.com/free/devhub/inference.html}} which were useful in the querying process.
+While a number of SPARQL queries were constructed based on the compliance questions and are available for introspection in the code repository, only one is provided here as an example to demonstrate retrieval of information and documentation of compliance information.
 
-\subsection{Discussion}\label{sec:testing:shacl:eval}
+The SPARQL query, listed in Listing \autoref{code:shacl:sparql-report}, retrieves information about each tested validation constraint, its result, link to GDPR, and whether it passed or failed.
+The results, shown in \autoref{table:shacl:sparql-report} act as a test report, and contain the constraint description (Name), type - automatic (A) or manual (M), link to GDPR, result - pass (P) or fail (F), and node (instance in data graph) if it failed a constraint.
+The report also contains a failure message associated with the constraint that is not shown in table due to space limitations.
+\begin{listing}[htbp]
+\begin{minted}[
+    frame=single,
+    framesep=5mm,
+    baselinestretch=1,
+    linenos
+]{text}
+PREFIX c: <http://example.com/Quantcast/shapes#>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+SELECT DISTINCT ?name ?test ?gdpr ?result ?node ?msg
+WHERE {
+    ?x a c:Constraint .
+    ?x sh:name ?name .
+    BIND(
+        IF(EXISTS{?x a c:AutomaticallyCheckedConstraint},
+            "Automatic"^^xsd:string, "Manual"^^xsd:string)
+        as ?test)
+    OPTIONAL { ?x c:linkToGDPR ?gdpr }
+    BIND(
+        IF(EXISTS{?y sh:sourceConstraint ?x},
+            "FAIL"^^xsd:string, "PASS"^^xsd:string)
+        as ?result)
+    OPTIONAL {
+        FILTER EXISTS { ?y sh:sourceConstraint ?x } .
+        ?y sh:focusNode ?node .
+    	?y sh:resultMessage ?msg . }
+} ORDER BY ?name
+\end{minted}
+\caption{SPARQL query for report listing validation results linked with GDPR}
+\label{code:shacl:sparql-report}
+\end{listing}
+\definecolor{lightred}{RGB}{255,225,225}
+\begin{table}
+\centering
+\caption{Report showing constraints, validation results, and link to GDPR}
+\label{table:shacl:sparql-report}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\rowcolor{lightgray} Name & Type & GDPR & Result & Node \\ \hline
+Consent $\neq$ Inactivity & M & R32 & P &  \\ \hline
+Consent $\neq$ Pre-ticked Boxes & M & R32 & P &  \\ \hline
+Consent $\neq$ Silence & M & R32 & P &  \\ \hline
+Consent $\rightarrow$ Data Subject & A & A4-11 & P &  \\ \hline
+Consent $\rightarrow$ Given To & A &  & P &  \\ \hline
+Consent $\rightarrow$ Location & A &  & P &  \\ \hline
+Consent $\rightarrow$ Medium & A & A7-2 & P &  \\ \hline
+Consent $\rightarrow$ Personal Data & A & A4-11,R32 & P &  \\ \hline
+Consent $\rightarrow$ Processing & A & A4-11,R32 & P &  \\ \hline
+Consent $\rightarrow$ Provided By & A & A7-2 & P &  \\ \hline
+Consent $\rightarrow$ Purpose & A & R32,R42 & P &  \\ \hline
+Consent $\rightarrow$ Status & A &  & P &  \\ \hline
+\rowcolor{lightred} Consent $\rightarrow$ Timestamp & A &  & F & Q:Consent20190415120753 \\ \hline
+\rowcolor{lightred} Consent $\rightarrow$ Timestamp & A &  & F & Q:Consent20190415140000 \\ \hline
+Consent $\equiv$ Choice & M &  & P &  \\ \hline
+Consent $\equiv$ Freely Given & M & A4-11 & P &  \\ \hline
+Consent $\equiv$ Specific & M & A4-11 & P &  \\ \hline
+Consent $\equiv$ Statement of Clear Action & M & A4-11 & P &  \\ \hline
+Consent $\equiv$ Unambigious & M & A4-11 & P &  \\ \hline
+Consent Generating Activity & A &  & P &  \\ \hline
+Consent Request $\equiv$ Clear & M & R32 & P &  \\ \hline
+Consent Request $\equiv$ Concise & M & R32 & P &  \\ \hline
+Consent Request $\equiv$ Not Disruptive & M & R32 & P &  \\ \hline
+Consent Template & A &  & P &  \\ \hline
+Ease of Withdraw Consent & M & A7-3 & P &  \\ \hline
+Many Processing x One Purpose & A & R32 & P &  \\ \hline
+\rowcolor{lightred} One Processing x Many Purposes & A & R32 & F & Q:Consent20190415120753 \\ \hline
+\rowcolor{lightred} One Processing x Many Purposes & A & R32 & F & Q:Consent20190415140000 \\ \hline
+\rowcolor{lightred} Personal Data $\rightarrow$ Storage Period & A & A13-2-a & F & Q:CATQInfoStorageAccess \\ \hline
+\rowcolor{lightred} Personal Data $\rightarrow$ Storage Period & A & A13-2-a & F & Q:CATTPInfoStorageAccess \\ \hline
+\rowcolor{lightred} Personal Data $\rightarrow$ Storage Period & A & A13-2-a,R39 & F & Q:Consent20190415120753 \\ \hline
+\rowcolor{lightred} Personal Data $\rightarrow$ Storage Period & A & A13-2-a,R39 & F & Q:Consent20190415140000 \\ \hline
+Right to Withdraw & A & A7-3 & P &  \\ \hline
+Separation of Processing & M & R43 & P &  \\ \hline
+Third Party Categories & A & A44 & P &  \\ \hline
+Third Party Identities & A & A13-1-e & P &  \\ \hline
+Third Party Identities & A & A30-1-d & P &  \\ \hline
+Third Party Identities & A & A44 & P &  \\ \hline
+Third Party Safeguards & A &  & P &  \\ \hline
+Withdraw Consent Information & M & A7-3 & P &  \\ \hline
+\end{tabular}
+\end{table}
 
-\section{Conclusion}\label{sec:sparql:conclusion}
+The rows which correspond to failed constraints are manually highlighted to provide an indication of the use of information in a visual medium - such as a dashboard.
+The query and its results can both be persisted in machine-readable serialisations using standards for representations, making them interoperable and capable of automation.
+The information derived from such validations and querying is useful to generate compliance documentation and reports for an organisation to oversee their compliance with the GDPR - which is itself an obligation mandated by the GDPR.
 
+This example demonstrates how SHACL can be used to validate information for correctness and adherence to obligations mandated by GDPR. In this form, SHACL can be used to evaluate compliance, though the presented work focused more on the validation of constraints based on the concept of compliance questions.
+Compared to the state of the art in \autoref{chapter:sota}, the work regarding SHACL is novel in that no other approach currently specifies using it to validate information for GDPR.
+Furthermore, the utilisation of ex-ante test results in ex-post validations is also novel within the state of the art.
+
+
+
+\section{Conclusion}\label{sec:testing:conclusion}
 
 \subsubsection{Summary of work presented}
-% one line covering both, same as intro
 \autoref{sec:testing:sparql} presented the use of SPARQL queries for representing compliance queries and retrieving information associated with compliance that was represented using GDPRov and GDPRtEXT ontologies.
-The queries were based on questions from GDPR readiness guide published by the Data Protection Commission of Ireland in 2017 to assist organisations in assessing their adherence to compliance requirements of the GDPR.
-The methodology regarding the analysis of the questions from the document and representation using GDPRov was presented in \autoref{sec:testing:sparql:methodology}.
-An application of SPARQL queries was presented through an online demo using a synthetic use-case based on the scenario of an online shopping service.
-The queries and the demo were published in a peer-reviewed publication \cite{pandit_queryable_2018} at the SEMANTiCS conference.
+The work fulfilled the research objective $RO4$ by representing the compliance questions as SPARQL queries and demonstrating their application using a real-world use-case.
+The demonstrated application used questions from GDPR readiness guide published by the Data Protection Commission of Ireland in 2017 to assist organisations in assessing their adherence to compliance requirements of the GDPR.
+The created SPARQL queries retrieved information for answering these compliance questions for a synthetic use-case based on the scenario of an online shopping service.
+The queries and the demo were published in a peer-reviewed publication \cite{pandit_queryable_2018} at the SEMANTiCS conference and are available online as an application with the resources provided in a code repository.
+
+\autoref{sec:testing:shacl} presented the use of SHACL to validate information regarding its correctness and adherence to obligation towards GDPR compliance.
+This work fulfilled the research objective $RO5$ by validating information using SHACL and linking the results with relevant clauses of GDPR for compliance documentation.
+The SHACL validation utilised constraints developed from analysis of compliance questions as presented in \autoref{sec:info:constraints}.
+An approach for the validation process using SHACL was presented in which ex-ante test results were reused in the validation of ex-post information. This enabled efficient evaluations by reducing the number of validations required in the ex-post phase, and also enabled associating the compliance of ex-ante information with that of its corresponding ex-post information.
+A demonstration of the approach was provided through an use-case in which the consent dialogue on a real-world website was represented using the developed ontologies and validated using SHACL.
+The results of the validation were queried using SPARQL to generate documentation for compliance in the form of a test report which showed the compliance status of different obligations and highlighted failing tests as action items for meeting compliance requirements.
+The approach of using SHACL and the combination of ex-ante and ex-post validations was published in a peer-reviewed publication \cite{pandit_towards_2018} at the SEMANTiCS conference in 2018, while the demonstration was published in a peer-reviewed publication \cite{pandit_test-driven_2019} at SEMANTiCS 2019.
+The resources associated with the work have been made available online in a code repository.
+
+This chapter, through both presented works, provides an application of the developed ontologies presented in \autoref{chapter:vocabularies} for querying and validating information about GDPR compliance.
+It serves to demonstrate the usefulness of these ontologies, as well as provide an indication of their role in the representation of information.
+The chapter also demonstrates the use of semantic web technologies in representing, querying, and validating information for GDPR compliance.
+
+The modular test-based approach can be used with existing representations in non-RDF data that are evaluated using other tools and methods by adding semantics to the test results and reports to link them with relevant information in GDPR. This will enable the utilisation of a validation method such as SHACL to evaluate its correctness and a querying method such as SPARQL to retrieve information in the form of compliance test reports. 
+
+The advantages of representing processes with semantics go beyond testing for compliance as representation of processes are also useful for planning of operations and internal documentation. Semantic representations of processes can assist in automating the generation of documentation such as privacy policies where processes are listed along with their purpose, legal basis, and use of personal data. Privacy policy generators that generate boilerplate policies exist online, but do not currently incorporate semantics. The use of semantics allows queryable machine-readable metadata that can be used in tools towards understanding and evaluating complex policies for users and authorities.
 
 \subsubsection{Re-usability of developed resources}
 The interpretation of compliance questions in the GDPR readiness document using SPARQL and its application in the synthetic use-case demonstrates the potential application and usefulness of SPARQL queries to retrieve information relevant for compliance.
-However, the creation of SPARQL is highly dependant on utilising the same ontological concepts as the data it is querying. Therefore, such SPARQL queries are use-case dependant, and by definition do not have re-usability beyond the data they were created for.
+However, it also showcases that the creation of SPARQL is highly dependant on utilising the same ontological concepts as the data it is querying. Therefore, such SPARQL queries are use-case dependant, and by definition do not have re-usability beyond the data they were created for.
+The same is true for the constraints represented in SHACL, which are dependent on the underlying ontologies used to represent the data graph it intends to validate.
 
-\subsubsection{Towards standardisation and interoperable resources}
-To counter this, it is essential to have a standardised interoperable representation which can be utilised to either 
+With this, the conclusion that re-usability of resources is limited to cases where the developed ontologies are used is true, but is not absolute.
+Based on the analysis and natural language basis of the questions and constraints, another approach can adopt these to query and validate information using its use-case specific ontologies.
+While the individual query or constraint would need rewriting, the overall approach and modelling of tests can be reused to generate similar compliance documentation.
+Further, since all resources are made available under permissive licenses, an adopter has access to the underlying data and information to assist them in this process.
+
+\subsubsection{Novelty of presented work}
+The use of SPARQL and SHACL for GDPR compliance as presented in this chapter is novel within the state of the art as presented in \autoref{sec:sota:analysis}.
+While approaches in the SotA use SPARQL to query information, none present their work as intended to answer compliance questions - intended to investigate the compliance of an organisation.
+The use of SHACL is a first within the SotA regarding validation of information for GDPR compliance, based on the analysis of approaches in \autoref{sota:analysis:compliance}.
+In addition, the work presented in this thesis has been published in peer-reviewed publication with open access to its data and resources for transparency.
+Together, these serve as novel contributions that extend the state of the art.
