@@ -1,119 +1,90 @@
 \chapter{State of the Art}\label{chapter:sota}
-This chapter presents the state of the art (SotA) regarding approaches for GDPR compliance.
-The first section (\autoref{sec:sota:models}) presents an overview of technological approaches for legal compliance to date.
-The second section (\autoref{sec:sota:gdpr-semweb}) presents an overview of approaches for GDPR compliance utilising semantic web, the third section (\autoref{sec:sota:gdpr-other}) presents other approaches for GDPR compliance,
-and the fourth section (\autoref{sec:sota:other}) presents approaches which do not directly concern the GDPR but present relevant approaches and technology regarding regulatory compliance.
-The chapter concludes (\autoref{sec:sota:analysis}) with an analysis of presented approaches and a discussion on research opportunities from identified gaps in the SotA.
+The chapter presents the state of the art (SotA) regarding technological approaches for GDPR compliance, with a particular focus and emphasis on those that utilise semantic web technologies.
 
-\section{Overview of Technological Approaches for Legal Compliance}\label{sec:sota:models}
-This section provides an overview of technological approaches utilised for addressing legal compliance. It presents the different methodologies and frameworks for interpreting requirements from legal documents, and using technological frameworks towards the management of information and compliance.
-To that end, the section utilises surveys and key publications in the last decade (2007-2019) to identify the state of the art.
+Legal compliance as a field is quite broad due to the extent of laws which can be abstract (or universal) in their application or are intended to be enacted for a specific domain.
+Achieving legal compliance is itself a large field of research, with technical approaches providing a special attraction in all domains due to the potential of automation and co-ordination with information management systems.
+For the purposes of this thesis, the scope and focus is on technical approaches to assist the legal compliance process within the domain of GDPR compliance.
 
-\subsection{Classification of Approaches}\label{sec:sota:models:approaches}
-% 1> surveys of high level approaches to legal compliance
-A survey of approaches for legal compliance within the last 50 years from 1957-2007 for addressing legal requirements \cite{otto_addressing_2007} provides the following categorisation:
-\begin{itemize}
-    \item \textbf{symbolic or mathematical logic}:  This approach attempts to balance use of natural language in legal documents with symbolic logic in an attempt to avoid ambiguities in interpretation. One of the earliest approaches, it was the precursor to later representations for machine and human readability.
-    \item \textbf{knowledge representation}: This approach attempts to represent legal text as computer programs or algorithms by using logic programming techniques, primarily using Prolog, to avoid ambiguities in interpretation. The approach has been applied only within rigid domains where the law has minimal changes and does not rely on case law for interpretation. Additionally, the approach requires manual construction of logic rules from legal text, which prevents traceability. These challenges have limited its application to areas requiring requirements for system design, such as in software.
-	\item \textbf{deontic logic}: This is another logic-based approach which involves capturing the rights and obligations provided within the law. The approach can be extending from representing this information to utilising it for preparing and assessing of compliance. This provides the necessary requirements which can be utilised in the development of business processes for legal compliance. Deontic logic has also been utilised to represent licensing and agreement requirements similar to those as legal text \cite{pellegrini_genealogy_2018}, and continues to be a topic of research in the areas of legal compliance \cite{palmirani_pronto:_2018,agarwal_legislative_2018,vos_odrl_2019}.
-	\item \textbf{defeasible logic}: This approach consists of formulating rules of different types, namely - strict rules, defeasible rules, and defeaters - in order to represent the normative requirements extracted from legal text. Within the approach, strict rules must always hold, while defeasible rules hole true unless countered by an exception of a defeater. The approach is promised to provide better representation of conflicts in legal text in terms of interpretation as well as governance and jurisdiction requirements.
-	\item \textbf{first order temporal logic}: This approach is based on using first-order temporal logic to extract key concepts such as - context, roles, type of information - and constructing logic-based requirements from those. The approach has not seen a large amount of interest, with existing applications limited to the privacy domain, and utilised for assessing compliance between privacy policies and laws.
-	\item \textbf{access control }: Access control techniques have been utilised to capture the privacy-related elements of legal texts in the form of conditions and obligations that must be incorporated into a system as normative requirements for access to information. Conditions and obligations that cannot be represented as access control rules are incorporated as external environmental flags within the requirements. Utilising access control provides compliance by design, with logging providing transparency and accountability in the process. A survey of access control approaches utilising semantic web \cite{kirrane_access_2016} provides an overview of its applicability for different domains, including privacy enforcement.
-	\item \textbf{markup-based representations}: This approach involves representing the hierarchical structure of legal text using markup-based representations such as SGML and XML. The representation enables the annotation of legal text and addition of metadata pertaining to definitions, acronyms, and citations. It also enables associating information about compliance requirements as well as interpretation. The United Nations and European Commission utilise this approach in publication of legislations and case law through standardised ontologies  \cite{palmirani_akoma_2018,european_union_eli_2015,van_opijnen_european_2011}.
-	\item \textbf{goal based modelling}: This approach involves extracting and representing goals, soft goals, tasks, resources, and social relationships and modelling obligations to represent relationships for actors, dependencies, trust, delegation, and goal refinement. 
-	\item \textbf{reusable requirements catalogue}: This approach constructs reusable catalogue of legal requirements derived from legal texts which are then applied to development lifecycles to incorporate compliance into systems. The use of the catalogue enables uncovering ambiguities and inconsistencies through use, and the refinement of the approach over time. The approach has been applied regarding security and personal data protection.
-\end{itemize}
+Before delving into approaches concerning GDPR, it is imperative to have an understanding of the field concerning technological approaches used in legal compliance. As all approaches for legal compliance share their motivation and aims, understanding their commonality and rationale enables placing the work associated with GDPR compliance within the broader scope of legal compliance.
+It also provides investigation of avenues where existing approaches developed for other areas of legal compliance could be reused for GDPR, while providing the necessary background for understanding some of the decisions made by approaches concerning GDPR compliance in reusing existing technologies developed for legal compliance.
 
-The survey paper provides comments on the applicability as well as limitation of each approach, and  outlines the following requirements engineering objectives (prefix \textit{REO}) an approach must take with in legal contexts to support the analysis of regulatory texts for requirements specification, system design, and compliance monitoring:
-\begin{enumerate}[label={\textit{REO.\theenumi}}]
-    \item \textbf{Identification of relevant regulations}: Finding relevant laws for a given system or process requires understanding of both - the requirements of the process as well as the context of the law. In addition, incorporating case law provides further challenges regarding application of relevant laws to processes due to the specifics and interpretation of requirements involved.
-    \item \textbf{Classification of regulations with metadata}: In view of the above, the regulations need to be annotated or associated with metadata which can be utilised to classify them. This has been achieved to some extent through the EuroVoc\footnote{\url{https://eur-lex.europa.eu/browse/eurovoc.html}} - which is used as a multilingual and multidisciplinary thesaurus in the publication of metadata associated with EU legislations. However, where EuroVoc provides metadata about the domain of the legislation, greater granularity is needed to identify relevant information such as concepts, use-cases, and roles within the legal text.
-    \item \textbf{Prioritisation of regulations and exceptions}: The hierarchical structure of regulations as well as relation to other regulations in terms of exceptions as well as overlaps and contradictions  must be taken into account for developing requirements.
-    \item \textbf{Management of evolving regulations and law}: Changes in regulations need to be assessed by comparing the regulations, understanding the changes in requirements, and their application to existing systems for compliance. This requires traceability between legislations and requirements.
-    \item \textbf{Traceability between references and requirements}: From the above, it is necessary to provide traceability from any section or clause with a reference in the legislation to the legal text being referenced. This is required in order to enable understanding of derived requirements from such sections across legislations.
-    \item \textbf{Data Dictionary and glossary to ensure consistency}: Regulatory compliance makes use of consistent definitions and terminology an important aspect of requirements engineering. These are represented in the form of a data dictionary for domain-specific definitions and acronyms, and are utilised to support the requirements engineering process in providing a unified glossary for specifications, design, and compliance. 
-    \item \textbf{Semi-automated navigation and searching}: The legislation needs to be accessible in both machine-readable as well as human-understandable states so as to enable technological approaches such as information extraction, annotations, searching, and automation in traceability of related information.
-    \item \textbf{Annotation of regulatory statements}: It must be possible to associate annotations or additional information to regulatory statements, for example, with clarification of ambiguities or relevant case laws. Additionally, such annotations are also useful in a requirements engineering process to record assumptions and interpretations, and their usage in systems and applications.
-    \item \textbf{Queries comparing legal concepts and compliance}: Finally, it must be possible query for information both within the text of the regulation as well as its associated information in order to support disambiguation and auditing for compliance. 
-    Queries can assist with identification and comparison of applicable regulations, and to assess whether a particular requirement derived from the regulation has been addressed with respect to its compliance.
+Surveys analysing approaches over a period of time provide a good overview of the use of technology in addressing legal compliance.
+One such survey  analyses technological approaches for legal compliance within the 50 years of 1957-2007 \cite{otto_addressing_2007} to provide categorisation based on the representation of information and a set of Requirements Engineering Objectives (REO) an approach must follow to assist the legal compliance process.
+While the survey paper in does not explicitly refer to linked data principles \cite{bizer_linked_2011}, some of the REO are fulfilled by utilising linked data and semantic web to provide an interoperable representation based in standards to define the required metadata regarding legislations.
+
+Where legal compliance is closely tied to the functioning of an organisation, the requirements of compliance need to be Incorporated into the relevant activities (commonly called \textit{business processes}) within the organisation.
+As the GDPR dictates the use of personal data and also requires organisations to adopt practices such as provision of rights, the study of compliance approaches from the perspective of business processes is also relevant in understanding the state of the art. 
+For this, two key surveys provide the necessary overview of the relation between business processes and compliance. The first survey \cite{fellmann_state---art_2014} relates to the use of business processes within different phases of compliance, and provides the basis for categorising approaches as ex-ante (a-priori, ad-hoc) and ex-post (a-posteriori, post-hoc) depending on whether the compliance is relevant before the activity (in this case processing of personal data) has taken place or after. The second survey \cite{benyoucef_information_2015} analyses the approaches utilising business processes for compliance, and concludes that compliance approaches are basically limited to identifying relevant requirements from laws and regulations and ensuring that business processes comply with them, without much attention to compliance enactment.
+
+`Legal Ontologies' is an umbrella term used to represent ontologies that represent information associated with the legal domain.
+Key surveys in this domain categorise and analyse ontologies based on 
+purposes \cite{leone_taking_2019,rodrigues_legal_2019}, 
+access control \cite{kirrane_access_2016}, 
+rights expression languages \cite{pellegrini_genealogy_2018}, 
+privacy policy languages \cite{van_de_ven_qualitative_2016}, and
+privacy requirements engineering \cite{gharib_ontologies_2016}.
+Ontologies have been extensively used for formal representations of information, rules \cite{kirrane_scalable_2018}, rights \cite{pellegrini_genealogy_2018}, legislations \cite{leone_taking_2019}, business processes \cite{elgammal_formalizing_2016}, policies \cite{van_de_ven_qualitative_2016}, and requirements \cite{gharib_ontologies_2016}.
+In areas of compliance, standardisation of representations for norms and requirements has seen efforts such as LegalRuleML \cite{palmirani_legalruleml:_2011} which uses temporal and defeasible logic, and has been applied for compliance checking over business processes \cite{governatori_semantic_2016}. On similar lines, Compliance Management Ontology \cite{syed_abdullah_compliance_2012} proposes shared conceptualisation of business process management, culture management, obligations, programme, resources, risk management, and solutions.
+There has also been a noted lack of guidelines regarding their reuse, particularly within the legal domain for compliance \cite{casanovas_legal_2017} where evaluation of developed ontologies is a challenge due to the requirement of specialists or legal experts being involved in the modelling stage \cite{rodrigues_legal_2019}.
+
+The state of the art in technologies used for legal compliance thus presents encompassing representations for documents, requirements, rules, obligations, policies, and business processes associated with legal compliance. An adopter has a range of approaches to choose from based on existing approaches and formalisms, where the choice of approach is based on the stated requirements and goals as well as its role in the legal compliance process.
+
+Given the motivation of this thesis in utilising semantic web technologies, and the research question exploring activities associated with personal data and processing for GDPR compliance - the state of the art is presented as an overview of approaches within the scope of these topics - with other approaches also presented to present the relevance of work developed within the domain.
+
+The chapter is structured as follows: the first section (\autoref{sec:sota:methodology}) presents an overview of the methodology used to identify and analyse the state of the art. 
+The second section (\autoref{sec:sota:gdpr-semweb}) presents approaches using semantic web technologies to address GDPR compliance, with the third section  (\autoref{sec:sota:gdpr-other}) presenting approaches addressing GDPR compliance using technologies other than semantic web.
+The fourth section (\autoref{sec:sota:privacy-policies}) presents approaches regarding privacy policies in the context of GDPR which feature information relevant to the compliance process while not addressing compliance itself directly.
+The fifth section (\autoref{sec:sota:consent}) presents approaches that concern representation of consent as required by GDPR.
+The chapter concludes with an analysis of the SotA (\autoref{sec:sota:analysis}). It identifies gaps within the SotA and discusses the research opportunities to address them.
+
+\section{Methodology}\label{sec:sota:methodology}
+
+\subsubsection{Identification and classification of approaches}
+The identification of approaches was carried out throughout the development of research presented in this thesis given the evolving nature of information about GDPR and legal opinions on its compliance.
+Given the research question and motivation of this thesis, the scope of work considered as the state of the art was defined as \textit{approaches addressing GDPR compliance through technological solutions}, with a particular emphasis on the approach being published in an accessible manner.
+
+Peer-reviewed publications were the primary source of knowledge regarding the approaches, identified using scholarly indexing services such as Google Scholar\footnote{\url{https://scholar.google.com/}}, IEEE Explore\footnote{\url{https://ieeexplore.ieee.org/}}, ACM Digital Library\footnote{\url{https://dl.acm.org/}}, Scopus\footnote{\url{https://www.scopus.com/}}, and DBLP\footnote{\url{https://dblp.uni-trier.de/}}.
+In addition to these, information was also gathered through dissemination networks such as Twitter\footnote{\url{https://twitter.com/}} and mailing lists.
+Searches using keywords such as \textit{GDPR}, \textit{GDPR Compliance}, and \textit{Consent} were used to identify relevant approaches in these sources and added to a reference manager (Zotero\footnote{\url{https://zotero.org/}}).
+Authors and affiliations of identified publications were also used as keywords to find additional relevant resources.
+In cases where the publication acknowledged a particular funding or project, an effort was made to identify its online website and access the list of publications. This also provided information about the project's aims and objectives, and its future goals and directions. 
+
+Publications behind paywalls which could not be accessed either as a pre-print found elsewhere or by contacting the author with a request to access were not added to the state of the art and are not presented in this thesis. Requests for access to resources mentioned within a publication was also made where possible, with a resource considered `open' if published and `accessible' if it could be accessed. Commercial solutions of GDPR compliance are not considered to be within the state of the art given their closed nature and lack of knowledge regarding implementations.
+
+Based on the approaches collected, they were categorised based on their relevance to the research question of this thesis.
+Approaches addressing GDPR with a particular emphasis on utilising semantic web are presented in \autoref{sec:sota:gdpr-semweb} with the other approaches addressing GDPR compliance presented in \autoref{sec:sota:gdpr-other}.
+Approaches that do not concern or address the GDPR in a direct manner, but were considered relevant to the SotA are presented in \autoref{sec:sota:other}.
+
+\subsubsection{Criteria for Analysis}
+Analysis of the state of the art is based on two surveys regarding
+classification of approaches for legal compliance \cite{otto_addressing_2007} and phases of compliance \cite{fellmann_state---art_2014} that provide context and features to represent the analysis.
+The research questions and objectives provide the basis for constructing a set of questions for the investigation of approaches within the state of the art.
+The questions are stated below with an indication to the relevant research question and objective guiding this thesis:
+\begin{enumerate}
+    \item Which aspects of GDPR compliance does the approach target? ($RO1$, $RO2$)
+    \item How does the approach represent information associated with GDPR and its compliance? ($RO3$)
+    \item How does the approach link information with GDPR? ($RO3(a)$)
+    \item How does the approach represent activities associated with processing of personal data and consent? ($RQ3(b)$)
+    \item Does the approach provide indication of ex-ante and ex-post phases of activities for compliance? ($RO2$, $RO3$)
+    \item How does the approach represent information associated with consent? ($RO3(c)$)
+    \item How does the approach query information relevant to compliance? ($RO4$)
+    \item How does the approach validate information relevant to compliance? ($RO5$)
+    \item How does the approach evaluate GDPR compliance? ($RO5$)
 \end{enumerate}
 
-\subsubsection*{Discussion}
-While the survey paper in \autoref{sec:sota:models:approaches} does not explicitly mention or refer to the linked data principles \cite{bizer_linked_2011}, some of its objectives are fulfilled by utilising them in a given approach. Namely, linked data and semantic web provide an interoperable representation based in standards which can be used to define the required metadata regarding legislations, as demonstrated by EuroVoc \cite{}, which addresses \textit{REO.1}, \textit{REO.2}, and \textit{REO.6} to some extent.
+Based on these, the approaches within the SotA are analysed to identify if they: (i) represent clauses and concepts of GDPR, (ii) provide a data model of concepts such as an ontology, (iii) represent information for ex-ante compliance, (iv) represent information for ex-post compliance, (v) model process flows/activities, (vi) model consent information, (vii) evaluate GDPR compliance, (viii) specify requirements for compliance, and (ix) provide their resources in an open and accessible manner to enable its introspection.
 
-The use of structured representation to define legislations for \textit{REO.3} and \textit{REO.7} is possible using standards such as XML and ontologies such as ELI (European Legislation Identifier) and Akoma Ntoso. ELI and Akoma Ntoso are official metadata standards for European and United Nations legislation documents respectively, and are maintained by the publications offices of their respective bodies. ELI does not currently offer a way to represent the hierarchical structure of regulations, such as representation of individual articles or clauses, though the European Commission's Publication Office has stated their intention to provide this feature in the future.
-This also limits the applications of \textit{REO.4} and \textit{REO.5} which require the above representation.
-For creation of glossaries from legal text, the requirements of \textit{REO.6} are addressed through existing efforts such as EuroVoc and Interactive Terminology for Europe\footnote{\url{https://iate.europa.eu/}} (IATE), which provide consistent use of terms across domains, though there are no mechanisms to derive definitions from legislations or common interpretations of terms.
-
-Regarding annotations for \textit{REO.8}, there exist standards such as W3C's Web Annotations model\footnote{\url{https://www.w3.org/annotation/}}, which can be utilised to annotate documents in an interoperable format, though they are not intended nor directly applicable for use over legislations.
-Limitations to this are a lack of structured representation with sufficient granularity, for example, to reference individual clauses of text within the document.
-Querying, as required for \textit{REO.9}, is inherently dependant on the underlying information representation, though there are standards such as SQL and SPARQL which provide interoperability in the approach.
-
-\subsection{Approaches based on business process representations}\label{sota:models:process}
-The use of approaches utilising business process representations for compliance are summarised in two key surveys. The first \cite{fellmann_state---art_2014} relates to the use of business processes within different phases of compliance, while the second \cite{benyoucef_information_2015} analyses use of information artefacts in business processes for compliance.
-
-\subsubsection{Business Processes and Phases of Compliance}
-A survey of business process approaches \cite{fellmann_state---art_2014} uses the following hierarchy of 4 dimensions to categorise approaches:
-\begin{itemize}
-    \item \textbf{Scope}: This dimension relates to the scope in terms of representation of processes, and concerns classes such as order and occurrence, information, resource, time, and location which describe the planning and execution of a process.
-    \item \textbf{Lifecycle Phase}: This dimension indicates the period in time addressed by the representation in terms of design (ex-ante,a-priori,ad-hoc), execution, and after execution (ex-post,a-posteriori,post-hoc). The approaches related to design representation focus on prevention of compliance adherence and avoiding violations by design, whereas those concerned with after execution are focused on demonstration of compliance and detection of violations. Approaches concerned with execution are focused on real-time observation and prevention of violations.
-    \item \textbf{Formality}: This dimension categorises approaches as addressing compliance in terms of its verification and validation, or whether addressing business processes. The approaches addressing business processes are analysed in terms of their annotation and representation of information relevant to compliance, and categorised based on their formality in terms of whether they focus on formalisation, compliance checking, end-user oriented, management orientied, and is a framework or a method.
-    \item \textbf{Contribution Type}: This dimension indicates whether the approach provides a technical artefact as an implementation, or a conceptual model checking method, with approaches not satisfying either criteria being categorised as `other'.
-\end{itemize}
-
-\subsubsection{Information Artefacts in Business Processes for Compliance}
-A survey of information artefacts used in business processes for compliance \cite{benyoucef_information_2015} provides the following categories for artefacts based on their type and use. These artefacts are used by business process across all phases (ex-ante, execution, ex-post) of compliance and represent the different stages of compliance management.
-\begin{itemize}
-    \item \textbf{System design artefacts}: These artefacts provide structure or behaviour-related description of a system, through some formalism such as UML or text.
-    \item \textbf{Method}: These artefacts provide definitions of activities to create or interact with a system.
-    \item \textbf{Language or notation}: These artefacts are a formalised system for statements represents parts of reality.
-    \item \textbf{Algorithm}: These artefacts provide executable descriptions of system behaviour.
-    \item \textbf{Guideline}: These artefacts provide suggestion regarding behaviour in specific situations.
-    \item \textbf{Requirements}: These artefacts provide statements about systems and their properties.
-    \item \textbf{Pattern}: These artefacts provide definition of reusable elements of design with its benefits and application contexts.
-    \item \textbf{Metric}: These artefacts provide a mathematical model able to measure aspects of systems or methods.
-\end{itemize}
-These artefacts are used for tasks associated with regulatory compliance, including enactment, analysis, checking, and modelling. The survey finds that existing approaches have over the years been largely focused on the modelling and checking tasks in the context of regulatory compliance, with compliance analysis being increasingly researched over time  while enactment has received little attention. The survey concludes that compliance approaches are basically limited to identifying relevant requirements from laws and regulations and ensuring that business processes comply with them, without much attention to compliance enactment.
-This gap can be addressed by developing technologies for activities such as anticipation, adaptation and management of change to business processes as and when they occur.
-
-\subsubsection*{Discussion}
-The business processes are represented for organisational planning and management purposes using standard representations such as UML and BPMN. These can be reused for compliance management tasks by applying and assessing the compliance requirements over these processes. For this, it is necessary to align the business processes and the artefacts they use with the compliance requirements and terminology. The two approaches discussed in the earlier sections presented existing work in terms of categorising such approaches based on their use of business processes in phases of compliance, and the information artefacts they use. Through this, they provide the different avenues where an approach might assist with the compliance process, as well as the type of artefacts it might use to do so.
-
-Depending on the context, such as - type of activities, legal requirements, use-case - one or more of the categories can be adopted for creating an approach for compliance. For example, the requirement of ensuring activities are compliant before they are executed in GDPR can be fulfilled by an approach utilising business process representations in the ex-ante lifecyle phase with the verification and validation being performed through any of the categorised information artefacts with varying degrees of formality. Assessing them purely from a compliance management perspective would serve to diminish their usefulness and prevalence in the planning and management of activities.
-
-As legal requirements evolve, it could be a costly exercise to create and adopt a new approach to meet its compliance. Therefore, an evolving approach needs to identify and adapt the new compliance requirements over existing representations of business processes through development of validation and verification mechanisms.
-This requires the business process representations to be in an form which can reused for such purposes, such as through the example of interoperable standards.
-
-\subsection{Approaches utilising Legal Ontologies}
-Surveys on legal ontologies provide categorisation of ontologies as well as their intended applications within the domain. One such survey \cite{rodrigues_legal_2019} categorises the purposes as - organising and structuring information, reasoning and problem solving, semantic indexing and searching, and understanding a domain. It also categorised them based on the generalisation of concepts as - upper level ontology, core ontology, domain ontology, and application ontology - with most of them falling under core and domain ontologies. The survey also provides an overview of the methodologies used, and the evaluation approaches utilised, which consist of - evaluation by specialists, data-driven evaluations, gold-standard assessments, application in case study, and those that have no evaluation or are unclear. The survey also shows that most ontologies are formalised using RDF/OWL-DL though other formalisations were also utilised.
-
-Another survey\footnote{One of the analysed ontologies is GDPRtEXT, which is one of the major contributions of this thesis. The survey provides a comparison of GDPRtEXT with the SotA, and is described in more detail in \autoref{sec:voc:GDPRtEXT}.} \cite{leone_taking_2019} categorises ontologies in the five domains of - policies, licenses, tenders and procurement, privacy, and cross-domain. It then analyses the ontologies based on features such as the intended domain, purpose, year, license, development, source of concepts, base ontology, and formalism.
-
-A survey of approaches capturing privacy requirements in the SotA \cite{gharib_towards_2017} identified and categorised concepts and relationships as agentive (actor, role), intentional (goal, action), informational (asset, information), interaction (delegation, permission, trust), risk (threat, vulnerability, attack), treatment (mitigate, constraint, policy), and privacy (requirement, notice, anonymity).
-Another survey \cite{van_de_ven_qualitative_2016} categorises privacy policy languages based on their focus (machine, human, privacy, security), aspects (authorisation, spatial, temporal, law), and syntax (XML, high-level, logical).
-Both surveys identify the gaps in the SotA in terms of absence or limitation of approaches to sufficiently express concepts, and propose an ontology to fill the gaps.
-Further surveys represent the SotA in their respective areas regarding access control \cite{kirrane_access_2016}, rights expression languages \cite{pellegrini_genealogy_2018}, privacy policy languages \cite{van_de_ven_qualitative_2016}, privacy requirements engineering \cite{gharib_ontologies_2016}.
-
-In areas of compliance, standardisation of representations for norms and requirements has seen efforts such as LegalRuleML \cite{palmirani_legalruleml:_2011} which uses temporal and defeasible logic, and has been applied for compliance checking over business processes \cite{governatori_semantic_2016}. On similar lines, Compliance Management Ontology \cite{syed_abdullah_compliance_2012} proposes shared conceptualisation of business process management, culture management, obligations, programme, resources, risk management, and solutions.
-
-\subsubsection*{Discussion}
-Ontologies have been extensively used for formal representations of information, rules \cite{kirrane_scalable_2018}, rights \cite{pellegrini_genealogy_2018}, legislations \cite{leone_taking_2019}, business processes \cite{elgammal_formalizing_2016}, policies \cite{van_de_ven_qualitative_2016}, and requirements \cite{gharib_ontologies_2016}.
-However, there has also been a noted lack of guidelines regarding their reuse, particularly within the legal domain for compliance \cite{casanovas_legal_2017}.
-Within the legal domain, evaluation of developed ontologies is a challenge due to the requirement of specialists or legal experts being involved in the modelling stage \cite{rodrigues_legal_2019}.
-Despite these hurdles, ontologies continue to be researched and utilised as a solution for assisting with the legal compliance.
-
-The state of the art in ontologies thus presents encompassing representations for documents, requirements, rules, obligations, policies, and business processes associated with legal compliance. An adopter has a range of approaches to choose from based on the stated methodologies and formalisms, where the choice of approach depends on the stated requirements and goals of the ontology as well as its role in the legal compliance process.
-
+These questions and criteria are used to assess the approaches with their analysis provided in \autoref{sec:sota:analysis} at the conclusion of this chapter.
+The analyses is presented in sections associated with representation of GDPR, representation of activities, representation of consent, querying of information for compliance, and evaluation of GDPR compliance.
 
 \section{Approaches for GDPR compliance utilising Semantic Web}\label{sec:sota:gdpr-semweb}
 
-\subsection{SPECIAL}\label{sec:sota:SPECIAL}
+\subsubsection{SPECIAL}\label{sec:sota:SPECIAL}
 SPECIAL\footnote{\url{https://www.specialprivacy.eu/}} (Scalable Policy-aware Linked Data Architecture For Privacy, Transparency and Compliance) is an European H2020 Project that aims to provide technical solutions for data protection requirements associated with use-cases involving big data. It features extensive use of semantic web technologies across a variety of compliance related tasks such as recording provenance logs of data processing \cite{kirrane_scalable_2018}, providing visual interfaces for consent \cite{drozd_consent_nodate,gritzalis_i_2019}, compliance checking of processing activities based on given consent \cite{westphal_spirit:_nodate,vos_odrl_2019,fernandez_user_2019}, and efforts towards standardisation of related vocabularies\footnote{The SPECIAL project was the primary driving force behind the creation of the W3C Data Privacy Vocabularies and Controls Community Group (DPVCG), of which the author was an active participating member. Information about this has been listed in \autoref{sec:intro:dpvcg}. The Data Privacy Vocabulary (DPV), produced by the DPVCG, has also been documented as a deliverable of the project in D6.5 \cite{pandit_d6.5_2019}.} \cite{bonatti_data_2018,pandit_creating_2019}.
 Collaborations between SPECIAL and other projects have produced related work, such as an approach for compliance checking using ODRL \cite{agarwal_legislative_2018,vos_odrl_2019}, and the application of SPECIAL's framework in a Smart City use-case \cite{fernandez_user_2019}.
 Information about the methodologies used, developed technologies, and their evaluations is accessible through peer-reviewed publications and public deliverables\footnote{\url{https://www.specialprivacy.eu/publications/public-deliverables}}.
 
 SPECIAL uses a distributed ledger to store the processing logs for data processing activities, which can be evaluated for compliance against given consent in ex-ante and ex-post phases. The logs are stored using the  Policy Log vocabulary\cite{bonatti_special_2018-1} with the data processing activities represented by Usage vocabulary \cite{bonatti_special_2018-2}. Compliance evaluation is performed by using a custom reasoning algorithm \cite{bonatti_fast_2018,bonatti_richer_2019} in a semantic reasoner. The consent is provided in a visual and interactive form to the user using the web browser \cite{drozd_consent_nodate,gritzalis_i_2019}. The project has been successfully applied to use-cases provided by its commercial partners\footnote{See D1.5 \cite{bonatti_d1.5_2018} and D1.6 \cite{schlehahn_d1.6_2018} for information on use-cases.} as well as in an external use-case related to use of IoT in Smart Cities \cite{fernandez_user_2019}. The Figure. \ref{fig:SPECIAL-architecture1} presents an overview of the SPECIAL architecture along with its components and utilised technologies.
-
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{img/SPECIAL_architecture1.png}
@@ -121,7 +92,7 @@ SPECIAL uses a distributed ledger to store the processing logs for data processi
     \label{fig:SPECIAL-architecture1}
 \end{figure}
 
-The Usage Policy \cite{bonatti_special_2018-2} is used to represent data processing activities and is described in more detail in D2.5 \cite{bonatti_d2.5_2018}. The base policy uses OWL2 expressions to denote an intersection of personal data categories, processing operations, purposes, recipients, and storage. These can then be combined using OWL2 unions over multiple base policies with differing expressions. SPECIAL provides additional vocabularies for purposes, personal data categories, processing operations, and recipients for using with the Usage Policy based on its use-cases. The general form of a base policy is:
+The ontology developed to represent data processing activities is called `Usage Policy' \cite{bonatti_special_2018-2} is described in more detail in D2.5 \cite{bonatti_d2.5_2018}. The `base policy' denotes a ontology design pattern of OWL2 expressions to denote an intersection of personal data categories, processing operations, purposes, recipients, and storage. Policies can then be combined using OWL2 unions over multiple base policies with differing expressions. SPECIAL provides additional vocabularies for purposes, personal data categories, processing operations, and recipients for using with the Usage Policy based on its use-cases. The general form of a base policy is:
 \begin{lstlisting}
 ObjectIntersectionOf(
     ObjectSomeValuesFrom(spl:hasData SomeDataCategory)
@@ -140,22 +111,25 @@ ObjectIntersectionOf(
 )
 \end{lstlisting}
 
-For a given policy $P_c$ representing activities permitted by given consent and policy $P_s$ representing processing activity, compliance is evaluated by checking whether $P_c$ complies with $P_s$ - which in OWL2 is checked by using a reasoner to check whether $P_c \subseteq P_s$. This is performed by using an algorithm \cite{bonatti_fast_2018,bonatti_richer_2019} in a semantic reasoner that is optimised for speed by only performing those operations associated with checking for compliance between policies.
+For a given policy $P_c$ representing activities permitted by given consent and policy $P_s$ representing processing activity, compliance is evaluated by checking whether $P_c$ complies with $P_s$ - which in OWL2 is checked using a semantic reasoner to evaluate $P_c \subseteq P_s$. In SPECIAL's implementation, this is performed by using an algorithm \cite{bonatti_fast_2018,bonatti_richer_2019} in a custom semantic reasoner optimised for speed by only performing those operations associated with checking for compliance between policies.
 An extension of the Usage Policy for representing additional requirements of the GDPR was discussed in the deliverable D2.6 \cite{bonatti_d2.6_2018}.
 
-The activity is recorded in a log using the Policy Log vocabulary \cite{bonatti_special_2018-1}, represented in Figure. \ref{fig:SPECIAL-policy-log-vocabulary}, and is evaluated for compliance by using the reasoner in both ex-ante and ex-post phase. The Policy Log vocabulary, described in D2.7 \cite{kirrane_d2.7_2018}, reuses existing vocabularies such as DCAT and PROV \cite{lebo_prov-o:_2013}, and is used to record an immutable documentation of compliant activities and their legal basis in consent.
-
+The activity is recorded in a log entry using the Policy Log vocabulary \cite{bonatti_special_2018-1}, represented in Figure. \ref{fig:SPECIAL-policy-log-vocabulary} by the concept \texttt{LogEntry}, and is evaluated for compliance by using the reasoner in both ex-ante and ex-post phase. 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{img/SPECIAL_logvocabulary.png}
+    \includegraphics[width=0.8\linewidth]{img/SPECIAL_logvocabulary.png}
     \caption{Overview of SPECIAL Policy Log Vocabulary \cite{bonatti_special_2018-1}}
     \label{fig:SPECIAL-policy-log-vocabulary}
 \end{figure}
 
+The Policy Log vocabulary, described in D2.7 \cite{kirrane_d2.7_2018}, reuses existing vocabularies of DCAT and PROV-O \cite{lebo_prov-o:_2013}, and is used to record an immutable documentation of compliant activities and their legal basis in consent. Each log entry contains information about the agent that created the log (\texttt{prov:SoftwareAgent} and \texttt{Log}), a link to the data subject, and information about the processing through the concept \texttt{LogEntryContent} which contains information represented using concepts from the base policy.
+Information about consent is recorded through \texttt{PolicyEntry} and consists of consent assertion (given consent) and consent revocation (withdrawn consent).
+
 The methodologies associated with the vocabularies produced by the SPECIAL project are based on the utilisation of metadata in the compliance process \cite{wenning_compliance_2018}. The creation of policy vocabularies from use-cases is described through the public deliverable D1.5 \cite{bonatti_d1.5_2018}, with that of the log vocabulary provided in D3.2 \cite{kirrane_d2.7_2018}. The vocabularies created by the project are documented and publicly accessible online.
 
-SPECIAL's work has also produced ODRL models for deontic representations of GDPR requirements through collaborations with other projects. The first of this is based on work with the Austrian SERAMIS\footnote{\url{https://cordis.europa.eu/project/rcn/189040/factsheet/en}} (Sensor-Enabled Real-World Awareness for Management Information Systems) project, which produced a web-based tool called PriWUcy for evaluating compliance assessments of GDPR articles \cite{agarwal_legislative_2018}.
-The tool uses a model of the legislation created by parsing the legislation text and representing the obligations using ODRL. A set of preliminary assessment questions provides the inputs over which the model is applied to identify actions and obligations to be fulfilled as part of the assessment. The ODRL model, depicted in Figure. \ref{fig:SPECIAL-ODRL}, is extended to represent additional granularity of constraints of - Feature, Discretional, and Dispensation. The ODRL policies are associated with the text of the GDPR they represent through classes representing chapters, articles, and paragraphs within the text of the GDPR. The approach relies on identifying and representing assets, parties, actions, duties, and constraints using the developed ODRL model. More information on the tool can be found in the public deliverable D5.5 \cite{agarwal_d5.5_2017}.
+\subsubsection{SERAMIS}
+SPECIAL's work has also produced ODRL models for deontic representations of GDPR requirements through collaborations with other projects. The first of this is based on work with the Austrian SERAMIS\footnote{\url{https://cordis.europa.eu/project/rcn/189040/factsheet/en}} (Sensor-Enabled Real-World Awareness for Management Information Systems) project, which produced a web-based tool called PriWUcy for evaluating compliance assessments of GDPR articles \cite{agarwal_d5.5_2017,agarwal_legislative_2018}.
+The tool uses a model of the legislation created by parsing the legislation text and representing the obligations using ODRL. A set of preliminary assessment questions provides the inputs over which the model is applied to identify actions and obligations to be fulfilled as part of the assessment. The ODRL model, depicted in Figure. \ref{fig:SPECIAL-ODRL}, is extended to represent additional granularity of constraints of - Feature, Discretional, and Dispensation. The ODRL policies are associated with the text of the GDPR they represent through classes representing chapters, articles, and paragraphs within the text of the GDPR. The approach relies on identifying and representing assets, parties, actions, duties, and constraints using the developed ODRL model.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{img/SPECIAL_ODRL.png}
@@ -163,7 +137,8 @@ The tool uses a model of the legislation created by parsing the legislation text
     \label{fig:SPECIAL-ODRL}
 \end{figure}
 
-The ODRL profile was further developed for modelling regulatory obligations and business policies based on GDPR towards compliance checking and providing explanations of the reasoning process \cite{vos_odrl_2019}. Additional classes and properties added include those relevant for specifying the legal bases, purpose, location, and safeguards associated with processing. Policies representing articles in the GDPR are checked against permissions by activities to perform a data processing operation. For example, the following listing shows a request for transfer personal data to a third country based on consent, which would be checked against the corresponding policy representing Article 46 of the GDPR. 
+\subsubsection{Vos et al.}
+The ODRL profile was further developed for modelling regulatory obligations and business policies based on GDPR towards compliance checking and providing explanations of the reasoning process \cite{vos_odrl_2019}. Additional classes and properties added include those relevant for specifying the legal basis, purpose, location, and safeguards associated with processing. Policies representing articles in the GDPR are checked against permissions by activities to perform a data processing operation. For example, the following listing shows a request to transfer personal data to a third country based on consent, which would be checked against the corresponding policy representing Article 46 of the GDPR. 
 \begin{lstlisting}
 <http://example.com/policy:bp-transfer> a orcp:Set ;
     odrl:profile <http://example.com/odrl:profile:regulatory-compliance> ;
@@ -181,109 +156,64 @@ The ODRL profile was further developed for modelling regulatory obligations and 
         odrl:dataSubjectProvisions orcp:LegalRemediesForDataSubjects
     ] .
 \end{lstlisting}
-Compliance is checked by converting the ODRL policies into InstAL, a domain-specific language for writing models based on events and states, which translates to Answer Set Programming (ASP) and is evaluated using a solver. When a policy is found to be non-compliant, explanations are generated based on `fluents' - facts that are true if present and false if absent - through a reasoning process. The implementation is publicly accessible through a hosted repository\footnote{\url{https://github.com/instsuite/instsuite.github.io/blob/master/gdpr.ial}}. An example of this is as follows:
-\begin{lstlisting}
-# fluents capturing justifications
-type Article;
-fluent permission(Subject,Article);
-fluent prohibition(Subject,Article);
-noninertial fluent supports(Subject,Article,Predicate,Object);
-noninertial fluent lacks(Subject,Article,Predicate,Object);
+Compliance is checked by converting the ODRL policies into InstAL, a domain-specific language for writing models based on events and states, which translates to Answer Set Programming (ASP) and is evaluated using a Answer Set Solver\footnote{CLINGO \url{https://potassco.org/clingo/}}. When a policy is found to be non-compliant, explanations are generated based on `fluents' - facts that are true if present and false if absent - through a reasoning process. The implementation is publicly accessible through a hosted repository\footnote{\url{https://github.com/instsuite/instsuite.github.io/blob/master/gdpr.ial}}. 
+% An example of this is as follows:
+% \begin{lstlisting}
+% # fluents capturing justifications
+% type Article;
+% fluent permission(Subject,Article);
+% fluent prohibition(Subject,Article);
+% noninertial fluent supports(Subject,Article,Predicate,Object);
+% noninertial fluent lacks(Subject,Article,Predicate,Object);
 
-# if enforceable data subject rights are defined, the term is true
-article46_body_term2(Process) when
-    triple(Process,dataSubjectProvisions,enforceableDataSubjectRights);
-supports(Process,article46,dataSubjectProvisions,
-        enforceableDataSubjectRights) when
-    article46_body_term2(Process),
-    triple(Process,dataSubjectProvisions,enforceableDataSubjectRights);
+% # if enforceable data subject rights are defined, the term is true
+% article46_body_term2(Process) when
+%     triple(Process,dataSubjectProvisions,enforceableDataSubjectRights);
+% supports(Process,article46,dataSubjectProvisions,
+%         enforceableDataSubjectRights) when
+%     article46_body_term2(Process),
+%     triple(Process,dataSubjectProvisions,enforceableDataSubjectRights);
 
-# otherwise the description lacks data, and non-inertial fluents are applied
-lacks(Process,article46,dataSubjectProvisions,
-        enforceableDataSubjectRights) when
-    applies(Process,article46),
-    not supports(Process,article46,dataSubjectPro
-\end{lstlisting}
+% # otherwise the description lacks data, and non-inertial fluents are applied
+% lacks(Process,article46,dataSubjectProvisions,
+%         enforceableDataSubjectRights) when
+%     applies(Process,article46),
+%     not supports(Process,article46,dataSubjectPro
+% \end{lstlisting}
 
-The second work is based on applying SPECIAL's GDPR compliance framework to the Austrian CitySPIN\footnote{\url{http://cityspin.net/}} (Cyber-Physical Social Systems for City-wide Infrastructures) project, which utilises linked data platforms to ingest data from multiple sources in a smart city scenario, and utilises it for data processing pipelines and analytics. An important component of the project is the management of consent which utilises SPECIAL's policies \cite{bonatti_special_2018-1,bonatti_special_2018-2} and compliance framework \cite{kirrane_scalable_2018}.
-The auxiliary vocabularies provided by SPECIAL for purpose and data categories were extended for use-cases associated with CitySPIN \cite{fernandez_user_2019}, as depicted in Figure. \ref{fig:SPECIAL-CitySPIN}. 
+\subsubsection{CitySPIN}
+The second work is based on applying SPECIAL's GDPR compliance framework to the Austrian CitySPIN\footnote{\url{http://cityspin.net/}} (Cyber-Physical Social Systems for City-wide Infrastructures) project \cite{fernandez_user_2019}, which utilises linked data platforms to ingest data from multiple sources in a smart city scenario, and utilises it for data processing pipelines and analytics. An important component of the project is the management of consent which utilises SPECIAL's policies \cite{bonatti_special_2018-1,bonatti_special_2018-2} and compliance framework \cite{kirrane_scalable_2018}.
+\autoref{fig:SPECIAL-CitySPIN} presents an overview of CitySPIN and its relation with the SPECIAL vocabularies. The auxiliary vocabularies provided by SPECIAL for purpose and data categories (SPECIAL-MCM in figure) were extended for use-cases associated with CitySPIN (CPSS Core vocabulary and UC vocabulary in figure).
+The figure uses white blocks indicating concepts from SPECIAL's vocabularies and the others indicating additional concepts defined by CitySPIN.
 The defined policies are checked in the ex-ante and ex-post phase using the SPECIAL compliance checking algorithm \cite{bonatti_fast_2018,bonatti_richer_2019}, with a prototype implementation demonstrating ex-ante compliance checking in ad-hoc widgets sharing personal data \cite{fernandez_privacy-aware_2019}. Details about the project and its implementation are available through its public deliverables D6.1 \cite{noauthor_d6.1_nodate} and D6.3 \cite{noauthor_d6.3_nodate}.
-
-\begin{figure}[h]
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{img/SPECIAL_CitySPIN.png}
+    \includegraphics[width=0.8\linewidth]{img/SPECIAL_CitySPIN.png}
     \caption{CitySPIN's extension of SPECIAL vocabularies \cite{fernandez_user_2019}}
     \label{fig:SPECIAL-CitySPIN}
 \end{figure}
 
 The use-cases utilised within the SPECIAL project and a discussion of their legal requirements can be found in the deliverables D1.5 \cite{bonatti_d1.5_2018} and D1.6 \cite{schlehahn_d1.6_2018}. A dashboard representing information of processing activities and consent was created to represent the logged information \cite{raschke_designing_2017}, whose usability and testing are described in deliverables D4.3 \cite{raschke_d4.3_nodate} and D4.4 \cite{milosevic_d4.4_2019}. Another visual interface for interactive consent was also developed based on presenting the components of a usage policy to the individual in an interactive format \cite{gritzalis_i_2019}. The interface provides visual representations of associations between purposes, processing, data categories, recipients, and storage which allows the individual to explore and choose their consent. It also offers visual paradigms such for representation of information as tabs, breadcrumbs, hierarchies, and graphs for visualisation and exploration of information. 
 
-\subsection{MIREL}\label{sec:sota:MIREL}
-MIREL\footnote{\url{www.mirelproject.eu/}} (Mining and Reasoning with Legal Texts) is an European H2020 Project that aims to create a framework for interpretation of legal texts into formal representations for querying norms, checking compliance, and decision support. The project uses semantic web to provide normative requirements \cite{gandon_normative_2017}, provide natural language processing over legal texts \cite{milagro_teruel_legal_2018}, and creating ontologies based on GDPR \cite{monica_legal_2018} for legal compliance \cite{palmirani_pronto:_2018-1} and reasoning \cite{palmirani_pronto:_2018}. The project also involves creation of icons for data protection based on the developed ontologies \cite{arianna_dapis:_2019}.
+\subsubsection{MIREL}\label{sec:sota:MIREL}
+MIREL\footnote{\url{www.mirelproject.eu/}} (Mining and Reasoning with Legal Texts) is an European H2020 Project that aims to create a framework for interpretation of legal texts into formal representations for querying norms, checking legal compliance, and decision support. The project uses semantic web to provide normative requirements \cite{gandon_normative_2017}, provide natural language processing over legal texts \cite{milagro_teruel_legal_2018}, and creating ontologies based on GDPR \cite{monica_legal_2018} for legal compliance \cite{palmirani_pronto:_2018-1} and reasoning \cite{palmirani_pronto:_2018}. The project also involves creation of icons for data protection based on the developed ontologies \cite{arianna_dapis:_2019}.
 Information about the project is available through peer-reviewed publications and public deliverables\footnote{\url{http://www.mirelproject.eu/publications.php}}.
 Details about the project and its developed resources, namely PrOnto, have  been described in publications, but are not open or publicly accessible at the time of writing this thesis.
 
 The developed ontology is termed PrOnto (Privacy Ontology) \cite{monica_legal_2018}, and provides concepts within the GDPR associated with data types and documents, agents and roles, processing purposes, legal bases, processing operations, and deontic operations for modelling rights and duties. It reuses existing vocabularies \cite{palmirani_pronto:_2018} and has been applied within the Cloud4EU project\footnote{\url{http://www.agid.gov.it/cloudforeurope}} for legal compliance checking of eGovernment systems as well as the DAPRECO project (see \autoref{sota:projects:DAPRECO}).
+PrOnto was developed using the MeLOn (Methodology for building Legal Ontologies) developed in the MIREL project \cite{palmirani_pronto:_2018,palmirani_pronto:_2018-1,monica_modelling_2018}.
 
 PrOnto consists of modules representing (i) documents and data (depicted in \autoref{fig:PrOnto-data}), (ii) actors and roles, (iii) processing and workflow, (iv) legal rules and deontic formula, (v) purposes and legal bases. It also includes modules for risk analysis and measures, which it utilises to represent risk management processes such as DPIA as workflows \cite{palmirani_pronto:_2018}. Reasoning is utilised based on the deontic operators within the ontology, and violations are connected with the violated obligations thereby providing traceability towards the steps that created the violation. LegalRuleML is extended and used to represent the obligations and enable creation and rules for compliance.
-
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{img/PrOnto_data.png}
+    \includegraphics[width=0.8\linewidth]{img/PrOnto_data.png}
     \caption{Data Categories represented in PrOnto \cite{palmirani_pronto:_2018}}
     \label{fig:PrOnto-data}
 \end{figure}
 
-PrOnto was developed using the MeLOn (Methodology for building Legal Ontologies) developed in the MIREL project \cite{palmirani_pronto:_2018,palmirani_pronto:_2018-1,monica_modelling_2018}. The methodology consists of the following ten recursive steps:
-\begin{enumerate}
-    \item Describe the goal of the ontology - in the case of PrOnto, these were: 
-            (i) to model data protection legal norms starting from legal texts but including
-also social norms, practitioner opinions or social behaviours;
-            (ii) to build a legal ontology that is usable for legal reasoning;
-            (iii) to build a legal ontology that is usable for web of data and information
-retrieval.
-    \item Evaluate ontology based on parameters/indicators derived from the goals. For PrOnto, these were - (i) coherence, (ii) completeness, (iii) efficiency, (iv) effectiveness, (v) usability, (vi) agreement.
-    \item Reuse ontologies from SotA survey.
-    \item List relevant terminology. For PrOnTo, the publication notes the creation of a glossry with relevant terminology and legal definitions extracted from legal sources.
-    \item Use usable tools for legal experts. For PrOnto, these were tables and UML diagrams, and Graffoo to convert UML to OWL2.
-    \item Refine and optimise the ontology by consulting with an expert. In PrOnto, these were manually performed by an ontology expert.
-    \item Test the output. PrOnto was evaluated by legal experts in terms of completeness, effectiveness and usability.
-    \item Evaluate the ontology. PrOnto used the OntoClean method to improve the ontology.
-    \item Publish the document. PrOnto used the LODE tool to document the ontology.
-    \item Collect feedback from community for agreement
-\end{enumerate}
+A proof-of-concept application for detecting violations of the GDPR \cite{monica_modelling_2018} utilised PrOnto to model the legal concepts, along with Akoma Ntoso to model the legal text, LegalRuleML to model norms, and Regorous to apply LegalRuleML rules over BPMN and generate a report. The application utlises a web editor for modelling legal rules in connection with the legal text and ontology.
 
-% TODO: references
-An proof-of-concept application for detecting violations of the GDPR \cite{monica_modelling_2018} utilises PrOnto to model the legal concepts, along with Akoma Ntoso to model the legal text, LegalRuleML to model norms, and Regorous to apply LegalRuleML rules over BPMN and generate a report. The application utlises a web editor for modelling legal rules in connection with the legal text and ontology.
-An example\footnote{The URI used in the namespace of the example, although using w3id, does not resolve, and therefore is not valid or is not publicly accessible.} of axioms extending LegalRuleML within PrOnto are depicted below:
-\begin{lstlisting}
-# Reparation
-<owl:ObjectProperty rdf:about="https://w3id.org/ontology/pronto#repairs">
-    <rdfs:domain rdf:resource="http://docs.oasis-
-        open.org/legalruleml/ns/v1.0/metamodel#PenaltyStatement"/>
-    <rdfs:range rdf:resource="http://docs.oasis-
-    open.org/legalruleml/ns/v1.0/metamodel#PrescriptiveStatement"/>
-</owl:ObjectProperty>
-
-# Restriction: Obligation hasHeld CounterParty generated by a Right
-<owl:ObjectProperty rdf:about="https://w3id.org/ontology/pronto#generates">
-    <rdfs:domain rdf:resource="http://docs.oasis-
-        open.org/legalruleml/ns/v1.0/metamodel#Right"/>
-    <rdfs:range>
-        <owl:intersectionOf rdf:parseType="Collection">
-            <owl:Class rdf:about="http://docs.oasis-
-                open.org/legalruleml/ns/v1.0/metamodel#Obligation"/>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/ontology/pronto#hasHeld"/>
-                <owl:someValuesFrom rdf:resource="http://docs.oasis-
-                    open.org/legalruleml/ns/v1.0/metamodel #AuxiliaryParty"/>
-            </owl:Restriction>
-        </owl:intersectionOf>
-    </rdfs:range>
-</owl:ObjectProperty>
-\end{lstlisting}
-
-\subsection{DAPRECO}\label{sec:sota:DAPRECO}
+\subsubsection{DAPRECO}\label{sec:sota:DAPRECO}
 DAPRECO\footnote{\url{https://www.fnr.lu/projects/data-protection-regulation-compliance/}} (Data Protection Regulation Compliance) is an Luxembourgish project relating to the creation of a knowledge base for formal compliance with the terms and provisions of the GDPR. It aims to provide formalisms in deontic logic and natural language semantics for handling legal norms in written language. The project has researched correlation of standards with laws \cite{bartolini_towards_2016}, creation of an ontology to model concepts in the GDPR \cite{otake_using_2017}, modelling the norms of the GDPR using logic formalisms \cite{bartolini_legal_2018}, and annotating BPMN for GDPR compliance \cite{bartolini_enhancing_2019}.
 The project involves collaborations with the MIREL project (see \autoref{sota:projects:MIREL}), particularly in the creation and utilisation of PrOnto for addressing GDPR \cite{monica_legal_2018,palmirani_pronto:_2018,palmirani_pronto:_2018-1,bartolini_enhancing_2019}. In turn, DAPRECO provides a practical application of PrOnto as an use-case for legal compliance over business activities \cite{bartolini_enhancing_2019,bartolini_agile_2019}.
 
@@ -307,82 +237,36 @@ The project uses these to create a knowledge base \cite{bartolini_agile_2019} wi
 The project also researchers automating the comparison of GDPR with the ISO by extracting RIO rules from their texts and analysing them for comparisons.
 The resulting knowledge base is used in collaboration with the MIREL project to provide semantic extraction and annotation over ECHR (European Court of Human Rights) judgements \cite{cardellino_legal_2017}, as described in MIREL's deliverables D2.4 \cite{robaldo_livio_d2.4_2017}.
 
-\subsection{BPR4GDPR}\label{sec:sota:BPR4GDPR}
+\subsubsection{BPR4GDPR}\label{sec:sota:BPR4GDPR}
 BPR4GDPR\footnote{\url{http://www.bpr4gdpr.eu/}} (Business Process Re-engineering and functional toolkit for GDPR compliance) is an European H2020 project that aims to provide a a reference compliance framework for the GDPR. The framework is stated to provide specification of sophisticated security and privacy policies, modelling technologies and tools for the incorporation of provisions in process models and the resulting executable processes, and means for automating verification and alignment.
 This is planned to be achieved using a set of mechanisms for automating the respective procedures and resulting in processes that are compliant by design.
 The project intends to implement the concept of Compliance-as-a-Service (CaaS) by providing a set of tools that fit the needs of various organisations being subject to GDPR compliance.
 Information about the project is available through peer-reviewed publications and project deliverables\footnote{\url{http://www.bpr4gdpr.eu/results/deliverables/}}.
 
-The project uses an ontology to represent the information model utilised in its approach, as depicted in \autoref{fig:BPR4GDPR-model} \cite{lioudakis_d3.1_2019}. The ontology consists of concepts and relationships regarding:
-\begin{itemize}
-    \item DataTypes: all the types of data that can be used during the system's operation.
-    \item Roles: roles that the system's users may hold.
-    \item Operations: all the operations that may take place.
-    \item OrganisationTypes: reflecting the different types of organisations, external or internal, actual or virtual, that may be involved in operations.
-    \item OperationContainerTypes: representing functional components that offer a set of operations together.
-    \item MachineTypes: types of machines that are used during the system's operation.
-    \item EventTypes: types of events that may affect the operations and/or may require some action to take place in response.
-    \item ContextTypes: specification of run-time constraints.
-    \item Attributes: description of properties that characterise the entities.
-\end{itemize}
+The project uses an ontology to represent the information model utilised in its approach, as depicted in \autoref{fig:BPR4GDPR-model} \cite{lioudakis_d3.1_2019}. The ontology consists of concepts and relationships regarding data types, roles, operations, and organisation types amongst other contextual concepts.
 The ontology is serialised using OWL2, and contains `default instances' representing a ready to use set of instances based on its use-cases, which are described in detail in deliverable D3.1 \cite{lioudakis_d3.1_2019}. 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{img/BPR4GDPR_model.png}
+    \includegraphics[width=0.8\linewidth]{img/BPR4GDPR_model.png}
     \caption{Information Model Ontology in BPR4GDPR \cite{lioudakis_d3.1_2019}}
     \label{fig:BPR4GDPR-model}
 \end{figure}
 
-The compliance assessment is performed using the compliance meta-model ontology, as depicted in \autoref{fig:BPR4GDPR-compliance}, and described in detail in deliverable D2.3 \cite{dellas_d2.3_2019}. The compliance ontology is used to dictate and evaluate processes by considering them as worfkflows where actions or operations are connected to each other in terms of dependencies and data flows, are performed by an actor, and include assets or artefacts. Process mining is performed on the knowledge extracted from the event logs of information systems to discover, monitor and improve processes not assumed or modelled prior to the evaluation. This is then utilised to create a process monitoring architecture, which contains the following four sub-components of functionality:
-\begin{itemize}
-    \item The \textbf{pre-processing subcomponent} receives data from Data Management middleware as an input and updates and produces standard event logs for process mining. 
-    \item The \textbf{conformance checking subcomponent} compares previously discovered models from those extracted from given event logs. The conformance depends on whether the process discovered from logs conforms to to the previously discovered or assumed process.
-    \item The \textbf{rules subcomponent} retrieves policies from Security \& Privacy Policies module and converts them to a set of access control rules.
-    \item The \textbf{model repair subcomponent} receives the to-be-repaired process models based on failed conformance checks, the converted rules, and the results of conformance checking as inputs, and identifies  parts of the process model not compliant with the rules. 
-\end{itemize}
-
+The compliance assessment is performed using the compliance meta-model ontology, as depicted in \autoref{fig:BPR4GDPR-compliance}, and described in detail in deliverable D2.3 \cite{dellas_d2.3_2019}. The compliance ontology is used to dictate and evaluate processes by considering them as workflows where actions or operations are connected to each other in terms of dependencies and data flows, are performed by an actor, and include assets or artefacts.
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{img/BPR4GDPR_compliance.png}
+    \includegraphics[width=0.8\linewidth]{img/BPR4GDPR_compliance.png}
     \caption{Compliance meta-model ontology in BPR4GDPR \cite{dellas_d2.3_2019}}
     \label{fig:BPR4GDPR-compliance}
 \end{figure}
 
-The public deliverable D3.1 \cite{lioudakis_d3.1_2019} defines rules derived from the GDPR which represent the minimal set of configurations of the BPR4GDPR architecture before it is adapted to a particular use-case, i.e. its default configuration. The rules are as follows:
-\begin{enumerate}[label={\textit{Rule\#\theenumi}}]
-    \item  Nobody should have access to any data (secrecy by default)
-    \item  An authorisation mechanism should be available and used in any access and use operation
-    \item  A data breach must be reported within 72 hours starting when the controller has ascertained the
-    breach
-    \item  No data should be shared to third parties
-    \item  If shared, data must be pseudonymised or anonymised
-    \item  Stored data must be encrypted
-    \item  Data subjects should have access to their data
-    \item  No data processing should take place unless the data subject has provided consent
-    \item  The means for updating consent must be provided, thus keeping consent information up to date
-    \item  An easy way to revoke consent must be provided
-    \item  If consent has been obtained, it should be tracked
-    \item  Data subjects must be provided with adequate privacy notice
-    \item  Data subject must be able to update or modify his/her own personal data
-    \item  Personal data should be stored for no longer than required by the underlying law/regulation, as
-    well as the duration of the purpose of the processing itself
-    \item  The DPO should have broad access to personal data processing activities
-    \item  The DPO should be involved in any data processing assessment
-    \item  No actions may be taken without the prior consultation of the DPO
-    \item  Access to personal information should be granular, according to the role and the functions of the
-    person who is meant to access
-    \item  Features to carry out data portability should be enabled
-    \item  The system should allow to delete only personal data eventually considered as either not relevant
-    for specific and imperative obligations of the controller or inaccurate
-    \item  Any record of processing for each controller should be stored separately and accessed only by
-    authorised users
-    \item  The system should allow for the customisation of data retention periods according to the
-    particularities of the collected data
-    \item  Transfer of personal data must be tracked
-    \item  System administrator’s logging activity should be tracked
-\end{enumerate}
+Process mining is performed on the knowledge extracted from the event logs of information systems to discover, monitor and improve processes not assumed or modelled prior to the evaluation. This is then utilised to create a process monitoring architecture, which contains the four sub-components of functionality
+associated with pre-processing, conformance checking, rules, and model repair.
+The approach intends to `repair' process models by analysing failed conformance checks, converted rules, and results of conformance checking to identify parts of the process model not compliant with the rules. 
 
-\subsection{Elluri et al.}\label{sec:sota:Elluri}
+The public deliverable D3.1 \cite{lioudakis_d3.1_2019} defines rules derived from the GDPR which represent the minimal set of configurations of the BPR4GDPR architecture before it is adapted to a particular use-case, i.e. its default configuration. These rules are intended to act as constraints in the conformance checking described above and used to repair the processes by identifying components that need to be changed to satisfy the rule.
+
+\subsubsection{Elluri et al.}\label{sec:sota:Elluri}
 Elluri et al. \cite{elluri_knowledge_2018, elluri_integrated_2018} present an ontology of rules and obligations for cloud data providers and consumers based on the GDPR and for Payment Card Industry Data Security Standard (PCI DSS). The ontology for GDPR \cite{elluri_knowledge_2018} is comprised of concepts for components - `Consumers and Providers', `Fines and Enforcement', `Breach \& Notification', `Data Protection Officer', and `Data Subject'. This is combined with the ontology developed for PCI DSS and Clous Security Alliance (CSA) to provide a comprehensive combined ontology for addressing their combined legal requirements and obligations \cite{elluri_integrated_2018}. The resulting ontology, depicted in \autoref{fig:Elluri-ontology}, consists of concepts and relationships associated with stakeholders, obligations for providers and consumers, and security requirements. 
 \begin{figure}[htbp]
     \centering
@@ -406,8 +290,10 @@ Related work within the same project by Joshi and Banerjee  \cite{joshi_automati
 The modelling of concepts includes some notably different relationships, such as the association of storage duration within collection purpose, usage limitation relating to data recipients, attributes associated with consent, and the inclusion of redress as a related concept. The developed ontology is utilised to extract and represent instances from privacy policies, enhance it using a reasoner, and to store the resulting access control representations in the blockchain. The work is based on the approach of utilising an existing privacy policy as a smart contract in the sharing of data between provider and consumer.
 It is important to note that the work relates to the use of PII as opposed to personal data as defined by the GDPR. Furthermore, the policy does not encode information about rights as required by the GDPR.
 
-\subsection{Ujcich et al.}\label{sec:sota:gdpr-semweb:ujcich}
-Ujcich et al \cite{belhajjame_provenance_2018} presented a data provenance model of the GDPR, depicted in \autoref{fig:Ujcich-ontology}, which utilises PROV-O \cite{lebo_prov-o:_2013} to represent activities and data in a semantic-web representation. The approach uses the activity `\textit{Justify}' to represent the rationale for processing personal data and has annotations depicting its starting and ending times, as well as a `\textit{Justification}' - which represents the legal basis of processing. The ontology focuses on the workflows involving exercising of rights under the GDPR, and provides examples of data rectification and withdrawal of consent utilising provenance.
+\subsubsection{Ujcich et al.}\label{sec:sota:gdpr-semweb:ujcich}
+Ujcich et al \cite{belhajjame_provenance_2018} presented a data provenance model of the GDPR which utilises PROV-O \cite{lebo_prov-o:_2013} to represent activities and data in a semantic-web representation.
+The data model provided in the publication is depicted in \autoref{fig:Ujcich-ontology} provides an overview of the concepts and uses PROV-O \cite{lebo_prov-o:_2013} symbols to denote concepts.
+The approach uses the activity `\textit{Justify}' to represent the rationale for processing personal data and has annotations depicting its starting and ending times, as well as a `\textit{Justification}' - which represents the legal basis of processing. The ontology focuses on the workflows involving exercising of rights under the GDPR, and provides examples of data rectification and withdrawal of consent utilising provenance.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{img/Ujcich_ontology.png}
@@ -417,36 +303,39 @@ Ujcich et al \cite{belhajjame_provenance_2018} presented a data provenance model
 
 The approach presented in the publication uses the notion of design patterns to describe the use of ontology in specific cases regarding the exercising of rights. The design pattern for provenance associated with consent does not associate the data directly with the consent owing to the reason of the data being potentially updated independent of consent. The design pattern is further extended to represent sharing data with a processor for marketing. The publication also provides a discussion on the verification of compliance based on provenance through questions which can be queried over the data represented using the presented ontology.
 
-\subsection{Personal Information Controller Service (PICS)}
+Specifying purposes as defined by GDPR is not clarified in this approach, as the concept of \textit{Justify} is temporal in its use and limited to the processing of personal data it is associated with. The approach also does not provide any information on modelling of more complex processing operations where more than one legal basis could be present, or a processing operation needs to be expressed in several steps. The approach also does not model information about consent or rights, and does not provide ex-ante representations of activities.
+
+\subsubsection{Personal Information Controller Service (PICS)}
 PICS is a project with the objective of enabling users to discover and control use of their personal data by utilising the platform as an authentication and management layer between service providers and personal information. The project architecture \cite{winckler_personal_2019} consists of three components: (i) personal data controller - provides an user interface allowing users to connect and mediate data to third-party services, (ii) ToS analyser - interprets terms of service and policies of providers using an ontology, and (iii) data mining traces of use - which enables discovery of web services utilising personal data shared with the service provider. The platform delegates the data storage to an external storage and does not store personal data itself. Authentication is performed at every interaction, and requires the user to provide physical authentication using a wearable device.
 
 The ontology used by the ToS analyser \cite{benfenatki_towards_2019} consists of concepts associated with actions on data (such as deletion, disclosure, fusion, sharing), governance (laws, ownership, rights, terms of service), security strategies, and data protection. The ontology itself is not public or accessible and the publication does not provide complete details about its concepts or use beyond that of utilisation in the ToS analyser.
 
-\subsection{Ontology by Geko \& Tjoa}
+\subsubsection{ADvoCATE}
+ADvoCATE \cite{rantos_advocate:_2019} is a consent management platform for data processing in IoT that uses blockchain to record given consent, detects conflicts in data sharing policies, and provides recommendations for managing unwarantted exposure of personal data. In ADvoCATE, the consent notary component is responsible for obtaining and verifying consent signed by both the controller and the data subject, which is used to prepare a smart contract for processing based on the given consent. The consent management component then utilises the smart contract to update the user policy used to enforce access control over the stored personal data. Blockchain is utilised to store versioned hashes of consent linked to the smart contracts enforcing them. This enables traceability of consent and maintaining a record of consent and its relevant actions through the utilisation of smart contracts.
+ADvoCATE has two components - Intelligent Policies Analysis Mechanism (IPAM) and Intelligent Recommendation Mechanism (IReMe) - to identify contradictory rules and policies regarding consent and adapt privacy strategies in real-time. 
+
+A reference implementation describe in the publication uses the ontology of GDPR concepts by Bartolini et. al \cite{bartolini_using_2015} to model data protection requirements, and uses Ethereum as a blockchain platform, and Solidity for programming smart contracts. Examples of consent requests presented contain information about personal data category with collection medium and period, retention period, purpose, recipients (EU/Non-EU), whether it involves - automated processing, profiling, manual processing, and the IDs for controller, device, and device type.
+
+\subsubsection{Ontology by Geko \& Tjoa}
 Geko \& Tjoa \cite{geko_ontology_2018} proposed an ontology for capturing the interdependence between GDPR and information security requirements for assisting with compliance requirements involving security.
-The ontology, depicted in \autoref{Geko-ontology}, consists of hierarchical concepts representing the obligations of the GDPR and information security.
+The ontology, depicted in \autoref{fig:Geko-ontology}, consists of hierarchical concepts representing the obligations of the GDPR and information security.
 It has concepts regarding entities (Controller, Processor, Data Subject), rights, principles, personal data, obligations, and security. These are related using properties associated with fulfilling roles and obligations, ensuring data security, and provision of rights.
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{img/Geko_ontology.png}
+    \includegraphics[width=0.8\linewidth]{img/Geko_ontology.png}
     \caption{Ontology for GDPR and Information Security by Geko \& Tjoa \cite{geko_ontology_2018}}
     \label{fig:Geko-ontology}
 \end{figure}
 
-The publication describes an example use-case of the ontology, where additional concepts are added to represent security concepts of access control, audits, data classification, information risk assessment, security awareness, and security policy. Further concepts are also mentioned for representing technical measures of encryption, logging, network security, physical security, privacy by design and default, and pseudo-anonymisation.
+The publication describes an example use-case of the ontology where additional concepts are added to represent security concepts of access control, audits, data classification, information risk assessment, security awareness, and security policy. Further concepts are also mentioned for representing technical measures of encryption, logging, network security, physical security, privacy by design and default, and pseudo-anonymisation.
 The publication explicitly mentions that the ontology has not been evaluated. The publication also does not provide access to the ontology or its documentation.
 
-\section{Other Approaches for GDPR compliance}\label{sec:sota:gdpr-other}
+\section{Other approaches addressing GDPR compliance}\label{sec:sota:gdpr-other}
 
-\subsection{Layered Privacy Language (LPL)}
+\subsubsection{Layered Privacy Language (LPL)}
 LPL \cite{gerl_lpl_2018} presents a formal model for specification of legal requirements regarding consent, data provenance, data retention and other privacy related concepts associated with the GDPR.
-The objective of LPL is to be used in technical systems as a machine-readable privacy policy to provide privacy by design. Towards that end, LPL defines the following requirements for a privacy language:
-\begin{itemize}
-    \item Differentiation between data-source and data-recipient to enable fine-grained access-control
-    \item Modelling of purpose-based privacy policies with modelling of data, retention and anonymisation enabling privacy models
-    \item Layering of privacy policies to ensure provenance 
-    \item Human-readability
-\end{itemize}
+The objective of LPL is to be used in technical systems as a machine-readable privacy policy to provide privacy by design. 
+LPL defines the following requirements for a privacy language: (i) differentiation between data-source and data-recipient to enable fine-grained access-control; (ii) modelling of purpose-based privacy policies with modelling of data, retention and anonymisation enabling privacy models; (iii) layering of privacy policies to ensure provenance; and (iv) human-readability.
 
 The LPL structure, depicted in \autoref{fig:LPL-model}, consists of \textit{LayeredPrivacyPolicy} (LPP) as the root element representing a privacy policy or a legal contract. The element contains attributes for recording version information and an URI to the privacy policy containing its human-readable description. Each LPP can refer to an \textit{UnderlyingPrivacyPolicy} to enable tracking of privacy policies across multiple entities.
 LPP is associated with a data source and its use in (multiple) purposes. The purpose is further associated with data recipients, data, privacy models, and data retention.
@@ -463,34 +352,26 @@ Authorisation of entities and purposes is carried out by searching for rules mat
 A critical analysis of the LPL for Article 12-14 of the GDPR was carried in the context of the work \cite{gerl_critical_2018}. This analysis presented requirements identified in the article of the GDPR and the corresponding LPL concepts along with whether they fulfil the stated requirements.
 The analysis is used to present proposed changes to the LPL to incorporate additional concepts that fulfil the requirements.
 
-\subsection{Lodge et al.}
+\subsubsection{Lodge et al.}
 Lodge et al. \cite{garcia-alfaro_developing_2018} present the Databox application development environment (SDK) for developing IoT apps utilising requirements to meet GDPR compliance. The SDK is provided with the objective to simplify compliance by utilising provided tools and design patterns.
 The approach is based on identifying applicable requirements from the text of the GDPR and classifying them as based on risk or transparency.
 
 The SDK enables modelling of applications as information flows consisting of four node types: datastores - devices or services that generate data, processors - nodes that operate on data, profiler - nodes that infer new information about data subject, and outputs - nodes that perform action on data. Using the SDK, application developers can inspect ongoing risk breakdowns based on developed application, and track personal data as its moves through the application. The SDK also enables creation of GDPR-compliant contracts that embed the required information to provide informed consent, and provide automatic tooling for runtime data flow inspection.
 
-Risks are detected based on whether the data is exported out of the platform, or triggers physical actuation, utilises insecure hardware, or uses unverified libraries. Tracking of personal data is provided by enforcing all outputs from a node to provide a personal data schema, which consists of the following top-level attributes:
-\begin{itemize}
-    \item Type: identifier, sensitive, personal
-    \item Ordinal: primary, secondary (inferred)
-    \item Category: physical, education, professional, state, contact, consumption
-    \item Subtype: sensitive (biometric, health, sexual, criminal), personal (education, profession, consumption)
-    \item Description: details of personal data and method of inference
-    \item Required: List of attributes of data that must be present in order for it to be constituted as personal data
-\end{itemize}
+Risks are detected based on whether the data is exported out of the platform, or triggers physical actuation, utilises insecure hardware, or uses unverified libraries. Tracking of personal data is provided by enforcing all outputs from a node to provide a personal data schema, which consists of top-level attributes associated with description of personal data, its source, and sensitivity.
 
 GDPR compliant contracts are created by utilising the information flows to construct an agreement that is presented to the user. The agreement is visualised as a multi-layered notice that represents information taken from a manifest file containing all possible configurations in terms of data collection and usage. Developers can mark an information as compulsory or optional to indicate its basis in consent.
 
-\subsection{Consent and Data Management Model by Peras}
-Peras \cite{peras_guidelines_2018} presented 10 guidelines for implementing a consent management framework based on the requirements of the GDPR. These guidelines are based on adopting the requirements of consent and provision of rights in a data management system. The publication presents an analysis of existing consent and data management models\footnote{One of the works cited in this analysis is an approach developed in collaboration by the author \cite{fatema_compliance_2017}, with further information presented in \autoref{sec:voc:GConsent}.} where the elements and attributes of the model are used for comparison. Based on this, a consent and data management model, depicted in \autoref{fig:Peras-model}, is proposed consisting of a contact interface for interactions between controllers and data subjects, a consent management module, a context management module, a data management module, and origin management.
+\subsubsection{Consent and Data Management Model by Peras}
+Peras \cite{peras_guidelines_2018} presented 10 guidelines for implementing a consent management framework based on the requirements of the GDPR. These guidelines are based on adopting the requirements of consent and provision of rights in a data management system. The publication presents an analysis of existing consent and data management models\footnote{One of the works cited in this analysis is an approach developed in collaboration by the author \cite{fatema_compliance_2017} which acted as a precursor to the ontology developed to represent consent and presented in \autoref{sec:voc:GConsent}.} where the elements and attributes of the model are used for comparison. Based on this, a consent and data management model, depicted in \autoref{fig:Peras-model}, is proposed consisting of a contact interface for interactions between controllers and data subjects, a consent management module, a context management module, a data management module, and origin management.
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{img/Peras_model.png}
+    \includegraphics[width=0.8\linewidth]{img/Peras_model.png}
     \caption{Consent and Data Management Model by Peras \cite{peras_guidelines_2018}}
     \label{fig:Peras-model}
 \end{figure}
 
-\subsection{Tom et al.}
+\subsubsection{Tom et al.}
 Tom et al. \cite{tom_conceptual_2018} presented a conceptual model of the GDPR representing the entities, actions, artefacts, rights, and their interactions. The publication provides a table of GDPR articles and their related entities and associations within the model, which it uses for evaluating completeness.
 The model, depicted in \autoref{fig:Tom-model}, contains concepts regarding consent, purpose, data processing, technical measures, and actors such as controller, processor, data subject, and supervisory authority.
 \begin{figure}[htbp]
@@ -504,6 +385,10 @@ The attributes of each concept are modelled based on database schemas, and repre
 
 The model was utilised to develop an approach for analysing GDPR compliance over business process models using BPMN \cite{pullonen_privacy-enhanced_2019}.
 The approach, termed PE-BPMN (Privacy Enhanced BPMN) and depicted in \autoref{fig:Tom-PEBPMN}, utilises BPMN to capture Privacy Enhancing Techniques (PETs) for capturing information flows. The approach is utilised in a mobile app scenario to analyse information disclosure.
+
+The information disclosure analysis is performed based on identifying whether an object (personal data) is disclosed, which in this context is defined by it being received or intercepted by another party regardless of intent or policy. Objects can be visible, accessible, or hidden - based on whether the actor obtains and owns them, whether the data is protected or requires additional permissions, and whether it is protected by some PETs. The associated publication \cite{pullonen_privacy-enhanced_2019} presents details of an implemented prototype and its application in use-cases involving secure storage of data using encryption and PETs. 
+
+The approach is similar to the use of semantic web ontologies to represent concepts and use of a semantic reasoner to evaluate compliance, such as in SPECIAL (\autoref{sec:sota:SPECIAL}). The use of BPMN differentiates the approach from other semantic representations of information, and the analysis provides a limited evaluation of compliance based on disclosure of personal data. While the approach contains concepts for representing information associated with how personal data is processed, it does not provide evidence of its use in evaluating other requirements of compliance - such as anaylsis of consent, or investigation of activities associated with sensitive personal data.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{img/Tom_PEBPMN.png}
@@ -511,65 +396,28 @@ The approach, termed PE-BPMN (Privacy Enhanced BPMN) and depicted in \autoref{fi
     \label{fig:Tom-PEBPMN}
 \end{figure}
 
-The information disclosure analysis is performed based on identifying whether an object (personal data) is disclosed, which in this context is defined by it being received or intercepted by another party regardless of intent or policy. Objects can be visible, accessible, or hidden - based on whether the actor obtains and owns them, whether the data is protected or requires additional permissions, and whether it is protected by some PETs. The associated publication \cite{pullonen_privacy-enhanced_2019} presents details of an implemented prototype and its application in use-cases involving secure storage of data using encryption and PETs. 
+\subsubsection{Coletti et al.}
+Coletti et al. \cite{kurosu_design_2019} proposed visual design patterns to provide transparency regarding personal data processing in mobile applications. These design patterns consist of recommendations for user interface and experience regarding providing information about processing and rights as per the requirements of the GDPR. Their approach identifies relevant information to be provided for transparency - which includes: (i) contact information for Controllers, Processors and Data Protection Officers, (ii) information about purpose of use, legal basis, and rights, (iii) Information about location as a specific form of data and processing, (iv) information about actions and algorithms utilised in processing, (iv) data sources, and (v) period of use and storage of data.
 
-\subsection{Coletti et al.}
-Coletti et al. \cite{kurosu_design_2019} proposed visual design patterns to provide transparency regarding personal data processing in mobile applications. These design patterns consist of recommendations for user interface and experience regarding providing information about processing and rights as per the requirements of the GDPR. Their approach identifies the following relevant information to be provided for transparency: 
-\begin{itemize}
-    \item Contact data information for Controllers, Processors and Data Protection Officers
-    \item Information about purpose of use, legal basis, and rights
-    \item Information about location as a specific form of data and processing
-    \item Information about actions and algorithms utilised in processing
-    \item Data sources 
-    \item Period of use and storage of data
-\end{itemize}
 The visual design patterns organise this information into different layouts and screens to provide a simpler view to the data subject. A `springboard' consisting of an overview of the different sections is provided through which the information about each topic can be obtained. The approach recommends a three-layered approach consisting of - (1) purpose, legal basis, and rights; (2) subgroups of information such as specific laws related to legal basis, actionable tasks regarding rights; and (3) textual information with a search field.
 
-\subsection{Corrales et al.}
-Corrales et al. \cite{corrales_smart_2019} propose embedding legal requirements in smart contracts as a programmatic algorithm based on encoding the answers to a questionnaire into a compliance framework for data processing in the cloud. The questionnaire contains a set of 15 questions related to legal and technical issues including privacy, data protection and data security. The answers to the questionnaire are boolean in that they consist of affirmative (YES) or negative (NO). The algorithm for compliance then checks whether the questions have been answered in a way that meets the reqiurements of the GDPR. The pseudo-code presented in the publication consists of a series of steps checking whether the answers which can also be visualised in the form of a flow-chart containing decision making steps. The set of legal questions in the questionnaire is as follows:
-\begin{enumerate}
-    \item Does your SaaS application deal with sensitive/personal data?
-    \item Does your SaaS application support native encryption/protection of the data and
-authentication?
-    \item Does your SaaS application give the choice of EU-based data storage location?
-    \item Is your SaaS application dynamically configured for using IaaS/PaaS services?
-    \item Are the data or metadata “ownership” rights clearly defined and clarified in the
-contract/SLA?
-    \item Do you offer notifications in case you change the terms and conditions?
-    \item Do you offer notifications in case your underlying PaaS/IaaS provider changes the
-terms and conditions?
-    \item Do you offer the ability to the end-users to virtually be under more control over
-their own data ensuring data portability (e.g., migration, extraction and reuse of their
-data) and interoperability within the Cloud?
-    \item Do you offer the ability to the end-users the right to delete/eliminate their data
-(so-called “Right to be Forgotten”) in the original used service?
-    \item Does your underlying PaaS/IaaS provider use Standard Contractual Clauses
-(SCCs) with you and other parties?
-    \item Has your underlying PaaS/IaaS provider been certified for their Binding
-Corporate Rules (BCR) clauses by a EU DPA?
-    \item Do you take measures to prevent data loss (regular backups, replication, etc.)?
-    \item Are you using your own resources to run your application?
-\end{enumerate}
+\subsubsection{Corrales et al.}
+Corrales et al. \cite{corrales_smart_2019} propose embedding legal requirements in smart contracts as a programmatic algorithm based on encoding the answers to a questionnaire into a compliance framework for data processing in the cloud. The questionnaire contains a set of 15 questions related to legal and technical issues including privacy, data protection and data security. The answers to the questionnaire are boolean in that they consist of affirmative (YES) or negative (NO). The algorithm for compliance then checks whether the questions have been answered in a way that meets the requirements of the GDPR. The pseudo-code presented in the publication consists of a series of steps checking whether the answers which can also be visualised in the form of a flow-chart containing decision making steps.
 
-\subsection{LUCE}
+The approach is based on assessment of a questionnaire response rather than analyses of process representations. While the questions used are useful in the investigation of compliance, the approach does not provide any guideline or assistance regarding gathering information required to answer them, or even evaluating the information apart from the boolean response.
+
+\subsubsection{LUCE}
 LUCE \cite{havelange_luce:_2019} (A Blockchain Solution for monitoring data License accoUntability and CompliancE) is a platform for facilitating compliance with licensing terms by enabling data accountability through recording of data use and purpose using blockchain. The platform specifically aims to provide compliance assistance towards the GDPR and its rights. LUCE has the following objectives: (i) to automatically manage and enforce licensing terms attached to a dataset, ii) record and makes available information pertaining to how and for which purpose the dataset is reused, and iii) enable compliance with the GDPR rights regarding data access, rectification, and erasure. The architecture, depicted in \autoref{fig:sota:LUCE-architecture}, consists of four layers for management of metadata, entities, data, and blockchain. 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{img/LUCE_architecture.png}
+    \includegraphics[width=0.8\linewidth]{img/LUCE_architecture.png}
     \caption{Architecture of LUCE \cite{havelange_luce:_2019}}
     \label{fig:sota:LUCE-architecture}
 \end{figure}
 
 Data providers publish their dataset metadata into a \textit{Yellow Page} shared directory where requestors can search for matching datasets. Each dataset is accompanied with licensing information for access and reuse to the data. A transaction for reusing data is implemented in the form of a smart contract which contains the associated license as an obligation of terms. Requestors accepting the licensing agreements are provided with an access token which is tracked within the smart contract for compliance. The \textit{License-Monitoring} sub-module continuously checks the actions performed by the data requester comply with the licensing terms and records these actions in a file which constitutes a log of events. Access tokens are valid for a specific time period, after which renewal is granted based on prior compliance with the licensing terms, which are checked using the event logs. A data provider can also check accesses to the data and the status of requestor's compliance. GDPR rights are enforced and supplemented by using the smart contracts to perform actions, such as retrieving information to provide regarding right to access, and obtaining IDs for deletion regarding right to erasure and rectification. The prototype implementation described uses Ethereum\footnote{\url{https://ethereum.org/}} as the blockchain platform and Solidity\footnote{\url{https://solidity.readthedocs.io/}} as the smart contracts language.
 
-% TODO: move to semantic web scection
-\subsection{ADvoCATE}
-ADvoCATE \cite{rantos_advocate:_2019} is a consent management platform for data processing in IoT that uses blockchain to record given consent, detects conflicts in data sharing policies, and provides recommendations for managing unwarantted exposure of personal data. In ADvoCATE, the consent notary component is responsible for obtaining and verifying consent signed by both the controller and the data subject, which is used to prepare a smart contract for processing based on the given consent. The consent management component then utilises the smart contract to update the user policy used to enforce access control over the stored personal data. Blockchain is utilised to store versioned hashes of consent linked to the smart contracts enforcing them. This enables traceability of consent and maintaining a record of consent and its relevant actions through the utilisation of smart contracts.
-ADvoCATE has two components - Intelligent Policies Analysis Mechanism (IPAM) and Intelligent Recommendation Mechanism (IReMe) - to identify contradictory rules and policies regarding consent and adapt privacy strategies in real-time. 
-
-A reference implementation describe in the publication uses the ontology of GDPR concepts by Bartolini et. al \cite{bartolini_using_2015} to model data protection requirements, and uses Ethereum as a blockchain platform, and Solidity for programming smart contracts. Examples of consent requests presented contain information about personal data category with collection medium and period, retention period, purpose, recipients (EU/Non-EU), whether it involves - automated processing, profiling, manual processing, and the IDs for controller, device, and device type.
-
-\subsection{Decision Provenance by Singh et al.}
+\subsubsection{Decision Provenance by Singh et al.}
 Singh et al. propose the concept of `Decision Provenance' - which uses methods based on provision to identify decision pipelines and actions taken in an system at design and run-time. 
 Decision provenance is aimed to facilitate oversight, audit, compliance, risk mitigation, and user empowerment, and relates to the accountability of algorithmic systems.
 The paper provides a discussion of GDPR, identifying the legal impetus to identify and record provenance information regarding processing of personal data and management of rights. 
@@ -582,7 +430,7 @@ The collected information is also described for uses in performing audits and in
 The publication makes specific mention of PROV \cite{lebo_prov-o:_2013} for representing provenance information, supplemented by ontologies for describing additional information about data processing.
 An example cited in this context concerns the use of PROV-O to represent provenance for GDPR compliance (Ujcich et al. \cite{belhajjame_provenance_2018} - see \autoref{sec:sota:gdpr-semweb:ujcich}).
 
-\subsection{Sion et al.}
+\subsubsection{Sion et al.}
 Sion et al. \cite{sion_architectural_2019} presented an approach for data protection by design in software architectures towards incorporating the requirements of GDPR. The approach is developed towards automation of data protection impact assessment (DPIA) using (i) meta-model constraints, (ii) model analysis, and  (iii) interaction with stakeholders. It uses architectural notations, such as UML and Data Flow Diagrams (DFD) to express the model of a system.  The publication provides a discussion of necessary information for the creation of a meta-model for GDPR, which includes the following:
 \begin{itemize}
     \item Use of GDPR terminology as opposed to abstract architectural notations; 
@@ -602,7 +450,7 @@ The meta-model is used to express the model or architecture of a system, which i
 
 The approach is validated through an use-case in the health domain involving a patient monitoring system (PMS), using DFD to denote architectural notations in Eclipse Modelling Framework, with graphical visualisations created using Sirius viewpoint specification. The soundness checks were performed using the Acceleo Query Language supported by Sirius, with work in progress for implementing compliance assessment rules using VIATRA’s graph-based pattern language
 
-\subsection{privacyTracker}
+\subsubsection{privacyTracker}
 or privacyTracker \cite{gjermundrod_privacytracker:_2016} is a framework that provides data traceability through privacy by design principles for GDPR compliance. The framework utilises policies to mediate access to information stored in the form of \textit{Customer Records}, and consists of 3 modules regarding data collection, data distribution, and data traceability. The \textit{Customer Record} is a XML document utilising XSD to store personal data, and contains two sections - a mandatory metadata section and an optional section. The metadata section contains fields for record identification, data tractability, and cryptographic controls. The optional section consists of fields indicating public data, private data which can be disclosed based on consent, and data provided by enterprise itself.
 
 The record identification field contains a URI based on string concatenation of company name, user email address and auto-generated random identifier. This URI is unique throughout the framework, but changes when the data is distributed to another entity. In addition, the identification field also stores timestamps associated with record genesis, (local) record creation, and expiration. The data tractability fields record links to the entity that generated the record (backward-to-root reference), entities the record was obtained from (backward reference), and entities the record is disclosed to (forward reference). The cryptographic controls store a signed copy of the received record and a signature in the form of hash code of the complete record.
@@ -612,59 +460,41 @@ A prototype of the implementation consisted of 6 companies and used MySQL and PH
 
 The analysis of GDPR presented in connection with privacyTracker provide a list of requirements required to be satisfied by compliance frameworks, which are: Articles 5(1a), 5(1d), 6(1a), 6(1c), 7(1), 7(3), 12(1), 12(2), 14(1a), 14(1ac), 14a(2g), 15, 16(1), 17(1), 17(2a), 17a(1), 18(2), 19(2)). These provide the obligation to record and demonstrate evidence regarding handling and sharing of consumer data. 
 
-\subsection{Metrics for Transparency by Spagnuelo et al.}
+\subsubsection{Metrics for Transparency by Spagnuelo et al.}
 Spagnuelo et al. \cite{livraga_metrics_2016} define eight quality metrics for transparency regarding data processing associated with the GDPR.
 In this context, transparency is defined based on quality factors of Informativeness, Understandability, and Accessibility associated with providing information, and Validity and Accessibility associated with providing mechanisms.
 Each metric is associated with one or more questions that retrieve information regarding quality factors associated with its quantitative scoring.
 The metrics provide a quantifiable representation of transparency in a system, and are used in a use-case to evaluate Microsoft Health-Vault - a commercial product.
 The metrics are as follows - accuracy, currentness, conciseness, detailing, readability, availability, portability, and effectiveness.
 
-\subsection{Metamodel for PLA by Diamantopoulou et al.}
+\subsubsection{Metamodel for PLA by Diamantopoulou et al.}
 Diamantopoulou et al. present a metamodel for representing Privacy Level Agreements (PLA) with the aim of establishing contracts between controllers and individuals.
 The metamodel, depicted in \autoref{fig:Diamantopoulou-metamodel}, represents privacy preferences using the concept of questionnaires, where each question refers to a specific data and the answer represents the individual's preferences regarding data sharing. The metamodel also associates preferences with threats, risks, and security measures through the data and controller. Requests for sharing data are associated with data and preferences, and can be accepted or denied based on the values of linked preferences.
 The metamodel is specified to be designed for use-case in eGovernance scenarios where public administrators can provide data and value based on citizens preferences represented through the metamodel.
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{img/Diamantopoulou_metamodel.png}
+    \includegraphics[width=0.8\linewidth]{img/Diamantopoulou_metamodel.png}
     \caption{Metamodel for Privacy Level Agreements by Diamantopoulou et al. \cite{diamantopoulou_metamodel_2017}}
     \label{fig:Diamantopoulou-metamodel}
 \end{figure}
 
-\subsection{Robol et al.}
+\subsubsection{Robol et al.}
 Robol et al. \cite{robol_toward_2017} proposed a modelling and reasoning framework based on socio-technical systems \cite{dalpiaz_security_2016} - an approach for incorporating interaction between people and technology. The proposed framework extends STS-ml - a goal-based modelling language provided in STS - with relevant concepts regarding privacy by design and GDPR compliance. The extended modelling language consists of three views - social, information, and authorisation - based on concepts and context of interactions between them. Social views incorporate actors and their goals and documents, as well as delegations and transmissions. Information views consist of associating actors with information and the tangible documents. Authorisation views consist of interactions with actors based on authorisations which are validated by legal basis over some information towards a particular goal. The modelling concepts are explained in the publication using a health-domain use-case.
 
 Reasoning is based on using the concepts in policies that are then validated for compliance. The policies are based on formal representations of rules based on conditions and constraints for compliance, and the notion of \textit{well-formedness} of models. One notable aspect of this work is the use of concepts from socio-technical approaches to represent GDPR concepts. In particular, goal is used to simulate purpose, actors are used to conceptualise individuals and controllers, and authorisation is used to simulate valid legal basis. The approach enables use of STS modelling and reasoning to develop rules for expressing GDPR compliance requirements and validations.
 
-\subsection{Ayala-Rivera and Pasquale}
-Ayala-Rivera and Pasquale \cite{ayala-rivera_grace_2018} proposed a 6 step approach that links GDPR obligations with privacy controls for compliance and focuses on utilisation of data protection principles in activities. The approach, called GuideMe and depicted in \autoref{fig:Ayala-GuideMe}, is based on eliciting requirements from a business perspective and moving towards encapsulating them into compliant solutions. The first step consists of conducting a data audit to recognise all sources and instance of personal data, its storage, legal basis, and sharing, and identification of use in activities and their risks. The second step is a gap analysis to identify systems and processes that need remedial actions based on their violations of GDPR obligations. The third step utilises the results of gap analysis to establish plans for incorporating privacy controls towards obtaining compliance with the GDPR. The fourth step reviews the implementation plan with stakeholders, while the fifth step implements the corrective actions. The sixth and final step is the evaluation of implemented actions with experts.
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\linewidth]{img/Ayala_GuideMe.png}
-    \caption{GuideMe approach by Ayala-Rivera and Pasquale \cite{ayala-rivera_grace_2018}}
-    \label{fig:Ayala-GuideMe}
-\end{figure}
-
-The publication provides examples through use-cases, stakeholder scenarios, and presents the application of data protection principles in each of GuideMe's steps. It also provides an examples utlising a template containing placeholders for incorporating legal obligations into business requirements. Evaluation of the implemented measures is explained through the example of scenarios which used SMART questionnaires to analyse and validate the corrective actions.
-
-\subsection{Basin et al.}
+\subsubsection{Basin et al.}
 Basin et al. \cite{basin_purpose_2018} proposed an approach that aligns purpose as defined by the GDPR with a business process, and uses formal models of inter-process communication to audit GDPR compliance. The approach also uses models of data flows to derive privacy policies. 
 The definition of business process used in the approach consists of having a set of activities that take inputs and produce outputs, have a beginning and an end, and are ordered. The inter-process communication is based on the understanding of data-flow graphs where different processes interact and share the same set of data for different purposes.
 
-The auditing mechanism in the approach is based on validating the following:
-\begin{enumerate}
-    \item Implementation conforms to process collections (i.e. implemented activities conform to modelled processes)
-    \item Process collection conforms to privacy policy (i.e. modelled processes conform to those specified within a privacy policy)
-    \item Process collection conforms to GDPR
-    \item Privacy policy conforms to GDPR
-\end{enumerate}
-
+The auditing mechanism in the approach is based on validating whether an implementation conforms to process collections i.e. implemented activities conform to modelled processes, process collection conforms to privacy policy i.e. modelled processes conform to those specified within a privacy policy, process collection conforms to GDPR, and privacy policy conforms to GDPR.
 The process collection is defined as a tuple $PC = (P,D,DU,DC)$ consisting of processes ($P$), data classes ($D$), data usage ($DU\subset D x P$), and data collection ($DC\subset D x P$). Consent is based on evaluating whether the process collection permitted by consent falls within that defined by the privacy policy. Similarly, data minimisation is evaluated by assessing whether all data collected is utilised in some process.
 
-\subsection{Approaches utilisation visualisation and dashboards}
-\cite{fox_communicating_2018} - GDPR privacy label - creating a privacy label to inform data subjects about the data processing characteristics such as identity of controller, purposes, recipients, transfers, consent - withdrawal
+% \subsection{GDPR Privacy Label}
+% GDPR Privacy Label \cite{fox_communicating_2018} - GDPR privacy label - creating a privacy label to inform data subjects about the data processing characteristics such as identity of controller, purposes, recipients, transfers, consent - withdrawal
 
 % non sem-web
-\subsection{RestAssured}
+\subsubsection{RestAssured}
 RestAssured\footnote{\url{https://restassuredh2020.eu/}} is an European H2020 project that aims to enable secure data processing in the cloud with sticky policies for decentralised data lifecycle management.
 The project aims to achieve this by using run-time models for data protection assurance and automated risk management. Run-time detection, prediction, and prevention of data protection violations is achieved by using a catalogue of risk patterns representing data protection vulnerabilities of cloud systems \cite{palm_modelling_2018,braubach_using_2018}. The pattern meta-model and its validation is described in detail in the deliverable D5.1 \cite{noauthor_d5.1.pdf_nodate}. Information about the project is available through peer-reviewed publications and publicly available deliverables\footnote{\url{https://restassuredh2020.eu/publications/}}.
 \begin{figure}[htbp]
@@ -675,31 +505,12 @@ The project aims to achieve this by using run-time models for data protection as
 \end{figure}
 
 % non sem-web
-The project addresses GDPR specifically through a conceptual model incorporating concepts necessary for compliance, as depicted in \autoref{fig:RestAssured-model} \cite{noauthor_d6.1.pdf_nodate}. The model is utilised in a data protection policy specification consisting of a data protection contract, sticky policies, and specification of obligations. The model is utilised to provide a customised privacy policy that allows users choice of preferences for selected services \cite{gritzalis_privacy_2019}. The data protection contract is composed of 4 main parts:
-\begin{enumerate}
-    \item A description of the Service that needs to access the data
-    \item A specification of the data that is needed to be accessed by the service and whether this access is mandatory
-    \item A list of usages, where a usage is composed of a textual description that describes the purpose of this usage(example: statistics, marketing) and the associated action (example: store, read, etc.) as well as a list of needed data types
-    \item A specification of data that will be published by the service
-\end{enumerate}
+The project addresses GDPR specifically through a conceptual model incorporating concepts necessary for compliance, as depicted in \autoref{fig:RestAssured-model} \cite{noauthor_d6.1.pdf_nodate}. The model is utilised in a data protection policy specification consisting of a data protection contract, sticky policies, and specification of obligations. The model is utilised to provide a customised privacy policy that allows users choice of preferences for selected services \cite{gritzalis_privacy_2019}. The data protection contract is composed of 4 main parts - description of the Service that needs to access the data, specification of the data that is needed to be accessed by the service and whether this access is mandatory, list of usages where usage is composed of a textual description that describes the purpose of this usage and the associated processing action as well as a list of needed data types, and specification of data that will be published by the service.
 The obligations are defined based on their enforcement in relation to access control (before, at same time, after), and are specified with three pieces of information: (i) obligation type (before, after, with), (ii) event trigger, and (iii) action to be performed. The serialisation of obligations is done using XACML 3.0.
-The deliverable D7.1 \cite{noauthor_d7.1.pdf_nodate} refers to the use of RDF to represent the concepts and relationships as a graph, which consists of three layers:
-\begin{enumerate}
-    \item \textbf{A core model}: the schema that captures the fundamental concepts, e.g. assets, roles, threats, and their relationships.
-    \item \textbf{Domain models}: datasets that encode domain- specific knowledge, e.g. detailed threats and their possible control strategies.
-    \item \textbf{System models}: that represent an actual system upon which the risk assessment is being performed.
-\end{enumerate}
+The deliverable D7.1 \cite{noauthor_d7.1.pdf_nodate} refers to the use of RDF to represent the concepts and relationships as a graph, which consists of three layers representing: (i) a core model of the schema that captures the fundamental concepts, e.g. assets, roles, threats, and their relationships; (ii) a domain model of datasets that encode domain- specific knowledge, e.g. detailed threats and their possible control strategies; and (iii) system models that represent an actual system upon which the risk assessment is being performed.
 
 % non sem-web
-\subsection{DEFeND}
-DEFeND\footnote{\url{https://www.defendproject.eu/}} (Data Privacy Governance for Supporting GDPR) is an European H2020 project that aims to create a platform for providing services to organisations in the context of GDPR compliance. The platform is stated to provide services regarding data management and governance, data breach reporting, process management, along with GDPR planning and reporting. The peer reviewed publication \cite{piras_defend_2019} presents more details about the architecture of the project and its various components.
-
-The Data Assessment Component (DAC) consists of the Organisation Data Collection (ODC) module which uses an questionnaire to collect information about organisational scope, data processing, processes, and activities - and is used to evaluate the organisation with relevant aspects of the GPDR. The questionnaire responses from ODC are given to the Assessment Translator (ATr) module which converts them to an XML-schema in order to create Data Assessment Model (DAM) - which is a goal-based requirement engineering model of actors, assets, establishments and data flows.
-
-The DAM is used by the Data Privacy Analysis Component (DPAC) to perform analysis about DPIA, Data Minimisation, Privacy-by-Design/Default, and Threat mitigation. The outcome of the analysis is a Data Privacy Model (DPC), which is utilised to specify and evaluate both at design and run-time the operations of consent management, data access rights, security and privacy technologies. The project also aims to create a dashboard to provide organisations with control and monitoring of operations to achieve GDPR compliance, and to enable data subjects to interact with the platform based on consent.
-
-% non sem-web
-\subsection{OPERANDO}
+\subsubsection{OPERANDO}
 OPERANDO\footnote{\url{www.operando.eu/}} (Online Privacy Enforcement, Rights Assurance \& Optimisation) is an European H2020 project that aims to provide a platform for users to specify preferences via a dashboard, which is then compared with online service providers privacy policies and converted into access control rules.
 The deliverable D3.1 \cite{noauthor_d3.1-guidelinesonlegalaspectsv2.0_77_289.pdf_nodate} describes the legal requirements of the GDPR in the context of OPERANDO's objectives, while deliverable D6.4 \cite{noauthor_d6.4finalproductversionofprivacyenhancedtoolsv1.0_77_366.pdf_nodate} describes the architecture and working of privacy tools.
 Information about the project is available through peer-reviewed publications and public deliverables\footnote{\url{http://www.operando.eu/servizi/moduli/moduli_fase01b.aspx}}.
@@ -709,27 +520,7 @@ The platform operates in an online environment and uses APIs between services wh
 The online service provider's privacy policy (OSP) \cite{noauthor_d6.7finalproductversionofsecurityawaretoolsv1.0_77_378.pdf_nodate} consists of fields defining workflows and contained steps with information about requester subject (role of service provider), requested data, and action to be performed. The OSP also contains information about access policies for which the service provider has privileges to perform the requested operations in specified roles. Information about how the UPP and OSP are utilised in an API to enact an access request is provided through the deliverable D6.4 \cite{noauthor_d6.4finalproductversionofprivacyenhancedtoolsv1.0_77_366.pdf_nodate}.
 
 % non sem-web
-\subsection{PDP4E}
-PDP43\footnote{\url{https://www.pdp4e-project.eu/}} (Methods and Tools for GDPR Compliance through Privacy and Data Protection Engineering) is an European H2020 project that aims to provide tools and guidance for incorporating privacy and data protection into software development life-cycles (SDLC) to implement data protection by design. Currently, the project lists one deliverable on its website, D2.1 \cite{noauthor_pdp4e-d2.1_multistakeholder_nodate}, which provides information on the legal analysis of GDPR in terms of requirements and obligations for software, and identifies the various roles and responsibilities within the context of SDLC. 
-
-
-% non sem-web, relevant
-\subsection{PoSEID-on}
-POSEID-on\footnote{\url{https://www.poseidon-h2020.eu/}} (Protection and control of Secured Information by means of a privacy Enhanced Dashboard) is an European H2020 project that aims to safeguard the rights of data subjects
-while simultaneously supporting organisations in data management and processing while ensuring GDPR compliance.
-Its objective is to create a Privacy Enhancing Dashboard for personal data protection using an implementation of permissioned blockchain and smart contracts to provide accountability, transparency and compliance.
-The project aims to develop technologies for automated detection of unexpected and potentially harmful behaviours in order to monitor privacy risks and notify threats to data subjects during transactions.
-Information about the project is available through its public deliverables\footnote{\url{https://www.poseidon-h2020.eu/documents/}}.
-
-Deliverable D2.1 \cite{noauthor_poseid-on_d2.1-use-cases-analysis-and-user-scenarios-v1.00.pdf_nodate} provides information on use-cases considered within the project with their user stories, personal data required in the use-case, and third parties involved. Deliverable D3.1 \cite{noauthor_d3.1_final-version_poseidon_v10.pdf_nodate} presents the architecture of the PoSEID-on, with information about the smart contract utilised on the permissioned blockchain. The smart contract supports permissions regarding requesting, granting, revoking, notifying, checking, and accessing permissions regarding use of PII. Each permission event is logged to the blockchain and consists of the data processor, data subject, and personal data field involved. Deliverable D4.3 \cite{noauthor_d4.3-rmm-and-pda-v1.0-final.pdf_nodate} describes use of natural language programming approaches to detect PII in stored data as a measure of risk detection and management.
-
-% non sem-web, relevant
-\subsection{STAR \& STAR II}
-STAR\footnote{\url{https://projectstareu.wordpress.com/}} (Support Training Activities on the data protection Reform) is an European project that had the aim to provide materials to support training of DPAs and DPOs for the GDPR. To this end, it has created and published its resources consisting of training materials in an open and publicly accessible form\footnote{\url{http://www.project-star.eu/training-materials}}. The project has also produced a handbook for assisting stakeholders in understanding the GDPR and preparing for its compliance. The project also provides an evaluation questionnaire and compliance checklist \cite{noauthor_gdpr_2019-1}consisting of a list of questions and criterion to assess preparedness with the requirements of the GDPR. 
-
-\section{Approaches of Relevance}\label{sec:sota:other}
-% non sem-web
-\subsection{My Health My Data (MHMD)}
+\subsubsection{My Health My Data (MHMD)}
 My Health My Data\footnote{\url{http://www.myhealthmydata.eu/}} (MHMD) is an European H2020 project that aims to develop infrastructure based on blockchain and smart contracts, which provide personal data accounts in the cloud that can be managed using dynamic consent interfaces and provide peer-to-peer connections between stakeholders. The project uses blockchain to log data transactions in a secure, transparent, and accountable manner, while using de-identification and encryption to protect identity and sensitive information. The safety and security of the data is tested using re-identification and penetration simulations.
 Information about the project is available through peer-reviewed publications and public deliverables\footnote{\url{http://www.myhealthmydata.eu/publicdeliverables/}}.
 
@@ -740,56 +531,18 @@ Though the project aims to utilise the GDPR as a source of legal requirements an
 It focuses on the privacy preserving and security aspects of data storage by using technological solutions such as access control and transparent logging to design specifications based on legal requirements.
 The project does explores the impact of GDPR of storing data in a blockchain, especially regarding the right to be forgotten \cite{bayle_when_2018}.
 
-% non sem-web, relevant
-\subsection{PAPAYA}
-PAPAYA\footnote{\url{https://www.papaya-project.eu/}} (PlAtform for PrivAcY preserving data Analytics) is an European H2020 project that aims to provide privacy preserving techniques and technologies for performing analytics tasks on encrypted data by untrusted third-party data processors. The project uses the obligations of the GDPR to structure its outcomes in terms of Privacy Enhancing Technologies (PETs) which are provided through an intoperable platform. The project focuses on the application of privacy by design principle to provide usability, transparency, and auditability to end users regarding the processing of their data. Information about the project is available through peer-reviewed publications\footnote{The deliverables listed at \url{https://www.papaya-project.eu/deliverables} are not publicly accessible at the time of writing this thesis.}.
-
-% non sem-web, relevant
-\subsection{SMOOTH}
-SMOOTH\footnote{\url{https://smoothplatform.eu/}} is an European H2020 project that aims to assist micro enterprises become compliant with the GDPR by designing and implementing tools for awareness about GDPR obligations and analysing their level of compliance with the new data protection regulation.
-The objectives of the project include creation of a platform for automatic assessment of privacy protection documents (including privacy policies), stored data, and the processing of personal data on the website or mobile apps to create a compliance report. Further details about the project are currently not available.
-
-% non sem-web
-\subsection{SODA}
-SODA\footnote{\url{https://www.soda-project.eu/}} (Scalable Oblivious Data Analytics) is an European H2020 project that aims to provide tools for performing analytics over encrypted data at large scales while providing compliance with the GDPR. The project will utilise use-cases within the health domain to demonstrate the privacy-preserving aspects of its technologies. SODA incorporates requirements of the GDPR and provides guarantees regarding compliance through the use of its tools and technologies. The analysis of legal requirements arising from the GDPR and the role of SODA in addressing them is presented in deliverable D3.1 \cite{spindler_d3.1_2017}. Further information about the project is available through peer-reviewed publications and public deliverables\footnote{\url{https://www.soda-project.eu/deliverables/}}.
-
-% non sem-web, relevant
-\subsection{DECODE}
-DECODE\footnote{\url{https://decodeproject.eu/}} is an European H2020 project that aims to provide tools for data ownership by using blockchain with attribute-based cryptography. The project will be piloted in Amsterdam and Barcelona, and will focus on enabling citizens to manage and control the data generated through IoT devices. The objective of the project is to provide the data as a shared resource for collective benefit and crowd-sourced information. Smart contracts are used to enable control of data and are stored in a distributed ledger (such as blockchain). Information about the project is available through its public deliverables\footnote{\url{https://decodeproject.eu/publications}}.
-
-The specification of information required for legal compliance as well as processing is defined in terms of `entitlements', which include personal data category, description, purpose, condition (alternate purpose), expiry date (storage duration). These are collected across use-cases, normalised to find commonalities, and utilised in smart policies to record information about processing. The deliverable D3.5 \cite{noauthor_decode_d3.5_initial_nodate} describes collected entitlements from use-cases in Barcelona pilot.
-The analysis of legal requirements and their incorporation in the DECODE project is described in D1.8 \cite{noauthor_d1.8_legalframefordigcomm.pdf_nodate}.
-
-% non sem-web, non relevant
-% \subsubsection{MOSAICrOWN}
-% MOSAICrOWN\footnote{\url{https://mosaicrown.eu/}} (Multi-Owner data Sharing for Analytics and Integration respecting Confidentiality and OWNer control) is an European H2020 project that aims to enable data sharing and collaborative analytics in multi-owner scenarios. Its objectives are to provide a data governance framework able to capture and combine the protection requirements specified by multiple parties, and to provide protection techniques for enabling efficient and scalable data sharing and processing.
-% One of the outcomes of the research is an approach for performing combining selective encryp-tion, blockchain, and smart contracts to enable data ownersto leverage data markets to monetize their data in a con-trolled way. Our approach is complemented by an auditprocess counteracting misbehaviors in case of dishonestsubjects.
-% \subsubsection{MUSKETEER}
-
-% non sem-web, relevant
-\subsection{PRIPARE}
-PRIPARE\footnote{\url{http://pripareproject.eu/}} (PReparing Industry to Privacy-by-design by supporting its Application in REsearch) is an European research project that aimed to provide a set of documents regarding privacy engineering by covering activities such as privacy risk management, requirement analysis, design strategies, maintenance and compliance. To this end, it published the PRIPARE methodology handbook \cite{noauthor_pripare-methodology-handbook-final-feb-24-2016.pdf_nodate} providing guidelines for privacy and security by design. The handbook incorporates information based on a draft of GDPR\footnote{\url{The handbook was published in 2015, and incorporated known information about the GDPR up to that point in time.}} It provides foundational methodologies and reference models for carrying out privacy analysis, designing and implementing privacy enhancing systems, with templates for impact assessments and conformance. 
-
-\subsection{Approaches involving Privacy Policies}
+\section{Approaches involving Privacy Policies}\label{sec:sota:privacy-policies}
 These approaches involve utilisation of privacy policies for various purposes associated with data protection and user empowerment. While they do not target GDPR compliance, they are relevant to the work as they involve analysis of information associated with compliance - such as purposes, data categories, and rights - and also provide an overview of GDPR's impact and uptake in the real-world.
 
+\subsubsection{Usable Privacy Project}
 The UsablePrivacy project \cite{sadeh_usable_2013} utilised natural language programming over manually annotated corpus of privacy policies to create a system for automatic classification of policies. 
 It utilised semantic web technologies \cite{oltramari_privonto:_2018} to represent the annotations and information within a privacy policy, as well as to query information for retrieval.
 The datasets generated as part of the project have been utilised in other similar approaches \cite{harkous_polisis:_2018,linden_privacy_2018} concerning automatic analyses over privacy policies. 
 
+\subsubsection{Polisis and other approaches based on Usable Privacy Project}
 Galle et al. \cite{galle_case_2019} presented an argument for a similar corpus of GDPR-specific privacy policies based on the increased requirements required for GDPR compliance based on the presence of information and use of simpler text. While such a dataset has not been published to date, there have been approaches incorporating GDPR specific information in privacy policy analysis.
 Polisis \cite{harkous_polisis:_2018} is one such approach that analyses privacy policies using the taxonomy of privacy concepts by Wilson et al. \cite{wilson_creation_2016} (depicted in \autoref{fig:sota:Linden-taxonomy}).
 Further GDPR specific work using the same approach collects and compares policies in pre-GDPR and post-GDPR versions to identify the impact of GDPR \cite{linden_privacy_2018}. The approach uses a list of the queries derived from ICO’s GDPR compliance checklists to obtain coverage of GDPR in terms of queries answerable in privacy policies.
-% \begin{enumerate}[label={Q{\theenumi}}]
-%     \item Quantify how specifically the policy indicates how the first party is obtaining user data 
-%     \item Quantify how specifically the policy indicates how the third party is collecting user data 
-%     \item Quantify how specifically the policy indicates the type of information accessed by the first party 
-%     \item Quantify how specifically the policy indicates the type of information shared with the third party 
-%     \item Quantify how specifically the policy indicates how the third party is receiving user information 
-%     \item Quantify how specifically the policy covers first party collection purposes relative to all possible purposes in our taxonomy 
-%     \item Quantify how specifically the policy covers third party sharing purposes relative to all possible purposes in our taxonomy 
-%     \item Quantify how specifically the policy indicates the purpose for data retention
-% \end{enumerate}
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{img/Linden_taxonomy.png}
@@ -797,22 +550,23 @@ Further GDPR specific work using the same approach collects and compares policie
     \label{fig:sota:Linden-taxonomy}
 \end{figure}
 
+\subsubsection{PrivacyGuide}
 PrivacyGuide \cite{tesfay_privacyguide:_2018} provides visualisation of privacy policies and information categories in the form of a dashboard. It uses a similar approach to UsablePrivacy and Polisis in classifying statements in policies and extracting information using machine learning. In terms of information, its models contain the following concepts: data collection, protection of children, third-party sharing, data security, data retention, data aggregation, control of data, privacy settings, account deletion, privacy breach notification, policy changes.
 The approach is based on identifying a set of keywords for each concept and classifying statements based on their presence.
 
-\subsection{Approaches related to Consent}
+\section{Approaches related to Consent}\label{sec:sota:consent}
 These approaches involve association with consent, and provide information about existing efforts towards its representation and analysis. They are relevant as they involve information associated with the provision of consent, its impact in real-life, and the complexities associated with its representations.
 
+\subsubsection{Grando et al.}
 Grando et al. \cite{grando_ontological_2012} present an ontology-based model of permissions and obligations resulting from informed consent within the medical domain. The approach, depicted in \autoref{fig:sota:Grando-ontology}, consists of using XACML for rules implementing a consent management system by utilising reasoning using SWRL.
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{img/Grando_ontology.png}
+    \includegraphics[width=0.75\linewidth]{img/Grando_ontology.png}
     \caption{Informed consent permissions ontology by Grando et al. \cite{grando_ontological_2012}}
     \label{fig:sota:Grando-ontology}
 \end{figure}
 
-% Another approach regarding consent in the medical domain, the MAGIC project \cite{bialke_magic:_2018}, utilises a modular structure 
-
+\subsubsection{Consent Receipt Specification}
 The Consent Receipt specification\footnote{\url{https://kantarainitiative.org/confluence/display/infosharing/Consent+Receipt+Specification}} \cite{lizar_consent_2017} is a standardisation effort by the Kantara Initiative - a non-profit industry professional trade association with the mission - ``improving trustworthy use of identity and personal data through innovation, standardisation and good practice in the domain of digital identity management and data privacy''. The consent receipt provides a list of fields necessary to capture the context of given consent and is meant to be a record of transaction regarding personal data. Its fields, depicted in \autoref{fig:sota:ConsentReceipt}, capture information about timestamp the consent was given at, the entities involved (controllers), PII involved, purposes, and recipients.
 \begin{figure}[htbp]
     \centering
@@ -821,33 +575,131 @@ The Consent Receipt specification\footnote{\url{https://kantarainitiative.org/co
     \label{fig:sota:ConsentReceipt}
 \end{figure}
 
+\section{Upcoming research projects addressing GDPR}
+This section lists upcoming research projects that address or incorporate GDPR compliance in their requirements and are currently developing solutions to meet their objectives and aims. These are presented to include them in the larger picture of approaches associated with GDPR compliance, but are not analysed as part of the SotA relevant to this thesis given their nascent research output.
+
+\subsubsection{PDP4E}
+PDP43\footnote{\url{https://www.pdp4e-project.eu/}} (Methods and Tools for GDPR Compliance through Privacy and Data Protection Engineering) is an European H2020 project that aims to provide tools and guidance for incorporating privacy and data protection into software development life-cycles (SDLC) to implement data protection by design. Currently, the project lists one deliverable on its website, D2.1 \cite{noauthor_pdp4e-d2.1_multistakeholder_nodate}, which provides information on the legal analysis of GDPR in terms of requirements and obligations for software, and identifies the various roles and responsibilities within the context of SDLC.
+
+% non sem-web
+\subsubsection{DEFeND}
+DEFeND\footnote{\url{https://www.defendproject.eu/}} (Data Privacy Governance for Supporting GDPR) is an European H2020 project that aims to create a platform for providing services to organisations in the context of GDPR compliance. The platform is stated to provide services regarding data management and governance, data breach reporting, process management, along with GDPR planning and reporting. The peer reviewed publication \cite{piras_defend_2019} presents more details about the architecture of the project and its various components.
+
+The Data Assessment Component (DAC) consists of the Organisation Data Collection (ODC) module which uses an questionnaire to collect information about organisational scope, data processing, processes, and activities - and is used to evaluate the organisation with relevant aspects of the GPDR. The questionnaire responses from ODC are given to the Assessment Translator (ATr) module which converts them to an XML-schema in order to create Data Assessment Model (DAM) - which is a goal-based requirement engineering model of actors, assets, establishments and data flows.
+
+The DAM is used by the Data Privacy Analysis Component (DPAC) to perform analysis about DPIA, Data Minimisation, Privacy-by-Design/Default, and Threat mitigation. The outcome of the analysis is a Data Privacy Model (DPC), which is utilised to specify and evaluate both at design and run-time the operations of consent management, data access rights, security and privacy technologies. The project also aims to create a dashboard to provide organisations with control and monitoring of operations to achieve GDPR compliance, and to enable data subjects to interact with the platform based on consent.
+
+% non sem-web, relevant
+\subsubsection{PAPAYA}
+PAPAYA\footnote{\url{https://www.papaya-project.eu/}} (PlAtform for PrivAcY preserving data Analytics) is an European H2020 project that aims to provide privacy preserving techniques and technologies for performing analytics tasks on encrypted data by untrusted third-party data processors. The project uses the obligations of the GDPR to structure its outcomes in terms of Privacy Enhancing Technologies (PETs) which are provided through an interoperable platform. The project focuses on the application of privacy by design principle to provide usability, transparency, and auditability to end users regarding the processing of their data. Information about the project is available through peer-reviewed publications\footnote{The deliverables listed at \url{https://www.papaya-project.eu/deliverables} are not publicly accessible at the time of writing this thesis.}.
+
+% non sem-web, relevant
+\subsubsection{SMOOTH}
+SMOOTH\footnote{\url{https://smoothplatform.eu/}} is an European H2020 project that aims to assist micro enterprises become compliant with the GDPR by designing and implementing tools for awareness about GDPR obligations and analysing their level of compliance with the new data protection regulation.
+The objectives of the project include creation of a platform for automatic assessment of privacy protection documents (including privacy policies), stored data, and the processing of personal data on the website or mobile apps to create a compliance report. Further details about the project are currently not available.
+
+% non sem-web
+\subsubsection{SODA}
+SODA\footnote{\url{https://www.soda-project.eu/}} (Scalable Oblivious Data Analytics) is an European H2020 project that aims to provide tools for performing analytics over encrypted data at large scales while providing compliance with the GDPR. The project will utilise use-cases within the health domain to demonstrate the privacy-preserving aspects of its technologies. SODA incorporates requirements of the GDPR and provides guarantees regarding compliance through the use of its tools and technologies. The analysis of legal requirements arising from the GDPR and the role of SODA in addressing them is presented in deliverable D3.1 \cite{spindler_d3.1_2017}. Further information about the project is available through peer-reviewed publications and public deliverables\footnote{\url{https://www.soda-project.eu/deliverables/}}.
+
+% non sem-web, relevant
+\subsubsection{DECODE}
+DECODE\footnote{\url{https://decodeproject.eu/}} is an European H2020 project that aims to provide tools for data ownership by using blockchain with attribute-based cryptography. The project will be piloted in Amsterdam and Barcelona, and will focus on enabling citizens to manage and control the data generated through IoT devices. The objective of the project is to provide the data as a shared resource for collective benefit and crowd-sourced information. Smart contracts are used to enable control of data and are stored in a distributed ledger (such as blockchain). Information about the project is available through its public deliverables\footnote{\url{https://decodeproject.eu/publications}}.
+
+The specification of information required for legal compliance as well as processing is defined in terms of `entitlements', which include personal data category, description, purpose, condition (alternate purpose), expiry date (storage duration). These are collected across use-cases, normalised to find commonalities, and utilised in smart policies to record information about processing. The deliverable D3.5 \cite{noauthor_decode_d3.5_initial_nodate} describes collected entitlements from use-cases in Barcelona pilot.
+The analysis of legal requirements and their incorporation in the DECODE project is described in D1.8 \cite{noauthor_d1.8_legalframefordigcomm.pdf_nodate}.
+\subsubsection{MOSAICrOWN}
+MOSAICrOWN\footnote{\url{https://mosaicrown.eu/}} (Multi-Owner data Sharing for Analytics and Integration respecting Confidentiality and OWNer control) is an European H2020 project that aims to enable data sharing and collaborative analytics in multi-owner scenarios. Its objectives are to provide a data governance framework able to capture and combine the protection requirements specified by multiple parties, and to provide protection techniques for enabling efficient and scalable data sharing and processing.
+One of the outcomes of the research is an approach for performing combining selective encryp-tion, blockchain, and smart contracts to enable data ownersto leverage data markets to monetize their data in a con-trolled way. Our approach is complemented by an auditprocess counteracting misbehaviors in case of dishonestsubjects.
+% \subsubsection{MUSKETEER}
+
+% non sem-web, relevant
+\subsubsection{PoSEID-on}
+POSEID-on\footnote{\url{https://www.poseidon-h2020.eu/}} (Protection and control of Secured Information by means of a privacy Enhanced Dashboard) is an European H2020 project that aims to safeguard the rights of data subjects
+while simultaneously supporting organisations in data management and processing while ensuring GDPR compliance.
+Its objective is to create a Privacy Enhancing Dashboard for personal data protection using an implementation of permissioned blockchain and smart contracts to provide accountability, transparency and compliance.
+The project aims to develop technologies for automated detection of unexpected and potentially harmful behaviours in order to monitor privacy risks and notify threats to data subjects during transactions.
+Information about the project is available through its public deliverables\footnote{\url{https://www.poseidon-h2020.eu/documents/}}.
+
+Deliverable D2.1 \cite{noauthor_poseid-on_d2.1-use-cases-analysis-and-user-scenarios-v1.00.pdf_nodate} provides information on use-cases considered within the project with their user stories, personal data required in the use-case, and third parties involved. Deliverable D3.1 \cite{noauthor_d3.1_final-version_poseidon_v10.pdf_nodate} presents the architecture of the PoSEID-on, with information about the smart contract utilised on the permissioned blockchain. The smart contract supports permissions regarding requesting, granting, revoking, notifying, checking, and accessing permissions regarding use of PII. Each permission event is logged to the blockchain and consists of the data processor, data subject, and personal data field involved. Deliverable D4.3 \cite{noauthor_d4.3-rmm-and-pda-v1.0-final.pdf_nodate} describes use of natural language programming approaches to detect PII in stored data as a measure of risk detection and management.
+
 \section{Analysis}\label{sec:sota:analysis}
-\subsection{Methodology for Analysis}\label{sota:analysis:methodology}
-There are a multitude of approaches utilising technological solutions to represent and evaluate legal compliance, as summarised in \autoref{sec:sota:models}.
-The state of the art for this thesis consists of work that adopts and implements these approaches to address GDPR and its compliance.
-Analysis of the state of the art is based on assessing these approaches with a particular emphasis on those that utilise semantic web (\autoref{sec:sota:gdpr-semweb}) based on the motivation of the thesis and its research question (\autoref{sec:intro:background}), with the other approaches described in \autoref{sec:sota:gdpr-other}.
-Approaches that do not concern or address the GDPR, but are relevant within the domain are also included (\autoref{sec:sota:other}) to provide additional information useful in representing the state of the art.
 
-The surveys presented in \autoref{sec:sota:models} regarding classification of approaches for legal compliance \cite{otto_addressing_2007} and phases of compliance \cite{fellmann_state---art_2014} provide context for the analysis. In addition, the information disseminated by authoritative bodies, presented in \autoref{sec:background:GDPR}, provides an investigative framework to analyse information regarding GDPR compliance.
-Based on these, the questions described below are used to categorise and assess the approaches. Following this, each category represented by the question is analysed and discussed in detail to present its state of the art with identification of research opportunities from identified gaps.
-\begin{enumerate}
-    \item Which aspects of GDPR compliance does the approach target?
-    \item How does the approach represent information associated with GDPR and its compliance?
-    \item What formalism are used in the approach?
-    \item How does the approach represent process flows in terms of phases of compliance?
-    \item How does the approach represent information associated with consent?
-    \item How does the approach evaluate GDPR compliance?
-\end{enumerate}
+\subsubsection{Overview of SotA}
+The analysis of the state of the art was carried out using the methodology presented earlier in \autoref{sec:sota:methodology}.
+The approaches were first analysed to identify their relevance for the categories of information identified in the methodology.
+\autoref{table:sota:analysis:overview} presents this information by using a check mark (\cmark) to indicate the approach uses or provide information about that topic, with its absence indicating that the approach does not address that topic or no information about its use could be found.
+The column headings represent the identified categories of information from the methodology, and represent the following - (T): type of work where PRJ indicates a research project and RES indicates research publication, (R): if it models GDPR clauses and concepts, (MG): if it provides an ontology, (EA): if it represents information for ex-ante Compliance, (EP): if it represents information for ex-post compliance, (P): if it models activities, (C): if it represents consent, (Cm): if it evaluates compliance, (Rq): if it specifies requirements for GDPR compliance, and (O): it provides resources in an open and accessible manner.
+\begin{table}[htbp]
+\footnotesize
+\centering
+\caption{Overview of approaches in SotA}\label{table:sota:analysis:overview}
+\rowcolors{1}{}{gray!10}
+\begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|X|X|X|X|}
+\hline
+\textbf{Work} & \textbf{T} & \textbf{R} & \textbf{M} & \textbf{EA} & \textbf{EP} & \textbf{P} & \textbf{C} &\textbf{Cm} & \textbf{Rq} & \textbf{O} \\ \hline
+\multicolumn{11}{|>{\hsize=\dimexpr11\hsize+11\tabcolsep+12\arrayrulewidth\relax}X|}{Approaches using semantic web to address GDPR compliance} \\ \hline
+SPECIAL & PRJ &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark \\ \hline
+SERAMIS & PRJ & \cmark & \cmark &  &  &  &  & \cmark & \cmark &  \\ \hline
+Vos et al & RES &  & \cmark &  &  &  &  & \cmark & \cmark & \cmark \\ \hline
+CitySPIN & PRJ &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark \\ \hline
+MIREL & PRJ & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark & \cmark &  \\ \hline
+DAPRECO & PRJ & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark & \cmark &  \\ \hline
+BPR4GDPR & PRJ &  &  & \cmark & \cmark & \cmark &  & \cmark & \cmark &  \\ \hline
+Elluri et al. & RES &  & \cmark &  &  &  &  &  &  & \cmark \\ \hline
+Ujcich et al. & RES &  & \cmark &  & \cmark & \cmark &  &  &  &  \\ \hline
+PICS & RES &  &  &  & \cmark &  &  &  &  &  \\ \hline
+AdvoCATE & RES &  & \cmark &  &  &  & \cmark & \cmark &  &  \\ \hline
+Geko \& Tjoa & RES &  & \cmark &  &  &  &  &  &  &  \\ \hline
+\multicolumn{11}{|>{\hsize=\dimexpr11\hsize+11\tabcolsep+12\arrayrulewidth\relax}X|}{Other approaches addressing GDPR compliance} \\ \hline
+LPL & RES &  & \cmark &  &  &  &  &  &  &  \\ \hline
+Lodge et al & RES &  & \cmark &  & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
+Peras & RES &  & \cmark &  &  &  & \cmark &  &  &  \\ \hline
+Tom et al & RES &  & \cmark & \cmark &  & \cmark &  & \cmark &  &  \\ \hline
+Coletti et al & RES &  & \cmark & \cmark &  &  & \cmark &  & \cmark &  \\ \hline
+Corrales et al & RES &  &  &  &  &  &  & \cmark & \cmark &  \\ \hline
+LUCE & RES &  &  &  &  & \cmark &  & \cmark &  &  \\ \hline
+Singh et al & RES &  &  & \cmark &  &  &  &  &  &  \\ \hline
+Sion et al & RES &  & \cmark & \cmark &  & \cmark &  & \cmark &  &  \\ \hline
+privacyTracker & RES &  & \cmark &  & \cmark & \cmark &  & \cmark & \cmark &  \\ \hline
+Spagnuelo et al & RES &  &  &  &  &  &  &  & \cmark &  \\ \hline
+PLA Metamodel & RES &  & \cmark &  &  &  &  &  &  &  \\ \hline
+Robol et al & RES &  & \cmark & \cmark &  &  &  & \cmark &  &  \\ \hline
+% GuideMe & RES &  &  &  &  &  &  & \cmark & \cmark &  \\ \hline
+Basin et al & RES &  &  & \cmark &  & \cmark &  & \cmark &  &  \\ \hline
+RestAssured & PRJ &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
+% Fox et al & RES &  &  &  &  &  &  &  & \cmark &  \\ \hline
+OPERANDO & PRJ &  &  &  &  &  & \cmark & \cmark &  &  \\ \hline
+MHMD & PRJ &  &  &  &  &  & \cmark &  &  &  \\ \hline
+\multicolumn{11}{|>{\hsize=\dimexpr11\hsize+11\tabcolsep+12\arrayrulewidth\relax}X|}{Approaches involving Privacy Policies} \\ \hline
+UsablePrivacy & PRJ & & \cmark &  &  &  &  &  &  & \cmark \\ \hline
+Galle et al & RES &  & \cmark &  &  &  &  &  &  &  \\ \hline
+Polisis & RES &  & \cmark &  &  &  &  &  &  &  \\ \hline
+Linden et al & RES &  & \cmark &  &  &  &  &  &  &  \\ \hline
+PrivacyGuide & RES &  & \cmark &  &  &  &  &  &  &  \\ \hline
+\multicolumn{11}{|>{\hsize=\dimexpr11\hsize+11\tabcolsep+12\arrayrulewidth\relax}X|}{Approaches related to Consent} \\ \hline
+Grando et al. & RES &  &  &  &  &  & \cmark & & & \\ \hline
+Consent Receipt & PRJ &  &  &  &  &  & \cmark &  &  & \cmark \\ \hline
+\multicolumn{11}{|>{\hsize=\dimexpr11\hsize+11\tabcolsep+12\arrayrulewidth\relax}X|}{Upcoming research projects addressing GDPR} \\ \hline
+PDP4E & PRJ &  &  &  &  &  &  &  & \cmark &  \\ \hline
+DEFeND & PRJ &  & \cmark & \cmark &  &  &  & \cmark &  &  \\ \hline
+PAPAYA & PRJ &  &  &  &  &  &  &  &  &  \\ \hline
+% STAR+STAR-II & PRJ &  &  &  &  &  &  &  & \cmark & \cmark \\ \hline
+SMOOTH & PRJ &  &  &  &  &  &  &  &  &  \\ \hline
+SODA & PRJ &  &  &  &  &  &  & \cmark &  &  \\ \hline
+DECODE & PRJ &  &  &  &  &  & \cmark & \cmark &  &  \\ \hline
+MOSACrOWN & PRJ &  &  &  &  &  & \cmark & \cmark &  &  \\ \hline
+PoSEID-on & PRJ &  &  &  &  &  & \cmark & \cmark &  &  \\ \hline
+% PRIPARE & PRJ &  &  &  &  &  &  &  & \cmark &  \\ \hline
+\end{tabularx}
+\end{table}
+% TODO: delete EA and EP from overview table
 
-\subsection{Analysis of existing work}
-
-\subsubsection{Overview}
-An overview of the state of the art from \autoref{sec:sota:gdpr-semweb} and \autoref{sec:sota:gdpr-other} is presented in \autoref{table:sota:analysis:overview}. The column headings represent the following - (T): type of work where PRJ is research project and RES is research publication, (R): Representation of GDPR, (MG): Modelling of Concepts, (EA): Ex-Ante Compliance, (EP): Ex-Post Compliance, (P): Process Flows, (C): Consent, (Cm): Evaluates Compliance, (Rq): Specifies Requirements, (O): open \& accessible resources, and (Ref) indicating the section where the work is described within the thesis. 
-The overview provides a comparison and basis for analysis of approaches, and brings attention to the following:
+The following observations are made based on the overview of SotA in \autoref{table:sota:analysis:overview}:
 \begin{itemize}
-    \item There are a significant number of research projects addressing or incorporating aspects of GDPR compliance (column T).
-    \item There are only three approaches that utilise a representation of GDPR in a machine-readable format (column R)
-    \item Most approaches model concepts from the GDPR (column M)
+    \item Of the 29 approaches presented as addressing GDPR, 9 are outcomes of a research project. Of these 9 projects, 6 approaches are part of 12 that utilise semantic web, and feature cross-collaboration between their researchers and outputs. Upon collecting collaborations under the umbrella of the parent project, only the 2 projects of SPECIAL and MIREL are notable in utilising semantic web and producing resources used in other approaches and projects. Within the domain of addressing GDPR compliance using semantic web - these are considered as most extensive in terms of published results.
+    \item Of the 29 approaches addressing GDPR compliance, only three approaches provide a representation of GDPR, and do so in a machine-readable format.
+    \item 20 of the 29 approaches addressing GDPR compliance also model concepts from the GDPR in the form of an ontology or data model. Additionally, all of the 5 approaches involving privacy policies also provide concepts relevant to the GDPR.
     \item A significant number of approaches model or work with process flows (column P)
     \item A significant number of approaches model or work with metadata about consent (column C)
     \item Evaluation of compliance is carried out by most approaches (column Cm)
@@ -858,68 +710,6 @@ The overview provides a comparison and basis for analysis of approaches, and bri
 The overview also shows a significant number of European research projects addressing or incorporating the GDPR. Given that the GDPR is itself an European law, it is not surprising to have research projects funded by the EU researching applications of technology for its compliance. These projects represent dedicated resources in terms of funding and personnel, as well as collaboration between universities, research institutes, and the industry - which often also includes participation of legal experts and legal organisations.
 In terms of output, the deliverables of such research projects represent a wider consensus between stakeholders and evaluation in terms of use-cases that are often provided by the commercial partners.
 These also provide valuable insights into stakeholder requirements and developed solutions within the state of the art, as well as indication of motivation and further work in the future.
-% Table X4 outlines time of operation for the research projects as well as the work presented in this thesis for a perspective on their comparison and analysis.
-% TODO: Table table of EU research projects
-
-\begin{table}[]
-\footnotesize
-\centering
-\caption{Overview of approaches in SotA}\label{table:sota:analysis:overview}
-\rowcolors{1}{}{gray!10}
-\begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|X|X|X|X|X|}
-\hline
-
-\textbf{Work} & \textbf{T} & \textbf{R} & \textbf{M} & \textbf{EA} & \textbf{EP} & \textbf{P} & \textbf{C} &\textbf{Cm} & \textbf{Rq} & \textbf{O} & \textbf{Ref.} \\ \hline
-
-SPECIAL & PRJ &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark & \ref{sec:sota:SPECIAL} \\ \hline
-SPL+SERAMIS & PRJ & \cmark & \cmark &  &  &  &  & \cmark & \cmark & & \ref{sec:sota:SPECIAL}  \\ \hline
-SPL+Vos et al & RES &  & \cmark &  &  &  &  & \cmark & \cmark & \cmark & \ref{sec:sota:SPECIAL}  \\ \hline
-SPL+CitySPIN & PRJ &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \cmark & \ref{sec:sota:SPECIAL} \\ \hline
-MIREL & PRJ & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark & \cmark & & \ref{sec:sota:MIREL} \\ \hline
-MRL+DAPRECO & PRJ & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark & \cmark & & \ref{sec:sota:DAPRECO}  \\ \hline
-BPR4GDPR & PRJ &  &  & \cmark & \cmark & \cmark &  & \cmark & \cmark & & \ref{sec:sota:BPR4GDPR}  \\ \hline
-Elluri et al. & RES &  & \cmark &  &  &  &  &  &  & \cmark & \ref{sec:sota:Elluri} \\ \hline
-Ujcich et al. & RES &  & \cmark &  & \cmark & \cmark &  &  &  &  & \ref{sec:sota:Ujcich} \\ \hline
-PICS & RES &  &  &  & \cmark &  &  &  &  &  & \ref{sec:sota:PICS} \\ \hline
-Geko and Tjoa & RES &  & \cmark &  &  &  &  &  &  &  & \ref{sec:sota:Geko} \\ \hline
-LPL & RES &  & \cmark &  &  &  &  &  &  &  & \ref{sec:sota:LPL} \\ \hline
-Lodge et al & RES &  & \cmark &  & \cmark & \cmark & \cmark & \cmark &  &  & \ref{sec:sota:Lodge} \\ \hline
-Peras & RES &  & \cmark &  &  &  & \cmark &  &  &  & \ref{sec:sota:Peras} \\ \hline
-Tom et al & RES &  & \cmark & \cmark &  & \cmark &  & \cmark &  &  & \ref{sec:sota:Tom} \\ \hline
-Coletti et al & RES &  & \cmark & \cmark &  &  & \cmark &  & \cmark &  & \ref{sec:sota:Coletti} \\ \hline
-Corrales et al & RES &  &  &  &  &  &  & \cmark & \cmark &  & \ref{sec:sota:Corrales} \\ \hline
-LUCE & RES &  &  &  &  & \cmark &  & \cmark &  &  & \ref{sec:sota:LUCE} \\ \hline
-AdvoCATE & RES &  & \cmark &  &  &  & \cmark & \cmark &  &  & \ref{sec:sota:AdvoCATE} \\ \hline
-Singh et al & RES &  &  & \cmark &  &  &  &  &  &  & \ref{sec:sota:Singh} \\ \hline
-Sion et al & RES &  & \cmark & \cmark &  & \cmark &  & \cmark &  &  & \ref{sec:sota:Sion} \\ \hline
-privacyTracker & RES &  & \cmark &  & \cmark & \cmark &  & \cmark & \cmark &  & \ref{sec:sota:privacyTracker} \\ \hline
-Spagnuelo et al & RES &  &  &  &  &  &  &  & \cmark &  & \ref{sec:sota:Spagnuelo} \\ \hline
-Diamantopulou et al & RES &  & \cmark &  &  &  &  &  &  &  & \ref{sec:sota:Diamantopulou} \\ \hline
-Robol et al & RES &  & \cmark & \cmark &  &  &  & \cmark &  &  & \ref{sec:sota:Robol} \\ \hline
-GuideMe & RES &  &  &  &  &  &  & \cmark & \cmark &  & \ref{sec:sota:GuideMe} \\ \hline
-Basin et al & RES &  &  & \cmark &  & \cmark &  & \cmark &  &  & \ref{sec:sota:Basin} \\ \hline
-RestAssured & PRJ &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  & \ref{sec:sota:RestAssured} \\ \hline
-Fox et al & RES &  &  &  &  &  &  &  & \cmark &  & \ref{sec:sota:Fox} \\ \hline
-DEFeND & PRJ &  & \cmark & \cmark &  &  &  & \cmark &  &  & \ref{sec:sota:DEFeND} \\ \hline
-OPERANDO & PRJ &  &  &  &  &  & \cmark & \cmark &  &  & \ref{sec:sota:OPERANDO} \\ \hline
-PDP4E & PRJ &  &  &  &  &  &  &  & \cmark &  & \ref{sec:sota:PDP4E} \\ \hline
-PoSEID-on & PRJ &  &  &  &  &  & \cmark & \cmark &  &  & \ref{sec:sota:PoSEID-on} \\ \hline
-STAR+STAR-II & PRJ &  &  &  &  &  &  &  & \cmark & \cmark & \ref{sec:sota:STAR} \\ \hline
-MHMD & PRJ &  &  &  &  &  & \cmark &  &  &  & \ref{sec:sota:MHMD} \\ \hline
-PAPAYA & PRJ &  &  &  &  &  &  &  &  &  & \ref{sec:sota:PAPAYA} \\ \hline
-SMOOTH & PRJ &  &  &  &  &  &  &  &  &  & \ref{sec:sota:SMOOTH} \\ \hline
-SODA & PRJ &  &  &  &  &  &  & \cmark &  &  & \ref{sec:sota:SODA} \\ \hline
-DECODE & PRJ &  &  &  &  &  & \cmark & \cmark &  &  & \ref{sec:sota:DECODE} \\ \hline
-PRIPARE & PRJ &  &  &  &  &  &  &  & \cmark &  & \ref{sec:sota:PRIPARE} \\ \hline
-Galle et al & RES &  & \cmark &  &  &  &  &  &  &  & \ref{sec:sota:Galle} \\ \hline
-Polisis & RES &  & \cmark &  &  &  &  &  &  &  & \ref{sec:sota:Polisis} \\ \hline
-Linden et al & RES &  & \cmark &  &  &  &  &  &  &  & \ref{sec:sota:Linden} \\ \hline
-PrivacyGuide & RES &  & \cmark &  &  &  &  &  &  &  & \ref{sec:sota:PrivacyGuide} \\ \hline
-Consent Receipt &  &  &  &  &  &  & \cmark &  &  & \cmark & \ref{sec:sota:CR} \\ \hline
-
-\end{tabularx}
-\end{table}
-% TODO: delete EA and EP from overview table
 
 \subsubsection{Representation of GDPR}\label{sota:analysis:representation}
 The overview presented in \autoref{table:sota:analysis:overview} shows only three approaches representing the structure of GDPR and enabling machine-readable linking of information to specific parts of its text. Of these, two (MIREL and DAPRECO) utilise the framework provided by PrOnto \cite{palmirani_pronto:_2018,palmirani_pronto:_2018-1} and can therefore be consolidated into a single work for the purposes of analysis. Therefore, there are only two distinct approaches for representation of GDPR in the state of the art. 
