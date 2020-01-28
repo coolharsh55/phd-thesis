@@ -260,7 +260,7 @@ The legal bases can be associated with individual steps or with the process they
     framesep=5mm,
     baselinestretch=1,
     linenos
-]{text}
+]{sparql}
 PREFIX rdfs:     <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX gdprov:   <http://purl.org/adaptcentre/openscience/ontologies/gdprov#>
 PREFIX gdprtext: <http://purl.org/adaptcentre/openscience/ontologies/GDPRtEXT#>
@@ -406,12 +406,7 @@ In the assessment of information for GDPR compliance, some constraints cannot be
 To distinguish such constraints, the the SHACL concept of \texttt{NodeShape} was extended with a sub-class as \texttt{Constraint} with further sub-classes of \texttt{ManuallyCheckedConstraint} and \texttt{AutomaticallyCheckedConstraint} representing constraints that should be checked manually and automatically respectively. This is presented in Listing.\autoref{code:shacl:manual-constraint}.
 The property \texttt{linkToGDPR} was created to link information with the clauses of the GDPR with the range \texttt{eli:LegalResourceSubdivision} to enable associating it with any granular part of the GDPR - such as a chapter, article, paragraph, or sub-paragraph - as GDPRtEXT uses this concept as the parent class of its concepts representing structure of GDPR.
 \begin{listing}[htbp]
-\begin{minted}[
-    frame=single,
-    framesep=5mm,
-    baselinestretch=1,
-    linenos
-]{text}
+\begin{minted}{turtle}
 :Constraint rdfs:subClassOf sh:NodeShape ;
     rdfs:label "Constraint" .
 :AutomaticallyCheckedConstraint rdfs:subClassOf :Constraint, sh:NodeShape ;
@@ -430,12 +425,7 @@ The property \texttt{linkToGDPR} was created to link information with the clause
 The constraints utilise both GDPRov and GConsent where appropriate and possible so as to verify using both ontologies. For example, Listing.\autoref{code:shacl:gdprov-gconsent} presents a constraint for checking whether each instance of consent is associated with one and only one Data Subject. In it, the concept of Data Subject could be used from GDPRov or GConsent since they both feature it. Therefore, \texttt{sh:or} in SHACL enables representing the condition where either of those could be used to express a Data Subject.
 The constraint it linked to the Article 4-11 of GDPR using the property \texttt{linkToGDPR} mentioned above, and provides a human readable message when the constraint fails using the SHACL property \texttt{sh:message}.
 \begin{listing}[htbp]
-\begin{minted}[
-    frame=single,
-    framesep=5mm,
-    baselinestretch=1,
-    linenos
-]{text}
+\begin{minted}{turtle}
 :Constraint rdfs:subClassOf sh:NodeShape ;
     rdfs:label "Constraint" .
 :AutomaticallyCheckedConstraint rdfs:subClassOf :Constraint, sh:NodeShape ;
@@ -457,19 +447,14 @@ SHACL-SPARQL\footnote{\url{https://www.w3.org/TR/shacl/\#shacl-sparql}} is an ex
 The constraint aims to ensure all consent instances have a timestamp.
 The SHACL-SPARQL constraint features a SPARQL query that filters instances that have a specified timestamp based on properties provided by GConsent, GDPRov, or PROV-O, while the SHACL core representation uses a \texttt{PropertyShape} to assess the same.
 \begin{listing}[htbp]
-\begin{minted}[
-    frame=single,
-    framesep=5mm,
-    baselinestretch=1,
-    linenos
-]{text}
+\begin{minted}{turtle}
 # SHACL-SPARQL
-sh:select """
+sh:select "
     SELECT $this WHERE {
         FILTER NOT EXISTS { $this gc:atTime ?time } .
         FILTER NOT EXISTS { $this prov:generatedAtTime ?time } .
         FILTER NOT EXISTS { $this a gdprov:ConsentAgreementTemplate } .
-    } """ .
+    } " .
 
 # SHACL Core
 _:ConsentHasTimestamp a sh:PropertyShape ;
@@ -493,12 +478,7 @@ An example of this is presented in Listing.\autoref{code:shacl:boolean} which re
 The assessment is based on explicitly inserting a triple within the data graph that denotes the manually inspected condition of freely given through the property \texttt{m:consentIsFreelyGiven} whose value must be true to indicate compliance.
 The messages of a manually checked constraint are prefixed with \textit{(MANUAL-TEST)} to indicate their qualitative nature in human-intended messages.
 \begin{listing}[htbp]
-\begin{minted}[
-    frame=single,
-    framesep=5mm,
-    baselinestretch=1,
-    linenos
-]{text}
+\begin{minted}{turtle}
 :ValidconsentIsFreelyGiven a sh:PropertyShape, :ManuallyCheckedConstraint ;
     :linkToGDPR gdpr:article4-11 ;
     sh:name "Consent == Freely Given" ;
@@ -523,12 +503,7 @@ This information, which are expressed as SHACL validation reports for the purpos
 An example of an ex-post validation incorporating ex-ante test results is presented in Listing.\autoref{code:shacl:model-constraint}.
 The constraint is automatically evaluates the outcome of a previous SHACL validation concerning the given consent model in ex-ante phase indicated by \texttt{sh:ValidationReport} with the property \texttt{sh:conforms} used by SHACL to indicate whether an evaluated data graph has passed or failed the given constraints.
 \begin{listing}[htbp]
-\begin{minted}[
-    frame=single,
-    framesep=5mm,
-    baselinestretch=1,
-    linenos
-]{text}
+\begin{minted}{turtle}
 :ConsentModelConstraints a sh:NodeShape ;
     sh:targetClass sh:ValidationReport ; 
     sh:property :ValidationReportConforms ;
@@ -592,12 +567,7 @@ Since given consent for an individual option in the dialogue could be revoked wi
 As the consent dialogue acts as a common template for all options, its representation as a `bundle' of consent templates was added to an updated version of GDPRov as \texttt{gdprov:ConsentAgreementTemplateBundle}. This enabled representing a common artefact used to request separate instances of consent.
 Listing \autoref{code:shacl:consent-dialogue} provides an example representation of the information from the consent dialogue using this data model.
 \begin{listing}[htbp]
-\begin{minted}[
-    frame=single,
-    framesep=5mm,
-    baselinestretch=1,
-    linenos
-]{text}
+\begin{minted}{turtle}
 :ConsentRequestDialog a gdprov:ConsentAgreementTemplateBundle ;
     rdfs:label "Consent Dialog shown to the user" ;
     rdfs:comment "Dialog that shows - We value your privacy...
@@ -666,12 +636,7 @@ The SPARQL query, listed in Listing \autoref{code:shacl:sparql-report}, retrieve
 The results, shown in \autoref{table:shacl:sparql-report} act as a test report, and contain the constraint description (Name), type - automatic (A) or manual (M), link to GDPR, result - pass (P) or fail (F), and node (instance in data graph) if it failed a constraint.
 The report also contains a failure message associated with the constraint that is not shown in table due to space limitations.
 \begin{listing}[htbp]
-\begin{minted}[
-    frame=single,
-    framesep=5mm,
-    baselinestretch=1,
-    linenos
-]{text}
+\begin{minted}{sparql}
 PREFIX c: <http://example.com/Quantcast/shapes#>
 PREFIX sh: <http://www.w3.org/ns/shacl#>
 SELECT DISTINCT ?name ?test ?gdpr ?result ?node ?msg
