@@ -1,20 +1,21 @@
-\documentclass[a4paper,oneside,openright]{book}
-\usepackage[a4paper,margin=1in]{geometry}
+\documentclass[a4paper,oneside,12pt]{book}
+% change oneside to openany for double sided
+\usepackage[a4paper,top=20mm,bottom=20mm,left=35mm,right=20mm,headheight=16pt]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{graphicx}
-\usepackage[bookmarks=true,colorlinks=true]{hyperref}
+\usepackage[pdftex]{graphicx}
+\usepackage[bookmarks=true,colorlinks=true,citecolor=magenta]{hyperref}
+\usepackage{setspace} % to permit one-and-a-half or double spacing
+\usepackage{booktabs} % To thicken table lines
 \usepackage{framed} % box frames
 \usepackage{enumitem} % resume list numbering
 \usepackage[english]{babel} % bibliography
-\usepackage{lmodern,textcomp} % font
 \usepackage[table]{xcolor}
 \usepackage{tabularx}
 \usepackage{fancyhdr}
 \usepackage{amsfonts}
 \usepackage{pifont}
 \usepackage{url}
-\usepackage{hyperref}
 \usepackage{listings}
 \usepackage{minted}
 \usepackage[numbers]{natbib}
@@ -29,6 +30,28 @@
 \renewcommand*{\subsectionautorefname}{Section}
 % \renewcommand*{\lstlistingautorefname}{Listing} % does not work
 
+% line spacing
+\onehalfspacing
+% \doublespacing
+
+% compact lists
+\setlist{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+
+% sans-serif
+% \renewcommand{\familydefault}{\sfdefault}
+\usepackage{cmtt}
+\usepackage{palatino}
+\renewcommand{\familydefault}{\rmdefault}
+
+% chapter headings
+\usepackage{titlesec}
+\titleformat{\chapter}[hang] 
+{\normalfont\huge\bfseries}{\thechapter}{1cm}{}
+
+\title{Representing Activities associated with Processing of Personal Data and Consent using Semantic Web for GDPR Compliance}
+\author{Harshvardhan J. Pandit}
+\frontmatter
+
 % checkmark
 \newcommand{\cmark}{\ding{51}}%
 \newcommand{\xmark}{\ding{55}}%
@@ -41,41 +64,58 @@
     linenos,
 }
 
-\title{\Huge \textbf{Representing Activities associated with Processing of Personal Data and Consent using Semantic Web for GDPR Compliance}}
-\date{draft \today}
-\author{
-    \vspace{3.5cm} \\
-    \Large \textbf{Harshvardhan J. Pandit} \\
-    \vspace{0.5cm} \\
-    Knowledge and Data Engineering Group (KDEG) \\
-    School of Computer Science and Statistics \\
-    Trinity College Dublin \\
-    Dublin, Ireland \\
-    \vspace{2cm} \\
-    Supervised by Prof. Dave Lewis \\
-    Co-Supervised by Prof. Declan O'Sullivan \\
-    \vspace{2cm} \\
-    2020
- }
+% \title{Representing Activities associated with Processing of Personal Data and Consent using Semantic Web for GDPR Compliance}
+% \date{draft \today}
+% \author{
+%     % \vspace{2.5cm} \\
+%     Harshvardhan J. Pandit \\
+%     \vspace{0.5cm} \\
+%     Knowledge and Data Engineering Group (KDEG) \\
+%     School of Computer Science and Statistics \\
+%     Trinity College Dublin \\
+%     Dublin, Ireland \\
+%     \vspace{2cm} \\
+%     Supervised by Prof. Dave Lewis \\
+%     Co-Supervised by Prof. Declan O'Sullivan \\
+%     \vspace{2cm} \\
+%     2020
+%  }
+
+% this page intentionally left blank
+\makeatletter
+    \def\cleardoublepage{\clearpage%
+        \if@twoside
+            \ifodd\c@page\else
+                \vspace*{\fill}
+                \hfill
+                \begin{center}
+                This page intentionally left blank.
+                \end{center}
+                \vspace{\fill}
+                \thispagestyle{empty}
+                \newpage
+                \if@twocolumn\hbox{}\newpage\fi
+            \fi
+        \fi
+    }
+\makeatother
 
 \begin{document}
 
-\maketitle
+% \maketitle
 % \setcounter{tocdepth}{3}
 
 % copyright page
-
-\newpage
+% \newpage
 \pagenumbering{roman}
-\setcounter{page}{2}
-\pagestyle{plain}
+\input{cover}
+
+\cleardoublepage
+
 % declaration
 \chapter*{Declaration}
-\Large
-I declare that this thesis has not been submitted as an exercise for a degree at this or any other university and it is entirely my own work. I agree to deposit this thesis in the University’s open access institutional repository or allow the Library to do so on my behalf, subject to Irish Copyright Legislation and Trinity College Library conditions of use and acknowledgement.
-
-\vspace{3cm}
-\noindent
+I declare that this thesis has not been submitted as an exercise for a degree at this or any other university and it is entirely my own work. \\[1cm]
+\noindent I agree to deposit this thesis in the University’s open access institutional repository or allow the Library to do so on my behalf, subject to Irish Copyright Legislation and Trinity College Library conditions of use and acknowledgement. \\[3cm]
 Signed. \\
 Harshvardhan J. Pandit
 
@@ -90,7 +130,6 @@ Date:
 Signed. \\
 Harshvardhan J. Pandit
 
-\normalsize
 \include{acknowledgements}
 \include{abstract}
 
@@ -100,15 +139,17 @@ Harshvardhan J. Pandit
 % \lstlistoflistings  % doesn't work: jumbled output
 \include{abbreviations}
 
+\mainmatter
 \renewcommand{\thepage}{\arabic{page}}
 \setcounter{page}{1}
+
 \include{introduction}
-% \include{background}
-% \include{sota}
-% \include{information}
-% \include{vocabularies}
-% \include{testing}
-% \include{conclusion}
+\include{background}
+\include{sota}
+\include{information}
+\include{vocabularies}
+\include{testing}
+\include{conclusion}
 
 \addcontentsline{toc}{chapter}{References}
 \bibliography{Thesis}
