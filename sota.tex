@@ -92,7 +92,8 @@ SPECIAL uses a distributed ledger to store the processing logs for data processi
 \end{figure}
 
 The ontology developed to represent data processing activities is called `Usage Policy' \cite{bonatti_special_2018-2} is described in more detail in D2.5 \cite{bonatti_d2.5_2018}. The `base policy' denotes a ontology design pattern of OWL2 expressions to denote an intersection of personal data categories, processing operations, purposes, recipients, and storage. Policies can then be combined using OWL2 unions over multiple base policies with differing expressions. SPECIAL provides additional vocabularies for purposes, personal data categories, processing operations, and recipients for using with the Usage Policy based on its use-cases. The general form of a base policy is:
-\begin{lstlisting}
+\begin{listing}[htbp]
+\begin{minted}{scheme}
 ObjectIntersectionOf(
     ObjectSomeValuesFrom(spl:hasData SomeDataCategory)
     ObjectSomeValuesFrom(spl:hasProcessing SomeProcessing)
@@ -100,15 +101,18 @@ ObjectIntersectionOf(
     ObjectSomeValuesFrom(spl:hasRecipient SomeRecipient)
     ObjectSomeValuesFrom(spl:hasStorage SomeStorage)
 )
-\end{lstlisting}
+\end{minted}
+\end{listing}
 The storage expression is itself a policy comprising of OWL2 expressions specifying the storage location, duration, and interval. The general form of a storage policy is:
-\begin{lstlisting}
+\begin{listing}[htbp]
+\begin{minted}{scheme}
 ObjectIntersectionOf(
     ObjectSomeValuesFrom(spl:hasLocation SomeLocation)
     ObjectSomeValuesFrom(spl:hasDuration SomeDuration)
     DataSomeValuesFrom(spl:durationInDays Interval)
 )
-\end{lstlisting}
+\end{minted}
+\end{listing}
 
 For a given policy $P_c$ representing activities permitted by given consent and policy $P_s$ representing processing activity, compliance is evaluated by checking whether $P_c$ complies with $P_s$ - which in OWL2 is checked using a semantic reasoner to evaluate $P_c \subseteq P_s$. In SPECIAL's implementation, this is performed by using an algorithm \cite{bonatti_fast_2018,bonatti_richer_2019} in a custom semantic reasoner optimised for speed by only performing those operations associated with checking for compliance between policies.
 An extension of the Usage Policy for representing additional requirements of the GDPR was discussed in the deliverable D2.6 \cite{bonatti_d2.6_2018}.
@@ -138,7 +142,8 @@ The tool uses a model of the legislation created by parsing the legislation text
 
 \subsubsection{Vos et al.}
 The ODRL profile was further developed for modelling regulatory obligations and business policies based on GDPR towards compliance checking and providing explanations of the reasoning process \cite{vos_odrl_2019}. Additional classes and properties added include those relevant for specifying the legal basis, purpose, location, and safeguards associated with processing. Policies representing articles in the GDPR are checked against permissions by activities to perform a data processing operation. For example, the following listing shows a request to transfer personal data to a third country based on consent, which would be checked against the corresponding policy representing Article 46 of the GDPR. 
-\begin{lstlisting}
+\begin{listing}[htbp]
+\begin{minted}{turtle}
 <http://example.com/policy:bp-transfer> a orcp:Set ;
     odrl:profile <http://example.com/odrl:profile:regulatory-compliance> ;
     orcp:permission
@@ -154,7 +159,8 @@ The ODRL profile was further developed for modelling regulatory obligations and 
         odrl:dataSubjectProvisions orcp:EnforceableDataSubjectRights ;
         odrl:dataSubjectProvisions orcp:LegalRemediesForDataSubjects
     ] .
-\end{lstlisting}
+\end{minted}
+\end{listing}
 Compliance is checked by converting the ODRL policies into InstAL, a domain-specific language for writing models based on events and states, which translates to Answer Set Programming (ASP) and is evaluated using a Answer Set Solver\footnote{CLINGO \url{https://potassco.org/clingo/}}. When a policy is found to be non-compliant, explanations are generated based on `fluents' - facts that are true if present and false if absent - through a reasoning process. The implementation is publicly accessible through a hosted repository\footnote{\url{https://github.com/instsuite/instsuite.github.io/blob/master/gdpr.ial}}. 
 % An example of this is as follows:
 % \begin{lstlisting}
@@ -734,6 +740,7 @@ which is used in the publication of metadata associated with GDPR as a legislati
 \footnotesize
 \centering
 \caption{Approaches representing GDPR in machine-readable format}\label{table:sota:analysis:GDPR}
+\rowcolors{1}{}{gray!10}
 \begin{tabular}{|l|l|l|l|l|}
 \hline
 
@@ -758,6 +765,7 @@ The table uses a check mark (\cmark) to indicate that the approach represents th
 \footnotesize
 \centering
 \caption{Representation of activities in SotA}\label{table:sota:analysis:process-flow}
+\rowcolors{1}{}{gray!10}
 \begin{tabularx}{\textwidth}{|l|l|X|X|X|X|X|X|X|X|X|}
 \hline
 
@@ -797,6 +805,7 @@ Some of the upcoming research projects have been included in the analysis based 
 \footnotesize
 \centering
 \caption{Representation of consent in SotA}\label{table:sota:analysis:consent}
+\rowcolors{1}{}{gray!10}
 \begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|X|X|X|X|X|X|}
 \hline
 
@@ -842,6 +851,7 @@ Some of the upcoming research projects have been included in the analysis based 
 \footnotesize
 \centering
 \caption{Compliance evaluation in SotA}\label{table:sota:analysis:compliance}
+\rowcolors{1}{}{gray!10}
 \begin{tabularx}{\textwidth}{|l|l|l|X|X|X|X|X|X|X|X|}
 \hline
 Work & Method & Scope & EA & EP & MR & R & LG \\ \hline

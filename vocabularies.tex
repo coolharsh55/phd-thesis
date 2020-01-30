@@ -259,19 +259,21 @@ EARL provides a standardised vocabulary to describe specific resources and relat
 
 Taking the example of Right to Data Portability, the EARL report in Listing.\ref{listing:vocab:gdprtext-earl} represents compliance checks for conditions associated with linked articles in GDPR (Article 20). The compliance system has a module \texttt{\_system\_dataportability} that checks the software that handles the provision of a copy of personal data \texttt{\_org\_dataportability} through the test case \texttt{\_test\_provide\_data\_copy} and generates the report which shows that the test has passed through \texttt{\_result\_pass}.
 
-\begin{lstlisting}[label={listing:vocab:gdprtext-earl},caption={Use of GDPRtEXT to link tests with GDPR Articles in EARL report}]
+
+\begin{listing}
+\begin{minted}{turtle}
 @prefix earl: http://www.w3.org/ns/earl# .
 @prefix dct:  http://purl.org/dc/terms/ .
 @prefix gdprtext: http://purl.org/adaptcentre/resources/GDPRtEXT# .
 
 :_org_dataportability
     a    earl:TestSubject, earl:Software ;
-    dct:description """System that handles data portability requests"""@en ;
+    dct:description "System that handles data portability requests"@en ;
     dct:title "Data Portability Handler"@en .
 
 :_system_dataportability
     a    earl:Assertor ;
-    dct:description """Module checking data portability obligations"""@en ;
+    dct:description "Module checking data portability obligations"@en ;
     dct:hasVersion "1.4" ;
     dct:title "DataPortability Module"@en ;
     earl:asserts { 
@@ -287,16 +289,20 @@ Taking the example of Right to Data Portability, the EARL report in Listing.\ref
     a    earl:TestCase ;
     earl:testMode earl:automatic ;
     dct:title "Test provision of data copy"@en ;
-    dct:description """Tests whether system provides a copy 
-      of personal data on exercising right to data portability"""@en ;
+    dct:description "Tests whether system provides a copy 
+      of personal data on exercising right to data portability"@en ;
     dct:subject gdprtext:article20 .
-\end{lstlisting}
+\end{minted}
+\label{listing:vocab:gdprtext-earl}
+\caption{Use of GDPRtEXT to link tests with GDPR Articles in EARL report}
+\end{listing}
 
 Now to gather such related resources together, a SPARQL query (simplified) would focus on the link between \texttt{TestCase} and its result using \texttt{earl:validity}, as shown in \autoref{listing:vocabs:gdprtext-sparql}.
 These tests can be further combined into test suites to group compliance checks related to each article or a particular concept and structure the documentation around this form of logical grouping of concepts.
 In this manner, the use of GDPRtEXT to link tests and results with documentation enables automation of information retrieval and management.
 
-\begin{lstlisting}[label={listing:vocabs:gdprtext-sparql},caption={SPARQL query and results showing retrieved GDPR test results by article}]
+\begin{listing}
+\begin{minted}{sparql}
 SELECT ?gdpr ?result ?confidence ?mode WHERE {
     ?assertor a earl:Assertor .
     ?assertor earl:asserts ?assertion .
@@ -318,7 +324,10 @@ SELECT ?gdpr ?result ?confidence ?mode WHERE {
 | article17     | pass       | high           | automatic     |
 | article18     | fail       | high           | manual        |
 | article19     | pass       | high           | automatic     |
-\end{lstlisting}
+\end{minted}
+\label{listing:vocabs:gdprtext-sparql}
+\caption{SPARQL query and results showing retrieved GDPR test results by article}
+\end{listing}
 
 \subsubsection{Example Use-Case: Mapping between DPD and GDPR obligations}
 The second application of GDPRtEXT, taken from its publication \cite{pandit_gdprtext_2018}, demonstrates the linking of obligations between the GDPR and Data Protection Directive (DPD), which is the previous data protection legislation. Given that DPD was adopted in 1995, and was superseded by the GDPR in 2016, there are a large number of solutions and approaches regarding compliance with DPD that already exist and are used in practice. By linking the obligations between DPD and GDPR it is possible to investigate reuse of these existing solutions for GDPR compliance. To that end, a mapping from DPD obligations to GDPR obligations containing annotations that describe the nature of change between the two is constructed by linking the articles of DPD and GDPR.
@@ -331,7 +340,8 @@ For each link between DPD and GDPR obligations in the annotation, a record was a
 % The value \texttt{No} was used to indicate no changes in the GDPR obligation compared to the DPD obligation, so that the existing XACML rule would be sufficient to meet GDPR requirements. Similarly \texttt{Yes} was used to indicate a change required in the XACML rule to handle the obligation.
 
 The class \texttt{DPDToGDPR\_Annotation} represents annotations between DPD and GDPR, with an example instance depicted in \autoref{listing:vocabs:gdprtext-xacml}. The property \texttt{resourceInDPD} is used to refer to the particular clause within DPD through its URI. Similarly, the property \texttt{resourceInGDPR} is used to refer to the corresponding clause in GDPR. The nature of change is defined using the property \texttt{hasChange} whose value is an instance of the class \texttt{ChangeInObligation}, with defined instances for Extended, Same, Reduced, CompletelyChanged, and SlightlyChanged. Similarly, the change in the XACML rules is defined as a property whose values are one of Yes, No, and N/A defined as instances of the class \texttt{ChangeInXACMLRule}. Comments are defined using the \texttt{rdfs:comment} property.
-\begin{lstlisting}[label={listing:vocabs:gdprtext-xacml},caption={Example annotation of associating obligation between DPD and GDPR with indication of corresponding changes required to reuse DPD compliance XACML rules for GDPR requirements}]
+\begin{listing}
+\begin{minted}{turtle}
 @prefix gdpr: https://w3id.org/GDPRtEXT/gdpr# .
 @prefix dpd: https://w3id.org/GDPRtEXT/dpd# .
 @prefix rdfs: http://www.w3.org/2000/01/rdf-schema# .
@@ -343,7 +353,10 @@ dpd:mappingrule6
     dpd:resourceInDPD dpd:Article7 - a ;
     dpd:resourceInGDPR gdpr:Article6-1-a ;
     rdfs:comment "added consent given to ..." .
-\end{lstlisting}
+\end{minted}
+\label{listing:vocabs:gdprtext-xacml}
+\caption{Example annotation of associating obligation between DPD and GDPR with indication of corresponding changes required to reuse DPD compliance XACML rules for GDPR requirements}
+\end{listing}
 
 
 \subsection{Evaluation}
@@ -360,31 +373,32 @@ For this, \autoref{table:gdprtext:eval-cq} shows the concepts and relationships 
 \footnotesize
 \centering
 \caption{Concepts in GDPRtEXT for answering competency questions}
+\rowcolors{1}{}{gray!10}
 \begin{tabularx}{\textwidth}{|l|X|}
 \hline
-\textbf{CQ} & \textbf{Classes} \\ \hline
-& \textbf{Concepts associated with structure of GDPR} \\ \hline
-\textit{CQ1} & \textit{Recital} \\ \hline
-\textit{CQ2} & \textit{Chapter} \\ \hline
-\textit{CQ3} & \textit{Section} \\ \hline
-\textit{CQ4} & \textit{Article} \\ \hline
-\textit{CQ5} & \textit{Point} \\ \hline
-\textit{CQ6} & \textit{SubPoint} \\ \hline
-\textit{CQ7} & \textit{Reference}, \textit{Citation} \\ \hline
+\textbf{CQ} & \textbf{Concepts/Relationships} \\ \hline
+% & \textbf{Concepts associated with structure of GDPR} \\ \hline
+\textit{CQ1-7} & \textit{Recital, Chapter, Section, Article, Point, SubPoint, Reference, Citation} \\ \hline
+% \textit{CQ2} & \textit{Chapter} \\ \hline
+% \textit{CQ3} & \textit{Section} \\ \hline
+% \textit{CQ4} & \textit{Article} \\ \hline
+% \textit{CQ5} & \textit{Point} \\ \hline
+% \textit{CQ6} & \textit{SubPoint} \\ \hline
+% \textit{CQ7} & \textit{Reference}, \textit{Citation} \\ \hline
 \textit{CQ8} & \textit{isPartOfChapter} \\ \hline
-\textit{CQ9} & \textit{PersonalData} \\ \hline
-\textit{CQ10} & \textit{hasPart},\textit{isPartOf} \\ \hline
-\textit{CQ11} & \textit{Accountability} \\ \hline
-\textit{CQ12} & \textit{GivenConsent} \\ \hline
-\textit{CQ13} & \textit{GivenConsent} \\ \hline
-\textit{CQ14} & \textit{Compliance} \\ \hline
+\textit{CQ9,11} & \textit{rdfs:isDefinedBy [Article, Point, SubPoint]} \\ \hline
+\textit{CQ10} & \textit{:\_ hasPart/isPartOf :\_} \\ \hline
+% \textit{CQ11} & \textit{Accountability} \\ \hline
+\textit{CQ12} & \textit{:GivenConsent rdfs:seeAlso [Article, Point, SubPoint]} \\ \hline
+% \textit{CQ13} & \textit{GivenConsent} \\ \hline
+\textit{CQ13,14} & \textit{GivenConsent/Compliance :involves [Article, Point, SubPoint]} \\ \hline
 
-& \textbf{Concepts associated with GDPR compliance} \\ \hline
+% & \textbf{Concepts associated with GDPR compliance} \\ \hline
 \textit{CQ15} & \textit{Data}, \textit{PersonalData}, \textit{SensitivePersonalData}, \textit{CriminalData}, \textit{GeneticData}, \textit{HealthData}, \textit{RacialData}, \textit{AnonymousData}, \textit{PseudoAnonymousData} \\ \hline
 \textit{CQ16} & \textit{Consent}, \textit{GivenConsent}, \textit{WithdrawnConsent} \\ \hline
 \textit{CQ17} & \textit{Entity}, \textit{DataSubject}, \textit{Controller}, \textit{JointController}, \textit{Processor}, \textit{SubProcessor}, \textit{DPO}, \textit{DPA}, \textit{ControllerRepresentative}, \textit{ProcessorRepresentative}, \textit{CertificationBody}, \textit{RegulatoryAuthority} \\ \hline
-\textit{CQ18} & \textit{DataActivity} \\ \hline
-\textit{CQ19} & \textit{ConsentActivity} \\ \hline
+\textit{CQ18,19} & \textit{DataActivity, ConsentActivity} \\ \hline
+% \textit{CQ19} & \textit{ConsentActivity} \\ \hline
 \textit{CQ20} & \textit{Processing}, \textit{AutomatedProcessing}, \textit{AutomatedDecisionMakingWithSignificantEffect}, \textit{ConfirmingOrMatchingDatasets}, \textit{LargeScaleProcessing}, \textit{ProcessingAffectedOrVulnerableIndividuals}, \textit{ProcessingSensitiveData}, \textit{ProcessingUsingUntestedTechnologies}, \textit{Unlawful} \textit{Processing} \\ \hline
 \textit{CQ21} & \textit{ReportDataBreach}, \textit{MaintainRecordOfBreach},  \textit{NotifyDataSubjectOfBreach}, \textit{ReportBreachToController}, \textit{ReportBreachToDPAWithin72Hours} \\ \hline
 \textit{CQ22} & \textit{Compliance}, \textit{Demonstration}, \textit{ConsentMonitor}, \textit{Compliance}, \textit{ReportDataBreach}  \\ \hline
@@ -392,8 +406,8 @@ For this, \autoref{table:gdprtext:eval-cq} shows the concepts and relationships 
 \textit{CQ24} & \textit{Rights}, \textit{RightOfDataPortability}, \textit{RightOfErasure}, \textit{RightToAccessPersonalData}, \textit{RightToTransparency}, \textit{RightToBasicInformationAboutProcessing}, \textit{RightToNotBeEvaluatedThroughAutomatedProcessing}, \textit{RightToObjectForDirectMarketting}, \textit{RightToObjectToProcessing}, \textit{RightToRectify}, \textit{RightToRestrictProcessing} \\ \hline
 \textit{CQ25} & \textit{RightOfDataPortability}, \textit{ProvideCopyOfPersonalData}, \textit{ShouldBeCommonlyUsedFormat}, \textit{ShouldBeMachineReadable}, \textit{ShouldBeStructured}, \textit{ShouldSupportReuse}  \\ \hline
 \textit{CQ26} & \textit{RightToBasicInformationAboutProcessing}, \textit{InformationAboutThirdParties}  \\ \hline
-\textit{CQ27} & \textit{Obligation} \\ \hline
-\textit{CQ28} & \textit{ControllerObligation}, \textit{AppointmentOfProcessors}, \textit{Accountability}, \textit{ControllerResponsibility}, \textit{CooperateWithDPA}, \textit{DataProtectionByDesignAndDefault}, \textit{DataSecurityLiabilityOfJointControllers}, \textit{MaintainRecordsOfProcessingActivities}, \textit{PrivacyByDesign}, \textit{PropogateRightsToThirdParties}, \textit{ReportDataBreach} \\ \hline
+% \textit{CQ27} & \textit{Obligation} \\ \hline
+\textit{CQ27,28} & \textit{Obligation, ControllerObligation}, \textit{AppointmentOfProcessors}, \textit{Accountability}, \textit{ControllerResponsibility}, \textit{CooperateWithDPA}, \textit{DataProtectionByDesignAndDefault}, \textit{DataSecurityLiabilityOfJointControllers}, \textit{MaintainRecordsOfProcessingActivities}, \textit{PrivacyByDesign}, \textit{PropogateRightsToThirdParties}, \textit{ReportDataBreach} \\ \hline
 \textit{CQ29} & \textit{ProcessorObligation}, \textit{AppointingSubprocessors}, \textit{AssistInComplyingWithRights}, \textit{ComplianceWithControllersInstructions}, \textit{CooperateWithDpa}, \textit{DataSecurity}, \textit{ImposeConfidentialityOnPersonnel}, \textit{InformControllerOfConflictWithLaw}, \textit{MaintainRecordsOfProcessingActivities}, \textit{OnlyActOnDocumentedInstructions}, \textit{PropogateRightsToThirdParties}, \textit{ProvideControllerWithInformationForCompliance}, \textit{ReportDataBreachToController}, \textit{RestrictionsOnCross}-\textit{borderTransfers}, \textit{ReturnOrDestroyPersonalDataAtEndTerm} \\ \hline
 \textit{CQ30} & \textit{DPOObligation}, \textit{MonitorCompliance} \\ \hline
 \textit{CQ31} & \textit{LawfulBasisForProcessing}, \textit{ContractWithDataSubject}, \textit{ExemptedByNationalLaw}, \textit{EmploymentLaw}, \textit{GivenConsent}, \textit{HistoricStatisticalOrScientificPurposes}, \textit{LegalClaims}, \textit{LegalObligation}, \textit{LegitimateInterest}, \textit{MadePublicByDataSubject}, \textit{MedicalDiagnosticOrTreatement}, \textit{NotForProfitOrg}, \textit{PublicInterest}, \textit{PurposeOfNewProcessing}, \textit{VitalInterest} \\ \hline
@@ -422,6 +436,7 @@ This matches the contributions of the ELI+ (update to ELI) planned by the EU Pub
 \footnotesize
 \centering
 \caption{Comparison of GDPRtEXT with SotA}\label{table:gdprtext:sota}
+\rowcolors{1}{}{gray!10}
 \begin{tabular}{|l|>{\columncolor[gray]{0.9}}l|l|l|l|l|}
 \hline
 Work & \textbf{GDPRtEXT} & ELI & ELI+ & Agarwal et al & PrOnto \\ \hline
@@ -698,9 +713,9 @@ The handling of right provided by the GPDR is represented through sub-classes of
 The applicability and usefulness of GDPRov is demonstrated through its use for querying and validation of information for GDPR compliance in \autoref{chapter:testing}.
 A simplified example demonstrating such an application was published along with the ontology in the peer-reviewed publication \cite{pandit_modelling_2017}, and which is presented in \autoref{listing:vocabs:gdprov-query} to demonstrate how GDPRov can assist in the answering of compliance questions for GDPR.
 
-\begin{lstlisting}[label={listing:vocabs:gdprov-query},caption={SPARQL query demonstrating use of GDPRov in representing and retrieving steps, data, anonymity level, and anonymisation process based on sharing of data \cite{pandit_modelling_2017}}]
+\begin{listing}
+\begin{minted}{sparql}
 PREFIX gdprov: <https://w3id.org/GDPRov#>
-
 SELECT ?data ?sharestep ?isAnonymised ?anonymisationStep
 WHERE {
     ?data a gdprov:Data .
@@ -714,7 +729,10 @@ WHERE {
         gdprov:generatesAnonymisedData ?data .
     }
 }
-\end{lstlisting}
+\end{minted}
+\label{listing:vocabs:gdprov-query}
+\caption{SPARQL query demonstrating use of GDPRov in representing and retrieving steps, data, anonymity level, and anonymisation process based on sharing of data \cite{pandit_modelling_2017}}
+\end{listing}
 
 \subsubsection{Example Use-Case: Detecting changes in activities for updates to consent}
 Another example use-case is detecting the necessity of changes in given consent which would require updating an individual's consent based on updates to a plan such as when a purpose changes or a new processing operation is added to an existing purpose. By storing the plans of processing operations using GDPRov, it is possible to compare the old and new versions of a plan, detect changes, and identify whether corresponding updates to consent are needed. 
@@ -741,10 +759,15 @@ Subsequent revisions included addition of new concepts associated with practical
 An assessment of the extent to which GDPRov satisfies the competency questions by providing concepts and relationships is presented as part of its evaluation.
 The competency questions, summarised in \autoref{sec:gdprov:cq}, were used to guide the development of the ontology and therefore used to evaluate if the ontology meets the requirements of representing this information.
 \autoref{table:gdprov:cq} lists the concepts and properties relevant to answer the competency question. 
+
+Some questions which were not considered in scope regarding expression of activities are marked with \textit{N/S}. These questions either require more information to provide a concrete design pattern or have multiple possible representations of which it cannot be determined which is more useful from a legal compliance point of view. Examples include location of recipients - which can be expressed either through an property/annotation associated with a data sharing activity or attached with a particular third party; and specifying time limits or duration or conditional events associated with data storage and deletion periods. These have been identified as future work regarding further development of the ontology based on differing interpretations of representation, complexity of specifying values such as ``EU membership'' and  ``as long as required'', and the pending expert opinion of legal authorities on these issues through courts or executive decisions.
+
+From the presented evaluation, it can be concluded that GDPRov satisfies the requirements of answering  competency questions and identifies those that are needed to be resolved as future work based on availability of legal opinion and decisions. GDPRov thus fulfils the research objective $RO3(b)$ by providing representations of activities associated with personal data and consent in ex-ante and ex-post phases.
 \begin{table}[htbp]
 \footnotesize
 \centering
 \caption{Concepts in GDPRov for answering competency questions}
+\rowcolors{1}{}{gray!10}
 \begin{tabularx}{\textwidth}{|l|X|p{5cm}|l|}
 \hline
 \textbf{CQ} & \textbf{Class} & \textbf{Property} & \textbf{Phase} \\ \hline
@@ -786,10 +809,6 @@ The competency questions, summarised in \autoref{sec:gdprov:cq}, were used to gu
 \label{table:gdprov:cq}
 \end{table}
 
-Some questions which were not considered in scope regarding expression of activities are marked with \textit{N/S}. These questions either require more information to provide a concrete design pattern or have multiple possible representations of which it cannot be determined which is more useful from a legal compliance point of view. Examples include location of recipients - which can be expressed either through an property/annotation associated with a data sharing activity or attached with a particular third party; and specifying time limits or duration or conditional events associated with data storage and deletion periods. These have been identified as future work regarding further development of the ontology based on differing interpretations of representation, complexity of specifying values such as ``EU membership'' and  ``as long as required'', and the pending expert opinion of legal authorities on these issues through courts or executive decisions.
-
-From the presented evaluation, it can be concluded that GDPRov satisfies the requirements of answering  competency questions and identifies those that are needed to be resolved as future work based on availability of legal opinion and decisions. GDPRov thus fulfils the research objective $RO3(b)$ by providing representations of activities associated with personal data and consent in ex-ante and ex-post phases.
-
 \subsubsection{Comparison with SotA}
 The representation of process flows and activities associated with GDPR compliance in existing approaches was presented and analysed as part of the state of the art in \autoref{sota:analysis:process-flows}.
 The attributes for this analysis involved the features or concepts that could be represented using the specified approach and the basis for the representation in existing vocabularies and standards.
@@ -803,6 +822,7 @@ The column headings corresponding with expression of information supported by an
 \footnotesize
 \centering
 \caption{Comparison of GDPRov with SotA}\label{table:gdprov:sota}
+\rowcolors{1}{}{gray!10}
 \begin{tabularx}{\textwidth}{|l|l|X|X|X|X|X|X|X|X|X|}
 \hline
 
@@ -1173,7 +1193,7 @@ The example serves to demonstrate the practical use of GConsent in representing 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.8\linewidth]{img/gconsent_third_party_datasharing.png}
-    \caption{Example application of GConsent in use-case about third party data sharing \cite{pandit_gconsent_2019}}
+    \caption{GConsent representation of use-case involving third party data sharing \cite{pandit_gconsent_2019}}
     \label{fig:vocabs:gconsent-example}
 \end{figure}
 
@@ -1194,6 +1214,7 @@ Based on these, GConsent satisfies the requirements of providing information for
 \footnotesize
 \centering
 \caption{Concepts and relationships in GConsent for answering competency questions}
+\rowcolors{1}{}{gray!10}
 \begin{tabularx}{\textwidth}{|p{1cm}|X|p{4cm}|p{3.5cm}|}
 \hline
 \textbf{CQ} & \textbf{Question} & \textbf{Concepts} & \textbf{Properties} \\ \hline
@@ -1232,6 +1253,7 @@ A check mark (\cmark) indicates the approach provides or models that information
 \footnotesize
 \centering
 \caption{Representation of consent in SotA}\label{table:gconsent:sota}
+\rowcolors{1}{}{gray!10}
 \begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|X|X|X|X|X|X|}
 \hline
 
@@ -1417,10 +1439,10 @@ The ontology engineering process was presented in \autoref{sec:intro:ontology-en
 It also described utilisation of compliance questions presented in \autoref{sec:info:compliance-questions} as competency questions.
 
 The presented ontologies consisted of GDPRtEXT, GDPRov, and GConsent.
-GDPRtEXT, presented in \autoref{sec:voc:GDPRtEXT}, provides a linked data version of the text of GDPR created by extending the official ELI \cite{} ontology to represent its granular clauses. It also presents a SKOS glossary of concepts associated with GDPR compliance. GDPRtEXT enables the association and linking of information with the concepts and text of GDPR through the use of persistent IRIs. It thus fulfils research objective $RO3(a)$. GDPRtEXT extends the state of the art by providing an ELI-compatible extension capable of representing GDPR clauses at a granular level. It is also novel in providing a thesauri of concepts associated with GDPR compliance.
+GDPRtEXT, presented in \autoref{sec:voc:GDPRtEXT}, provides a linked data version of the text of GDPR created by extending the official ELI \cite{noauthor_council_2012} ontology to represent its granular clauses. It also presents a SKOS glossary of concepts associated with GDPR compliance. GDPRtEXT enables the association and linking of information with the concepts and text of GDPR through the use of persistent IRIs. It thus fulfils research objective $RO3(a)$. GDPRtEXT extends the state of the art by providing an ELI-compatible extension capable of representing GDPR clauses at a granular level. It is also novel in providing a thesauri of concepts associated with GDPR compliance.
 
 GDPRov provides an OWL2 ontology for representing activities associated with personal data and consent in ex-ante and ex-post phases. It is presented in \autoref{sec:voc:GDPRov}.
-The ontology is based on extending the existing ontologies of PROV-O \cite{} and P-Plan \cite{} with GDPR terminology using GDPRtEXT to represent activities in context of compliance requirements. GDPRov is novel in the use of PROV-O and P-Plan together based on the scientific workflow model to represent processes for GDPR compliance.
+The ontology is based on extending the existing ontologies of PROV-O \cite{lebo_prov-o:_2013} and P-Plan \cite{garijo_p-plan_2014} with GDPR terminology using GDPRtEXT to represent activities in context of compliance requirements. GDPRov is novel in the use of PROV-O and P-Plan together based on the scientific workflow model to represent processes for GDPR compliance.
 It provides an extensible model that can be used for representing processes related to compliance and can be extended for other purposes as well.
 The use of GDPRov enables capturing the provenance of plans or snapshots of a system at a given time and document them as evidence of planned and maintained compliance.
 The use of P-Plan with PROV-O enables associating execution of activities with their intended planning and thereby provides systematic linking of ex-ante and ex-post compliance information.

@@ -1,7 +1,8 @@
-\documentclass[a4paper,oneside,12pt]{book}
+\documentclass[a4paper,oneside,11pt]{book}
 % change oneside to openany for double sided
-\usepackage[a4paper,top=20mm,bottom=20mm,left=35mm,right=20mm,headheight=16pt]{geometry}
+\usepackage[a4paper,top=20mm,bottom=20mm,left=35mm,right=20mm]{geometry}
 \usepackage[utf8]{inputenc}
+% \usepackage{kpfonts}
 \usepackage[T1]{fontenc}
 \usepackage[pdftex]{graphicx}
 \usepackage[bookmarks=true,colorlinks=true,citecolor=magenta]{hyperref}
@@ -12,8 +13,9 @@
 \usepackage[english]{babel} % bibliography
 \usepackage[table]{xcolor}
 \usepackage{tabularx}
+\usepackage{ltablex}
 \usepackage{fancyhdr}
-\usepackage{amsfonts}
+% \usepackage{amsfonts}
 \usepackage{pifont}
 \usepackage{url}
 \usepackage{listings}
@@ -30,18 +32,34 @@
 \renewcommand*{\subsectionautorefname}{Section}
 % \renewcommand*{\lstlistingautorefname}{Listing} % does not work
 
+% line numbers for review
+% \usepackage[right]{lineno}
+
 % line spacing
 \onehalfspacing
-% \doublespacing
+
+% remove red boxes in minted code
+\makeatletter
+\AtBeginEnvironment{minted}{\dontdofcolorbox}
+\def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
+\makeatother
 
 % compact lists
 \setlist{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
 
 % sans-serif
 % \renewcommand{\familydefault}{\sfdefault}
-\usepackage{cmtt}
+% \usepackage{cmtt}
 \usepackage{palatino}
 \renewcommand{\familydefault}{\rmdefault}
+
+% footnotes
+%% See http://tex.stackexchange.com/a/4781/5001 for the following code:
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@footnotetext}{\footnotesize}{\footnotesize\sffamily}{}{}
+\makeatother
+\urlstyle{rm}
 
 % chapter headings
 \usepackage{titlesec}
@@ -60,26 +78,10 @@
 \setminted{
     frame=single,
     framesep=2mm,
+    fontsize=\footnotesize,
     baselinestretch=1,
     linenos,
 }
-
-% \title{Representing Activities associated with Processing of Personal Data and Consent using Semantic Web for GDPR Compliance}
-% \date{draft \today}
-% \author{
-%     % \vspace{2.5cm} \\
-%     Harshvardhan J. Pandit \\
-%     \vspace{0.5cm} \\
-%     Knowledge and Data Engineering Group (KDEG) \\
-%     School of Computer Science and Statistics \\
-%     Trinity College Dublin \\
-%     Dublin, Ireland \\
-%     \vspace{2cm} \\
-%     Supervised by Prof. Dave Lewis \\
-%     Co-Supervised by Prof. Declan O'Sullivan \\
-%     \vspace{2cm} \\
-%     2020
-%  }
 
 % this page intentionally left blank
 \makeatletter
@@ -137,11 +139,14 @@ Harshvardhan J. Pandit
 \listoffigures
 \listoftables
 % \lstlistoflistings  % doesn't work: jumbled output
+\renewcommand\listoflistingscaption{List of source codes}
+\listoflistings
 \include{abbreviations}
 
 \mainmatter
 \renewcommand{\thepage}{\arabic{page}}
 \setcounter{page}{1}
+\linenumbers \rightlinenumbers*
 
 \include{introduction}
 \include{background}

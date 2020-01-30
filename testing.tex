@@ -80,13 +80,13 @@ An overview of the questions is provided in \autoref{table:sparql:dpc-1}.
 It assigns an ID for each question to enable associating it with the corresponding SPARQL query and for linking related questions in the analysis.
 The column `\textit{Category}' reflects the category of question mentioned within the guide, with general used for the initial generic questions.
 `\textit{Title}' refers to the title of the text within the guide, and the column `\textit{GDPR}' refers to an explicit mention of a GDPR clause within the question or its description.
-\begin{table}[htbp]
-\footnotesize
-\centering
-\caption{Questions provided in the GDPR Readiness Guide}
+\begin{center}
+\footnotesize  \label{table:sparql:dpc-1}
 \begin{tabularx}{\textwidth}{|l|l|X|l|}
-\hline
-ID & Category & Title & GDPR \\ \hline
+\caption{Questions provided in the GDPR Readiness Guide} \\
+\toprule
+\textbf{ID} & \textbf{Category} & \textbf{Title} & \textbf{GDPR} \\ \hline
+\endhead
 G1 & General & Categories of personal data and data subjects &  \\ \hline
 G2 & General & Elements of personal data included within each data category &  \\ \hline
 G3 & General & Source of the personal data &  \\ \hline
@@ -149,11 +149,10 @@ I3 & InternationalDataTransfer & Purpose of Transfer & 44,45,46,47,48,49,50 \\ \
 I4 & InternationalDataTransfer & Transfer Recipients & 44,45,46,47,48,49,50 \\ \hline
 I5 & InternationalDataTransfer & Transfer Details & 44,45,46,47,48,49,50 \\ \hline
 I6 & InternationalDataTransfer & Legality of international transfers &  \\ \hline
-I7 & InternationalDataTransfer & Transparency &  \\ \hline
-
+I7 & InternationalDataTransfer & Transparency & \\ 
+\bottomrule
 \end{tabularx}
-\label{table:sparql:dpc-1}
-\end{table}
+\end{center}
 
 \autoref{table:sparql:dpc-2} presents a summarised view of the analysis of compliance questions presented in \autoref{table:sparql:dpc-1}.
 The complete information along with additional comments and fields is available in the online published version of the analysis.
@@ -162,13 +161,13 @@ The column `\textit{Data}' provides information on information required for the 
 The relation of question to the ex-ante phase of compliance is reflected by the column `\textit{E/A}' and ex-post phase by the column '\textit{E/P}' using boolean \texttt{Y/N} values.
 The column `\textit{SPARQL}' indicates whether a SPARQL query was constructed for the corresponding question.
 The column `\textit{GDPRov}' indicates whether the current iteration of GDPRov provides the necessary concepts and relationships to answer the compliance question, with a value of \texttt{Y} indicating that it does, \texttt{N} indicating it does not, and \texttt{S} indicating the information to be out of scope for GDPRov.
-\begin{table}[htbp]
-\footnotesize
-\centering
-\caption{Analysis of compliance questions specified in \autoref{table:sparql:dpc-1}}
+\begin{center}
+\footnotesize \label{table:sparql:dpc-2}
 \begin{tabularx}{\textwidth}{|l|l|X|l|l|l|l|}
-\hline
-ID & Type & Data & E/A & E/P & SPARQL & GDPRov \\ \hline
+\caption{Analysis of compliance questions specified in \autoref{table:sparql:dpc-1}} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Data} & \textbf{E/A} & \textbf{E/P} & \textbf{SPARQL} & \textbf{GDPRov} \\ \hline
+\endhead
 G1 & Demonstrative & personal data, data subjects & Y & N & Y & Y \\ \hline
 G2 & Demonstrative & personal data & Y & N & Y & Y \\ \hline
 G3 & Demonstrative & personal data, steps that collect data, entities that provde data & Y & Y & Y & Y \\ \hline
@@ -233,8 +232,7 @@ I5 & Not-Implemented &  &  &  & N & Y \\ \hline
 I6 & Not-Implemented &  &  &  & N & Y \\ \hline
 I7 & Not-Implemented & steps that share data &  &  & N & S \\ \hline
 \end{tabularx}
-\label{table:sparql:dpc-2}
-\end{table}
+\end{center}
 
 % Where the questions could not be answered due to missing concepts and relationships in GDPRov, or due to uncertain interpretations of a legal concept or ambiguity, a note was made to identify solutions in the future.
 % This was used to update the GDPRov at a later date with additional concepts, such as for legal bases, data sharing, data transfers, or documentation of data breaches.
@@ -423,21 +421,19 @@ The property \texttt{linkToGDPR} was created to link information with the clause
 \end{listing}
 
 The constraints utilise both GDPRov and GConsent where appropriate and possible so as to verify using both ontologies. For example, Listing.\autoref{code:shacl:gdprov-gconsent} presents a constraint for checking whether each instance of consent is associated with one and only one Data Subject. In it, the concept of Data Subject could be used from GDPRov or GConsent since they both feature it. Therefore, \texttt{sh:or} in SHACL enables representing the condition where either of those could be used to express a Data Subject.
-The constraint it linked to the Article 4-11 of GDPR using the property \texttt{linkToGDPR} mentioned above, and provides a human readable message when the constraint fails using the SHACL property \texttt{sh:message}.
+The constraint is linked to the Article 4-11 of GDPR using the property \texttt{linkToGDPR} mentioned above, and provides a human readable message when the constraint fails using the SHACL property \texttt{sh:message}.
 \begin{listing}[htbp]
 \begin{minted}{turtle}
-:Constraint rdfs:subClassOf sh:NodeShape ;
-    rdfs:label "Constraint" .
-:AutomaticallyCheckedConstraint rdfs:subClassOf :Constraint, sh:NodeShape ;
-    rdfs:label "Automatically Checked Constraint" .
-:ManuallyCheckedConstraint rdfs:subClassOf :Constraint, sh:NodeShape ;
-    rdfs:label "Manually Checked Constraint" .
-    
-:linkToGDPR a rdfs:Property ;
-    rdfs:range eli:LegalResourceSubdivision ;
-    rdfs:label "linkToGDPR" .
+:ConsentHasDataSubject a sh:PropertyShape, :AutomaticallyCheckedConstraint ;
+    sh:name "Consent --> Data Subject" ;
+    :linkToGDPR gdpr:article4-11 ;
+    sh:path gc:isConsentForDataSubject ;
+    sh:minCount 1;
+    sh:maxCount 1;
+    sh:or ( [ sh:class gc:DataSubject ] [ sh:class gdprov:DataSubject ] ) ;
+    sh:message "Consent should be linked to Data Subject" .
 \end{minted}
-\caption{Extending SHACL \texttt{NodeShape} to express manual and automated checking of constraints}
+\caption{SHACL constraint checking Data Subject associated with consent}
 \label{code:shacl:gdprov-gconsent}
 \end{listing}
 
@@ -447,7 +443,7 @@ SHACL-SPARQL\footnote{\url{https://www.w3.org/TR/shacl/\#shacl-sparql}} is an ex
 The constraint aims to ensure all consent instances have a timestamp.
 The SHACL-SPARQL constraint features a SPARQL query that filters instances that have a specified timestamp based on properties provided by GConsent, GDPRov, or PROV-O, while the SHACL core representation uses a \texttt{PropertyShape} to assess the same.
 \begin{listing}[htbp]
-\begin{minted}{turtle}
+\begin{minted}{sparql}
 # SHACL-SPARQL
 sh:select "
     SELECT $this WHERE {
@@ -455,7 +451,8 @@ sh:select "
         FILTER NOT EXISTS { $this prov:generatedAtTime ?time } .
         FILTER NOT EXISTS { $this a gdprov:ConsentAgreementTemplate } .
     } " .
-
+\end{minted}
+\begin{minted}{turtle}
 # SHACL Core
 _:ConsentHasTimestamp a sh:PropertyShape ;
     sh:or (
@@ -613,7 +610,7 @@ The profiles mentioned above are described on the webpage as broad categories of
 The privacy policy provided by Quantcast provides information regarding personal data categories as Cookies, Tags, and Log data - which were added to the data graph. 
 The use and collection of emails used to contact Quantcast were also incorporated.
 Data retention periods are provided as ``for as long as necessary'', with an explicit limit for log data provided as 13 months. Due to the ambiguity and pending legal resolution of temporal limits, this information was not added to the data graph.
-The privacy policy also described GDPR rights regarding right to access, right to rectify, right to restrict processing, right to deletion, right to data portability, and provided a link\footnote{NOTE: In reality, we could not access the rights information page, as the notice on the webpage specified - "No cookie found: We are unable to find a Quantcast measurement cookie on your browser and therefore will be unable to identify any data in our systems or process any request for data access or deletion."} for contact and more information. This link was used as the IRI for activities associated with these rights.
+The privacy policy also described GDPR rights regarding right to access, right to rectify, right to restrict processing, right to deletion, right to data portability, and provided a link\footnote{NOTE: The rights information page could not be accessed in this case with the webpage providing an error regarding Quantcast cookies not being set."} for contact and more information. This link was used as the IRI for activities associated with these rights.
 
 \subsubsection{Validating using SHACL}
 As the use-case concerns consent, the constraints associated with consent in \autoref{sec:info:constraints} were used to validate the information using the approach described in \autoref{sec:testing:shacl:approach}.
@@ -661,14 +658,17 @@ WHERE {
 \caption{SPARQL query for report listing validation results linked with GDPR}
 \label{code:shacl:sparql-report}
 \end{listing}
+
 \definecolor{lightred}{RGB}{255,225,225}
-\begin{table}
-\centering
-\caption{Report showing constraints, validation results, and link to GDPR}
-\label{table:shacl:sparql-report}
-\begin{tabular}{|l|c|c|c|c|}
+
+\begin{center}
+    \footnotesize
+\begin{tabularx}{\linewidth}{|l|X|X|X|l|}
+\caption{Validation report with results and link to GDPR}
+\label{table:shacl:sparql-report} \\
 \hline
-\rowcolor{lightgray} Name & Type & GDPR & Result & Node \\ \hline
+\textbf{Name} & \textbf{Type} & \textbf{GDPR} & \textbf{Result} & \textbf{Node} \\ \hline
+\endhead
 Consent $\neq$ Inactivity & M & R32 & P &  \\ \hline
 Consent $\neq$ Pre-ticked Boxes & M & R32 & P &  \\ \hline
 Consent $\neq$ Silence & M & R32 & P &  \\ \hline
@@ -709,8 +709,8 @@ Third Party Identities & A & A30-1-d & P &  \\ \hline
 Third Party Identities & A & A44 & P &  \\ \hline
 Third Party Safeguards & A &  & P &  \\ \hline
 Withdraw Consent Information & M & A7-3 & P &  \\ \hline
-\end{tabular}
-\end{table}
+\end{tabularx}
+\end{center}
 
 The rows which correspond to failed constraints are manually highlighted to provide an indication of the use of information in a visual medium - such as a dashboard.
 The query and its results can both be persisted in machine-readable serialisations using standards for representations, making them interoperable and capable of automation.
