@@ -30,7 +30,7 @@
 \renewcommand*{\chapterautorefname}{Chapter}
 \renewcommand*{\sectionautorefname}{Section}
 \renewcommand*{\subsectionautorefname}{Section}
-% \renewcommand*{\lstlistingautorefname}{Listing} % does not work
+\providecommand*{\listingautorefname}{Listing}
 
 % line numbers for review
 % \usepackage[right]{lineno}
@@ -135,10 +135,12 @@ Harshvardhan J. Pandit
 \include{acknowledgements}
 \include{abstract}
 
+\cleardoublepage
+% \addtocontents{toc}{\protect\thispagestyle{fancy}}
+\pagestyle{plain}
 \tableofcontents
 \listoffigures
 \listoftables
-% \lstlistoflistings  % doesn't work: jumbled output
 \renewcommand\listoflistingscaption{List of source codes}
 \listoflistings
 \include{abbreviations}

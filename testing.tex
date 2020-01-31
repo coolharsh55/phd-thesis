@@ -81,12 +81,26 @@ It assigns an ID for each question to enable associating it with the correspondi
 The column `\textit{Category}' reflects the category of question mentioned within the guide, with general used for the initial generic questions.
 `\textit{Title}' refers to the title of the text within the guide, and the column `\textit{GDPR}' refers to an explicit mention of a GDPR clause within the question or its description.
 \begin{center}
-\footnotesize  \label{table:sparql:dpc-1}
+\footnotesize
 \begin{tabularx}{\textwidth}{|l|l|X|l|}
-\caption{Questions provided in the GDPR Readiness Guide} \\
+\caption{Questions provided in the GDPR Readiness Guide} \label{table:sparql:dpc-1} \\
 \toprule
-\textbf{ID} & \textbf{Category} & \textbf{Title} & \textbf{GDPR} \\ \hline
+\textbf{ID} & \textbf{Category} & \textbf{Title} & \textbf{GDPR} \\
+\midrule
+\endfirsthead
+
+\caption*{Questions provided in the GDPR Readiness Guide (cont'd)} \\
+\toprule
+\textbf{ID} & \textbf{Category} & \textbf{Title} & \textbf{GDPR} \\
+\midrule
 \endhead
+
+\multicolumn{4}{r@{}}{\footnotesize (Cont'd on following page)}\\
+\endfoot
+
+% \bottomrule
+\endlastfoot
+
 G1 & General & Categories of personal data and data subjects &  \\ \hline
 G2 & General & Elements of personal data included within each data category &  \\ \hline
 G3 & General & Source of the personal data &  \\ \hline
@@ -149,8 +163,8 @@ I3 & InternationalDataTransfer & Purpose of Transfer & 44,45,46,47,48,49,50 \\ \
 I4 & InternationalDataTransfer & Transfer Recipients & 44,45,46,47,48,49,50 \\ \hline
 I5 & InternationalDataTransfer & Transfer Details & 44,45,46,47,48,49,50 \\ \hline
 I6 & InternationalDataTransfer & Legality of international transfers &  \\ \hline
-I7 & InternationalDataTransfer & Transparency & \\ 
-\bottomrule
+I7 & InternationalDataTransfer & Transparency & \\ \hline
+% \bottomrule
 \end{tabularx}
 \end{center}
 
@@ -162,12 +176,25 @@ The relation of question to the ex-ante phase of compliance is reflected by the 
 The column `\textit{SPARQL}' indicates whether a SPARQL query was constructed for the corresponding question.
 The column `\textit{GDPRov}' indicates whether the current iteration of GDPRov provides the necessary concepts and relationships to answer the compliance question, with a value of \texttt{Y} indicating that it does, \texttt{N} indicating it does not, and \texttt{S} indicating the information to be out of scope for GDPRov.
 \begin{center}
-\footnotesize \label{table:sparql:dpc-2}
+\footnotesize 
 \begin{tabularx}{\textwidth}{|l|l|X|l|l|l|l|}
-\caption{Analysis of compliance questions specified in \autoref{table:sparql:dpc-1}} \\
+\caption{Analysis of compliance questions specified in \autoref{table:sparql:dpc-1}} \label{table:sparql:dpc-2} \\
 \toprule
-\textbf{ID} & \textbf{Type} & \textbf{Data} & \textbf{E/A} & \textbf{E/P} & \textbf{SPARQL} & \textbf{GDPRov} \\ \hline
+\textbf{ID} & \textbf{Type} & \textbf{Data} & \textbf{E/A} & \textbf{E/P} & \textbf{SPARQL} & \textbf{GDPRov} \\
+\midrule
+\endfirsthead
+
+\caption*{Analysis of compliance questions specified in \autoref{table:sparql:dpc-1} (cont'd)} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Data} & \textbf{E/A} & \textbf{E/P} & \textbf{SPARQL} & \textbf{GDPRov} \\
+\midrule
 \endhead
+
+\midrule
+\multicolumn{7}{r@{}}{\footnotesize (Cont'd on following page)}\\
+\endfoot
+\endlastfoot
+
 G1 & Demonstrative & personal data, data subjects & Y & N & Y & Y \\ \hline
 G2 & Demonstrative & personal data & Y & N & Y & Y \\ \hline
 G3 & Demonstrative & personal data, steps that collect data, entities that provde data & Y & Y & Y & Y \\ \hline
@@ -252,7 +279,7 @@ As an example, Listing \autoref{code:sparql:dpc-G5} contains the corresponding S
 The query retrieves information about steps and the processes along with the legal basis for their operation in ex-ante phase using the vocabulary provided by GDPRov.
 Within this, the query specifically retrieves steps which are defined as being part of a process and use some form of personal data. 
 The legal bases can be associated with individual steps or with the process they are associated with.
-\begin{listing}[ht]
+\begin{listing}[htbp]
 \begin{minted}[
     frame=single,
     framesep=5mm,
@@ -529,7 +556,7 @@ It is not intended to act as a compliance evaluation\footnote{The Data Protectio
 \subsubsection{Description of Consent Dialogue}
 The consent dialogue, depicted in \autoref{fig:shacl:quantcast-consent-dialogue}, is presented to the user upon visit to the Quantcast website. The consent dialogue consists of multiple pages or panels presenting various abstractions of information and choices which the user can interact with.
 The first panel, depicted in the figure as \texttt{(a)}, presents a brief description of processing and purposes and provides an option to provide consent\footnote{Note for clarification: Clicking the `I Accept' button signals consent for all specified purposes, as can be verified by clicking on the `Change Consent' button at the bottom of the page to show the selected choices in the consent dialogue. We avoided the interpretation of qualitative assessments in evaluating whether the "I Accept" button fails consent requirements such as not having options pre-ticked or pre-chosen by default, though we believe this does not satisfy the requirements of valid consent under GDPR. We instead represent these qualitative constraints as \texttt{ManuallyCheckedConstraint} and assume their assessment to always be true.} using the `I Accept' button. Further information is made available through the `Show Purposes' button. Upon giving consent at any stage of the dialogue, clicking the `Change Consent' link in the footer at the bottom of the page shows the consent dialogue with the selected consent choices.
-\begin{figure}[ht]
+\begin{figure}[htbp]
     \begin{minipage}[b]{0.5\linewidth}
         \centering
         \includegraphics[width=\linewidth]{img/quantcast_consent_screen.png}
@@ -664,11 +691,25 @@ WHERE {
 \begin{center}
     \footnotesize
 \begin{tabularx}{\linewidth}{|l|X|X|X|l|}
-\caption{Validation report with results and link to GDPR}
-\label{table:shacl:sparql-report} \\
-\hline
-\textbf{Name} & \textbf{Type} & \textbf{GDPR} & \textbf{Result} & \textbf{Node} \\ \hline
+\caption{SHACL validation report linked to GDPR} \label{table:shacl:sparql-report} \\
+\toprule
+\textbf{Name} & \textbf{Type} & \textbf{GDPR} & \textbf{Result} & \textbf{Node} \\ 
+\midrule
+\endfirsthead
+
+\caption*{SHACL validation report linked to GDPR (cont'd)} \\
+\toprule
+\textbf{Name} & \textbf{Type} & \textbf{GDPR} & \textbf{Result} & \textbf{Node} \\
+\midrule
 \endhead
+
+
+\midrule
+\multicolumn{5}{r@{}}{\footnotesize (Cont'd on following page)}\\
+\endfoot
+
+\endlastfoot
+    
 Consent $\neq$ Inactivity & M & R32 & P &  \\ \hline
 Consent $\neq$ Pre-ticked Boxes & M & R32 & P &  \\ \hline
 Consent $\neq$ Silence & M & R32 & P &  \\ \hline
@@ -708,7 +749,8 @@ Third Party Identities & A & A13-1-e & P &  \\ \hline
 Third Party Identities & A & A30-1-d & P &  \\ \hline
 Third Party Identities & A & A44 & P &  \\ \hline
 Third Party Safeguards & A &  & P &  \\ \hline
-Withdraw Consent Information & M & A7-3 & P &  \\ \hline
+Withdraw Consent Information & M & A7-3 & P &  \\
+\bottomrule
 \end{tabularx}
 \end{center}
 
