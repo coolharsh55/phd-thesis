@@ -4,9 +4,29 @@
 This chapter presents the necessary background information related to understanding the research presented in this thesis. In particular, it presents a short introduction to the General Data Protection Regulation (GDPR) in \autoref{sec:background:GDPR} and to the semantic web in \autoref{sec:background:semweb}. The information only represents a summary of the topic and is accompanied with links in the footnotes which further information.
 
 \section{General Data Protection Regulation (GDPR)}\label{sec:background:GDPR}
-\todo{copy background info from DPC website}
+The General Data Protection Regulation (GDPR) \cite{noauthor_regulation_2016} is the current data protection law applicable within the European Union (EU) and the European Economic Area (EEA) and regulates the use and processing of personal data. 
+It supersedes its predecessor - the Data Protection Directive (DPD) \cite{noauthor_directive_1995} - and provides greater requirements and transparency for its compliance, as well as a potentially large and significant amount of fines if organisations are found to have violated its obligations.
+A significant aspect of the GDPR are its principles and rights which are intended to afford the individual greater privacy and control regarding the use of their personal data.
 
-\subsection*{Further Reading}
+By virtue of it being a regulation as opposed to a directive, it is considered enforceable law with local and national implementations acting in conjunction with it rather than replacing it.
+The GDPR has attracted global attention and scrutiny due to its requirements for compliance and potential fines, as well as for providing rights which enhance privacy.
+It has directly been influential in other privacy laws across the laws, with the California Consumer Protection Act (CCPA) being a significant law that follows many of its provisions and requirements \cite{marini_gdpr_2018}.
+
+\subsection{Terminology}
+The legal terminology utilised in GDPR is intended to clarify the roles, actions, and concepts upon which the law specifies obligations.
+The definition of \textit{\textbf{personal data}} (Article 4-1) is based on the linking, association, or relevance of any information with an individual - and represents a significant change from its predecessor as well from other laws which rely upon the concept of Personally Identifiable Information (PII). The individual the personal data relates to is termed as the \textit{\textbf{Data Subject}} (Article 4-1), which is again a distinct term from other relevant laws where the term \textit{individual} or \textit{PII Principal} are used.
+
+GDPR regulates \textit{\textbf{processing}} of personal data (Article 4-1) which is defined as any action over or utilising personal data, with its definition providing a range of activities - ``collection, recording, organisation, structuring, storage, adaptation or alteration, retrieval, consultation, use, disclosure by transmission, dissemination or otherwise making available, alignment or combination, restriction, erasure or destruction;'' \cite{noauthor_regulation_2016}.
+
+A \textit{\textbf{Controller}} is defined (Article 4-7) as the entity or organisation that determines the \textit{\textbf{purpose}} and means of processing of personal data. As such, the controller is the primary organisation in the context of the GDPR and is the subject of more obligations given its role in the processing of personal data. One or more controllers can act together to determine the purpose and carry out the processing, in which case they are defined as \textit{\textbf{Joint-Controllers}} (Article 26).
+
+A \textit{\textbf{Processor}} is defined (Article 4-8) as an entity which processes the personal data on specified instructions of the controller (Article 28) and is not allowed to deviate from the instructions or utilise the personal data for other purposes. A processor is also referred to as \textit{contractor} in some contexts. A processor may appoint other \textit{sub-processors} in order to carry out processing, where the sub-processors are requried to follow the same obligations as the processor.
+
+A \textit{\textbf{Data Protection Officer (DPO)}} is defined (Article 37) as an individual appointed by the controller or processor to oversee the compliance and processing of personal data, monitor internal processors, and collaborate with supervisory authorities as required.
+
+A \textit{\textbf{Regulatory or Supervisory Authority or Data Protection Commission}} is a governmental organisation with the responsibility to evaluate and enforce GDPR compliance. These bodies are established within the context of national or federal governments and have jurisdiction over their appointed regions. The GDPR lays out the responsibilities of such bodies and provides avenues for their co-operation across jurisdictions (Article 56, 60, 62).
+
+GDPR provides several \textbf{\textit{rights}} to the data subject (Chapter 3) which are obligated to be provided by controller(s). Such rights are mandatory under the GDPR and therefore their implementation, provision, and exercising carries with it several requirements towards compliance.
 
 \subsubsection{PRIPARE}
 PRIPARE\footnote{\url{http://pripareproject.eu/}} (PReparing Industry to Privacy-by-design by supporting its Application in REsearch) is an European research project that aimed to provide a set of documents regarding privacy engineering by covering activities such as privacy risk management, requirement analysis, design strategies, maintenance and compliance. To this end, it published the PRIPARE methodology handbook \cite{noauthor_pripare-methodology-handbook-final-feb-24-2016.pdf_nodate} providing guidelines for privacy and security by design. The handbook incorporates information based on a draft of GDPR\footnote{\url{The handbook was published in 2015, and incorporated known information about the GDPR up to that point in time.}} It provides foundational methodologies and reference models for carrying out privacy analysis, designing and implementing privacy enhancing systems, with templates for impact assessments and conformance. 
