@@ -62,9 +62,9 @@
 \urlstyle{rm}
 
 % chapter headings
-\usepackage{titlesec}
-\titleformat{\chapter}[hang] 
-{\normalfont\huge\bfseries}{\thechapter}{1cm}{}
+\usepackage[raggedright]{titlesec}
+% \titleformat{\chapter}[hang] 
+% {\normalfont\huge\bfseries}{\thechapter}{1cm}{}
 
 \title{Representing Activities associated with Processing of Personal Data and Consent using Semantic Web for GDPR Compliance}
 \author{Harshvardhan J. Pandit}
@@ -150,13 +150,22 @@ Harshvardhan J. Pandit
 \setcounter{page}{1}
 \linenumbers \rightlinenumbers*
 
-\include{introduction}
+% chapter headings
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries\sffamily\scshape}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+\titleformat*{\section}{\Large\bfseries\sffamily\scshape}
+\titleformat*{\subsection}{\large\bfseries\sffamily}
+\titleformat*{\subsubsection}{\itshape\bfseries\sffamily}
+% do not hyphenate chapters
+
+% \include{introduction}
 \include{background}
-\include{sota}
-\include{information}
-\include{vocabularies}
-\include{testing}
-\include{conclusion}
+% \include{sota}
+% \include{information}
+% \include{vocabularies}
+% \include{testing}
+% \include{conclusion}
 
 \addcontentsline{toc}{chapter}{References}
 \bibliography{Thesis}
