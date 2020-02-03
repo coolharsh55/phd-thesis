@@ -638,9 +638,10 @@ The column headings represent the identified categories of information from the 
 \begin{table}[htbp]
 \footnotesize
 \centering
-\caption{Overview of approaches in SotA}\label{table:sota:analysis:overview}
-\rowcolors{1}{}{gray!10}
+\rowcolors{2}{}{gray!10}
 \begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|X|X|X|X|}
+\rowcolor{white}
+\caption{Overview of approaches in SotA}\label{table:sota:analysis:overview} \\
 \hline
 \textbf{Work} & \textbf{T} & \textbf{R} & \textbf{M} & \textbf{EA} & \textbf{EP} & \textbf{P} & \textbf{C} &\textbf{Cm} & \textbf{Rq} & \textbf{O} \\ \hline
 \multicolumn{11}{|>{\hsize=\dimexpr11\hsize+11\tabcolsep+12\arrayrulewidth\relax}X|}{Approaches using semantic web to address GDPR compliance} \\ \hline
@@ -694,11 +695,11 @@ SMOOTH & PRJ &  &  &  &  &  &  &  &  &  \\ \hline
 SODA & PRJ &  &  &  &  &  &  & \cmark &  &  \\ \hline
 DECODE & PRJ &  &  &  &  &  & \cmark & \cmark &  &  \\ \hline
 MOSACrOWN & PRJ &  &  &  &  &  & \cmark & \cmark &  &  \\ \hline
-PoSEID-on & PRJ &  &  &  &  &  & \cmark & \cmark &  &  \\ \hline
+PoSEID-on & PRJ &  &  &  &  &  & \cmark & \cmark &  & \\
 % PRIPARE & PRJ &  &  &  &  &  &  &  & \cmark &  \\ \hline
+\bottomrule
 \end{tabularx}
 \end{table}
-% TODO: delete EA and EP from overview table
 
 Of the 44 approaches listed in the table, the upcoming research projects are not considered part of the state of the art and are therefore not analysed. The 5 approaches related to privacy policies and the 2 approaches related to consent also do not directly address compliance with the GDPR, but provide representation of information relevant to the analysis. The analysis is therefore primarily carried out over 29 approaches which directly address GDPR compliance.
 The following observations are made based on the overview of SotA in \autoref{table:sota:analysis:overview}:
@@ -764,12 +765,11 @@ The table uses a check mark (\cmark) to indicate that the approach represents th
 \begin{table}
 \footnotesize
 \centering
-\caption{Representation of activities in SotA}\label{table:sota:analysis:process-flow}
-\rowcolors{1}{}{gray!10}
+\rowcolors{2}{}{gray!10}
 \begin{tabularx}{\textwidth}{|l|l|X|X|X|X|X|X|X|X|X|}
+\caption{Representation of activities in SotA}\label{table:sota:analysis:process-flow} \\ 
 \hline
-
-Work & Repr & EA & EP & Pu & Pr & DS & Rp & St & Rg & LB \\ \hline
+\textbf{Work} & \textbf{Repr} & \textbf{EA} & \textbf{EP} & \textbf{Pu} & \textbf{Pr} & \textbf{DS} & \textbf{Rp} & \textbf{St} & \textbf{Rg} & \textbf{LB} \\ \hline
 SPECIAL & PROV-O & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
 SPL+CitySPIN & PROV-O & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
 MIREL & PWO & \cmark &  & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  \\ \hline
@@ -804,12 +804,11 @@ Some of the upcoming research projects have been included in the analysis based 
 \begin{table}[htbp]
 \footnotesize
 \centering
-\caption{Representation of consent in SotA}\label{table:sota:analysis:consent}
-\rowcolors{1}{}{gray!10}
+\rowcolors{2}{}{gray!10}
 \begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|X|X|X|X|X|X|}
+\caption{Representation of consent in SotA}\label{table:sota:analysis:consent} \\
 \hline
-
-Work & PD & Pu & Pr & Sh & St & Rp & S & W & D & SE & Ct & T \\ \hline
+\textbf{Work} & \textbf{PD} & \textbf{Pu} & \textbf{Pr} & \textbf{Sh} & \textbf{St} & \textbf{Rp} & \textbf{S} & \textbf{W} & \textbf{D} & \textbf{SE} & \textbf{Ct} & \textbf{T} \\ \hline
 SPECIAL & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark &  &  &  &  \\ \hline
 SPL+CitySPIN & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark &  &  &  &  \\ \hline
 Lodge et al & \cmark & \cmark &  &  &  &  &  &  &  &  &  &  \\ \hline

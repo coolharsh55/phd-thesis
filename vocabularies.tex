@@ -24,7 +24,7 @@ The combination of two consisted of identifying the development scenario from Ne
 The methodologies of relevant approaches presented in the SotA include research projects such as SPECIAL and MIREL (see \autoref{sec:sota:SPECIAL}) include utilisation of legal experts which act as domain experts to validate the developed ontologies and their interpretation. Such projects also involved commercial partners who could provided real-world use-cases and data to inform and evaluate the developed research.
 Others - such as Ujcich et al. \cite{belhajjame_provenance_2018} - take a more technical approach towards the interpretation of GDPR compliance in their modelling of information.
 
-\colorbox{pink}{\parbox{0.9\textwidth}{\textbf{Is this okay? -}The aims and motivations of this thesis (see \autoref{sec:intro:background}) are based on representing information for assisting the compliance process rather than an evaluation of compliance itself. Therefore, to offset the lack of access to legal experts, the research has been documented methodologically to indicate its aims, motivations, methodology, and resources used to shape conceptualisations and rationalisations, and published in an open and accessible manner to enable transparency and reuse. }}
+% The aims and motivations of this thesis (see \autoref{sec:intro:background}) are based on representing information for assisting the compliance process rather than an evaluation of compliance itself. Therefore, the research has been documented methodologically to indicate its aims, motivations, methodology, and resources used to shape conceptualisations and rationalisations, and published in an open and accessible manner to enable transparency and reuse.
 
 \subsubsection*{Summary of Methodology}
 Based on the earlier description, the methodology used for ontology engineering and development is described through the following steps:
@@ -372,9 +372,9 @@ For this, \autoref{table:gdprtext:eval-cq} shows the concepts and relationships 
 \begin{table}[htbp]
 \footnotesize
 \centering
-\caption{Concepts in GDPRtEXT for answering competency questions}
 \rowcolors{1}{}{gray!10}
 \begin{tabularx}{\textwidth}{|l|X|}
+\caption{Concepts in GDPRtEXT for answering competency questions} \\
 \hline
 \textbf{CQ} & \textbf{Concepts/Relationships} \\ \hline
 % & \textbf{Concepts associated with structure of GDPR} \\ \hline
@@ -737,14 +737,14 @@ WHERE {
 \subsubsection{Example Use-Case: Detecting changes in activities for updates to consent}
 Another example use-case is detecting the necessity of changes in given consent which would require updating an individual's consent based on updates to a plan such as when a purpose changes or a new processing operation is added to an existing purpose. By storing the plans of processing operations using GDPRov, it is possible to compare the old and new versions of a plan, detect changes, and identify whether corresponding updates to consent are needed. 
 
-An exploration of such change detection was published in the Managing the Evolution and and Preservation of the Data Web workshop co-located with ESWC 2018 \cite{pandit_gdpr-driven_2018}.
-It considered the representation of activities using P-Plan, which can be substituted with GDPRov for GDPR-specific activities. In the explored example, an existing plan is updated to remove the step of sending advertisements. The change detection, visualised in \autoref{fig:vocabs:gdprov-change-detection}, is based on identifying the differences between the two plans in terms of steps and variables and whether they have been added, removed, or modified.
+An exploration of change detection was published in the Managing the Evolution and and Preservation of the Data Web workshop co-located with ESWC 2018 \cite{pandit_gdpr-driven_2018} where a model of activities were represented using P-Plan and then compared to identify changes. The use of P-Plan can be substituted with GDPRov when representing GDPR-specific activities.
+The publication explored the change when an existing plan is updated to remove the step of sending advertisements. The change detection, visualised in \autoref{fig:vocabs:gdprov-change-detection}, is based on identifying the differences between the two plans in terms of steps and variables and whether they have been added, removed, or modified.
 In the figure, the change reflects the removal of a step - which by itself does not require any changes to a given consent since no new purposes have been added to an existing given consent.
 Using this approach, the detected change can be analysed - manually for complex and legal interpretations while automatically for simpler or simplified graphs - and used to identify whether corresponding changes are necessary based on compliance obligations.
 \begin{figure}[htbp]
     \centering
-    \missingfigure[figcolor=white]{}
-    \caption{Modelling changes in workflows using P-Plan \cite{}}
+    \includegraphics[width=\textwidth]{img/GDPRov-change-detection.png}
+    \caption{Modelling changes in workflows using P-Plan \cite{pandit_gdpr-driven_2018}}
     \label{fig:vocabs:gdprov-change-detection}
 \end{figure}
 
@@ -762,9 +762,9 @@ The competency questions, summarised in \autoref{sec:gdprov:cq}, were used to gu
 \begin{table}[htbp]
 \footnotesize
 \centering
-\caption{Concepts in GDPRov for answering competency questions}
 \rowcolors{1}{}{gray!10}
 \begin{tabularx}{\linewidth}{|l|X|p{5cm}|l|}
+\caption{Concepts in GDPRov for answering competency questions} \\
 \hline
 \textbf{CQ} & \textbf{Class} & \textbf{Property} & \textbf{Phase} \\ \hline
 \multicolumn{4}{|l|}{\textbf{Actors and Agents involved in activities}}  \\ \hline
@@ -821,12 +821,11 @@ The column headings corresponding with expression of information supported by an
 \begin{table}[htbp]
 \footnotesize
 \centering
-\caption{Comparison of GDPRov with SotA}\label{table:gdprov:sota}
 \rowcolors{1}{}{gray!10}
 \begin{tabularx}{\textwidth}{|l|l|X|X|X|X|X|X|X|X|X|}
-\hline
 
-Work & Repr & EA & EP & Pu & Pr & DS & Rp & St & Rg & LB \\ \hline
+\caption{Comparison of GDPRov with SotA}\label{table:gdprov:sota} \\ \hline
+\textbf{Work} & \textbf{Repr} & \textbf{EA} & \textbf{EP} & \textbf{Pu} & \textbf{Pr} & \textbf{DS} & \textbf{Rp} & \textbf{St} & \textbf{Rg} & \textbf{LB} \\ \hline
 \rowcolor[gray]{0.8}
 \textbf{GDPRov} & PROV-O,P-Plan & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark  \\ \hline
 SPECIAL & PROV-O & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
@@ -1203,7 +1202,7 @@ This was an iterative process where the ontology was tested and modified to acco
 
 GConsent was published in the Extended Semantic Web Conference as a peer-reviewed publication \cite{pandit_gconsent_2019} which described the motivation, methodology, and creation of the ontology. Along with this, the documentation of GConsent, available online, also provides extensive information about the ontology and its potential applications. It also provides a brief comparison of the ontology with relevant approaches within the state of the art.
 
-\colorbox{pink}{\parbox{0.9\textwidth}{\textbf{Should this be included? -} Other than these, GConsent also received input through a semi-formal consultation with a legal expert who is a law professor at Trinity College Dublin, and an informal consultation for a research project at MasterCard - which provided some valuable input from a domain-expert's perspective.}}
+\colorbox{pink}{\parbox{0.9\textwidth}{\textbf{Should this be included? -} Other than these, GConsent also received input through a semi-formal consultation with a legal domain expert in the form of a law professor at Trinity College Dublin, and as part of consultation for a research project at MasterCard which shaped its applicability and requirements based on real-world use-cases.}}
 
 \subsubsection{Fulfilment of Competency Questions}
 The assessment of the extent to which GConsent provides concepts and relationships to answer the competency questions is presented in \autoref{table:gconsent:cq}. 
@@ -1213,10 +1212,9 @@ Based on these, GConsent satisfies the requirements of providing information for
 \begin{table}[htbp]
 \footnotesize
 \centering
-\caption{Concepts and relationships in GConsent for answering competency questions}
 \rowcolors{1}{}{gray!10}
 \begin{tabularx}{\textwidth}{|p{1cm}|X|p{4cm}|p{3.5cm}|}
-\hline
+\caption{Concepts and relationships in GConsent for answering competency questions} \\ \hline
 \textbf{CQ} & \textbf{Question} & \textbf{Concepts} & \textbf{Properties} \\ \hline
 \multicolumn{4}{|l|}{\textbf{Questions about consent}} \\ \hline
 \textit{CMQ35} & Who is the consent about? & \textit{DataSubject} & \textit{isConsentForDataSubject} \\ \hline
