@@ -26,15 +26,56 @@ A \textit{\textbf{Data Protection Officer (DPO)}} is defined (Article 37) as an 
 
 A \textit{\textbf{Regulatory or Supervisory Authority or Data Protection Commission}} is a governmental organisation with the responsibility to evaluate and enforce GDPR compliance. These bodies are established within the context of national or federal governments and have jurisdiction over their appointed regions. The GDPR lays out the responsibilities of such bodies and provides avenues for their co-operation across jurisdictions (Article 56, 60, 62).
 
-GDPR provides several \textbf{\textit{rights}} to the data subject (Chapter 3) which are obligated to be provided by controller(s). Such rights are mandatory under the GDPR and therefore their implementation, provision, and exercising carries with it several requirements towards compliance.
+GDPR provides several \textbf{\textit{rights}} to the data subject (Chapter 3) which are obligated to be provided by controller(s). Such rights are mandatory to be provided by controllers and therefore their implementation, provision, and exercising carries with it several requirements that must be monitored as part of ongoing compliance.
 
-\subsubsection{PRIPARE}
-PRIPARE\footnote{\url{http://pripareproject.eu/}} (PReparing Industry to Privacy-by-design by supporting its Application in REsearch) is an European research project that aimed to provide a set of documents regarding privacy engineering by covering activities such as privacy risk management, requirement analysis, design strategies, maintenance and compliance. To this end, it published the PRIPARE methodology handbook \cite{noauthor_pripare-methodology-handbook-final-feb-24-2016.pdf_nodate} providing guidelines for privacy and security by design. The handbook incorporates information based on a draft of GDPR\footnote{\url{The handbook was published in 2015, and incorporated known information about the GDPR up to that point in time.}} It provides foundational methodologies and reference models for carrying out privacy analysis, designing and implementing privacy enhancing systems, with templates for impact assessments and conformance. 
+\textit{\textbf{Lawful Basis}} or \textit{\textbf{Legal Basis}} is the provision under which processing of personal data is permitted by the GDPR, of which there are six primary ones (Article 6). \textit{Legitimate Interest} refers to the legal basis where the controller or third party needs the personal data in order to provide or carry out its operations and services (Article 6-1f). Other legal basis include the carrying out of a contract (Article 6-1b), compliance to a legal obligation (Article 6-1c), for public interest or as part of official authority (Article 6-1d), and other provisions and specifics introduced by national governments (Article 6-2).
+\textit{\textbf{Consent of the Data Subject}} is the legal basis to be used where none of the other legal basis are applicable, and which requires the consent of the data subject, where such consent is subject to obligations and requirements which determine its validity.
+
+\subsection{Transparency and Requirements}
+Controllers are required to provide information about their processing activities to data subjects to inform on the type of processing that is taking place and who is carrying it out.
+This information is usually part of a `privacy policy' and contains at the minimum: (a) identity of the controller(s); (b) purpose of processing; (c) legal basis; (d) any transfer of data and the categories of recipients; (e) data storage periods; and (f) the existence of rights.
+
+In addition to the above information, a controller is required to monitor and maintain documentation detailing their processing of categories of personal data along with elements or particulars of the data included within each category. Every personal data being processed must be associated with a source. GDPR specifies certain personal data categories as `special categories' based on their sensitivity and need for additional measures regarding security and accountability. Such special categories contain additional obligations for compliance which must be enforced if an organisation is using them. 
+
+\subsection{Data Protection Impact Assessment}
+A \textit{\textbf{Privacy Impact Assessment}} or \textit{\textbf{Data Protection Impact Assessment}} is an obligation of the controller to conduct and document an impact assessment of the data processing before it is executed (Article 35). GDPR lays out the conditions under which a DPIA is mandatory to be conducted - which includes processing that results in a high risk to the rights and freedoms of the data subject, use of special categories of personal data, automated processing with significant effects, and use of evaluation or scoring.
+
+A DPIA can be conducted for a specific processing activity, for a project, or for the entire organisation, and must be be carried out ``prior to the processing'' (Articles 35-1, 35-10).
+The aim of a DPIA is to identify and mitigate against data protection risks, plan for the implementation of any solutions to those risks, and assess the viability of a project at an early stage.
+Documentation of the DPIA process allows demonstrating compliance with the GDPR and minimising risks of legal difficulties in carrying out the processing.
+
+Carrying out a DPIA requires identification of information flows in terms of collection, storage, usage, sharing, and erasure of personal data within the defined processing activities. A DPIA needs to be updated or carried out again if there are changes in the processing activities.
+
+\subsection{Sources of Additional Information}
+
+\subsubsection{Data Protection Authorities}
+A \textit{\textbf{Data Protection Authority (DPA)}} is the authority responsible for upholding EU laws and rights pertaining the privacy and data protection through enforcement and monitoring of compliance.
+Its title and reference differs in different jurisdictions, such as the \textit{Data Protection Commission (DPC)} in Ireland which is also sometimes referred to as the \textit{Data Protection Commissioner's Office}. 
+They are also referred to as \textit{Regulators} given their task of regulating the processing of personal data.
+In some nations, such as Germany, the data protection authorities are established in federal states or regions rather than a singular nation-wide office. The data protection authorities are also governed by national data protection laws in addition to the EU laws such as GDPR, and are responsible for their upholding as well.
+
+The data protection authorities in each of their jurisdictions have published guidance and documents for assisting organisations and data subjects in understanding the GDPR and its compliance requirements. The authorities in Ireland\footnote{\url{https://www.dataprotection.ie/}}, United Kingdom\footnote{\url{https://ico.org.uk/}}, and France\footnote{\url{https://www.cnil.fr/en/home}} have their information specified in English.
+
+\subsubsection{Article 29 Data Protection Working Party and European Data Protection Board (EDPB)}
+The Article 29 Working Party (Art. 29 WP) was an advisory body to the European Parliament and its bodies and consisted of representatives from the data protection authority of each EU Member State, the European Data Protection Supervisor and the European Commission. 
+The body was established following the Data Protection Directive (DPD) and was replaced by the European Data Protection Board (EDPB) under the law set forth by GDPR. 
+The working party provided expert advice to the member states, and provided opinions the application of laws affecting the right to protection of personal data, which included the GDPR.
+To this end, it published\footnote{\url{https://ec.europa.eu/justice/article-29/documentation/index_en.htm}} a number of documents clarifying or expressing opinions on the interpretation of the GDPR.
+
+The EDPB is the European body replacing the Art. 29 WP with the purpose to ensure consistent application of the GDPR and to assist in the co-operation between various data protection authorities. 
+EDPB is tasked with issuing guidelines, recommendations and identifying best practices related to the interpretation and application of the GDPR.
+It also advises the European Commission on matters related to the protection of personal data in the European Economic Area (EEA), adopting consistency opinions in cross-border cases, encouraging the development of codes of conduct and establishing certification mechanisms in the field of data protection, and promoting cooperation and effective exchange of information and good practices among national supervisory authorities. 
+For these, the EDPB has published\footnote{\url{https://edpb.europa.eu/edpb_en}} documents for providing information and assistance to individuals, controllers \& processors, and regulators.
+
+% \subsubsection{Case Law, Legal Opinions, and Investigations}
+% case law, opinions of legal authorities, fines and investigations by data protection authorities (website GDPR fine tracker)
 
 \subsubsection{STAR \& STAR II}
 STAR\footnote{\url{https://projectstareu.wordpress.com/}} (Support Training Activities on the data protection Reform) is an European project that had the aim to provide materials to support training of DPAs and DPOs for the GDPR. To this end, it has created and published its resources consisting of training materials in an open and publicly accessible form\footnote{\url{http://www.project-star.eu/training-materials}}. The project has also produced a handbook for assisting stakeholders in understanding the GDPR and preparing for its compliance. The project also provides an evaluation questionnaire and compliance checklist \cite{noauthor_gdpr_2019-1}consisting of a list of questions and criterion to assess preparedness with the requirements of the GDPR. 
+The resources published by the STAR projects provide documentation regarding GDPR compliance that is adopted by organisations and regulatory authorities.
 
-The resources published by the STAR projects provide documentation regarding GDPR compliance that is adopted by organisations and regulatory authorities. As such, it acts as a source of information about GDPR in the requirements gathering phase associated with information representation and evaluation of compliance.
+\subsubsection{PRIPARE}
+PRIPARE\footnote{\url{http://pripareproject.eu/}} (PReparing Industry to Privacy-by-design by supporting its Application in REsearch) is an European research project that aimed to provide a set of documents regarding privacy engineering by covering activities such as privacy risk management, requirement analysis, design strategies, maintenance and compliance. To this end, it published the PRIPARE methodology handbook \cite{noauthor_pripare-methodology-handbook-final-feb-24-2016.pdf_nodate} providing guidelines for privacy and security by design. The handbook incorporates information based on a draft of GDPR\footnote{\url{The handbook was published in 2015, and incorporated known information about the GDPR up to that point in time.}} It provides foundational methodologies and reference models for carrying out privacy analysis, designing and implementing privacy enhancing systems, with templates for impact assessments and conformance. 
 
 \section{Semantic Web Technologies}\label{sec:background:semweb}
 % This section provides background information on the semantic web. It introduces the semantic web standards of RDF, RDFS, OWL, SPARQL, and SHACL.

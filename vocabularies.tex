@@ -758,17 +758,13 @@ Subsequent revisions included addition of new concepts associated with practical
 \subsubsection{Fulfilment of Competency Questions}
 An assessment of the extent to which GDPRov satisfies the competency questions by providing concepts and relationships is presented as part of its evaluation.
 The competency questions, summarised in \autoref{sec:gdprov:cq}, were used to guide the development of the ontology and therefore used to evaluate if the ontology meets the requirements of representing this information.
-\autoref{table:gdprov:cq} lists the concepts and properties relevant to answer the competency question. 
-
-Some questions which were not considered in scope regarding expression of activities are marked with \textit{N/S}. These questions either require more information to provide a concrete design pattern or have multiple possible representations of which it cannot be determined which is more useful from a legal compliance point of view. Examples include location of recipients - which can be expressed either through an property/annotation associated with a data sharing activity or attached with a particular third party; and specifying time limits or duration or conditional events associated with data storage and deletion periods. These have been identified as future work regarding further development of the ontology based on differing interpretations of representation, complexity of specifying values such as ``EU membership'' and  ``as long as required'', and the pending expert opinion of legal authorities on these issues through courts or executive decisions.
-
-From the presented evaluation, it can be concluded that GDPRov satisfies the requirements of answering  competency questions and identifies those that are needed to be resolved as future work based on availability of legal opinion and decisions. GDPRov thus fulfils the research objective $RO3(b)$ by providing representations of activities associated with personal data and consent in ex-ante and ex-post phases.
+\autoref{table:gdprov:cq} lists the concepts and properties relevant to answer the competency question.
 \begin{table}[htbp]
 \footnotesize
 \centering
 \caption{Concepts in GDPRov for answering competency questions}
 \rowcolors{1}{}{gray!10}
-\begin{tabularx}{\textwidth}{|l|X|p{5cm}|l|}
+\begin{tabularx}{\linewidth}{|l|X|p{5cm}|l|}
 \hline
 \textbf{CQ} & \textbf{Class} & \textbf{Property} & \textbf{Phase} \\ \hline
 \multicolumn{4}{|l|}{\textbf{Actors and Agents involved in activities}}  \\ \hline
@@ -808,6 +804,10 @@ From the presented evaluation, it can be concluded that GDPRov satisfies the req
 \end{tabularx}
 \label{table:gdprov:cq}
 \end{table}
+
+Some questions which were not considered in scope regarding expression of activities are marked with \textit{N/S}. These questions either require more information to provide a concrete design pattern or have multiple possible representations of which it cannot be determined which is more useful from a legal compliance point of view. Examples include location of recipients - which can be expressed either through an property/annotation associated with a data sharing activity or attached with a particular third party; and specifying time limits or duration or conditional events associated with data storage and deletion periods. These have been identified as future work regarding further development of the ontology based on differing interpretations of representation, complexity of specifying values such as ``EU membership'' and  ``as long as required'', and the pending expert opinion of legal authorities on these issues through courts or executive decisions.
+
+From the presented evaluation, it can be concluded that GDPRov satisfies the requirements of answering  competency questions and identifies those that are needed to be resolved as future work based on availability of legal opinion and decisions. GDPRov thus fulfils the research objective $RO3(b)$ by providing representations of activities associated with personal data and consent in ex-ante and ex-post phases.
 
 \subsubsection{Comparison with SotA}
 The representation of process flows and activities associated with GDPR compliance in existing approaches was presented and analysed as part of the state of the art in \autoref{sota:analysis:process-flows}.
