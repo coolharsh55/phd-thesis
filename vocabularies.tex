@@ -648,8 +648,8 @@ GDPRov defines steps to indicate automated execution and user interactions regar
 To indicate the legal basis associated with a process or a step, the property \texttt{hasLegalBasis} is provided.
 \begin{figure}[htbp]
     \centering
-    \missingfigure[figcolor=white]{}
-    \caption{Figure describing GDPRov concepts by extending PROV-O and P-Plan}
+    \includegraphics[width=\linewidth]{img/GDProv_relation_prov_pplan.png}
+    \caption{GDPRov concepts derived by extending PROV-O and P-Plan}
     \label{fig:vocabs:gdprov-overview}
 \end{figure}
 
@@ -658,18 +658,18 @@ Activities associated with the lifecycle of personal data constitute of collecti
 GDPRov provides broad and abstract processes to represent data access, data archival, data erasure, and data rectification given the need to execute these using several more steps.
 GDPRov also provides representations of actions in ex-ante phase as \texttt{DataStep} which extends \texttt{p-plan:Step} and in ex-post phase as \texttt{DataActivity} which extends \texttt{p-plan:Activity}.
 These are further extended to distinguish between data collection, data deletion, data sharing, data storage, data archival, data transfer, data transformation, data usage, and rectification of data.
-A visual summary of these is provided in \autoref{fig:vocabs:gdprov-data-lifecycle}.
+A summary of steps describing a data lifecycle using GDPRov is provided in \autoref{fig:vocabs:gdprov-data-lifecycle}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/GDPRov_data_lifecycle.png}
+    \caption{Example steps depicting data lifecycle using GDPRov}
+    \label{fig:vocabs:gdprov-data-lifecycle}
+\end{figure}
 
 The anonymisation of data is defined as a sub-class of data transformation to indicate the transformation of data that takes place when anonymising it.
 As GDPR obligations are based on the level of anonymity and the capability of de-anonymising it from an organisation's point of view, GDPRov provides the concept of \texttt{anonymisation level} to indicate the state of anonymity the data is in.
 GDPRov defines four levels of anonymisation based on existing work in representing anonymous data \cite{hintze_meeting_2017}, which constitute of data that is completely anonymised, completely de-anonymised, pseudo-anonymised, and pseudo-organisational-anonymised where the organisation does not have the data required to de-anonymise it and can thus internally utilise it as if it were completely anonymous data.
 The sharing of data consists of interactions with actors or agents, which are represented by \texttt{prov:Agent} and associated with the respective steps and activities using extended properties.
-\begin{figure}[htbp]
-    \centering
-    \missingfigure[figcolor=white]{}
-    \caption{Figure describing data lifecycle defined using GDPRov}
-    \label{fig:vocabs:gdprov-data-lifecycle}
-\end{figure}
 
 The personal data used within activities is represented by \texttt{PersonalData} which is sub-classed from \texttt{p-plan:Variable} for ex-ante representation and by \texttt{PersonalDataEntity} which is sub-classed from \texttt{prov:Entity} for ex-post representation.
 Further categorisation of personal data into anonymised, sensitive, and representing user identifier is provided through sub-classes.
@@ -678,17 +678,17 @@ Further categorisation of personal data into anonymised, sensitive, and represen
 Activities associated with consent and its lifecycle are represented in ex-ante phase by sub-classing \texttt{p-plan:Step} as \texttt{ConsentStep} and in ex-post phase by sub-classing \texttt{p-plan:Activity} as \texttt{ConsentActivity}.
 These are further sub-classed to represent the acquisition, archival, modification, and withdrawal of consent.
 Amongst these, withdrawal of consent is defined as sub-class of modification since it modifies the state of consent.
-A visual summary of these is provided in \autoref{fig:vocabs:gdprov-consent-lifecycle}.
+A visual summary of the steps in a consent lifecycle is provided in \autoref{fig:vocabs:gdprov-consent-lifecycle}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/GDPRov_consent_lifecycle.png}
+    \caption{Figure describing consent lifecycle defined using GDPRov}
+    \label{fig:vocabs:gdprov-consent-lifecycle}
+\end{figure}
 
 The artefacts associated with consent and used in activities include the choices or offer of consent provided to the individual and the subsequent consent given by the individual.
 To represent these in ex-ante phase, GDPRov provides the concepts of \texttt{ConsentAgreementTemplate} to represent the template offered to collect consent, \texttt{ConsentAgreement} to indicate the given consent, and \texttt{TermsAndConditions} to indicate the policies or terms and conditions.
 The corresponding concepts in ex-post phase are \texttt{GivenConsentTemplate}, \texttt{GivenConsent}, and \texttt{TermsAndConditionsEntity}.
-\begin{figure}[htbp]
-    \centering
-    \missingfigure[figcolor=white]{}
-    \caption{Figure describing consent lifecycle defined using GDPRov}
-    \label{fig:vocabs:gdprov-consent-lifecycle}
-\end{figure}
 
 \subsubsection{Depicting Compliance-related processes}
 In addition to representing activities associated with personal data and consent, GDPRov also provides reprentations for compliance-related processes.
