@@ -15,15 +15,19 @@
 \usepackage{tabularx}
 \usepackage{ltablex}
 \usepackage{fancyhdr}
-% \usepackage{amsfonts}
 \usepackage{pifont}
 \usepackage{url}
 \usepackage{listings}
 \usepackage{minted}
-\usepackage{csquotes}
+% \usepackage{csquotes}
 
-\usepackage[backend=biber,style=ieee]{biblatex} %added
-\addbibresource{Thesis.bib}
+% \usepackage[backend=biber,style=ieee,natbib=true]{biblatex} %added
+% \addbibresource{Thesis.bib}
+
+\usepackage[numbers]{natbib}
+\bibliographystyle{abbrvnat}
+\usepackage{bibentry}
+\nobibliography*
 
 % ToDo notes
 \usepackage{todonotes}
@@ -157,9 +161,9 @@ Harshvardhan J. Pandit
 \include{testing}
 \include{conclusion}
 
-% \renewcommand\bibname{References}
+\renewcommand\bibname{References}
 \addcontentsline{toc}{chapter}{References}
-% \bibliography{Thesis}
-\printbibliography[title={References}]
+\bibliography{Thesis}
+% \printbibliography[title={References}]
 
 \end{document}
