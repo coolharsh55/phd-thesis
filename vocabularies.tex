@@ -48,7 +48,7 @@ OOPS! was used for detecting catalogued common pitfalls in the periodic evaluati
 Quality was also assessed and maintained by asserting the sufficiency of developed ontology to represent and query based on collected use-cases. Where the ontology was found deficient in concepts and relationships, these were added in the next iteration. Where existing models were found to be insufficient or incorrect, these were rectified by either removing the offending parts or re-designing them - based on its impact on compatibility with previous versions.
 
 \subsubsection*{Ontology Documentation}
-Ontology documentation was created by using the WIDOCO\footnote{\url{https://dgarijo.github.io/Widoco/}} \cite{garijo_widoco:_2017} tool which uses ontology metadata to create HTML documents listing its classes and properties. Ontology metadata consists of information regarding the ontology as well as its concepts and properties integrated into the serialisation as annotations. WIDOCO provides a document of suggested metadata indicating best practices for ontology documentation, which the developed ontologies utilised. It builds upon the LODE\footnote{\url{http://www.essepuntato.it/lode}} tool which is itself a popular ontology documentation service.
+Ontology documentation was created by using the WIDOCO\footnote{\url{https://dgarijo.github.io/Widoco/}} \cite{garijo_widoco_2017} tool which uses ontology metadata to create HTML documents listing its classes and properties. Ontology metadata consists of information regarding the ontology as well as its concepts and properties integrated into the serialisation as annotations. WIDOCO provides a document of suggested metadata indicating best practices for ontology documentation, which the developed ontologies utilised. It builds upon the LODE\footnote{\url{http://www.essepuntato.it/lode}} tool which is itself a popular ontology documentation service.
 
 The output of the WIDOCO tool is a HTML document along with various serialisations of the ontology for content negotiation which can be published and used as an online resource. Additional information was manually added to the HTML documentation regarding aims and methodologies used in the development of ontologies as well as examples of use-cases and diagrams intended for human consumption. WIDOCO integrates OOPS! to detect pitfalls in the ontology and documents the output. It also provides an interactive visualisation of the ontology using WebVOWL\footnote{\url{http://vowl.visualdataweb.org/webvowl.html}}.
 
@@ -266,26 +266,26 @@ Taking the example of Right to Data Portability, the EARL report in Listing.\ref
 @prefix dct:  http://purl.org/dc/terms/ .
 @prefix gdprtext: http://purl.org/adaptcentre/resources/GDPRtEXT# .
 
-:_org_dataportability
+_org_dataportability
     a    earl:TestSubject, earl:Software ;
     dct:description "System that handles data portability requests"@en ;
     dct:title "Data Portability Handler"@en .
 
-:_system_dataportability
+_system_dataportability
     a    earl:Assertor ;
     dct:description "Module checking data portability obligations"@en ;
     dct:hasVersion "1.4" ;
     dct:title "DataPortability Module"@en ;
     earl:asserts { 
-      :_org_dataportability :_result_pass :_test_provide_data_copy } .
+      _org_dataportability _result_pass _test_provide_data_copy } .
 
-:_result_pass
+_result_pass
     a    earl:ResultProperty ;
     earl:date "2018-01-01" ;
     earl:validity earl:Pass ;
     earl:confidence earl:High .
 
-:_test_provide_data_copy
+_test_provide_data_copy
     a    earl:TestCase ;
     earl:testMode earl:automatic ;
     dct:title "Test provision of data copy"@en ;
@@ -1437,7 +1437,7 @@ The ontology engineering process was presented in \autoref{sec:intro:ontology-en
 It also described utilisation of compliance questions presented in \autoref{sec:info:compliance-questions} as competency questions.
 
 The presented ontologies consisted of GDPRtEXT, GDPRov, and GConsent.
-GDPRtEXT, presented in \autoref{sec:voc:GDPRtEXT}, provides a linked data version of the text of GDPR created by extending the official ELI \cite{noauthor_council_2012} ontology to represent its granular clauses. It also presents a SKOS glossary of concepts associated with GDPR compliance. GDPRtEXT enables the association and linking of information with the concepts and text of GDPR through the use of persistent IRIs. It thus fulfils research objective $RO3(a)$. GDPRtEXT extends the state of the art by providing an ELI-compatible extension capable of representing GDPR clauses at a granular level. It is also novel in providing a thesauri of concepts associated with GDPR compliance.
+GDPRtEXT, presented in \autoref{sec:voc:GDPRtEXT}, provides a linked data version of the text of GDPR created by extending the official ELI \cite{ELI_2012} ontology to represent its granular clauses. It also presents a SKOS glossary of concepts associated with GDPR compliance. GDPRtEXT enables the association and linking of information with the concepts and text of GDPR through the use of persistent IRIs. It thus fulfils research objective $RO3(a)$. GDPRtEXT extends the state of the art by providing an ELI-compatible extension capable of representing GDPR clauses at a granular level. It is also novel in providing a thesauri of concepts associated with GDPR compliance.
 
 GDPRov provides an OWL2 ontology for representing activities associated with personal data and consent in ex-ante and ex-post phases. It is presented in \autoref{sec:voc:GDPRov}.
 The ontology is based on extending the existing ontologies of PROV-O \cite{lebo_prov-o_2013} and P-Plan \cite{garijo_p-plan_2014} with GDPR terminology using GDPRtEXT to represent activities in context of compliance requirements. GDPRov is novel in the use of PROV-O and P-Plan together based on the scientific workflow model to represent processes for GDPR compliance.

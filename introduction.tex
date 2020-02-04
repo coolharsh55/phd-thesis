@@ -4,19 +4,19 @@
 \section{Background \& Motivation}\label{sec:intro:background}
 % privacy laws across the world
 % disconnect with technological progress
-To date, 132 of the 206 states listed by the United Nations (UN) have a privacy law which regulates the usage of personal data \cite{greenleaf_global_2019}.
+To date, 132 of the 206 states listed by the United Nations (UN) have a privacy law which regulates the usage of personal data \cite{greenleaf_global_2019-1}.
 However, their intended application suffers from a disconnect with the rapid progresses in technology. In particular, the use of internet as a medium for data exchange and its pervasiveness and connectivity to individuals via devices such as the smartphone has led to industrial data harvesting at large scales \cite{christl_networks_2016}. 
-To counter this problem, lawmakers in the European Union (EU) passed the General Data Protection Regulation (GDPR) \cite{noauthor_regulation_2016} in 2016 with the aim of providing individuals with the right to information and control over use of their personal data, and to simplify requirements for organisations through a unified regulation across the EU.
+To counter this problem, lawmakers in the European Union (EU) passed the General Data Protection Regulation (GDPR) \cite{Regulation_GDPR} in 2016 with the aim of providing individuals with the right to information and control over use of their personal data, and to simplify requirements for organisations through a unified regulation across the EU.
 
 The GDPR has received a large amount of attention due to its prospective fines which can be up to 4\% of an organisation's annual turnover or €20 million - whichever is greater. 
-To date, there have been over 70 publicly known instances of fines associated with the GDPR \cite{noauthor_gdpr_nodate}, the largest of which was the disruptive €50 million fine to internet giant and Android developer Google \cite{noauthor_cnils_2019}.
-Being a regulation and replacing the Data Protection Directive (DPD) \cite{noauthor_directive_1995}, GDPR provides a uniform set of compliance requirements across the EU, and is the basis of national privacy laws implemented in its member states \cite{mccullagh_national_2019}.
-Furthermore, GDPR has influenced other privacy laws, such as the California Consumer Protection Act (CCPA) \cite{noauthor_assembly_2018}, thereby further expanding similarities in compliance requirements across the globe.
+To date, there have been over 70 publicly known instances of fines associated with the GDPR \cite{GDPR_fines_tracker}, the largest of which was the disruptive €50 million fine to internet giant and Android developer Google \cite{CNIL_GOOGLE_2019}.
+Being a regulation and replacing the Data Protection Directive (DPD) \cite{directive_DPD}, GDPR provides a uniform set of compliance requirements across the EU, and is the basis of national privacy laws implemented in its member states \cite{mccullagh_national_2019}.
+Furthermore, GDPR has influenced other privacy laws, such as the California Consumer Protection Act (CCPA) \cite{CCPA}, thereby further expanding similarities in compliance requirements across the globe.
 
 The most visible change of the GDPR for most individuals is the almost ubiquitous `consent dialogue' on websites, required for obtaining `consent' - one of the legal basis for processing of personal data in GDPR.
 Despite being a legal requirement, the dialogue is notorious for being difficult to use effectively and subverting the spirit of the GDPR \cite{machuletz_multiple_2019,utz_informed_2019}.
 The issue of consent itself has further received significant interest in terms of technological solutions developed for its compliance due to the right to withdraw consent afforded by the GDPR, which enables an individual to revoke their previously given consent, after which the processing of personal data based on it must be halted.
-While there is no known public knowledge of practices regarding consent being found unlawful, opinion provided by legal authoritative has expressed the need for greater transparency regarding the activities associated with acquiring consent \cite{noauthor_opinion_2019}.
+While there is no known public knowledge of practices regarding consent being found unlawful, opinion provided by legal authoritative has expressed the need for greater transparency regarding the activities associated with acquiring consent \cite{opinion_AG_2019}.
 
 % information associated with gdpr compliance
 Compared to other privacy laws, including its predecessor DPD, GDPR provides significantly stricter and verbose requirements for the processing of personal data and requires organisations to explicitly document information specific to its obligations in order to be compliant.
@@ -46,17 +46,17 @@ While contemporary methods are sufficient to meet legal requirements, their use 
 
 % linked data principles and ELI, Akoma Ntoso
 Governmental agencies across the globe have addressed this issue by adopting the principles of Linked Open Data \cite{bizer_linked_2011}, and have produced interoperable standards \cite{palmirani_akoma_2018,european_union_eli_2015,van_opijnen_european_2011} which facilitate use of information in technological solutions.
-In addition to Linked Data, these standards also implement the principles of the Semantic Web \cite{noauthor_semantic_nodate} by utilising the Resource Description Framework (RDF) \cite{noauthor_rdf_2014} to specify information in an interoperable and machine-readable manner.
+In addition to Linked Data, these standards also implement the principles of the Semantic Web \cite{semantic_web} by utilising the Resource Description Framework (RDF) \cite{RDF} to specify information in an interoperable and machine-readable manner.
 This has paved the way for development of technologies that address challenges associated with legal compliance through greater use of automation and scale.
 Consequently, the use of Linked Data and Semantic Web within the legal domain has resulted in the development of ontologies along the dimensions of organising and structuring information, reasoning and problem solving, semantic indexing and search, semantic integration and interoperability, and understanding the domain \cite{rodrigues_legal_2019}.
-Semantic Web is also being used to address the challenges associated with GDPR compliance through commercial solutions as well as large-scale European research projects such as SPECIAL \cite{noauthor_scalable_nodate}, MIREL \cite{noauthor_mirel_nodate}, DAPRECO \cite{noauthor_data_2018-1}, BPR4GDPR \cite{noauthor_bpr4gdpr_nodate}, RestAssured \cite{noauthor_restassured_nodate}.
+Semantic Web is also being used to address the challenges associated with GDPR compliance through commercial solutions as well as large-scale European research projects such as SPECIAL \cite{SPECIAL}, MIREL \cite{MIREL}, DAPRECO \cite{DAPRECO}, BPR4GDPR \cite{BPR4GDPR}, RestAssured \cite{RestAssured}.
 The technological solutions developed within these utilise ontologies to represent the information required for compliance, and a corresponding approach that expresses and evaluates obligations for compliance.
 
 %%% link between GDPR compliance and research question???
 The work presented in this thesis concerns utilising the Semantic Web to address GDPR compliance by representing activities involved in the processing of personal data in both ex-ante and ex-post manner.
 This includes activities associated with acquiring consent as well owing to the role of consent as a legal basis and the assertion that consent itself is also personal data.
 In particular, the focus of the thesis is on representing information relevant for GDPR compliance in a manner that can be associated with the text of the GDPR following Linked Data Principles.
-It uses existing standards such as Resource Description Framework (RDF) \cite{noauthor_rdf_2014} and Web Ontology Language (OWL2) \cite{noauthor_owl_2012} to represent information as ontologies, SPARQL \cite{noauthor_sparql_nodate} for querying information, and Shapes Constraint Language (SHACL) \cite{knublauch_shapes_2017} to validate information.
+It uses existing standards such as Resource Description Framework (RDF) \cite{RDF} and Web Ontology Language (OWL2) \cite{OWL} to represent information as ontologies, SPARQL \cite{SPARQL} for querying information, and Shapes Constraint Language (SHACL) \cite{SHACL} to validate information.
 The use of semantic web standards and technologies enables the information to be persisted in a machine-readable, interoperable, and queryable form - which readily lends itself to automation using technological solutions in the areas of legal compliance and its documentation.
 
 % Research Scope 
@@ -173,7 +173,7 @@ A summary of the methodology is as follows:
     \item Dissemination
 \end{enumerate}
 
-Each ontology was documented with metadata based on best practices advocated by the community\footnote{\url{https://dgarijo.github.io/Widoco/doc/bestPractices/index-en.html}}, which enabled automatic generation of documentation using the WIDOCO tool \cite{garijo_widoco:_2017}.
+Each ontology was documented with metadata based on best practices advocated by the community\footnote{\url{https://dgarijo.github.io/Widoco/doc/bestPractices/index-en.html}}, which enabled automatic generation of documentation using the WIDOCO tool \cite{garijo_widoco_2017}.
 The namespace IRI was defined with persistent identifiers through the use of W3ID\footnote{\url{http://w3id.org/}}.
 The ontology itself was archived in the public open repository Zenodo\footnote{\url{https://zenodo.org/}} which provided it with versioned DOIs.
 All code and resources associated with the ontologies were also published on an open and public code repository.
@@ -233,7 +233,7 @@ It is currently common practice to refer to concepts within legal documents such
 GDPRtEXT provides a glossary or vocabulary of concepts defined or referred to within the GDPR to assist with use of concepts defined or mentioned within the GDPR. Each concept or term is associated with its definition or articles of relevance within the GDPR by using the linked data version of text provided by GDPRtEXT. This provides another way to link information to the GDPR through the use of concepts, and has been used to indicate the source in definitions of terms and relationships for vocabularies (see Section \ref{sec:contributions:ontologies}).
 
 GDPRtEXT fills an important gap in the state of the art (as investigated in Chapter \ref{chapter:sota}) by providing a mechanism to link information with the text of the GDPR in a machine-readable manner, and it therefore the only vocabulary with its terms associated with their definition and usage in GDPR .
-While there are other comparable and relevant methods to address such information \cite{agarwal_legislative_2018,palmirani_pronto:_2018-1}, GDPRtEXT is currently the only one  that uses and extends ELI \cite{noauthor_council_2012} which is the official metadata standard for European legislation documents, and is also the only openly accessible ontology regarding GDPR and its concepts \cite{leone_taking_2019}.
+While there are other comparable and relevant methods to address such information \cite{agarwal_legislative_2018,palmirani_pronto_2018-1}, GDPRtEXT is currently the only one  that uses and extends ELI \cite{ELI_2012} which is the official metadata standard for European legislation documents, and is also the only openly accessible ontology regarding GDPR and its concepts \cite{leone_taking_2019}.
 
 GDPRtEXT has been released\footnote{\url{https://w3id.org/GDPRtEXT}} under the open license (CC-by-4.0) and has been incorporated into Ireland's open data portal\footnote{\url{https://data.gov.ie/dataset/gdprtext}}.
 The provision of machine-readable concepts and reference to clauses of the GDPR makes GDPRtEXT an important resource for use in legal knowledge graphs.
@@ -250,12 +250,12 @@ GDPRov\footnote{\url{https://w3id.org/GDPRov}} and GConsent\footnote{\url{https:
 
 \subsubsection{GDPRov}
 GDPRov enables representation of the processes and activities associated with the lifecycle of personal data and consent, and  fulfils the research objectives $RO3(b)$ and $RO3(c)$.
-GDPRov extends PROV-O \cite{lebo_prov-o:_2013} - which is the W3C standard for defining provenance information - to define ex-post (activity logs indicating things that have happened) information, and P-Plan \cite{garijo_p-plan_2014} to define ex-ante (as an abstract model, template, or plan) representations of PROV activities based on scientific workflows.
+GDPRov extends PROV-O \cite{lebo_prov-o_2013} - which is the W3C standard for defining provenance information - to define ex-post (activity logs indicating things that have happened) information, and P-Plan \cite{garijo_p-plan_2014} to define ex-ante (as an abstract model, template, or plan) representations of PROV activities based on scientific workflows.
 This enables it to represent planned activities as a model or template which is required to determine ex-ante compliance, and to associate it with its corresponding executions which are required to determine ex-post compliance.
 The linking of information between ex-ante and ex-post phase in GDPRov comes from its basis in scientific workflows. It also provides the opportunity to exploit this association for a more efficient approach in evaluation of compliance, as proposed and demonstrated in \autoref{sec:testing:shacl}, and summarised as a contribution in the sections below.
 % In this approach, ex-post activities are assumed to be compliant for information already found compliant in their ex-ante representation. Therefore, ex-post activities only need to be evaluated for information and validations specific to the ex-post phase, thus saving the repetition in evaluations of information. An application of this approach is demonstrated using SHACL and features prominent use of GDPRov and GConsent in \autoref{sec:testing:shacl}.
 
-The state of art contains ontologies for representing activities and their provenance related to the GDPR \cite{pasquier_data_2018,palmirani_pronto:_2018-1}, including those utilising PROV \cite{belhajjame_provenance_2018,bonatti_special_2018-1}, and holistic approaches combining ex-ante and ex-post compliance \cite{dullaert_d3.4_2019}.
+The state of art contains ontologies for representing activities and their provenance related to the GDPR \cite{pasquier_data_2018,palmirani_pronto_2018-1}, including those utilising PROV \cite{belhajjame_provenance_2018,bonatti_special_2018-1}, and holistic approaches combining ex-ante and ex-post compliance \cite{dullaert_d3.4_2019}.
 In comparison, GDPRov provides the most exhaustive vocabulary of concepts based on the GDPR (based on comparisons demonstrated in Chapter \ref{chapter:vocabularies}), and is the only ontology to provide ex-ante and ex-post concepts within the same ontology.
 GDPRov thus advances the state of the art by providing a larger vocabulary for modelling and representing activities based on GDPR concepts.
 
@@ -275,8 +275,8 @@ In comparison with the state of the art, GConsent provides greater representatio
 Another minor contribution of this thesis is the utilisation of SPARQL to query  information relevant for GDPR compliance, which fulfils research objective $RO4$.
 The use of developed ontologies, namely - GDPRtEXT, GDPRov, and GConsent - provide representation of concepts associated with GDPR for use in SPARQL queries to represent compliance questions derived from state of the art (see Chapter \ref{chapter:information}).
 
-Where approaches in the state of the art also use SPARQL to represent questions for compliance \cite{agarwal_legislative_2018,palmirani_pronto:_2018}, the work presented in \autoref{sec:testing:sparql} regarding querying using SPARQL is the only one within the state of the art to derive such queries from the questions used in an investigation of compliance, i.e. compliance questions as presented in \autoref{sec:info:compliance-questions}.
-A practical application demonstrates SPARQL queries derived from questions provided by the Irish Data Protection Commission for assisting organisations with their compliance readiness \cite{noauthor_gdpr_2017}, and shows use of SPARQL in assisting the investigation process associated with compliance.
+Where approaches in the state of the art also use SPARQL to represent questions for compliance \cite{agarwal_legislative_2018,palmirani_pronto_2018}, the work presented in \autoref{sec:testing:sparql} regarding querying using SPARQL is the only one within the state of the art to derive such queries from the questions used in an investigation of compliance, i.e. compliance questions as presented in \autoref{sec:info:compliance-questions}.
+A practical application demonstrates SPARQL queries derived from questions provided by the Irish Data Protection Commission for assisting organisations with their compliance readiness \cite{GDPR_readiness_checklist}, and shows use of SPARQL in assisting the investigation process associated with compliance.
 This application of SPARQL was published in a peer-reviewed publication \cite{pandit_queryable_2018} and was presented to members of the Irish Data Protection Commission as part of research developed in this thesis.
 
 \subsection{Framework for Validating Information using SHACL Compliance}\label{sec:contributions:validation}
@@ -292,7 +292,7 @@ The framework suggests a more efficient form of validation by reusing ex-ante va
 The demonstration of the framework and the approach consists of evaluating consent on a real-world website and generate a `compliance report' listing status of validations linked to GDPR.
 The framework and approach have been published in peer-reviewed publications \cite{pandit_towards_2018,pandit_exploring_2018,pandit_test-driven_2019}
 
-Related work in the state of the art uses a variety of approaches in the validation and assessment of compliance. The SPECIAL project has investigated the use of OWL2 reasoners to validate consent at ex-ante and ex-post stages \cite{bonatti_fast_2018,dullaert_d3.4_2019}, the application of ODRL policies as a compliance checking mechanism \cite{agarwal_legislative_2018,vos_odrl_2019}. The MIREL project has proposed the use of deontic logic for legal reasoning through the use of LegalRuleML \cite{palmirani_pronto:_2018,monica_modelling_2018}, while the BPR4GDPR project proposes checking provenance logs for conformance to predetermined processes (ex-post analysis) \cite{mehr_compliance_2019}.
+Related work in the state of the art uses a variety of approaches in the validation and assessment of compliance. The SPECIAL project has investigated the use of OWL2 reasoners to validate consent at ex-ante and ex-post stages \cite{bonatti_fast_2018,dullaert_d3.4_2019}, the application of ODRL policies as a compliance checking mechanism \cite{agarwal_legislative_2018,vos_odrl_2019}. The MIREL project has proposed the use of deontic logic for legal reasoning through the use of LegalRuleML \cite{palmirani_pronto_2018,monica_modelling_2018}, while the BPR4GDPR project proposes checking provenance logs for conformance to predetermined processes (ex-post analysis) \cite{mehr_compliance_2019}.
 A similar use of SHACL utilising P-Plan workflows to validate policies expressed in ODRL for GDPR compliance has been proposed \cite{lieber_policy-compliant_2019}, which provides future directions for application of this research.
 Compared to the state of the art, the approach presented in this thesis is novel in its utilisation of SHACL to validate information and link its results with the GDPR for compliance. It is also novel in its combination and reuse of ex-ante and ex-post validations for compliance.
 
