@@ -20,10 +20,12 @@
 \usepackage{url}
 \usepackage{listings}
 \usepackage{minted}
-\usepackage[numbers]{natbib}
-\bibliographystyle{plainnat}
-\usepackage{bibentry}
-\nobibliography*
+\usepackage{csquotes}
+
+\usepackage[backend=biber,style=ieee]{biblatex} %added
+\addbibresource{Thesis.bib}
+
+% ToDo notes
 \usepackage{todonotes}
 
 % redefine autoref macros
@@ -31,9 +33,6 @@
 \renewcommand*{\sectionautorefname}{Section}
 \renewcommand*{\subsectionautorefname}{Section}
 \providecommand*{\listingautorefname}{Listing}
-
-% line numbers for review
-% \usepackage[right]{lineno}
 
 % line spacing
 \onehalfspacing
@@ -48,8 +47,6 @@
 \setlist{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
 
 % sans-serif
-% \renewcommand{\familydefault}{\sfdefault}
-% \usepackage{cmtt}
 \usepackage{palatino}
 \renewcommand{\familydefault}{\rmdefault}
 
@@ -63,8 +60,6 @@
 
 % chapter headings
 \usepackage[raggedright]{titlesec}
-% \titleformat{\chapter}[hang] 
-% {\normalfont\huge\bfseries}{\thechapter}{1cm}{}
 
 \title{Representing Activities associated with Processing of Personal Data and Consent using Semantic Web for GDPR Compliance}
 \author{Harshvardhan J. Pandit}
@@ -104,11 +99,6 @@
 
 \begin{document}
 
-% \maketitle
-% \setcounter{tocdepth}{3}
-
-% copyright page
-% \newpage
 \pagenumbering{roman}
 \input{cover}
 
@@ -167,7 +157,9 @@ Harshvardhan J. Pandit
 \include{testing}
 \include{conclusion}
 
+% \renewcommand\bibname{References}
 \addcontentsline{toc}{chapter}{References}
-\bibliography{Thesis}
+% \bibliography{Thesis}
+\printbibliography[title={References}]
 
 \end{document}
