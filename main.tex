@@ -1,4 +1,5 @@
 \documentclass[a4paper,oneside,11pt]{book}
+% \documentclass[a4paper,openany,11pt]{book}
 % change oneside to openany for double sided
 \usepackage[a4paper,top=20mm,bottom=20mm,left=35mm,right=20mm]{geometry}
 \usepackage[utf8]{inputenc}
@@ -19,8 +20,8 @@
 \usepackage{url}
 \usepackage{listings}
 \usepackage{minted}
-% \usepackage{csquotes}
 
+\usepackage{csquotes}
 \usepackage[backend=biber,style=ieee,natbib=true]{biblatex} %added
 \addbibresource{Thesis.bib}
 
@@ -101,12 +102,31 @@
     }
 \makeatother
 
+\usepackage[
+    type={CC},
+    modifier={by},
+    version={4.0},
+]{doclicense}
+
 \begin{document}
 
 \pagenumbering{roman}
 \input{cover}
 
 \cleardoublepage
+
+% copyright
+\clearpage
+\vspace*{\fill}
+\begin{center}
+    \centering
+    \copyright\hspace{0.25cm} Harshvardhan J. Pandit, 2020\\
+    \url{https://harshp.com/research/phd-thesis}
+    \rule{\textwidth}{1pt}
+    \doclicenseThis
+\end{center}
+\vfill
+\clearpage
 
 % declaration
 \chapter*{Declaration}
