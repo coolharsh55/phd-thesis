@@ -21,7 +21,7 @@
 \usepackage{minted}
 % \usepackage{csquotes}
 
-\usepackage[backend=bibtex,style=ieee,natbib=true]{biblatex} %added
+\usepackage[backend=biber,style=ieee,natbib=true]{biblatex} %added
 \addbibresource{Thesis.bib}
 
 % \usepackage[numbers]{natbib}
@@ -164,6 +164,7 @@ Harshvardhan J. Pandit
 % \renewcommand\bibname{References}
 % \addcontentsline{toc}{chapter}{References}
 % \bibliography{Thesis}
+
 \sloppy
-\printbibliography
+\printbibliography[heading=bibintoc,title={References}]
 \end{document}
