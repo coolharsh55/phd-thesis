@@ -21,13 +21,13 @@
 \usepackage{minted}
 % \usepackage{csquotes}
 
-% \usepackage[backend=biber,style=ieee,natbib=true]{biblatex} %added
-% \addbibresource{Thesis.bib}
+\usepackage[backend=bibtex,style=ieee,natbib=true]{biblatex} %added
+\addbibresource{Thesis.bib}
 
-\usepackage[numbers]{natbib}
-\bibliographystyle{abbrvnat}
-\usepackage{bibentry}
-\nobibliography*
+% \usepackage[numbers]{natbib}
+% \bibliographystyle{abbrvnat}
+% \usepackage{bibentry}
+% \nobibliography*
 
 % ToDo notes
 \usepackage{todonotes}
@@ -161,9 +161,9 @@ Harshvardhan J. Pandit
 \include{testing}
 \include{conclusion}
 
-\renewcommand\bibname{References}
-\addcontentsline{toc}{chapter}{References}
-\bibliography{Thesis}
-% \printbibliography[title={References}]
-
+% \renewcommand\bibname{References}
+% \addcontentsline{toc}{chapter}{References}
+% \bibliography{Thesis}
+\sloppy
+\printbibliography
 \end{document}
