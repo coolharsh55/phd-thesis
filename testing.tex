@@ -197,7 +197,7 @@ The column `\textit{GDPRov}' indicates whether the current iteration of GDPRov p
 
 G1 & Demonstrative & personal data, data subjects & Y & N & Y & Y \\ \hline
 G2 & Demonstrative & personal data & Y & N & Y & Y \\ \hline
-G3 & Demonstrative & personal data, steps that collect data, entities that provde data & Y & Y & Y & Y \\ \hline
+G3 & Demonstrative & personal data, steps that collect data, entities that provide data & Y & Y & Y & Y \\ \hline
 G4 & Demonstrative & results of G1, processes acting on data & Y & N & Y & Y \\ \hline
 G5 & Demonstrative & results of G4, processes acting on data & Y & N & Y & Y \\ \hline
 G6 & Demonstrative & special category personal data & Y & N & Y & Y \\ \hline
@@ -215,7 +215,7 @@ R10 & Not-Implemented &  &  &  & N & S \\ \hline
 R2 & Assistive & steps that handle SAR & N & Y & N & Y \\ \hline
 R3 & Evaluative & steps that address right to data portability & Y & N & Y & Y \\ \hline
 R4 & Evaluative & steps that address right to rectification & Y & N & Y & Y \\ \hline
-R5 & Assistive & data subjet request, steps that process personal data & N & Y & N & Y \\ \hline
+R5 & Assistive & data subject request, steps that process personal data & N & Y & N & Y \\ \hline
 R6 & Not-Implemented &  &  &  & N & Y \\ \hline
 R7 & Evaluative & steps that process personal data & Y & N & Y & Y \\ \hline
 R8 & Assistive & steps that make automated decisions, consent & Y & Y & Y & Y \\ \hline
@@ -273,7 +273,7 @@ In this, some questions were found to be subjective or qualitative and thus coul
 A total of 33 SPARQL queries were created based on the above analysis of compliance questions and their requirements.
 The queries utilised GDPRov and GDPRtEXT ontologies to specify the information associated with the question.
 The SPARQL queries were published online\footnote{\url{https://w3id.org/GDPRep/checklist-demo/sparql-queries}}
-with a seperate files for each query associated with a compliance question, and a common file containing the common prefixes used in all queries.
+with a separate files for each query associated with a compliance question, and a common file containing the common prefixes used in all queries.
 
 As an example, Listing \autoref{code:sparql:dpc-G5} contains the corresponding SPARQL query for compliance question \texttt{G5} which concerns the legal basis used to justify processing of personal data. 
 The query retrieves information about steps and the processes along with the legal basis for their operation in ex-ante phase using the vocabulary provided by GDPRov.
@@ -630,7 +630,7 @@ The consent dialogue does not provide information on how the personal data categ
 For Psychographics, Quantcast specifies that it uses information from third-parties (Experian, Mastercard, DLX, TiVo, and Netwise) to `augment' its profiles. The third parties were defined as the the source for this data based on this information.
 The profiles mentioned above are described on the webpage as broad categories of data in the form of Shopping Interests, Media Interests, Business \& Occupation, Geography, and Political Interests. These were added to the data graph as personal data categories.
 
-\textit{Targeting} is a service which provides selecting audiences/users based on personal data attributes (similar to those in Measure). While Quantcast\footnote{The service provided by Quantcast is in essence similar to that provided by Facebook - it acts as the mediator between providers and consumers by matching the criteria to user profiles. For example, it mentions an example where the target audience is ``women 18-34 who love shopping, traveling and wine'', which implies that it must know about a) gender b) age range c) website history d) purchase history e) travel history, It further elaborates, ``We build a custom model based on millions of available data points about your audience, such as their pre-search behaviors, demographics, and past purchases.''} does not explicitly say that it uses the same personal data collected and used in Measure, this implication was implicit in its description. However, since this is an assumption, it was not included in the data graph.
+\textit{Targeting} is a service which provides selecting audiences/users based on personal data attributes (similar to those in Measure). While Quantcast\footnote{The service provided by Quantcast is in essence similar to that provided by Facebook - it acts as the mediator between providers and consumers by matching the criteria to user profiles. For example, it mentions an example where the target audience is ``women 18-34 who love shopping, travelling and wine'', which implies that it must know about a) gender b) age range c) website history d) purchase history e) travel history, It further elaborates, ``We build a custom model based on millions of available data points about your audience, such as their pre-search behaviours, demographics, and past purchases.''} does not explicitly say that it uses the same personal data collected and used in Measure, this implication was implicit in its description. However, since this is an assumption, it was not included in the data graph.
 
 \textit{Measurement} is a service similar to Measure and Targeting in its use of audience profile, with the key difference between provision of service beyond website audiences, such as for campaigns. It describes data categories such as Website Traffic, Demographics, Interests, Search behaviours, and Media consumption, which were added to the data graph.
 
