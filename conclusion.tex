@@ -69,14 +69,14 @@ The impact and extent of the contributions in terms of publications was listed i
 The impact and relevance of the work presented in this thesis also includes participation in the W3C Data Privacy Vocabularies and Controls Community Group (DPVCG) and its deliverable - the Data Privacy Vocabulary (DPV), as elaborated in \autoref{sec:intro:dpvcg}.
 
 \subsection*{Major Contributions}
-\subsubsection{GDPR as a Linked Data Resource}
+\subsubsection*{GDPR as a Linked Data Resource}
 The first major contribution, represented by GDPRtEXT, enables association of information with the concepts and text of GDPR using linked data principles. It provides machine-readable unique identifiers for each specific part (Chapter, Article, clauses etc.) of the GDPR by representing its text in RDF using an extension of the European Legislation Identifier (ELI) ontology. It also provides a SKOS vocabulary of concepts and terms defined or represented within the text of the GDPR. The usefulness of GDPRtEXT has been demonstrated in its use to define the source of terms in the ontologies presented in this thesis, as well as in linking information related to compliance with the relevant concepts and clauses of the GDPR.
 
 GDPRtEXT advances the state of the art in its provision of unambiguous and machine-readable representations of concepts and text of GDPR.
 It is currently the only vocabulary addressing GDPR that extends ELI, and the only open ontology for concepts associated with the GDPR \cite{leone_taking_2019}.
 GDPRtEXT is available under an open license (CC-by-4.0) along with its documentation at \url{https://w3id.org/GDPRtEXT/}, and has been incorporated into Ireland's open data portal as an dataset.
 
-\subsubsection{Ontologies for representing activities associated with personal data and consent}
+\subsubsection*{Ontologies for representing activities associated with personal data and consent}
 The second major contribution is the GDPRov and GConsent ontologies, which together enable representation of information about activities associated with personal data and consent relevant for investigation of GDPR compliance.
 
 GDPRov extends the existing ontologies of PROV-O and P-Plan with concepts and relationships specific to GDPR in order to represent provenance of personal data and consent at ex-ante and ex-post stages. Where ex-post representations are common as provenance logs, the ex-ante representations act as a model or plan or template of intended activities for evaluation of compliance. Furthermore, provenance logs (ex-post) can be linked to their models (ex-ante) to represent the relationship between planning and implementation of processes within an organisation. GDPRov also enables representation of other activities associated with the GDPR such as the handling of rights and data breaches.
@@ -129,27 +129,27 @@ This can be further expanded to align existing approaches and ontologies through
 % , and to establish a library of design patterns for use of concepts for GDPR compliance.
 
 \subsection*{Expand Scope of Ontologies}
-\subsubsection{Incorporate future updates to ELI into GDPRtEXT}
+\subsubsection*{Incorporate future updates to ELI into GDPRtEXT}
 GDPRtEXT addresses the aim of linking to specific parts of the GDPR by extending the ELI ontology. The EU Publications Office, as the official developers and maintainers of ELI, are currently working on updating the ELI ontology to enable such linking for all published documents. Their work will provide authoritative URIs for all aspects of a legal document, and will also enable identification of definitions. Once published, the updated ELI ontology will make the GDPRtEXT extension redundant. However, GDPRtEXT will still have uses as a SKOS vocabulary of concepts that is used by ontologies such as GDPRov and GConsent to define the source of their concepts and relationships. By updating GDPRtEXT to use the updated ELI ontology, the interpretation of GDPR as a linked data resource can be provided using the authoritative URIs for use with the provided SKOS vocabulary.
 
-\subsubsection{Create vocabulary for expressing GDPR Compliance}
+\subsubsection*{Create vocabulary for expressing GDPR Compliance}
 The vocabularies associated with GDPR, including those presented in the state of the art in \autoref{chapter:sota} and as contributions of the thesis in \autoref{chapter:vocabularies}, address compliance by associating information with its requirements. This establishes the opportunity to create a vocabulary that represents compliance itself by describing the state of information in fulfilling requirements. Such a vocabulary would be of use to supervisory authorities as well as organisations in generating documentation demonstrating the compliance of information as well as the degree to which it was fulfilled or achieved.
 
 % \subsubsection{Enable use of mappings to align existing information systems}
 % - Use the ontologies and queries to create an abstraction over existing information system so that existing systems can use the linked queries using SPARQL and mappings
 
-\subsubsection{Expand GConsent to capture real-world interactions on the web}
+\subsubsection*{Expand GConsent to capture real-world interactions on the web}
 The aim of GConsent, as presented in this thesis, is to represent information about consent. While it is a comprehensive and verbose ontology compared to the state of the art, it currently is not sufficient to express the nuances and complexities of real-world interactions - such as those found in the consent mechanisms on websites. More specifically, it lacks a way to describe the intricate relationships of different organisations, including third parties, and the combined collection and dissemination of consent which happens via real-time bidding online. This can be remedied by incorporating legal opinions on online consent as they appear in the coming periods of time.
 Currently, GConsent is also being used in conjunction with the DPV to create an updated Consent Receipt \cite{lizar_consent_2017} based on requirements of consent under GDPR.
 
 \subsection*{Generate Assistive Systems for Compliance}
-\subsubsection{Incorporate GDPRov and GConsent in the SPECIAL compliance checker}
+\subsubsection*{Incorporate GDPRov and GConsent in the SPECIAL compliance checker}
 The compliance checker developed by the SPECIAL project \cite{kirrane_scalable_2018} uses a controlled vocabulary consisting of personal data, processing, purpose, storage, and recipients. It is possible to use the SPECIAL compliance checker to check the compliance of information defined using GDPRov and GConsent by modifying the checker to target these vocabularies or by alignment of SPECIAL vocabularies with GDPRov and GConsent. This would enable the work presented in this thesis to take advantage of large scale analysis and transparent log mechanisms provided by the SPECIAL architecture. Evaluation of the approach would be based on analysis of scalability and performance to ascertain extent of its benefit.
 
-\subsubsection{Privacy Policy annotation and automatic generation}
+\subsubsection*{Privacy Policy annotation and automatic generation}
 A privacy policy fulfils the legal requirement for dissemination of information concerning the processing of personal data. Existing approaches for annotating privacy policies \cite{harkous_polisis_2018} do not take into account the semantics of associated information, nor effects of GDPR on privacy policy as a document. The argument for a privacy policy dataset specifically annotated for GDPR \cite{galle_case_2019} consists of using concepts relevant to the legislation in the annotation process. This can be achieved through use of GDPRtEXT as a vocabulary of GDPR concepts. In addition, workflows represented using GDPRov provide the necessary information in order to generate a partial privacy policy, and can be used to automate generation of text by converting the processing workflows into natural language text. An early exploration of this work regarding annotation of  privacy policy and personalising was presented in \cite{pandit_personalised_2018}.
 
-\subsubsection{Design patterns for GDPR compliance}
+\subsubsection*{Design patterns for GDPR compliance}
 While there are verbose ontologies to represent information associated with compliance, their specific usage is dependant on the applied use-case. To facilitate adoption and usage, a library of design patterns can be created where each pattern is concerned with representing information associated with compliance for a specific concept or clause of the GDPR. For example: a design pattern representing periodic collection of GPS data from smartphone devices, which is linked with applicable clauses of GDPR as well as requirements or constraints it must fulfil in order to be compliant. Such design patterns can be used as the basis for assistive tools that generate and assess information for compliance.
 
 % \subsubsection{Tool to validate and assess compliance documentation}

@@ -48,7 +48,7 @@ The guide divides the questions into contextual sections based on addressing spe
 \subsubsection{Steps of the methodology}
 The steps followed in utilising the questions in the guide to create SPARQL queries and demonstrate their application were as follows:
 \begin{enumerate}
-    \item Analyse questions within the document to identify corresponding concepts and relationships in GDPRov and GDPRtEXT (see below)
+    \item Analyse questions within the document to identify corresponding concepts and relationships in GDPRov and GDPRtEXT (see below). The questions largely concerned details of processing activities and organisational practices and therefore did not require use of GConsent.
     \item Represent questions as SPARQL queries using GDPRov and GDPRtEXT (see below)
     \item Create a synthetic use-case based on processing of personal data with GDPRov and GDPRtEXT used to represent information (see \autoref{sec:testing:sparql:demo})
     \item Execute SPARQL queries over use-case to retrieve answers for compliance questions (see \autoref{sec:testing:sparql:demo})
@@ -173,8 +173,9 @@ The complete information along with additional comments and fields is available 
 In the table, column `\textit{Type}' indicate the type of query based on categorisation as demonstrative, assistive, evaluative based on the description in the sections above.
 The column `\textit{Data}' provides information on information required for the question, including results of other queries.
 The relation of question to the ex-ante phase of compliance is reflected by the column `\textit{E/A}' and ex-post phase by the column '\textit{E/P}' using boolean \texttt{Y/N} values.
-The column `\textit{SPARQL}' indicates whether a SPARQL query was constructed for the corresponding question.
-The column `\textit{GDPRov}' indicates whether the current iteration of GDPRov provides the necessary concepts and relationships to answer the compliance question, with a value of \texttt{Y} indicating that it does, \texttt{N} indicating it does not, and \texttt{S} indicating the information to be out of scope for GDPRov.
+The column `\textit{SPARQL}' indicates whether a SPARQL query was constructed for the corresponding question, with \texttt{N} indicating that a query was not constructed.
+The column `\textit{GDPRov}' indicates whether the current iteration (v0.7) of GDPRov provides the concepts and relationships to answer the compliance question, with a value of \texttt{Y} indicating that it does, \texttt{N} indicating it does not provide that concept, and \texttt{S} indicating the information to be out of scope of the ontology.
+Where a query was not constructed, the reason can be inferred by combining the value of \textit{SPARQL} and \textit{GDPRov} columns - for example, where concepts were out of scope for GDPRov the query was not constructed due to lack of concepts. Where a concept was lacking in GDPR, it was added in a later revision, except in cases where the information could not be modelled due to ambiguity or awaiting legal guidance - such as for data storage periods. The column \textit{GDPRov} therefore indicates whether that question can be represented using SPARQL.
 \begin{center}
 \footnotesize 
 \begin{tabularx}{\textwidth}{|l|l|X|l|l|l|l|}
@@ -310,6 +311,7 @@ To demonstrate the application of queries, a synthetic use-case was created usin
 The use-case is based on the scenario of an online shopping service that allows users to order products.
 RDF representations of the processes and personal data associated with the use-case were created and queried using the created SPARQL queries to retrieve information regarding compliance.
 The implementation was provided online\footnote{\url{https://w3id.org/GDPRep/checklist-demo}} along with its data and code in a public repository\footnote{\url{http://openscience.adaptcentre.ie/GDPR-checklist-demo/demo/}}.
+The use-case is simplistic in terms of number of purposes, legal bases, processing operations, and third parties involved - as a real world use-case would involve a larger number of instances of these concepts. The use-case is intended to provide information for SPARQL to query and as such its complexity does not have a significant bearing on the design of the query itself as long as all the queried concepts have been represented.
 
 \subsubsection{Use-case: Online shopping service that shows ads}
 Within the use-case, users can shop for products using the online service i.e. a website. Users have the option to establish an account with the service to receive discounts and special offers for the products offered on the service.
@@ -350,17 +352,20 @@ The aim of this work was to represent compliance questions using SPARQL in order
 The demonstration using a synthetic use-case provided the basis for exploring the application of created SPARQL queries by using GDPRov and GDPRtEXT were utilised as the ontological representations of data.
 The evaluation of this work, while not being exhaustive, concerns the creation of SPARQL queries and their application over a given use-case.
 
-In terms of coverage of compliance questions represented as SPARQL queries, the exercise could not represent all of the questions within the GDPR readiness guide. The reasons were these lack of knowledge (at the time of implementation) regarding interpretation of GDPR compliance requirements, absence of concepts in GDPRov, and the context of the query being out of scope for the research question of this thesis - namely activities associated with personal data and consent.
+In terms of coverage of compliance questions represented as SPARQL queries, the exercise could not represent all of the questions within the GDPR readiness guide.
+Where the reason was GDPRov not providing a required concept, the concept was identified and added in a later iteration of the ontology. 
+Other reasons include a the lack of knowledge regarding representation of ambiguous information such as `indefinite' storage periods and their legal validity, and the query being out of scope for the research question of this thesis - namely activities associated with personal data and consent.
+\autoref{table:sparql:dpc-2} presents an indication of these through the \textit{SPARQL} and \textit{GDPRov} columns.
+
+Since the goal of the exercise demonstrating a compliance question could be expressed in SPARQL, the evaluation consisted of determining the extent to which this was possible. 
+The expression of compliance questions using SPARQL is not novel in itself, as approaches in the SotA present their use of SPARQL in querying information related to GDPR compliance - such as in the SPECIAL, MIREL, and DAPRECO projects.
+Details of their creation and implementation are sparse as pointed out in the SotA analysis in \autoref{sec:sota:analysis}, which makes it difficult to compare the SPARQL queries presented here in context of the SotA.
+
 Of the total 63 questions within the GDPR readiness guide, 32 questions have corresponding SPARQL queries created and used in the demo.
-
-Of the 31 questions that were not implemented, 20 questions were considered out of scope, with the other 3 questions lacking corresponding concepts in GDPRov to create SPARQL queries.
+Of the 31 questions that were not implemented, 20 questions were considered out of scope as they do not relate to the research question, with the other 3 questions lacking corresponding concepts in GDPRov to create SPARQL queries.
 Of these, question \texttt{G8} concerning retention periods for personal data can be expressed using the Time ontology \cite{cox_time_2017}.
-The other two, \texttt{S5} and \texttt{S7} require specification of information associated with information management and governance procedures utilised within an organisation. While these are technically not outside the scope of GDPRov, they require a larger understanding of how such processes are specified and managed, and commonly involve use of ISO/IEC specifications to denote practices.
-Others, such as question \texttt{C1} concerning agreements between entities or question \texttt{C4} concerning escalation procedures involving DPO can be represented using the concepts provided by GDPRov, especially the representation of processes involving steps, but are not considered within the scope of the ontology.
-
-An evaluation of the results retrieved by the queries requires a legal expert who can interpret the extent to which the results are useful in the exercise of deciding or interpreting compliance.
-In addition to these, the requirements of legal compliance differ from that of organisational management of processes, and therefore also require a domain expert - regarding management of business processes - to analyse the results from the perspective of an organisation.
-Since neither of them could be availed of, the exercise of evaluating the queries within a real-world use case of an organisation and the process of evaluation of compliance was not carried out.
+The other two, \texttt{S5} and \texttt{S7} require specification of information associated with information management and governance procedures utilised within an organisation. While these are technically not outside the scope of GDPRov, they require a larger understanding of how such processes are specified and managed, and commonly involve use of specifications to denote practices, for example ISO/IEC 27001 describing a framework for information management and protection.
+Some questions not considered within scope concern information not associated with processing of personal data or consent, but which can be represented as activities using GDPRov. These include questions \texttt{C1} concerning agreements between entities or question \texttt{C4} concerning escalation procedures involving DPO.
 
 % ---------------------------------------------------------------------------------
 
@@ -758,15 +763,39 @@ The rows which correspond to failed constraints are manually highlighted to prov
 The query and its results can both be persisted in machine-readable serialisations using standards for representations, making them interoperable and capable of automation.
 The information derived from such validations and querying is useful to generate compliance documentation and reports for an organisation to oversee their compliance with the GDPR - which is itself an obligation mandated by the GDPR.
 
-This example demonstrates how SHACL can be used to validate information for correctness and adherence to obligations mandated by GDPR. In this form, SHACL can be used to evaluate compliance, though the presented work focused more on the validation of constraints based on the concept of compliance questions.
+\subsection{Evaluation}
+
+\subsubsection*{Effectiveness of combining ex-ante and ex-post validations}
+In order to understand the number of validations in the testing process, consider the set $V_{t}$ consisting of all validations that should be evaluated in order to determine the validity of given consent. This set consists of validations evaluating the information in the consent dialogue box which is common to all instances of given consent - these are represented by $V_{a}$. The remaining validations consist of evaluating information specific to that instance of given consent, such as timestamps, and are represented by $V_{p}$. 
+To summarise, the set of validations consists of validations evaluating the consent dialogue and the information within the given consent, with the relation $V_{t} = V_{a} + V_{p}$.
+
+$V_{a}$ is required to be carried out as part of ex-ante compliance evaluations where the organisation must monitor and ensure its activities are compliant before any processing takes place. In this case, the consent dialogue box is required to be evaluated and found compliant before any consent is requested. Therefore, $V_{a}$ represents ex-ante validations and $V_{p}$ represent ex-post validations.
+
+If the results of $V_{a}$ are persisted, then they can be reused in the evaluation of given consent by simply checking whether the outcome of $V_{a}$ was valid or invalid - which is a single validation. Therefore, the total validations to be performed when combining ex-ante and ex-post validations is now $V_{t} = 1(V_{a}) + V_{p}$ - which is efficient assuming $V_{a} > 1$.
+
+In the use-case of consent dialogue presented in this section, $V_{t}=59$ validations of which $V_{a}=57$ validations and $V_{p}=2$ validations. If all validations were evaluated for given consent, each instance of given consent would need $59$ validations. Whereas, if the ex-ante validations were reused and only the ex-post validations were evaluated, then each instance of given consent would need only $3$ validations to be evaluated ($1$ validation to evaluate $V_{a} + 2$ validations from $V_{p}$). While these numbers are use case specific, it clearly demonstrates that the approach is more efficient in terms of validations and determining validity of given consent. This is assuming the ex-ante model of consent dialogue was found compliant in the ex-ante stage, and therefore its validation only evaluated the presence of a test report affirming its compliant status.
+
+\subsubsection*{Comparison with SotA}
+
+Approaches in the SotA which evaluate compliance (\autoref{sota:analysis:compliance}) include the those that use the semantic web technologies to express the requirements and to evaluate their fulfilment.
+The SPECIAL project uses a semantic reasoner to determine whether a given combination of processing operations expressed as OWL2 class axioms are valid \cite{westphal_spirit_2018}, while the work presented by Vos et. al \cite{vos_odrl_2019} uses ODRL profiles to express requirements which are converted to and evaluated using Answer Set Programming (ASP).
+The MIREL project detects violations of the GDPR by utilising the PrOnto ontology \cite{palmirani_pronto_2018,palmirani_pronto_2018-1,monica_modelling_2018} to model legal concepts and LegalRuleML to model norms, which are then applied over a BPMN use-case using Regorous to generate a report \cite{monica_modelling_2018}.
+The DAPRECO project uses PrOnto along with Reified Input/Output logic (RIO) \cite{robaldo_reified_2017} to specify norms and rules to create a knowledge base \cite{bartolini_agile_2019} which is used to compare GDPR with ISO and to determine compliance.
+These efforts show the variance in evaluation of compliance and the use of semantic web technologies in evaluation of compliance.
+The resources provided by Vos et. al \cite{vos_odrl_2019} and DAPRECO project \cite{bartolini_agile_2019} provide constraints expressed using logic-based formalisms and which are available as open access. 
+
+
+\subsection*{Conclusion}
+The work described in this section demonstrates how SHACL can be used to validate information for correctness and adherence to obligations mandated by GDPR based on the interpretation of compliance questions from \autoref{chapter:information}. In this form, SHACL can be used to evaluate compliance, though the presented work focused more on the validation of constraints based on the concept of compliance questions.
 Compared to the state of the art in \autoref{chapter:sota}, the work regarding SHACL is novel in that no other approach currently specifies using it to validate information for GDPR.
-Furthermore, the utilisation of ex-ante test results in ex-post validations is also novel within the state of the art.
-
-
+The utilisation of ex-ante test results in ex-post validations is also novel within the state of the art.
+In comparison with SHACL, approaches in the SotA provide a more formal approach based in logic where legal norms can be expressed in terms of requirements and evaluated to determine compliance.
+In turn, SHACL provides a validation framework where the results can be persisted as a graph and queried. In addition, the SHACL validations can be linked to the GDPR, as demonstrated using GDPRtEXT, which makes it possible to use SHACL to verify the output of other compliance evaluation approaches and record the outcome as a test result linked to GDPR clauses, thereby creating a graph of compliance.
+This also provides an opportunity to explore the reuse of existing approaches and resources regarding evaluation of GDPR compliance where SHACL is used to generate an interoperable overview of the evaluation results while abstracting the underlying outputs from various approaches.
 
 \section{Conclusion}\label{sec:testing:conclusion}
 
-\subsubsection{Summary of work presented}
+\subsubsection*{Summary of work presented}
 \autoref{sec:testing:sparql} presented the use of SPARQL queries for representing compliance queries and retrieving information associated with compliance that was represented using GDPRov and GDPRtEXT ontologies.
 The work fulfilled the research objective $RO4$ by representing the compliance questions as SPARQL queries and demonstrating their application using a real-world use-case.
 The demonstrated application used questions from GDPR readiness guide published by the Data Protection Commission of Ireland in 2017 to assist organisations in assessing their adherence to compliance requirements of the GDPR.
@@ -788,21 +817,20 @@ The chapter also demonstrates the use of semantic web technologies in representi
 
 The modular test-based approach can be used with existing representations in non-RDF data that are evaluated using other tools and methods by adding semantics to the test results and reports to link them with relevant information in GDPR. This will enable the utilisation of a validation method such as SHACL to evaluate its correctness and a querying method such as SPARQL to retrieve information in the form of compliance test reports. 
 
-The advantages of representing processes with semantics go beyond testing for compliance as representation of processes are also useful for planning of operations and internal documentation. Semantic representations of processes can assist in automating the generation of documentation such as privacy policies where processes are listed along with their purpose, legal basis, and use of personal data. Privacy policy generators that generate boilerplate policies exist online, but do not currently incorporate semantics. The use of semantics allows queryable machine-readable metadata that can be used in tools towards understanding and evaluating complex policies for users and authorities.
+The advantages of representing processes with semantics go beyond testing for compliance as representation of processes are also useful for planning of operations and internal documentation. Semantic representations of processes can assist in automating the generation of documentation such as privacy policies where processes are listed along with their purpose, legal basis, and use of personal data. Privacy policy generators that generate boilerplate policies exist online, but do not currently incorporate semantics. The use of semantics allows queryable machine-readable metadata that can be used in tools towards understanding and evaluating policies for users and authorities.
 
-\subsubsection{Re-usability of developed resources}
+\subsubsection*{Re-usability of developed resources}
 The interpretation of compliance questions in the GDPR readiness document using SPARQL and its application in the synthetic use-case demonstrates the potential application and usefulness of SPARQL queries to retrieve information relevant for compliance.
 However, it also showcases that the creation of SPARQL is highly dependant on utilising the same ontological concepts as the data it is querying. Therefore, such SPARQL queries are use-case dependant, and by definition do not have re-usability beyond the data they were created for.
 The same is true for the constraints represented in SHACL, which are dependent on the underlying ontologies used to represent the data graph it intends to validate.
 
-With this, the conclusion that re-usability of resources is limited to cases where the developed ontologies are used is true, but is not absolute.
-Based on the analysis and natural language basis of the questions and constraints, another approach can adopt these to query and validate information using its use-case specific ontologies.
+Using the analysis and natural language basis of the questions and constraints, another approach can adopt these resources to query and validate information using its use-case specific ontologies.
 While the individual query or constraint would need rewriting, the overall approach and modelling of tests can be reused to generate similar compliance documentation.
-Further, since all resources are made available under permissive licenses, an adopter has access to the underlying data and information to assist them in this process.
+The provision of all resources under a permissive licenses provides an adopter with access to the underlying data and information to assist them in this process.
 
-\subsubsection{Novelty of presented work}
+\subsubsection*{Novelty of presented work}
 The use of SPARQL and SHACL for GDPR compliance as presented in this chapter is novel within the state of the art as presented in \autoref{sec:sota:analysis}.
-While approaches in the SotA use SPARQL to query information, none present their work as intended to answer compliance questions - intended to investigate the compliance of an organisation.
+While approaches in the SotA use SPARQL to query information, none present their work as intended to answer compliance questions or as intended to investigate the compliance of an organisation.
 The use of SHACL is a first within the SotA regarding validation of information for GDPR compliance, based on the analysis of approaches in \autoref{sota:analysis:compliance}.
 In addition, the work presented in this thesis has been published in peer-reviewed publication with open access to its data and resources for transparency.
 Together, these serve as novel contributions that extend the state of the art.

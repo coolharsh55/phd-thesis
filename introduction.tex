@@ -70,7 +70,7 @@ The research question investigated in this thesis is:
 \begin{framed}
 \small{Research Question}
 \begin{quote}
-\textbf{To what extent can information regarding activities associated with processing of personal data and consent be represented and associated with the GDPR using Semantic Web technologies for compliance?}
+\textbf{To what extent can information regarding activities associated with processing of personal data and consent be represented using Semantic Web technologies for GDPR compliance?}
 \end{quote}
 \end{framed}
 
@@ -432,25 +432,25 @@ The following publication presents the work related to the creation of the Data 
 \section{Thesis Overview}
 The rest of this thesis is structured as follows:
 
-\subsubsection{\autoref{chapter:background}: Background on GDPR and Semantic Web}
+\subsubsection*{\autoref{chapter:background}: Background on GDPR and Semantic Web}
 This chapter presents a summary of information required to understand the work presented in this thesis. The chapter consists of two sections, the first describes the concepts and requirements of the GDPR with particular focus on information about activities associated personal data and consent. The second section describes the semantic web technologies through an overview of standards and vocabularies, and the mechanisms used for querying and validation of information.
 
-\subsubsection{\autoref{chapter:sota}: State of the Art}
+\subsubsection*{\autoref{chapter:sota}: State of the Art}
 This chapter reviews existing work and approaches regarding regulatory compliance with a specific focus on those addressing GDPR compliance. The chapter starts by providing an overview of approaches used for legal compliance. It then presents an in-depth review of approaches utilising semantic web technologies to address GDPR compliance requirements, followed by other approaches for GDPR compliance. Approaches which do not directly address the GDPR, but are relevant to the domain of legislative compliance and semantic web are also presented. The chapter then presents an analysis of the state of the art, and concludes with a discussion on identified gaps and limitations.
 
-\subsubsection{\autoref{chapter:information}: Information Required for GDPR Compliance}
+\subsubsection*{\autoref{chapter:information}: Information Required for GDPR Compliance}
 This chapter presents the information required for GDPR compliance of activities associated with processing of personal data and consent in ex-ante and ex-post phases.
 The chapter starts by presenting an information model for the interoperability of information between stakeholders defined by the GDPR.
 The model provides an analysis of the information interoperability requirements based on the requirements of GDPR compliance, and the role of existing standards in addressing them.
 This is followed by expressing the information requirements in the form of analytical questions, termed `compliance questions', whose answers provide the information necessary to evaluate compliance. 
 The chapter then concludes with the use of compliance questions in the ontology engineering process as `competency questions', and the identification of constraints and assumptions which can be used to validate the information for GDPR compliance.
 
-\subsubsection{\autoref{chapter:vocabularies}: Representing Information for GDPR Compliance using Ontologies}
+\subsubsection*{\autoref{chapter:vocabularies}: Representing Information for GDPR Compliance using Ontologies}
 This chapter presents the OWL2 ontologies developed to represent information associated processing of personal data and consent for GDPR compliance.
 The ontologies present concepts for answering the compliance queries presented in Chapter 4. The first ontology presented is GDPRtEXT, which provides a method to link information with the concepts and clauses of GDPR through a linked data version of its text and a vocabulary of concepts. The second ontology presented is GDPRov, which enables representation of provenance information regarding personal data and consent in the form of models or templates and their executions or activity logs. The third ontology presented is GConsent, which enables representation of information associated with consent. The chapter presents an overview of the concepts and relationships for each vocabulary, its relation with the GDPR, and how the vocabulary uses the compliance queries as competency questions to guide its development.
 
-\subsubsection{\autoref{chapter:testing}: Querying and Validating Information for GDPR Compliance}
+\subsubsection*{\autoref{chapter:testing}: Querying and Validating Information for GDPR Compliance}
 This chapter presents the use of SPARQL to express the compliance queries using the ontologies presented in Chapter 5. The chapter also presents a framework to validate information based on the constraints identified in Chapter 4 through the use of SHACL. The framework demonstrates the use of semantic web technologies in validating information for GDPR compliance by utilising a combination of ex-ante and ex-post validations, and the linking of results with the GDPR for documentation of information for compliance.
 
-\subsubsection{\autoref{chapter:conclusion}: Conclusion}
+\subsubsection*{\autoref{chapter:conclusion}: Conclusion}
 This chapter concludes the thesis with a summary of key findings and outcomes of the presented work. It discusses the extent to which the thesis serves to address the research question(s) and objective(s), and outlines directions for future work in terms of potential applications and extension through related work.

@@ -6,7 +6,6 @@
 % \usepackage{kpfonts}
 \usepackage[T1]{fontenc}
 \usepackage[pdftex]{graphicx}
-\usepackage[bookmarks=true,colorlinks=true,citecolor=magenta]{hyperref}
 \usepackage{setspace} % to permit one-and-a-half or double spacing
 \usepackage{booktabs} % To thicken table lines
 \usepackage{framed} % box frames
@@ -31,13 +30,7 @@
 % \nobibliography*
 
 % ToDo notes
-\usepackage{todonotes}
-
-% redefine autoref macros
-\renewcommand*{\chapterautorefname}{Chapter}
-\renewcommand*{\sectionautorefname}{Section}
-\renewcommand*{\subsectionautorefname}{Section}
-\providecommand*{\listingautorefname}{Listing}
+% \usepackage{todonotes}
 
 % line spacing
 \onehalfspacing
@@ -65,6 +58,33 @@
 
 % chapter headings
 \usepackage[raggedright]{titlesec}
+
+% PDF bookmarks
+\usepackage{hyperref}
+\hypersetup{
+    bookmarks=true,
+    colorlinks=true,
+    citecolor=magenta,
+    pdftitle={Representing Activities associated with Processing of Personal Data and Consent using Semantic Web for GDPR Compliance},
+    pdfauthor={Harshvardhan J. Pandit},
+    pdfsubject={PhD Thesis},
+    pdfkeywords={keyword1, keyword2},
+    bookmarksnumbered=true,     
+    bookmarksopen=true,         
+    bookmarksopenlevel=1,       
+    colorlinks=true,            
+    pdfstartview=Fit,           
+    pdfpagemode=UseOutlines,
+    % pdfpagelayout=TwoPageRight
+}
+
+% redefine autoref macros
+\renewcommand*{\chapterautorefname}{Chapter}
+\renewcommand*{\sectionautorefname}{Section}
+\renewcommand*{\subsectionautorefname}{Section}
+\providecommand*{\listingautorefname}{Listing}
+
+
 
 \title{Representing Activities associated with Processing of Personal Data and Consent using Semantic Web for GDPR Compliance}
 \author{Harshvardhan J. Pandit}
@@ -107,6 +127,9 @@
     modifier={by},
     version={4.0},
 ]{doclicense}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{2}
 
 \begin{document}
 

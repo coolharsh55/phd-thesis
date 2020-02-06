@@ -43,14 +43,14 @@ The points of interactions consist of information exchange between entities, are
 
 Analyses of information flows between entities enables categorisation of requirements across the categories of provenance records, consent information, data processing agreements, compliance information, and use of seals/certifications \cite{pandit_exploration_2018}.
 
-\subsubsection{Provenance records}
+\subsubsection*{Provenance records}
 Provenance in this case refers to information about entities and activities involved in the compliance process, where a record is required to be kept and exchanged for compliance purposes. For example, GDPR requires controllers and processors to maintain provenance records of processing activities carried out under their responsibility in order to maintain and demonstrate compliance to supervisory authorities. Provenance records are also required to be maintained to enable provision of rights to the data subject, and for information sharing between controllers and third parties.
 
 The information stored within provenance records is related to demonstrating compliant processing of personal data and fulfilment of obligations towards demonstration of compliance. They are modelled within the state of the art (see \autoref{chapter:sota}) variously as logs, life-cycles, workflows, activities, and process flows. The term provenance in this case refers to both ex-ante and ex-post phases and is indicative of provenance of information to specify its existence. Therefore provenance in ex-ante phase would mean the record of a model or plan used to indicate future processing of personal data.
 
 Since provenance information as described above encompasses information about artefacts and processes related to compliance, sharing this information in an interoperable format with other entities benefits both in their obligations regarding compliance. For example, controllers  and supervisory authorities sharing interoperable compliance documentation can use the same set of tools and approaches for interacting with the information. Also, by recording the processes associated with compliance as provenance records, the same interoperable methods can be used to maintain, document, and demonstrate the compliance. This is especially useful where information is to be shared between joint controllers and processors that need to exchange plans of processing for agreement as well as logs for successful implementations.
 
-\subsubsection{Data Processing Agreements}
+\subsubsection*{Data Processing Agreements}
 A controller and processor, or controller and another controller, or processor and another processor - are required to have specific data processing agreements in place that specify the processing activities to be carried out. 
 In such agreements, the first entity specifies the processing to be carried out, and the second entity is obliged to carry out processing within the scope of received instructions. The GDPR differentiates between a controller and processor based on the freedom to determine the purpose of processing, where a controller can determine such purposes independently while a processor must follow instructions received from a controller.
 
@@ -58,7 +58,7 @@ The provision of instructions from one entity to another need to be recorded by 
 
 From this, it is evident that data sharing agreements contain information about processing activities, and can be expressed as process flows in both ex-ante and ex-post phases. Here, ex-ante phase refers to the agreement itself where both entities agree on the processing to be carried out, while ex-post information concerns with the completion of processing.
 
-\subsubsection{Consent information}
+\subsubsection*{Consent information}
 As per GDPR, consent is an assent or agreement by the data subject regarding the processing of their personal data for specified purposes by one or more entities. 
 For compliance, a controller must record information regarding how consent was requested and the choices provided by the data subject in the form of given consent.
 GDPR has several obligations and requirements when it comes to valid consent, with additional requirements depending on the sensitivity of personal data and processing. 
@@ -70,17 +70,17 @@ These are associated across both ex-ante and ex-post phases where consent choice
 
 If consent is considered as an instance of personal data, the same information model used to document processing of personal data can be re-purposed to represent activities associated with consent. In addition to this, the activities need to capture the various stages of consent and personal data by representing their life-cycles which involve processes and artefacts which use them or are dependant on them. The 
 
-\subsubsection{Compliance documentation}
+\subsubsection*{Compliance documentation}
 Controllers and processors need to maintain ongoing compliance, including documentation of the compliance assessment process. Therefore, compliance as per the GDPR is a continuous process and requires presence of processes or activities that carry out periodic checks of compliance starting from the planning stage to the execution of activities.
 When a new service or process is to introduced or an existing process is changed, their compliance is required to be determined and documented prior to their execution.
 Such checks may be carried out as part of internal audits or periodic reviews, whose documentation should reflect the outcomes of compliance, and any remedial measures carried out.
 
 The processes associated with compliance involve information about processing activities and can be represented using the same information model as processing activities by including additional information required for the compliance process. Periodic changes or checks can be persisted as provenance records that can act as documentation of compliance processes and the state of compliance at a particular time.
 
-\subsubsection{Use of certifications}
+\subsubsection*{Use of certifications}
 GDPR provides for seals and certifications to be used to denote a certain degree of compliance based on existence of measures and processes indicated by the seal of certification. The presence of such seals and certifications as well as their associated information needs to be exchanged between entities to demonstrate trust and guarantees, such as between processors and controllers, or controllers and data subjects. Seals and certifications indicate a common criteria which is known to entities and supervisory authorities in order to register its use. The exact role of seals and certifications in the compliance process is still under consideration by the authoritative bodies, and is expected to be clarified in the coming period.
 
-\subsubsection{Opportunities for commonality and interoperability}
+\subsubsection*{Opportunities for commonality and interoperability}
 The model and analyses of information flows between entities provides the motivation for establishing interoperability in the representation of information to be exchanged.
 In particular, provenance records regarding activities associated with processing of personal data and consent are relevant in all interactions, and consequently are important to the documentation of compliance for all stakeholders. 
 
@@ -124,6 +124,202 @@ Where possible, each question was associated with specific clauses of the GDPR b
 The list of questions is presented in \autoref{sec:info:compliance-questions-list} with the assumptions and constraints presented in \autoref{sec:info:constraints}. Along with compliance questions regarding activities associated with processing of personal data and consent, the list also contains questions about additional activities associated with right to be informed and reporting of data breach by controllers. These are later used in the development of ontologies that demonstrate the application of a common approach to represent activities related to processing of personal data, consent, data breach, and provision of rights for GDPR compliance. 
 
 \subsection{List of Questions}\label{sec:info:compliance-questions-list}
+
+\subsubsection{Use-cases}
+To identify the application of compliance questions in various scenarios within the real world, 15 categories of use-cases were identified to determine the necessary information required to identify their ontological representations.
+The use-cases are based on identifying information affecting compliance requirements and identifying variances which affect the representations of that information.
+These were useful to guide the development of the ontology by serving as test scenarios where an ontology could be applied and evaluated for representing information.
+These use-cases are not intended to be comprehensive or normative.
+
+A summary of these use-cases is as follow:
+\begin{enumerate}
+% \tightlist
+\item
+  Obtaining / Declaring Consent (its state)
+
+  \begin{enumerate}
+%   \tightlist
+  \item
+    The consent is given
+  \item
+    Consent was given, but is now invalidated (by the controller)
+  \item
+    Consent was given, but was withdrawn (by the Data Subject)
+  \item
+    Consent was requested (by the controller)
+  \item
+    Consent was requested, but was refused (by the Data Subject)
+  \item
+    Consent state is unknown (e.g. when importing data about consent)
+  \end{enumerate}
+\item
+  Entity the consent is about
+
+  \begin{enumerate}
+%   \tightlist
+  \item
+    The consent is about a Data Subject who is not a minor
+  \item
+    The consent is about a Data Subject who is a minor
+  \end{enumerate}
+\item
+  Activity for Data Subject
+
+  \begin{enumerate}
+%   \tightlist
+  \item
+    There was an age verification process associated with the consent
+    (such as for minors)
+  \item
+    There was an identity verification process associated with the
+    consent
+  \end{enumerate}
+\item
+  Entity that provided consent
+
+  \begin{enumerate}
+%   \tightlist
+  \item
+    Consent was provided by the Data Subject it is about
+  \item
+    Consent was not provided by the Data Subject it is about, but was
+    provided by a Delegation
+
+    \begin{enumerate}
+    % \tightlist
+    \item
+      Consent in the Delegation was provided by another Data Subject
+    \item
+      Consent in the Delegation was provided by a Person
+    \item
+      Consent in the Delegation was provided by another Delegation
+    \end{enumerate}
+  \end{enumerate}
+\item
+  Role within Delegation
+
+  \begin{enumerate}
+%   \tightlist
+  \item
+    Entity is the Parent/Guardian of the Data Subject
+  \item
+    Entity is a third-party to the Data Subject
+  \end{enumerate}
+\item
+  Activity of Delegation
+
+  \begin{enumerate}
+%   \tightlist
+  \item There was some verification process to assert the authentication of
+    the delegation
+  \end{enumerate}
+\item
+  Personal Data associated with consent
+
+  \begin{enumerate}
+%   \tightlist
+  \item
+    Consent was given for specific instances of personal data e.g. John/Jane Doe
+  \item
+    Consent was given for categories of personal data e.g. Name
+  \end{enumerate}
+\item
+  Medium of Consent
+
+  \begin{enumerate}
+%   \tightlist
+  \item
+    consent is given via a web-form
+  \item
+    consent is given as a signed paper document
+  \item
+    consent is given as a verbal confirmation
+  \item
+    consent is given implicitly in some form (medium)
+  \item
+    consent is given via delegation in some form (medium)
+  \end{enumerate}
+\item
+  Activity responsible for consent
+
+  \begin{enumerate}
+%   \tightlist
+  \item
+    Activity created consent as a new entity
+  \item
+    Activity modified existing consent
+  \end{enumerate}
+\item
+  Previous consent and relationship
+
+  \begin{enumerate}
+%   \tightlist
+  \item
+    Consent has no previous instance
+  \item
+    Consent has a previous instance and replaces it
+  \end{enumerate}
+\item
+  Differences between consent instances
+
+  \begin{enumerate}
+%   \tightlist
+  \item
+    Something changes between two consent instances (e.g. personal data
+    category is added)
+  \end{enumerate}
+\item
+  Time constraints
+
+  \begin{enumerate}
+%   \tightlist
+  \item
+    consent expires (has a tangible expiry such as a specific date or
+    duration)
+  \item
+    consent does not expire (is valid for ``as long as required'')
+  \end{enumerate}
+\item
+  Third party Association
+
+  \begin{enumerate}
+%   \tightlist
+  \item
+    Personal Data is collected from a third party
+  \item
+    Personal Data is stored with a third party (processor)
+  \item
+    Personal Data is shared with a third party
+  \item
+    Processing involves third party
+  \item
+    Purpose involves third party
+  \end{enumerate}
+\item
+  Role of Third Party
+
+  \begin{enumerate}
+%   \tightlist
+  \item
+    Third Party is a Processor contracted by the Controller
+  \item
+    Third Party is another Controller
+  \item
+    Third Party is another entity (regulatory/supervisory/governmental)
+  \end{enumerate}
+\item
+  Storage Duration and Locations for Personal Data
+
+  \begin{enumerate}
+%   \tightlist
+  \item
+    Data is stored for a fixed time (specific instance or duration)
+  \item
+    Data is stored for an indefinite duration (``for as long as
+    required'')
+  \end{enumerate}
+\end{enumerate}
+
 % COMPLIANCCE QUESTIONS - CONTROLLERS
 \subsubsection{Compliance questions pertaining to records of processing activities to be kept by controllers}
 \begin{enumerate}[label={\textit{CMQ.\theenumi}}]
