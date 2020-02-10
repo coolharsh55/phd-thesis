@@ -13,8 +13,8 @@ The chapter ends with conclusions drawn from the research in terms of novelty of
 
 \section{Querying Information for GDPR Compliance using SPARQL}\label{sec:testing:sparql}
 This section presents the creation and utilisation of SPARQL queries to retrieve information relevant for GDPR compliance.
-The creation of the queries is dependant on the ontological representation of information being retrieved, which in this case includes the use of GDPRov and GDPRtEXT ontologies. This is further explained in \autoref{sec:testing:sparql:relation}
-A GDPR preparation guide published by the Irish Data Protection Commission was used as the source of compliance questions for which corresponding the SPARQL queries were created. The methodology used for this is presented in \autoref{sec:testing:sparql:methodology} with an demonstration of the developed queries presented in \autoref{sec:testing:sparql:demo}.
+The creation of the queries is dependant on the ontological representation of information being retrieved, which in this case includes the use of GDPRov and GDPRtEXT ontologies. This is further explained in \autoref{sec:testing:sparql:relation}.
+A GDPR preparation guide published by the Irish Data Protection Commission was used as the source of compliance questions for which corresponding the SPARQL queries were created. The methodology used for this is presented in \autoref{sec:testing:sparql:methodology} with a demonstration of the developed queries presented in \autoref{sec:testing:sparql:demo}.
 A note on the evaluation of this work is presented in \autoref{sec:testing:sparql:evaluation}.
 
 \subsection{SPARQL queries and ontological representation of information}\label{sec:testing:sparql:relation}
@@ -25,18 +25,20 @@ For this, the developed vocabularies provide the ontological concepts and relati
 The compliance questions, as presented in \autoref{sec:info:compliance-questions}, do not use a specific ontology or vocabulary but instead are based in the natural language and use legal terminology. In order to utilise technological solutions for answering them, it is necessary to first convert these questions into queries which can be executed over the compliance representation.
 Since the work presented in this thesis derives motivation from the use of semantic web technologies which use RDF for representing information, the task of querying utilises the SPARQL standard to retrieve this information.
 
-The ontology used in the SPARQL queries must match the ontology used in the representation of information associated with compliance. Differences in ontologies would hamper the effective of execution of queries and have the potential to return invalid results or empty results.
+The ontology used in the SPARQL queries must match the ontology used in the representation of information associated with compliance. Differences in ontologies would hamper the effective execution of queries with potential returning of invalid results or empty results.
 The creation of SPARQL queries is therefore specific to the ontologies used in a particular information representation, and is therefore also specific to the use-case it is used in.
 
 \subsection{Methodology}\label{sec:testing:sparql:methodology}
 The methodology used for creation of SPARQL queries is based on utilisation of GDPRov to represent the concepts and GDPRtEXT to link the information to the GDPR.
 The SPARQL queries thus created aim to retrieve information relevant to answering the question rather than present an evaluation or assessment of compliance.
-While the compliance questions presented in \autoref{sec:info:compliance-questions} provide a basis for construction of semantic queries using SPARQL, we focused on identifying a real-world use-case of the use of such compliance questions to provide a demonstration of the application of this research.
+While the compliance questions presented in \autoref{sec:info:compliance-questions} provide a basis for construction of semantic queries using SPARQL, the application of SPARQL utilises a real-world use-case of compliance questions to provide a demonstration of the application of this research.
 
 \subsubsection{Utilising compliance questions from GDPR readiness guide published by DPC}
-We utilised the guide titled ``Preparing Your Organisation for the GDPR – A Guide for SMEs'' published by Data Protection Commission of Ireland (DPC) as the basis for compliance questions which were represented using SPARQL as semantic queries.
+The application of SPARQL utilised the guide titled ``Preparing Your Organisation for the GDPR – A Guide for SMEs'' published by Data Protection Commission of Ireland (DPC) as the basis for compliance questions which were represented using SPARQL as semantic queries.
 The guide was published by the DPC in 2017 to help organisations in assessing their readiness towards GDPR compliance requirements.
 It is accessible online\footnote{\url{http://gdprandyou.ie/wp-content/uploads/2017/12/A-Guide-to-help-SMEs-Prepare-for-the-GDPR.pdf}} and consists of a `table' (see  \autoref{fig:sparql:guide}) containing questions regarding information about an organisations processing activities.
+The guide was chosen based on its simplicity in terms of questions, its intended use in evaluating information associated with compliance, and the locality of the Irish DPC with respect to the author. 
+
 The guide divides the questions into contextual sections based on addressing specific GDPR articles and obligations.
 \begin{figure}[htbp]
 \centering
@@ -274,7 +276,7 @@ In this, some questions were found to be subjective or qualitative and thus coul
 A total of 33 SPARQL queries were created based on the above analysis of compliance questions and their requirements.
 The queries utilised GDPRov and GDPRtEXT ontologies to specify the information associated with the question.
 The SPARQL queries were published online\footnote{\url{https://w3id.org/GDPRep/checklist-demo/sparql-queries}}
-with a separate files for each query associated with a compliance question, and a common file containing the common prefixes used in all queries.
+with separate files for each query associated with a compliance question, and a common file containing the common prefixes used in all queries.
 
 As an example, Listing \autoref{code:sparql:dpc-G5} contains the corresponding SPARQL query for compliance question \texttt{G5} which concerns the legal basis used to justify processing of personal data. 
 The query retrieves information about steps and the processes along with the legal basis for their operation in ex-ante phase using the vocabulary provided by GDPRov.
@@ -311,7 +313,8 @@ To demonstrate the application of queries, a synthetic use-case was created usin
 The use-case is based on the scenario of an online shopping service that allows users to order products.
 RDF representations of the processes and personal data associated with the use-case were created and queried using the created SPARQL queries to retrieve information regarding compliance.
 The implementation was provided online\footnote{\url{https://w3id.org/GDPRep/checklist-demo}} along with its data and code in a public repository\footnote{\url{http://openscience.adaptcentre.ie/GDPR-checklist-demo/demo/}}.
-The use-case is simplistic in terms of number of purposes, legal bases, processing operations, and third parties involved - as a real world use-case would involve a larger number of instances of these concepts. The use-case is intended to provide information for SPARQL to query and as such its complexity does not have a significant bearing on the design of the query itself as long as all the queried concepts have been represented.
+\hl{The use-case of an online shopping service is based on its prevalence in the real-world and provides a sufficient representation of purposes, legal bases, processing operations, and third parties involved.}
+The use-case is intended to provide information for SPARQL to query and as such its complexity does not have a significant bearing on the design of the query itself as long as all the queried concepts have been represented.
 
 \subsubsection{Use-case: Online shopping service that shows ads}
 Within the use-case, users can shop for products using the online service i.e. a website. Users have the option to establish an account with the service to receive discounts and special offers for the products offered on the service.
@@ -328,7 +331,7 @@ reasoner was used to derive additional facts about the use-case and to ensure it
 \subsubsection{Implementation}
 The online demo provides an execution of the created SPARQL queries over the data defined for the use-case.
 This represents automation of answering compliance questions using retrieved information.
-The demo intended to showcase how the static GDPR readiness checklist can be made more interactive and automated using semantic web technologies.
+The demo is intended to showcase how the static GDPR readiness checklist can be made more interactive and automated using semantic web technologies.
 
 The demo is provided as a single web page, with the questions from GDPR readiness checklist provided in their natural language form and ID followed by the corresponding SPARQL query.
 The results for each query are retrieved whenever the page loads from a
@@ -349,8 +352,8 @@ The remaining two results represent processes associated with the provision of t
 
 \subsection{Evaluation}\label{sec:testing:sparql:evaluation}
 The aim of this work was to represent compliance questions using SPARQL in order to retrieve information represented in RDF regarding the processing of personal data.
-The demonstration using a synthetic use-case provided the basis for exploring the application of created SPARQL queries by using GDPRov and GDPRtEXT were utilised as the ontological representations of data.
-The evaluation of this work, while not being exhaustive, concerns the creation of SPARQL queries and their application over a given use-case.
+The demonstration using a synthetic use-case provided the basis for exploring the application of created SPARQL queries by using GDPRov and GDPRtEXT as the ontological representations of data.
+The evaluation of this work, while not being exhaustive, demonstrates the creation of SPARQL queries and their application over a given use-case.
 
 In terms of coverage of compliance questions represented as SPARQL queries, the exercise could not represent all of the questions within the GDPR readiness guide.
 Where the reason was GDPRov not providing a required concept, the concept was identified and added in a later iteration of the ontology. 
@@ -359,13 +362,15 @@ Other reasons include a the lack of knowledge regarding representation of ambigu
 
 Since the goal of the exercise demonstrating a compliance question could be expressed in SPARQL, the evaluation consisted of determining the extent to which this was possible. 
 The expression of compliance questions using SPARQL is not novel in itself, as approaches in the SotA present their use of SPARQL in querying information related to GDPR compliance - such as in the SPECIAL, MIREL, and DAPRECO projects.
-Details of their creation and implementation are sparse as pointed out in the SotA analysis in \autoref{sec:sota:analysis}, which makes it difficult to compare the SPARQL queries presented here in context of the SotA.
+However, details of their creation and implementation are sparse as pointed out in the SotA analysis in \autoref{sec:sota:analysis}, \hl{which makes it difficult to compare the application of SPARQL queries for retrieving information associated with GDPR compliance as presented here in context of the SotA.}
 
 Of the total 63 questions within the GDPR readiness guide, 32 questions have corresponding SPARQL queries created and used in the demo.
 Of the 31 questions that were not implemented, 20 questions were considered out of scope as they do not relate to the research question, with the other 3 questions lacking corresponding concepts in GDPRov to create SPARQL queries.
 Of these, question \texttt{G8} concerning retention periods for personal data can be expressed using the Time ontology \cite{cox_time_2017}.
 The other two, \texttt{S5} and \texttt{S7} require specification of information associated with information management and governance procedures utilised within an organisation. While these are technically not outside the scope of GDPRov, they require a larger understanding of how such processes are specified and managed, and commonly involve use of specifications to denote practices, for example ISO/IEC 27001 describing a framework for information management and protection.
 Some questions not considered within scope concern information not associated with processing of personal data or consent, but which can be represented as activities using GDPRov. These include questions \texttt{C1} concerning agreements between entities or question \texttt{C4} concerning escalation procedures involving DPO.
+
+\hl{The application of SPARQL for querying information associated with GDPR compliance was published in a peer-reviewed publication \cite{pandit_queryable_2018} at the SEMANTiCS conference - which provided its exposure to an audience of industry and academic participants. The publication has received 6 citations to date (excluding self-publications), which includes one approach \cite{debruyneOntologyRepresentingAnnotating2019} which utilises the modelling of concepts using GDPRov towards annotating DFDs (data flow diagrams) with information for analysing compliance, and provides an example of a SPARQL query to retrieve information about the data flows.}
 
 % ---------------------------------------------------------------------------------
 
@@ -409,7 +414,7 @@ In the second step of validation, SHACL constraints representing obligations and
 The SHACL constraints and the evaluated results are linked to specific GDPR obligations and articles.
 At this point, the compliance graph contains information necessary to answer the compliance questions along with its evaluation using SHACL linked to GDPR.
 
-In the third and final step, the information within the compliance graph is used for documentation of compliance information based on compliance questions, fulfilment of obligations, or coverage of GDPR articles. It queries the compliance graph using SPARQL by and retrieves information linked to GDPR.
+In the third and final step, the information within the compliance graph is used for documentation of compliance information based on compliance questions, fulfilment of obligations, or coverage of GDPR articles. It queries the compliance graph using SPARQL and retrieves information linked to GDPR.
 The results of these can then be persisted or demonstrated using any presentation medium - such as a webpage, dashboard, or even a data file.
 
 The use of RDF makes SPARQL and SHACL the default choices for querying and validation respectively given their status as standards.
@@ -452,7 +457,7 @@ The property \texttt{linkToGDPR} was created to link information with the clause
 \label{code:shacl:manual-constraint}
 \end{listing}
 
-The constraints utilise both GDPRov and GConsent where appropriate and possible so as to verify using both ontologies. For example, Listing.\autoref{code:shacl:gdprov-gconsent} presents a constraint for checking whether each instance of consent is associated with one and only one Data Subject. In it, the concept of Data Subject could be used from GDPRov or GConsent since they both feature it. Therefore, \texttt{sh:or} in SHACL enables representing the condition where either of those could be used to express a Data Subject.
+The constraints utilise both GDPRov and GConsent where appropriate and feasible so as to verify using both ontologies. For example, \autoref{code:shacl:gdprov-gconsent} presents a constraint for checking whether each instance of consent is associated with one and only one Data Subject. In it, the concept of Data Subject could be used from GDPRov or GConsent since they both feature it. Therefore, \texttt{sh:or} in SHACL enables representing the condition where either of those could be used to express a Data Subject.
 The constraint is linked to the Article 4-11 of GDPR using the property \texttt{linkToGDPR} mentioned above, and provides a human readable message when the constraint fails using the SHACL property \texttt{sh:message}.
 \begin{listing}[htbp]
 \begin{minted}{turtle}
@@ -471,7 +476,7 @@ The constraint is linked to the Article 4-11 of GDPR using the property \texttt{
 
 \subsubsection{Using SHACL-SPARQL}
 
-SHACL-SPARQL\footnote{\url{https://www.w3.org/TR/shacl/\#shacl-sparql}} is an extension of SHACL core features and provides the use of SPARQL queries to retrieve information failing the associated constraint. Listing.\autoref{code:shacl:SHACL-SPARQL} presents alternative representations of the same constraint in SHACL core and SHACL-SPARQL.
+SHACL-SPARQL\footnote{\url{https://www.w3.org/TR/shacl/\#shacl-sparql}} is an extension of SHACL core features and provides the use of SPARQL queries to retrieve information failing the associated constraint. \autoref{code:shacl:SHACL-SPARQL} presents alternative representations of the same constraint in SHACL core and SHACL-SPARQL.
 The constraint aims to ensure all consent instances have a timestamp.
 The SHACL-SPARQL constraint features a SPARQL query that filters instances that have a specified timestamp based on properties provided by GConsent, GDPRov, or PROV-O, while the SHACL core representation uses a \texttt{PropertyShape} to assess the same.
 \begin{listing}[htbp]
@@ -503,7 +508,7 @@ The use of SHACL-SPARQL also allows use of the SPARQL queries from \autoref{sec:
 \subsubsection{Validating manually evaluated constraints}
 For the manually evaluated constraints represented using \texttt{ManuallyCheckedConstaint}, the result arising from its assessment indicates whether the constraint fails or passes, and is therefore a boolean value.
 Therefore, the assessment of manually checked constraints is based on verifying a boolean value associated with the constraint through the SHACL property \texttt{sh:hasValue} which indicates the expected value of a property.
-An example of this is presented in Listing.\autoref{code:shacl:boolean} which represents a constraint checking whether the given consent was freely given.
+An example of this is presented in \autoref{code:shacl:boolean} which represents a constraint checking whether the given consent was freely given.
 The assessment is based on explicitly inserting a triple within the data graph that denotes the manually inspected condition of freely given through the property \texttt{m:consentIsFreelyGiven} whose value must be true to indicate compliance.
 The messages of a manually checked constraint are prefixed with \textit{(MANUAL-TEST)} to indicate their qualitative nature in human-intended messages.
 \begin{listing}[htbp]
@@ -529,8 +534,8 @@ This represents utilisation of ex-ante test results in ex-post validation of a c
 The abstraction of this can be summarised based on considering the ex-ante information as that associated with the model or plan of activities, and the ex-post information to be regarding the execution of those activities. Since the model is a common template for all execution of the activities, some of the common ex-ante validations can be performed prior to the execution and the results persisted for use in ex-post validations.
 This information, which are expressed as SHACL validation reports for the purposes of this thesis, are persisted in the compliance graph in ex-ante phase validations, and are used as part of the data graph in the ex-post validations.
 
-An example of an ex-post validation incorporating ex-ante test results is presented in Listing.\autoref{code:shacl:model-constraint}.
-The constraint is automatically evaluates the outcome of a previous SHACL validation concerning the given consent model in ex-ante phase indicated by \texttt{sh:ValidationReport} with the property \texttt{sh:conforms} used by SHACL to indicate whether an evaluated data graph has passed or failed the given constraints.
+An example of an ex-post validation incorporating ex-ante test results is presented in \autoref{code:shacl:model-constraint}.
+The constraint automatically evaluates the outcome of a previous SHACL validation concerning the given consent model in ex-ante phase indicated by \texttt{sh:ValidationReport} with the property \texttt{sh:conforms} used by SHACL to indicate whether an evaluated data graph has passed or failed the given constraints.
 \begin{listing}[htbp]
 \begin{minted}{turtle}
 :ConsentModelConstraints a sh:NodeShape ;
@@ -549,7 +554,7 @@ The constraint is automatically evaluates the outcome of a previous SHACL valida
 \end{listing}
 
 \subsection{Proof-of-concept implementation}\label{sec:testing:shacl:demo}
-For a proof-of-concept implementation of the approach, the consent dialogue on the Quantcast\footnote{Web archive snapshot \url{https://web.archive.org/web/20190430014325/https://www.quantcast.com/}} was utilised as an use-case and evaluated for GDPR compliance.
+For a proof-of-concept implementation of the approach, the consent dialogue on the Quantcast\footnote{Web archive snapshot \url{https://web.archive.org/web/20190430014325/https://www.quantcast.com/}} was utilised as a use-case and evaluated for GDPR compliance.
 Information from the consent dialogue was manually analysed and represented using GDPRov and GConsent to create the data graph. Additionally, information from other pages on the website were also analysed to identify more information about the purposes, processing, personal data, and third parties mentioned in the consent dialogue.
 Resources associated with the implementation are available in a public repository\footnote{\url{https://github.com/coolharsh55/GDPR-semantics-demo/}}.
 
@@ -764,6 +769,9 @@ The query and its results can both be persisted in machine-readable serialisatio
 The information derived from such validations and querying is useful to generate compliance documentation and reports for an organisation to oversee their compliance with the GDPR - which is itself an obligation mandated by the GDPR.
 
 \subsection{Evaluation}
+\hl{The approach described in \autoref{sec:testing:shacl:approach} for the conceptual model has been published as a peer-reviewed publication \cite{pandit_exploring_2018} in the Poster \& Demo track at the SEMANTiCS conference - which involves a good mix of industry and academic participants and thereby provided the opportunity to present this work to the industry in particular. 
+The construction of a knowledge graph based on evaluations of GDPR compliance was published as a peer-reviewed publication \cite{pandit_towards_2018} in the workshop on Contextualized Knowledge Graphs which was co-located with the International Semantic Web Conference (ISWC). The workshop provided reviews and feedback from domain experts regarding the use of semantic web to create knowledge graphs, and how it might be utilise in the legal compliance domain. 
+The proof-of-concept implementation presented in \autoref{sec:testing:shacl:demo} was published as a peer-reviewed publication \cite{pandit_test-driven_2019} at the SEMANTiCS conference.}
 
 \subsubsection*{Effectiveness of combining ex-ante and ex-post validations}
 In order to understand the number of validations in the testing process, consider the set $V_{t}$ consisting of all validations that should be evaluated in order to determine the validity of given consent. This set consists of validations evaluating the information in the consent dialogue box which is common to all instances of given consent - these are represented by $V_{a}$. The remaining validations consist of evaluating information specific to that instance of given consent, such as timestamps, and are represented by $V_{p}$. 
@@ -776,24 +784,59 @@ If the results of $V_{a}$ are persisted, then they can be reused in the evaluati
 In the use-case of consent dialogue presented in this section, $V_{t}=59$ validations of which $V_{a}=57$ validations and $V_{p}=2$ validations. If all validations were evaluated for given consent, each instance of given consent would need $59$ validations. Whereas, if the ex-ante validations were reused and only the ex-post validations were evaluated, then each instance of given consent would need only $3$ validations to be evaluated ($1$ validation to evaluate $V_{a} + 2$ validations from $V_{p}$). While these numbers are use case specific, it clearly demonstrates that the approach is more efficient in terms of validations and determining validity of given consent. This is assuming the ex-ante model of consent dialogue was found compliant in the ex-ante stage, and therefore its validation only evaluated the presence of a test report affirming its compliant status.
 
 \subsubsection*{Comparison with SotA}
-
-Approaches in the SotA which evaluate compliance (\autoref{sota:analysis:compliance}) include the those that use the semantic web technologies to express the requirements and to evaluate their fulfilment.
+\hl{\autoref{table:shacl:sota} provides a comparison of the use of SHACL with approaches within the SotA based on the earlier analysis in \autoref{sota:analysis:compliance}.}
 The SPECIAL project uses a semantic reasoner to determine whether a given combination of processing operations expressed as OWL2 class axioms are valid \cite{westphal_spirit_2018}, while the work presented by Vos et. al \cite{vos_odrl_2019} uses ODRL profiles to express requirements which are converted to and evaluated using Answer Set Programming (ASP).
 The MIREL project detects violations of the GDPR by utilising the PrOnto ontology \cite{palmirani_pronto_2018,palmirani_pronto_2018-1,monica_modelling_2018} to model legal concepts and LegalRuleML to model norms, which are then applied over a BPMN use-case using Regorous to generate a report \cite{monica_modelling_2018}.
 The DAPRECO project uses PrOnto along with Reified Input/Output logic (RIO) \cite{robaldo_reified_2017} to specify norms and rules to create a knowledge base \cite{bartolini_agile_2019} which is used to compare GDPR with ISO and to determine compliance.
 These efforts show the variance in evaluation of compliance and the use of semantic web technologies in evaluation of compliance.
-The resources provided by Vos et. al \cite{vos_odrl_2019} and DAPRECO project \cite{bartolini_agile_2019} provide constraints expressed using logic-based formalisms and which are available as open access. 
+\begin{table}[htbp]
+\footnotesize
+\centering
+\caption{Comparison of SHACL validation with SotA} \label{table:shacl:sota}
+\rowcolors{1}{}{gray!10}
+\begin{tabularx}{\textwidth}{|l|l|l|X|X|X|}
+\toprule
+\textbf{Approach} & \textbf{Evaluation method} & \textbf{Scope} & \textbf{Machine-readable result?} & \textbf{Provides remedies?} & \textbf{Links results to GDPR?} \\ 
+\midrule
+\endfirsthead
+\rowcolor[gray]{0.8}
+Pandit & SHACL & RDF data & \cmark & \cmark & \cmark \\ \hline
+SPECIAL & OWL & Consent & \cmark &  &  \\ \hline
+SPL+SERAMIS & ODRL & Obligations & \cmark & \cmark & \cmark \\ \hline
+SPL+Vos et al. & OWL, ASP & Obligations & \cmark & \cmark &  \\ \hline
+SPL+CitySPIN & OWL & Consent & \cmark &  &  \\ \hline
+MIREL & RuleML & Obligations & \cmark & \cmark & \cmark \\ \hline
+MRL+DAPRECO & RuleML & Obligations & \cmark & \cmark & \cmark \\ \hline
+BPR4GDPR & OWL & Process Flows &  & \cmark &  \\ \hline
+Lodge et al & SDK & Process Flows & \cmark & \cmark &  \\ \hline
+Tom et al & BPMN & Process Flows & \cmark & \cmark &  \\ \hline
+Corrales et al & Questionnaire & Obligations &  &  &  \\ \hline
+LUCE & Smart Contracts & Data Sharing & \cmark &  &  \\ \hline
+AdvoCATE & Smart Contracts & Consent & \cmark &  &  \\ \hline
+Sion et al & UML, DFD & Process Flows & \cmark & \cmark &  \\ \hline
+privacyTracker & Access Control & Data Sharing & \cmark &  &  \\ \hline
+Robol et al & STS & Process Flows & \cmark &  &  \\ \hline
+GuideMe & Questionnaire & Process Flows &  & \cmark &  \\ \hline
+Basin et al & Algorithm & Process Flows &  &  &  \\ \hline
+RestAssured & XACML & Process Flows & \cmark &  &  \\ \hline
+DEFeND & Questionnaire & Obligations & \cmark &  &  \\ \hline
+OPERANDO & Access Control & Process Flows & \cmark &  &  \\ \hline
+PoSEID-on & Smart Contracts & Data Sharing & \cmark &  &  \\ \hline
+DECODE & Smart Contracts & Consent & \cmark &  &  \\ \hline
+\end{tabularx}
+\end{table}
 
+\hl{The work described in this section demonstrates how SHACL can be used to validate information for correctness and adherence to obligations mandated by GDPR based on the interpretation of compliance questions from \autoref{chapter:information}. In this form, SHACL can be used to evaluate compliance, though the presented work focused more on the validation of constraints based on the concept of compliance questions.
+Compared to the state of the art in \autoref{chapter:sota}, summarised in the above table, the work regarding SHACL (highlighted first row of table) is novel within the SotA in the use of SHACL and the linking of results to GDPR in a machine-readable and thus query-able form.
+In addition, the creation of a compliance graph to store information associated with demonstration of compliance enables using SPARQL queries to identify remedial measures to achieve compliance as well as create reports to identify and present information relevant to compliance.
+The utilisation of ex-ante test results in ex-post validations is also novel within the state of the art.}
 
-\subsection*{Conclusion}
-The work described in this section demonstrates how SHACL can be used to validate information for correctness and adherence to obligations mandated by GDPR based on the interpretation of compliance questions from \autoref{chapter:information}. In this form, SHACL can be used to evaluate compliance, though the presented work focused more on the validation of constraints based on the concept of compliance questions.
-Compared to the state of the art in \autoref{chapter:sota}, the work regarding SHACL is novel in that no other approach currently specifies using it to validate information for GDPR.
-The utilisation of ex-ante test results in ex-post validations is also novel within the state of the art.
-In comparison with SHACL, approaches in the SotA provide a more formal approach based in logic where legal norms can be expressed in terms of requirements and evaluated to determine compliance.
+\hl{In comparison with SHACL, approaches in the SotA provide a more formal approach based in logic where legal norms can be expressed in terms of requirements and evaluated to determine compliance.
 In turn, SHACL provides a validation framework where the results can be persisted as a graph and queried. In addition, the SHACL validations can be linked to the GDPR, as demonstrated using GDPRtEXT, which makes it possible to use SHACL to verify the output of other compliance evaluation approaches and record the outcome as a test result linked to GDPR clauses, thereby creating a graph of compliance.
 This also provides an opportunity to explore the reuse of existing approaches and resources regarding evaluation of GDPR compliance where SHACL is used to generate an interoperable overview of the evaluation results while abstracting the underlying outputs from various approaches.
+For this, the resources provided by Vos et. al \cite{vos_odrl_2019} and DAPRECO project \cite{bartolini_agile_2019} provide constraints expressed using logic-based formalisms and are available as open access, providing future direction for the applicability of this research.}
 
-\section{Conclusion}\label{sec:testing:conclusion}
+\section{Summary of Chapter}\label{sec:testing:conclusion}
 
 \subsubsection*{Summary of work presented}
 \autoref{sec:testing:sparql} presented the use of SPARQL queries for representing compliance queries and retrieving information associated with compliance that was represented using GDPRov and GDPRtEXT ontologies.
@@ -806,7 +849,7 @@ The queries and the demo were published in a peer-reviewed publication \cite{pan
 This work fulfilled the research objective $RO5$ by validating information using SHACL and linking the results with relevant clauses of GDPR for compliance documentation.
 The SHACL validation utilised constraints developed from analysis of compliance questions as presented in \autoref{sec:info:constraints}.
 An approach for the validation process using SHACL was presented in which ex-ante test results were reused in the validation of ex-post information. This enabled efficient evaluations by reducing the number of validations required in the ex-post phase, and also enabled associating the compliance of ex-ante information with that of its corresponding ex-post information.
-A demonstration of the approach was provided through an use-case in which the consent dialogue on a real-world website was represented using the developed ontologies and validated using SHACL.
+A demonstration of the approach was provided through a use-case in which the consent dialogue on a real-world website was represented using the developed ontologies and validated using SHACL.
 The results of the validation were queried using SPARQL to generate documentation for compliance in the form of a test report which showed the compliance status of different obligations and highlighted failing tests as action items for meeting compliance requirements.
 The approach of using SHACL and the combination of ex-ante and ex-post validations was published in a peer-reviewed publication \cite{pandit_towards_2018} at the SEMANTiCS conference in 2018, while the demonstration was published in a peer-reviewed publication \cite{pandit_test-driven_2019} at SEMANTiCS 2019.
 The resources associated with the work have been made available online in a code repository.

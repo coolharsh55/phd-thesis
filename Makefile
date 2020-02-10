@@ -14,6 +14,12 @@ all: $(DOC_TARGET)
 $(DOC_TARGET): $(DOC_SRC) $(BIB_FILES)
 	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode -shell-escape" -use-make $<
 
+draft:
+	pdflatex -interaction=nonstopmode -shell-escape $(DOC_SRC)
+
+test:
+	pdflatex -shell-escape $(DOC_SRC)
+
 clean:
 	latexmk -C $(DOC_SRC)
 

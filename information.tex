@@ -7,24 +7,34 @@ In order to achieve these, it is imperative to have an understanding of the GDPR
 The requirement gathering process is shaped by the scope of the research question - which for this thesis is regarding the representation of activities associated with processing of personal data and consent.
 The identified requirements then need to be expressed in a form which will facilitate the representation of information as ontologies and its querying and validation in the compliance process. This is required to fulfil research objective $RO2$.
 
-The approaches within the state of the art presents their work in relation to the requirements of GDPR compliance primarily associated with either the data subject or data controller.
-In reality, the requirements of compliance are also influenced by the other stakeholders - such as processors and authorities which play an unspecified role in the context of information associated with compliance.
-Such roles consist of interactions between stakeholders which involve communication of information such as the instructions provided by a data controller to a processor.
+\hl{
+The approaches presented in SotA in \autoref{chapter:sota} directly delve into the obligations and requirements of data controllers to demonstrate compliance or towards data subject's consent and rights.
+Since requirements of GDPR compliance are also influenced by the other stakeholders - such as processors and authorities which play an unspecified role in the context of information associated with compliance, such roles consist of interactions between stakeholders which involve communication of information such as the instructions provided by a data controller to a processor.
 Therefore along with the requirements of compliance, it is also important to understand the interactions between stakeholders, the information involved in such interactions, and the requirements of information in terms of its interoperability between them.
-Such analyses and requirements gathering related to the GDPR benefit the larger community and domain by providing the background for standardisation activities in understanding the role of information and its interoperability between stakeholders, such as those for DPVCG \autoref{sec:intro:dpvcg}.
+}
 
-This chapter therefore first presents an analysis of GDPR in terms of stakeholders and interoperability of information between them along with an analysis of suitability of existing standards to represent it in \autoref{sec:info:model}.
-Following this, \autoref{sec:info:compliance-questions} frames `compliance questions' that provide information requirements necessary to evaluate compliance, with the methodology presented in \autoref{sec:info:compliance-questions-methodology}, and \autoref{sec:info:constraints} presenting assumptions and constraints that can be used to validate the information for correctness and completeness.
+\hl{
+As an example, consider a data controller that can have any number of internal representations of information necessary to demonstrate compliance, but an investigation by a supervisory body requires such information to be provided as per the requirements of the authority and in an mutually understandable form. Furthermore, a processor contracted by the controller may also be required to present information relevant in the investigation of compliance - and which would need to be mutually understandable by the processor, the controller, and the investigating authority.
+When utilising technological solutions for management of compliance information, the analysis of information interoperability requirements enable identifying the application of such solutions within a larger context comprised of various stakeholders involved in the compliance process.}
+
+\hl{
+This chapter therefore first presents the analysis of GDPR in terms of stakeholders and interoperability of information between them to construct a model of information interoperability in \autoref{sec:info:model}.
+The model provides an analysis of the requirements in terms of information and interoperability from the perspective of interactions between entities.
+This provides an overview of information requirements which can be used to find additional applications for existing information representation approaches and to identify gaps which can be addressed through future opportunities.
+Such analyses and requirements gathering related to the GDPR also benefit the larger community and domain by providing the background for standardisation activities in understanding the role of information and its interoperability between stakeholders, such as those for DPVCG \autoref{sec:intro:dpvcg}.
+}
+
+Following the above, \autoref{sec:info:compliance-questions} frames `compliance questions' that provide information requirements necessary to evaluate compliance, with the methodology presented in \autoref{sec:info:compliance-questions-methodology}, and \autoref{sec:info:constraints} presenting assumptions and constraints that can be used to validate the information for correctness and completeness.
 The use of compliance questions as competency questions in the development and evaluation of ontologies is presented in \autoref{chapter:vocabularies}, and the use of constraints for validations is presented in \autoref{chapter:testing}.
 
 \section{Interoperability Model of Information based on GDPR}\label{sec:info:model}
-
 This section presents an analyses of the GDPR in terms of interactions between stakeholders and the information involved in such interactions. It then presents a model of interoperability for information associated with stakeholders. The model enables understanding the role of stakeholders in the compliance process in terms of information requirements and provides a framework to establish the relationship between the interactions and information required for compliance. 
 The model also provides motivation to incorporate interoperability as a core requirement within representations of information towards GDPR compliance.
+This provides context for the development of ontologies presented in the thesis in terms of their intended application and usefulness to the entities associated with GDPR compliance.
 The work described in this section was published within the interoperability and standardisation community as a conference paper
 \cite{pandit_gdpr_2018} which was later expanded upon in a journal article \cite{pandit_exploration_2018} and a book chapter \cite{pandit_standardisation_2020}.
 
-The categorisation of stakeholders (or entities) in terms of GDPR compliance are visualised in Figure \ref{fig:info:interoperability-model} and consist of Data Subject (DS), Data Controller (DC), Data Processor (DP) and Supervisory Authority\footnote{Supervisory Authority are also referred to as Data Protection Commission or Regulatory Body} (SA). 
+The \autoref{fig:info:interoperability-model} visualises and consists of Data Subject (DS), Data Controller (DC), Data Processor (DP) and Supervisory Authority\footnote{Supervisory Authority are also referred to as Data Protection Commission or Regulatory Body} (SA) - which are entities defined within the GDPR. 
 The figure also mentions Data Management (DM) as a type of virtual entity provided by a third party in the form of a product, tool, or service whose function is to provide an interface to the controller or processor for assisting and automating their operations. 
 Although the GDPR does not mention or allude to the existence or functionality of DM, it is included based on the information interoperability requirements it represents as required by the operating controller or processor.
 \begin{figure}[htbp]
@@ -35,13 +45,15 @@ Although the GDPR does not mention or allude to the existence or functionality o
 \end{figure}
 
 With this, there are 11 possible points of interactions between entities as indicated by the blue dots in the figure with the label specifying the two entities involved in an interaction.
-The interactions are considered directionless, and use the abbreviations defined above. For example, DC-DP represents an interaction between a data controller and a data processor.
+The interactions are considered direction-less, and use the abbreviations defined above. For example, DC-DP represents an interaction between a data controller and a data processor.
 The solid line corresponds to interactions defined by the GDPR between stakeholders, while the dotted lines represent interactions derived from information interoperability requirements.
 Where a cyclic interaction is specified, such as DC-DC occur between the same type of stakeholder, they represent interactions between different organisations of the same type, which in this case means two different data controllers.
 
-The points of interactions consist of information exchange between entities, are are guided by the requirements of compliance. For example, the interaction between data subject and data controller consists of the data subject providing personal data to the controller, while the controller is required to provide a copy of provided personal data for fulfilment of rights granted by the GDPR.
-
-Analyses of information flows between entities enables categorisation of requirements across the categories of provenance records, consent information, data processing agreements, compliance information, and use of seals/certifications \cite{pandit_exploration_2018}.
+The points of interactions consist of information exchange between entities, and are guided by the requirements of compliance. For example, the interaction between data subject and data controller consists of the data subject providing personal data to the controller, while the controller is required to provide a copy of provided personal data for fulfilment of rights granted by the GDPR.
+The analyses of information flows between entities provided the categories of requirements as: provenance records, consent information, data processing agreements, compliance information, and seals/certifications - which are described in brief in the following sections.
+\hl{
+Carrying out further investigation and analyses of the information communicated in an interaction is out of scope for the research presented in this thesis given the focus of the research question on information about activities associated with processing of personal data and consent. To this end, only the interactions associated with personal data and consent are taken to be within scope, and from which the investigation of information required for compliance is carried out in \autoref{sec:info:compliance-questions}.
+}
 
 \subsubsection*{Provenance records}
 Provenance in this case refers to information about entities and activities involved in the compliance process, where a record is required to be kept and exchanged for compliance purposes. For example, GDPR requires controllers and processors to maintain provenance records of processing activities carried out under their responsibility in order to maintain and demonstrate compliance to supervisory authorities. Provenance records are also required to be maintained to enable provision of rights to the data subject, and for information sharing between controllers and third parties.
@@ -68,7 +80,7 @@ Similarly, consent revocation or revisions also need to be similarly stored and 
 The processes associated with offering consent choices, retrieving and recording given consent, enabling withdrawal of consent, and executing revocation in internal processes need to thus be documented for compliance by the relevant controller(s).
 These are associated across both ex-ante and ex-post phases where consent choices, provision of right to withdrawal, and demonstrating utilisation of consent in processing are demonstrated as ex-ante measures while given consent and revoked consent are ex-post artefacts. 
 
-If consent is considered as an instance of personal data, the same information model used to document processing of personal data can be re-purposed to represent activities associated with consent. In addition to this, the activities need to capture the various stages of consent and personal data by representing their life-cycles which involve processes and artefacts which use them or are dependant on them. The 
+If consent is considered as an instance of personal data, the same information model used to document processing of personal data can be re-purposed to represent activities associated with consent. In addition to this, the activities need to capture the various stages of consent and personal data by representing their life-cycles which involve processes and artefacts which use them or are dependant on them. 
 
 \subsubsection*{Compliance documentation}
 Controllers and processors need to maintain ongoing compliance, including documentation of the compliance assessment process. Therefore, compliance as per the GDPR is a continuous process and requires presence of processes or activities that carry out periodic checks of compliance starting from the planning stage to the execution of activities.
@@ -80,29 +92,26 @@ The processes associated with compliance involve information about processing ac
 \subsubsection*{Use of certifications}
 GDPR provides for seals and certifications to be used to denote a certain degree of compliance based on existence of measures and processes indicated by the seal of certification. The presence of such seals and certifications as well as their associated information needs to be exchanged between entities to demonstrate trust and guarantees, such as between processors and controllers, or controllers and data subjects. Seals and certifications indicate a common criteria which is known to entities and supervisory authorities in order to register its use. The exact role of seals and certifications in the compliance process is still under consideration by the authoritative bodies, and is expected to be clarified in the coming period.
 
-\subsubsection*{Opportunities for commonality and interoperability}
-The model and analyses of information flows between entities provides the motivation for establishing interoperability in the representation of information to be exchanged.
-In particular, provenance records regarding activities associated with processing of personal data and consent are relevant in all interactions, and consequently are important to the documentation of compliance for all stakeholders. 
-
-Representing provenance is not limited to representation of processing of personal data, but is also applicable to information about other categories - consent, data processing agreements, compliance, and certifications. Therefore, utilising the same or compatible representation in representing provenance for all categories has advantages of utilising a cohesive management of all associated information towards compliance.
-
-The representation of activities in the ex-ante and ex-post phases associated with processing of personal data is well established based on the analysis of state of the art (see \autoref{sota:analysis:process-flows}). 
-Approaches have utilised existing standards such as PROV and BPMN to represent information in an interoperable form. 
-While this provides the potential to reuse the same representation towards other information categories described above, the approaches within the SotA do not exploit this opportunity.
-
+\subsubsection*{Motivation to adopt interoperability as a requirement}
+\hl{The model and analyses of information flows between entities provides the motivation for establishing interoperability in the representation of information to be exchanged.
 As the scope of the thesis focuses on representation of activities associated with processing of personal data and consent, the requirements gathered from this analysis relate primarily to the information associated with provenance of activities and information about consent.
 Within this scope, the effort of ensuring potential reuse towards other categories through future extensions is provided by developing an interoperable ontology by using standards that can be utilised to also represent data processing agreements and compliance agreements in the future.
 This involves using standards such as RDF and OWL2 to represent the ontology, and the reuse of existing standardised vocabularies such as PROV-O and ELI.
-In addition, the research also provides transparency by using terminology of GDPR in the developed ontologies, indicating the requirements used to shape the design of ontology, and indicating the source of concepts within GDPR.
+In addition, the research also provides transparency by using terminology of GDPR in the developed ontologies, indicating the requirements used to shape the design of ontology, and indicating the source of concepts within GDPR.}
 
-With this motivation, the next parts of this chapter provide the requirements gathered for representing information regarding processing of personal data and consent, while also including other relevant information - such as data breaches and provision of rights - to indicate the potential applicability and reuse of developed ontologies in representing additional information for GDPR compliance.
+\hl{Representing provenance is not limited to representation of processing of personal data, but is also applicable to information about other categories - consent, data processing agreements, compliance, and certifications. Therefore, utilising the same or compatible representation in representing provenance for all categories has advantages of utilising a cohesive management of all associated information towards compliance - and provides an objective for future work in expanding the contributions presented in this thesis.}
+
+With this motivation, the next parts of this chapter provide the requirements gathered for representing information regarding processing of personal data and consent, while also including other relevant information - such as data breaches and provision of rights - to indicate the potential applicability and reuse of developed ontologies in representing \hl{information through provenance records} for GDPR compliance.
 
 \section{Compliance Questions}\label{sec:info:compliance-questions}
-This section presents `compliance questions' whose answers provide information necessary for evaluating GDPR compliance. The questions are essential to the development of information representations within compliance management systems by providing requirements for the structuring of information and its validation. Within this thesis, they are used to guide the development of ontologies as competency questions (see \autoref{chapter:vocabularies}) and validation of information (see \autoref{chapter:testing}). The questions presented here are by no means exhaustive but represent gathered requirements from authoritative sources. As supervisory authorities and courts continue to clarify and interpret the compliance requirements of GDPR, these questions are expected to change and expand in the future.
+This section presents `compliance questions' whose answers provide information necessary for evaluating GDPR compliance. The questions are essential to the development of information representations within compliance management systems by providing requirements for the structuring of information and its validation. Within this thesis, they are used to guide the development of ontologies as competency questions (see \autoref{chapter:vocabularies}) and validation of information (see \autoref{chapter:testing}). \textbf{The questions presented here are by no means exhaustive but represent gathered requirements from authoritative sources.} As supervisory authorities and courts continue to clarify and interpret the compliance requirements of GDPR, these questions are expected to change and expand in the future.
 
 \subsection{Methodology}\label{sec:info:compliance-questions-methodology}
-The questions were collected from authoritative sources such as data protection commissions, legal experts and agencies - that have published guidelines and resources to assist organisations with the process of establishing and maintaining GDPR compliance.
-Some resources - such  as checklists or criteria to self-assess measure of GDPR compliance within an organisation - already provide questions which were adopted for use. In other cases, questions were derived from the reading and understanding of compliance requirements. 
+\hl{The questions were created by studying authoritative sources regarding GDPR compliance  consisting of data protection commissions, legal experts and agencies - that have published guidelines and resources to assist organisations with the process of establishing and maintaining GDPR compliance.
+In this process, each identified clause or article of the GDPR pertaining to the research question was formulated as a question, with the above mentioned sources providing indication on how the question should be interpreted and the requirements of its compliance.}
+
+\hl{The questions presented in this thesis were therefore derived from the reading and understanding of compliance requirements, and are intentionally expressed as a `simple question' whose answering requires a minimal information in order to determine the requirements of such information and construct an ontological representation of it.
+As the questions were formulated from an understanding of the GDPR, they are associated with specific clauses where possible.}
 
 For the questions presented in this thesis, the following sources were used or referenced in addition to the text of GDPR:
 \begin{itemize}
@@ -115,6 +124,14 @@ For the questions presented in this thesis, the following sources were used or r
     \item Executive and Court decisions regarding GDPR compliance, tracked using the online community service \url{https://www.enforcementtracker.com/} which also provides the article of GDPR relevant to the decision
 \end{itemize}
 
+\hl{The questions pertaining to consent and its associated processing activities were validated through consultation with a law professor at Trinity College Dublin who served as a legal domain expert who validated the expression of questions and the information required to answer them. This consisted of providing the expert with a spreadsheet containing categories of questions along with their assumptions and constraints as information requirements. The feedback consisted of assessing whether the stated information was correct, correcting terminology used in questions, and changing the expression of statements to suit legal interpretations.
+Other questions pertaining to processor obligations, data breach requirements, and rights were not validated through this process due to unavailability of the expert.}
+
+\hl{The author of the thesis was part of an informal consulation on a real-world (confidential) research project at MasterCard regarding creation of a semantic web ontology for expressing consent information based on requirements of the GDPR.
+The consulation consisted of identifying the information about consent based on requirements of GDPR and designing an ontology to represent it. 
+This process provided real-world requirements about management of consent information, which had an influence on the compliance questions associated with it and the design of the GConsent ontology presented in \autoref{sec:voc:GConsent}.}
+
+
 The collected questions were rephrased and divided into smaller more granular questions towards establishment of information requirements and constraints. 
 Each question was assigned an ID to enable tracking its use.
 Where possible, each question was associated with specific clauses of the GDPR by denoting the article or recital relevant to it. Each question was analysed in terms of information requirements to identify assumptions that clarify interpretation of the question, and constraints that express a condition that can be tested and used to validate the information. For each identified constraint, a failing test case was identified that did not satisfy the condition and could be used to test its validation.
@@ -125,7 +142,21 @@ The list of questions is presented in \autoref{sec:info:compliance-questions-lis
 
 \subsection{List of Questions}\label{sec:info:compliance-questions-list}
 
-\subsubsection{Use-cases}
+\hl{Each question is numbered to enable identifying it and associating it with information requirements in the later chapters. The questions are categorised based on the topic they focus on within the context of compliance, and are associated with specific clauses of the GDPR as a reference at the end of the sentence}\footnote{Shortened references are used to indicate the clause of GDPR. For example: R32 indicates Recital 32, A7-2 indicates Article 7 Para 2, and A9-2c indicates Article 9 Para 2 Sub-Para c.}.
+\hl{In order to provide a context for application of the questions within the real world, a group of use-cases are provided in \autoref{sec:info:use-cases}.
+An overview of the compliance questions and their categorisation as follows:}
+\begin{itemize}
+	\item \autoref{sec:info:CQ:1} Compliance questions pertaining to records of processing activities to be kept by controllers: \texttt{CMQ.1 - CMQ.15}.
+	\item \autoref{sec:info:CQ:2} Compliance questions pertaining to records of processing activities to be kept by processors: \texttt{CMQ.16 - CMQ.25}.
+	\item \autoref{sec:info:CQ:3} Compliance questions pertaining to legal basis of processing activities: \texttt{CMQ.26 - CMQ.27}.
+	\item \autoref{sec:info:CQ:4} Compliance questions pertaining to personal data: \texttt{CMQ.28 - CMQ.34}.
+	\item \autoref{sec:info:CQ:5} Compliance questions pertaining to given consent: \texttt{CMQ.35 - CMQ.69}.
+	\item \autoref{sec:info:CQ:6} Compliance questions pertaining to change in consent state: \texttt{CMQ.70 - CMQ.87}.
+	\item \autoref{sec:info:CQ:7} Compliance questions pertaining to provision of right to be informed: \texttt{CMQ.88 - CMQ.105}.
+	\item \autoref{sec:info:CQ:8} Compliance questions pertaining to reporting of data breach by controllers: \texttt{CMQ.106 - CMQ.120}.
+\end{itemize} 
+
+\subsubsection{Use-cases}\label{sec:info:use-cases}
 To identify the application of compliance questions in various scenarios within the real world, 15 categories of use-cases were identified to determine the necessary information required to identify their ontological representations.
 The use-cases are based on identifying information affecting compliance requirements and identifying variances which affect the representations of that information.
 These were useful to guide the development of the ontology by serving as test scenarios where an ontology could be applied and evaluated for representing information.
@@ -321,7 +352,7 @@ A summary of these use-cases is as follow:
 \end{enumerate}
 
 % COMPLIANCCE QUESTIONS - CONTROLLERS
-\subsubsection{Compliance questions pertaining to records of processing activities to be kept by controllers}
+\subsubsection{Compliance questions pertaining to records of processing activities to be kept by controllers}\label{sec:info:CQ:1}
 \begin{enumerate}[label={\textit{CMQ.\theenumi}}]
     \item How are the records of processing activities maintained? (R82,A30,A30-3)
     \item What is the name and identity of the controller(s) and their representatives/DPOs? (A30-1a)
@@ -341,7 +372,7 @@ A summary of these use-cases is as follow:
 \end{enumerate}
 
 % COMPLIANCE QUESTIONS - PROCESSORS
-\subsubsection{Compliance questions pertaining to records of processing activities to be kept by processors}
+\subsubsection{Compliance questions pertaining to records of processing activities to be kept by processors}\label{sec:info:CQ:2}
 \begin{enumerate}[label={\textit{CMQ.\theenumi}},resume]
     \item How are the records of processing activities maintained? (R82,A30,A30-3)
     \item What is the name and identity of the processor(s) and their representatives/DPOs? (A30-1a)
@@ -355,14 +386,14 @@ A summary of these use-cases is as follow:
     \item Where data is shared, what are the purposes for sharing of personal data with the recipients?
 \end{enumerate}
 % COMPLIANCE QUESTIONS - LEGAL BASIS
-\subsubsection{Compliance questions pertaining to legal basis of processing activities}
+\subsubsection{Compliance questions pertaining to legal basis of processing activities}\label{sec:info:CQ:3}
 \begin{enumerate}[label={\textit{CMQ.\theenumi}},resume]
     \item What is the legal basis for processing of data?
     \item What is the legal basis for the purpose for processing of data?
 \end{enumerate}
 
 % COMPLIANCE QUESTIONS - PERSONAL DATA
-\subsubsection{Compliance questions pertaining to personal data}
+\subsubsection{Compliance questions pertaining to personal data}\label{sec:info:CQ:4}
 \begin{enumerate}[label={\textit{CMQ.\theenumi}},resume]
     \item What are the sources of personal data?
     \item What personal data are collected from the data subject?
@@ -374,7 +405,7 @@ A summary of these use-cases is as follow:
 \end{enumerate}
 
 % COMPLIANCE QUESTIONS - GIVEN CONSENT
-\subsubsection{Compliance questions pertaining to given consent}
+\subsubsection{Compliance questions pertaining to given consent}\label{sec:info:CQ:5}
 \begin{enumerate}[label={\textit{CMQ.\theenumi}},resume]
     \item Who is the Data Subject associated with consent? (A4-11)
     \item What are the Personal Data associated with consent? (R32,A4-11)
@@ -414,7 +445,7 @@ A summary of these use-cases is as follow:
 \end{enumerate}
 
 % COMPLIANCE QUESTIONS - CHANGE IN CONSENT STATE
-\subsubsection{Compliance questions pertaining to change in consent state}
+\subsubsection{Compliance questions pertaining to change in consent state}\label{sec:info:CQ:6}
 In this, the definition of change in consent is where the state/status of consent is changed. Example: unknown to not asked or not given, from given to withdrawn, from given to invalidated. Changes where the result is given consent or obtained consent where none existed is considered as given consent with compliance questions listed in the previous section.
 \begin{enumerate}[label={\textit{CMQ.\theenumi}},resume]
     \item Who is the Data Subject associated with consent? (A4-11)
@@ -438,7 +469,7 @@ In this, the definition of change in consent is where the state/status of consen
 \end{enumerate}
 
 % COMPLIANCE QUESTIONS - RIGHT TO BE INFORMED
-\subsubsection{Compliance questions pertaining to provision of right to be informed}
+\subsubsection{Compliance questions pertaining to provision of right to be informed}\label{sec:info:CQ:7}
 \begin{enumerate}[label={\textit{CMQ.\theenumi}},resume]
     \item How was information relevant for the right to be informed provided to the data subjects?
     \item When was the information relevant to right to be informed was provided to the data subject?
@@ -461,7 +492,7 @@ In this, the definition of change in consent is where the state/status of consen
 \end{enumerate}
 
 % COMPLIANCE QUESTIONS - DATA BREACH
-\subsubsection{Compliance questions pertaining to reporting of data breach by controllers}
+\subsubsection{Compliance questions pertaining to reporting of data breach by controllers}\label{sec:info:CQ:8}
 \begin{enumerate}[label={\textit{CMQ.\theenumi}},resume]
     \item When did the data breach occur?
     \item When did the controller become aware of the data breach? (R85,R33-1)
@@ -482,6 +513,17 @@ In this, the definition of change in consent is where the state/status of consen
 
 \subsection{Assumptions \& Constraints}\label{sec:info:constraints}
 An assumption is defined as information or condition that always holds true and is useful in the interpretation of the compliance question. A constraint is defined as a condition that the information pertaining to compliance question must satisfy in order for it to be valid. The assumptions and constraints are listed with reference to the relevant compliance question at the end in brackets.
+\hl{An overview of the assumptions and constraints based on the categories of compliance questions is as follows:}
+\begin{itemize}
+	\item \autoref{sec:info:CQ:1} Compliance questions pertaining to records of processing activities to be kept by controllers: \texttt{CMQ.1 - CMQ.15}  has Assumptions \texttt{A.1 - A.5} and Constraints \texttt{C.1 - C.18}
+	\item \autoref{sec:info:CQ:2} Compliance questions pertaining to records of processing activities to be kept by processors: \texttt{CMQ.16 - CMQ.25} has Constraints \texttt{C.16 - C.32}
+	\item \autoref{sec:info:CQ:3} Compliance questions pertaining to legal basis of processing activities: \texttt{CMQ.26 - CMQ.27}  has Assumptions \texttt{A.6} and Constraints \texttt{C.33 - C.34}
+	\item \autoref{sec:info:CQ:4} Compliance questions pertaining to personal data: \texttt{CMQ.28 - CMQ.34}  has Assumptions \texttt{A.7} and Constraints \texttt{C.35 - C.38}
+	\item \autoref{sec:info:CQ:5} Compliance questions pertaining to given consent: \texttt{CMQ.35 - CMQ.69}  has Assumptions \texttt{A.8 - A.28} and Constraints \texttt{C.39 - C.69}
+	\item \autoref{sec:info:CQ:6} Compliance questions pertaining to change in consent state: \texttt{CMQ.70 - CMQ.87}  has Assumptions \texttt{A.30 - A.39} and Constraints \texttt{C.70 - C.87}
+	\item \autoref{sec:info:CQ:7} Compliance questions pertaining to provision of right to be informed: \texttt{CMQ.88 - CMQ.105} has Constraints \texttt{C.88 - C.113}
+	\item \autoref{sec:info:CQ:8} Compliance questions pertaining to reporting of data breach by controllers: \texttt{CMQ.106 - CMQ.120} has Constraints \texttt{C.114 - C.130}
+\end{itemize} 
 
 \subsubsection{Assumptions}
 \begin{enumerate}[label={\textit{A.\theenumi}}]
@@ -661,10 +703,12 @@ An assumption is defined as information or condition that always holds true and 
     \item Every record of a data breach must specify the steps taken to prevent or mitigate the effects of the data breach - (CMQ120)
 \end{enumerate}
 
-\section*{Conclusion}
+\section*{Summary}
 Through this chapter, an analyses of information associated with GDPR and its compliance was presented. 
 % information interoperability model
 \autoref{sec:info:model} presented a model of information interoperability between entities as defined by the requirements for GDPR compliance. The model provides an analyses of information requirements and information flows between different entities, and the categorisation of information requirements as provenance records, consent information, compliance documentation, data processing agreements, and use of seals/certifications.
 Its analyses also provides a strong motivation towards adopting a common information model for representation of all activities associated with GDPR compliance.
 
 Following this, \autoref{sec:info:compliance-questions} presented `compliance questions' which aim to retrieve information relevant to the evaluation of GDPR compliance. The section also provides the methodology used to formulate the questions from authoritative sources. The compliance questions are accompanied with identification of assumptions and constraints which are useful towards the establishment of information requirements and its validation.
+
+The next chapter presents the developed ontologies for addressing research objective $RO3$, and which utilise the compliance questions presented in this chapter as competency questions in the ontology engineering process.
