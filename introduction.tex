@@ -138,7 +138,7 @@ A review of the state of the art (SotA) was conducted at several stages of the r
 The publications associated with the research objectives were driving factors in providing motivation to conduct a SotA review to capture the approaches and progress at that particular time.
 In addition, a general review of legal models for compliance was also conducted to identify relevant approaches which could be reused towards addressing the requirements of the GDPR.
 
-The review included understanding of the GDPR, which was obtained and studied from sources including the official text of the GDPR, its interpretation and clarification provided by authoritative bodies such as Data Protection Commissions, Article 29 Working Party (A29WP), and European Data Protection Board (EPDB).
+The review included understanding of the GDPR, which was obtained and studied from sources including the official text of the GDPR, its interpretation and clarification provided by authoritative bodies such as Data Protection Commissions, Article 29 Working Party (A29WP), and European Data Protection Board (EDPB).
 In addition, guides and expert opinions provided by legal experts and organisations were also utilised to better understand the requirements for GDPR compliance.
 Information requirements associated with compliance were based on these, as well as studying case law related to interpretation of the GDPR where accessible.
 
@@ -152,7 +152,7 @@ Zotero was used as a tool for managing references and related notes.
 \subsection{Information Gathering}
 The gathering of information regarding requirements of GDPR and its compliance was done through a literature review of official and authoritative documentation published by legal bodies and organisations.
 In order to understand the requirements of GDPR and the stakeholders involved, a model was developed to understand the requirements for interoperability of information for each stakeholder.
-Further, based on the use of information about GDPR compliance in the ontology engineering process, the analysed information was used to create `compliance questions' which guide the ontology development process \hl{by acting as `competency questions'} (see \autoref{sec:intro:ontology-engineering}) and also act as queries for retrieving information relevant to the compliance process. The questions also provided the basis for creating information validation constraints to evaluate information.
+Further, based on the use of information about GDPR compliance in the ontology engineering process, the analysed information was used to create `compliance questions' which guide the ontology development process by acting as `competency questions' (see \autoref{sec:intro:ontology-engineering}) and also act as queries for retrieving information relevant to the compliance process. The questions also provided the basis for creating information validation constraints to evaluate information.
 This process is described in \autoref{chapter:information}.
 
 % construction of ontologies
@@ -182,7 +182,7 @@ The ontology and related resources were hosted in a SPARQL end-point on Trinity 
 % querying and validation framework
 \subsection{Querying Information for GDPR Compliance}
 The querying of information utilised SPARQL and fulfilled the research objective $RO4$.
-The methodology to represent the \hl{compliance questions as SPARQL queries utilisied questions from a real-world document published by the Irish Data Protection Commission for assisting organisations in evaluation their readiness for GDPR - which was also one of the sources for gathering information relevant for GDPR compliance.}
+The methodology to represent the compliance questions as SPARQL queries utilised questions from a real-world document published by the Irish Data Protection Commission for assisting organisations in evaluation their readiness for GDPR - which was also one of the sources for gathering information relevant for GDPR compliance.
 The querying was demonstrated by representing each question within the document as a SPARQL query using the developed ontologies and executed over a synthetic use-case.
 
 \subsection{Information Validation Framework for GDPR Compliance}
@@ -196,11 +196,11 @@ Its application was demonstrated through a use-case evaluating the validity of c
 \subsubsection{Evaluating Ontologies}
 %% ontologies
 The developed ontologies presented in \autoref{chapter:vocabularies} were assessed in their sufficiency and completeness to answer the competency questions. 
-In addition, \hl{use-cases related to situations differing in compliance requirements were used to assess the ontology in terms of sufficient representation of related information. These use-cases were compiled from GDPR-related case law, SotA, and synthetic situations, and validated regarding information requirements with a legal expert.}
-Ontologies were also evaluated using best practices advocated by the community throughout its cycle of development \hl{by using a semantic reasoner to ensure logical consistency in expressed facts and axioms}, and by using the OOPS! \cite{poveda-villalon_oops!_2014} online service to detect common pitfalls in ontology design.
+In addition, use-cases related to situations differing in compliance requirements were used to assess the ontology in terms of sufficient representation of related information. These use-cases were compiled from GDPR-related case law, SotA, and synthetic situations, and validated regarding information requirements with a legal expert.
+Ontologies were also evaluated using best practices advocated by the community throughout its cycle of development by using a semantic reasoner to ensure logical consistency in expressed facts and axioms, and by using the OOPS! \cite{poveda-villalon_oops!_2014} online service to detect common pitfalls in ontology design.
 While most detected pitfalls were corrected in the ontology engineering process, some pitfalls were found to not be relevant or applicable and were ignored.
-Finally, \hl{the sections in this thesis describing each ontology present a comparison against similar ontologies identified in the SotA to analyse their novelty, as well as strengths and weaknesses.
-The sections also present the relevant peer-reviewed publications where the ontologies were presented and discussed. Citations to these publications were used as an indication to identify relevant approaches, and to investigate criticisms and comparisons with other ontological represenations.}
+Finally, the sections in this thesis describing each ontology present a comparison against similar ontologies identified in the SotA to analyse their novelty, as well as strengths and weaknesses.
+The sections also present the relevant peer-reviewed publications where the ontologies were presented and discussed. Citations to these publications are used as an indication to identify relevant approaches, and to investigate criticisms and comparisons with other ontological representations.
 
 An extended evaluation of the ontologies was also performed indirectly based on their use in the querying and validation of information for research objectives $RO4$ and $RO5$. This provided the opportunity to evaluate whether the ontology provided sufficient concepts to represent the required information, and whether such representations could be used in the querying and validation process.
 Where an ontology was found to lack concepts, these were added in an updated iteration or - in cases where there was ambiguity in representations - noted for future updates.
@@ -214,9 +214,9 @@ The developed application and queries were presented in a peer-reviewed publicat
 
 \subsubsection{Evaluating Information Validation Framework}
 %% querying and validation framework
-The framework developed for validating information using constraints derived from compliance questionsis is presented with its evaluation in \autoref{sec:testing:shacl}.
+The framework developed for validating information using constraints derived from compliance questions is is presented with its evaluation in \autoref{sec:testing:shacl}.
 The evaluation consisted of generating a synthetic use-case based on the consent mechanism of a real-world website, where the constraints were validated against information related to consent and personal data activities within the use-case.
-\hl{The section also mentions the relevant peer-reviewed publications where the framework and its application were published and presented.}
+The section also mentions the relevant peer-reviewed publications where the framework and its application were published and presented.
 
 The use-case enabled representation of activities in both ex-ante and ex-post phases where ex-ante represented validity of the consent dialogue being presented, and ex-post represented determining validity of given consent.
 The information regarding activities related to personal data and consent within the use-case was represented using the developed ontologies to create a semantic web representation of the use-case.

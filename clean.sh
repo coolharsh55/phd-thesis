@@ -11,3 +11,5 @@ else
          rm -f $arg.$ext
     done
 fi
+
+rm -rf _minted-main
