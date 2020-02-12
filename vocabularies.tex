@@ -897,12 +897,138 @@ Based on this, GDPRov's novelty within the SotA is based on it being one of the 
 Furthermore, GDPRov is one of the few approaches to be available under an open and permissive license (CC-by-4.0) thereby enabling its use, adoption, and further evolution.
 
 \color{blue}
-\subsubsection{Application to External Use-case: SPECIAL project}
+\subsubsection{Application to external use-case from SPECIAL project}\label{sec:gdprov:use-case:SPECIAL}
 % description of the use-case
 The SPECIAL project uses a scenario\footnote{NOTE: the scenario explicitly mentions use of an immutable distributed ledger developed by the SPECIAL project to provide transparency and log accountability regarding metadata. This is omitted from the adapted use-case used to evaluate GDPRov.} to motivate their work and demonstrate the use of developed technologies in their deliverables (D1.7 \cite{bonatti_d1.7_2018}) and peer-reviewed publications (\cite{kirrane_scalable_2018}).
 In this section, the scenario is adapted as an external use-case to evaluate GDPRov's suitability to express the required concepts.
 
-The use-case is summarised as follows with GDPR concepts added in brackets for relating their relevance: Sue (Data Subject) buys a wearable appliance for fitness tracking from BeFit (Data Controller), and is presented with an informed consent request that describes collection of biomedical parameters such as heart rate (Personal Data), and how they will be processed, stored in BeFit's cloud and transmitted for the purposes of (i) giving Sue feedback on her activity, such as calories consumption; and (ii) creating an activity profile that will be shared with other companies for targeted ads related to fitness - an optional purpose which Sue opts-in. After two years, Sue starts receiving annoying SMS messages from a local gym that advertise its activities. Sue discovers the following facts: (i) the gym has an activity profile referring to Sue, that, due to the appliance’s malfunctioning, reports that she is not doing any physical exercise; (ii) the gym received the profile from BeFit, associated with a policy that allows the gym to send targeted ads to Sue based on the profile; (iii) BeFit built the profile by mining the data collected by the appliance; and (iv) all these operations are permitted by the consent agreement previously signed by Sue and BeFit. Using this information BeFit and the gym prove that they used Sue’s data according to the given consent. Sue now asks both BeFit and the gym to delete all of her data. 
+The use-case is summarised as follows with GDPR concepts added in parenthesis for relevance: Sue (Data Subject) buys a wearable appliance for fitness tracking from BeFit (Data Controller), and is presented with an informed consent request that describes collection of biomedical parameters such as heart rate (Personal Data), and how they will be processed, stored in BeFit's cloud and transmitted for the purposes of: giving Sue feedback on her activity, such as calories consumption; and creating an activity profile that will be shared with other companies for targeted ads related to fitness - an optional purpose which Sue opts-in. After two years, Sue starts receiving annoying SMS messages from a local gym that advertise its activities. Sue discovers the following facts: (i) the gym has an activity profile referring to Sue, that, due to the appliance’s malfunctioning, reports that she is not doing any physical exercise; (ii) the gym received the profile from BeFit, associated with a policy that allows the gym to send targeted ads to Sue based on the profile; (iii) BeFit built the profile by mining the data collected by the appliance; and (iv) all these operations are permitted by the consent agreement previously signed by Sue and BeFit. Using this information BeFit and the gym prove that they used Sue’s data according to the given consent. Sue now asks both BeFit and the gym to delete all of her data. 
+
+The use-case is accompanied with information on its interpretation in terms of GDPR terminology \cite{bonatti_d1.7_2018} and its representation using the SPECIAL vocabularies \cite{kirrane_scalable_2018}. To represent the use-case using GDPRov, the concepts used by SPECIAL are mapped or aligned to their closest relative concepts within GDPRov (see \autoref{table:gdprov:use-case:SPECIAL}) with its RDF/Turtle representation provided in \autoref{code:gdprov:use-case:special}. The SPARQL queries used to retrieve information depicted by statements (i) to (iv) in the scenario are provided in \autoref{code:gdprov:use-case:special-sparql}. The RDF representation and SPARQL query utilised a simplified representation of the scenario to present only the facts essential to the answering of questions. 
+\begin{center}
+\footnotesize
+\begin{tabularx}{\textwidth}{|p{0.35\linewidth}|X|X|}
+\caption{GDPRov concepts to represent external use-case from SPECIAL} \label{table:gdprov:use-case:SPECIAL} \\
+\toprule
+\textbf{Statement} & \textbf{GDPRov concept} & \textbf{SPECIAL concept} \\
+\midrule
+\endhead
+Sue & \texttt{DataSubject} & \texttt{DataSubject} \\ \hline
+BeFit & \texttt{DataController} & \texttt{Controller} \\ \hline
+Biomedical parameters, heart rate, calories consumption, activity profile & \texttt{PersonalData} & \texttt{Data} \\ \hline
+Collect data & \texttt{DataCollectionActivity} & \texttt{Collect} \\ \hline
+Provide feedback on activity & \texttt{Purpose} & \texttt{Purpose} \\ \hline
+Give consent (opt-in) & \texttt{AcquireConsentActivity} & \texttt{ConsentAssertion} \\ \hline
+Targeted ads related to fitness & \texttt{Purpose} & \texttt{Purpose} \\ \hline
+Share data & \texttt{DataSharingActivity} & \texttt{Recipient} \\ \hline
+Gym & \texttt{ThirdParty} & \texttt{Recipient} \\ \hline
+Consent agreement & \texttt{GivenConsent} & \texttt{LogEntryContent} \\ \hline
+Delete data & \texttt{DataDeletionActivity} & N/A \\ \hline
+Withdraw consent & \texttt{WithdrawConsentActivity} & \texttt{ConsentRevocation} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\begin{listing}[htbp]
+\begin{minted}{turtle}
+# Entities
+:Sue a gdprov:DataSubject .
+:BeFit a gdprov:DataController .
+:Gym a gdprov:ThirdParty .
+# Personal Data
+:Biomedical_Parameters a gdprov:PersonalData .
+:Activity_Profile a gdprov:PersonalData .
+
+# Register with BeFit, given consent, and generate activity profile
+:Registration a gdprov:Process .
+:Sue_consent a gdprov:GivenConsent, gdprtext:LawfulBasisForProcessing .
+:Collect_consent a gdprov:AcquireConsentActivity ;
+    gdprov:isPartOfProcess :Registration .
+    gdprov:collectedConsentFromAgent :Sue ;
+    gdprov:generatedConsent :Sue_consent .
+:Collect_data a gdprov:DataCollectionActivity ;
+    gdprov:isPartOfProcess :Registration ;
+    prov-o:wasInformedBy :Collect_consent ;
+    gdprov:collectedDataFromAgent :Sue ;  # from Sue's device
+    gdprov:generatedData :Activity_Profile .
+
+# Share activity profile with Gym
+:Targeted_ads_related_to_fitness a gdprov:Process ;
+    gdprov:hasLegalBasis :Sue_consent .
+:Share_data a gdprov:DataSharingActivity ;
+    :sharedData :Activity_Profile ;
+    :hasSharedDataWith :Gym .
+# Gym receives Sue's activity profile from BeFit
+:Collect_data_from_BeFit a :DataCollectionActivity ;
+    gdprov:collectedDataFromAgent :BeFit ;
+    gdprov:involvesAgent :Sue ;
+    gdprov:refersToProcess :Targeted_ads_related_to_fitness ;
+    gdprov:generatedData :Activity_Profile . # Gym copy of data
+
+# Sue withdraws consent
+:Withdraw_consent a gdprov:WithdrawConsentActivity ;
+    prov:invalidated :Sue_consent .
+# BeFit and Gym deleted the activity profile
+:Delete_data a gdprov:DataDeletionActivity ;
+    prov:invalidated :Activity_Profile ;
+    prov:wasInformedBy :Withdraw_consent .
+\end{minted}
+\caption{GDPRov representation of external use-case from SPECIAL}
+\label{code:gdprov:use-case:special}
+\end{listing}
+\begin{listing}[htbp]
+\begin{minted}{sparql}
+# Query (i)
+# retrieves :Activity_Profile as personal data shared with Gym
+# queried over Gym's records
+SELECT ?personal_data {
+    ?personal_data a gdprov:PersonalData .
+    ?activity gdprov:generatedData .
+    ?activity (gdprov:collectedDataFromAgent|gdprov:involvesAgent) :Sue .
+}
+
+# Query (ii)
+# retrieves :BeFit as data source
+# retrieves :Targeted_ads_related_to_fitness as purpose
+# queried over Gym's records
+SELECT ?party, ?purpose {
+    ?activity gdprov:generatedData :Activity_Profile .
+    ?activity gdprov:collectedDataFrom ?party .
+    ?activity gdprov:refersToProcess ?purpose .
+}
+
+# Query (iii)
+# retrieves :Sue as data source (as Sue's device)
+# queried over BeFit's records
+SELECT ?data_source {
+    ?activity_profile gdprov:generatedData :Activity_Profile .
+    ?activity_profile gdprov:collectedDataFromAgent ?data_source .   
+}
+
+# Query (iv)
+# retrieves :Sue_consent as the legal basis for data collection and mining
+# queried over BeFit's records
+SELECT ?legal_basis {
+    {
+        ?activity gdprov:generatedData :Activity_Profile .
+    } UNION {
+        ?activity gdprov:sharedData :Activity_Profile .
+        ?activity gdprov:hasSharedDataWith :Gym .
+    }
+    ?activity (
+            gdprov:hasLegalBasis|
+            (gdprov:isPartOfProcess/gdprov:hasLegalBasis))
+        ?legal_basis .
+}
+
+
+\end{minted}
+\caption{SPARQL queries using GDPRov for external use-case from SPECIAL}
+\label{code:gdprov:use-case:special-sparql}
+\end{listing}
+
+From the above, GDPRov is shown to support the representation and answering of questions (using SPARQL) within the scenario. While the scenario relies on the use of SPECIAL's policy-based vocabulary and the immutable distributed ledger to store and retrieve information, these have not been replicated within the GDPRov representation.
+One important conclusion from the above exercise is the representation of given consent - while SPECIAL represents the given consent in the form of a policy, GDPRov does not readily provide a compatible representation of information relevant within the given consent. Instead, it associates the given consent as a legal basis with the purposes (specified as processes) that rely on it. 
+The same scenario is also used to demonstrate application of GConsent in \autoref{sec:gconsent:use-case:SPECIAL} to provide a consent-centric management of information, and to showcase its differences from GDPRov.
 
 % % breakdown into requirements
 % % select concepts from GDPRov to represent requirements - ex-ante and ex-post
@@ -1158,6 +1284,8 @@ In particular, the depiction of delegation is more detailed and provides represe
 As the table depicts, GConsent is currently the only approach that models delegation based on its potential relevancy to the evaluation of GDPR compliance.
 GConsent is also novel in the provision of consent states which enable documenting of information from a controller's perspective regarding the evolution of consent throughout its life-cycle. This is useful for the management of consent as an entity in an information management system such as a database.
 The SotA usually limits the consent state to given or withdrawn without consideration to its other states within the life-cycle as an entity.
+
+\subsubsection{Application to external use-case from SPECIAL project}\label{sec:gconsent:use-case:SPECIAL}
 
 \subsection*{Summary}
 GConsent is an ontology for the representation of consent and its associated information for GDPR compliance. It fulfils the research objective $RO3(c)$ and along with GDPRov forms the second major contribution of this thesis.
