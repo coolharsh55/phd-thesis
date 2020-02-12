@@ -980,7 +980,8 @@ Withdraw consent & \texttt{WithdrawConsentActivity} & \texttt{ConsentRevocation}
 # Query (i)
 # retrieves :Activity_Profile as personal data shared with Gym
 # queried over Gym's records
-SELECT ?personal_data {
+SELECT ?personal_data 
+WHERE {
     ?personal_data a gdprov:PersonalData .
     ?activity gdprov:generatedData .
     ?activity (gdprov:collectedDataFromAgent|gdprov:involvesAgent) :Sue .
@@ -990,7 +991,8 @@ SELECT ?personal_data {
 # retrieves :BeFit as data source
 # retrieves :Targeted_ads_related_to_fitness as purpose
 # queried over Gym's records
-SELECT ?party, ?purpose {
+SELECT ?party, ?purpose 
+WHERE {
     ?activity gdprov:generatedData :Activity_Profile .
     ?activity gdprov:collectedDataFrom ?party .
     ?activity gdprov:refersToProcess ?purpose .
@@ -999,7 +1001,8 @@ SELECT ?party, ?purpose {
 # Query (iii)
 # retrieves :Sue as data source (as Sue's device)
 # queried over BeFit's records
-SELECT ?data_source {
+SELECT ?data_source 
+WHERE {
     ?activity_profile gdprov:generatedData :Activity_Profile .
     ?activity_profile gdprov:collectedDataFromAgent ?data_source .   
 }
@@ -1007,7 +1010,8 @@ SELECT ?data_source {
 # Query (iv)
 # retrieves :Sue_consent as the legal basis for data collection and mining
 # queried over BeFit's records
-SELECT ?legal_basis {
+SELECT ?legal_basis 
+WHERE {
     {
         ?activity gdprov:generatedData :Activity_Profile .
     } UNION {
@@ -1285,7 +1289,139 @@ As the table depicts, GConsent is currently the only approach that models delega
 GConsent is also novel in the provision of consent states which enable documenting of information from a controller's perspective regarding the evolution of consent throughout its life-cycle. This is useful for the management of consent as an entity in an information management system such as a database.
 The SotA usually limits the consent state to given or withdrawn without consideration to its other states within the life-cycle as an entity.
 
+\color{blue}
 \subsubsection{Application to external use-case from SPECIAL project}\label{sec:gconsent:use-case:SPECIAL}
+The use-case described in \autoref{sec:gdprov:use-case:SPECIAL} is used here to demonstrate the use and sufficiency of GConsent in management of consent information. The use-case concerns the scenario where a data subject named Sue gives consent to BeFit company for sharing her activity profile with other companies for receiving targeted ads. She later receives ads from a local Gym and investigates to find that the Gym is using her activity profile shared by BeFit - and that this activity is consistent with her previously given consent. She then withdraws her consent and asks both companies to delete her data.
+
+The representation of this use-case using GConsent consists of using its concepts to represent the information, and to then utilise SPARQL to answer the queries - similar to the exercise in \autoref{sec:gdprov:use-case:SPECIAL} for GDPRov. \autoref{table:gconsent:use-case:SPECIAL} presents the concepts for representing the use-case using GConsent, GDPRov, and SPECIAL vocabularies. The corresponding RDF representation using GConsent is provided in \autoref{code:gconsent:use-case:special} with the queries for deriving answers to questions (i) - (iv) in the use-case are provided in \autoref{code:gconsent:use-case:special-sparql}.
+\begin{center}
+\color{blue}
+\scriptsize
+\begin{tabularx}{\textwidth}{|p{0.3\linewidth}|X|X|X|}
+\caption{GConsent concepts to represent external use-case from SPECIAL}\label{table:gconsent:use-case:SPECIAL} \\
+\toprule
+\textbf{Statement} & \textbf{GConsent} & \textbf{GDPRov} & \textbf{SPECIAL} \\
+\midrule
+\endhead
+Sue & \texttt{DataSubject} & \texttt{DataSubject} & \texttt{DataSubject} \\ \hline
+BeFit & \texttt{DataController} & \texttt{DataController} & \texttt{Controller} \\ \hline
+Biomedical parameters, heart rate, calories consumption, activity profile & \texttt{PersonalData} & \texttt{PersonalData} & \texttt{Data} \\ \hline
+Collect data & \texttt{Collection Of PersonalData} & \texttt{Data Collection Activity} & \texttt{Collect} \\ \hline
+Provide feedback on activity & \texttt{Purpose} & \texttt{Purpose} & \texttt{Purpose} \\ \hline
+Give consent (opt-in) & N/A & \texttt{Acquire Consent Activity} & \texttt{ConsentAssertion} \\ \hline
+Targeted ads related to fitness & \texttt{Purpose} & \texttt{Purpose} & \texttt{Purpose} \\ \hline
+Share data & \texttt{Sharing Of Personal Data} & \texttt{Data Sharing Activity} & \texttt{Recipient} \\ \hline
+Gym & \texttt{ThirdParty} & \texttt{ThirdParty} & \texttt{Recipient} \\ \hline
+Consent agreement & \texttt{Consent Status Explicitly Given} & \texttt{GivenConsent} & \texttt{LogEntryContent} \\ \hline
+Delete data & \texttt{Deletion Of Personal Data} & \texttt{Data Deletion Activity} & N/A \\ \hline
+Withdraw consent & N/A & \texttt{Withdraw Consent Activity} & \texttt{ConsentRevocation} \\ \hline
+Withdrawn consent & \texttt{Consent Status Withdrawn} & N/A & N/A \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\begin{listing}[htbp]
+\begin{minted}{turtle}
+# Entities
+:Sue a gc:DataSubject .
+:BeFit a gc:DataController .
+:Gym a gc:ThirdParty .
+# Personal Data
+:Activity_Profile a gc:PersonalData .
+# Purpose
+:Targeted_ads_related_to_fitness a gc:Purpose .
+
+# Sue gives consent to BeFit
+:Consent1_registration a gc:Consent ;
+	gc:isConsentForDataSubject :Sue ;
+	gc:isProvidedToController :BeFit ;
+	gc:forPurpose :Targeted_ads_related_to_fitness ;
+	gc:forProcessing gc:CollectionOfPersonalData, 
+		gc:ShareDataForTargetedAds ;
+	gc:forPersonalData :Activity_Profile ;
+	gc:hasStatus gc:ConsentStatusExplicitlyGiven .
+
+# BeFit shares data with Gym 
+# assumed similar 'policy' structure as SPECIAL
+:ShareDataForTargetedAds a gc:DataSharing ;
+	gc:involvesThirdParty :Gym .
+	gc:sharesDataWithThirdParty :Gym .
+
+:Consent_info_shared_by_BeFit_with_Gym a gc:Consent ;
+	gc:isConsentForDataSubject :Sue ;
+	gc:isProvidedTo :BeFit ;
+	gc:forPurpose :Targeted_ads_related_to_fitness ;
+	gc:forProcessing gc:UseOfPersonalData ;
+	gc:forPersonalData :Activity_Profile ;
+	gc:hasStatus gc:ConsentStatusExplicitlyGiven .	
+
+# Sue withdraws consent
+:Consent2_withdraw a gc:Consent ;
+	gc:isUpdatedConsentFor :Consent1_registration ;
+	gc:forPurpose :Targeted_ads_related_to_fitness ;
+	gc:forProcessing gc:CollectionOfPersonalData, 
+		gc:ShareDataForTargetedAds ;
+	gc:forPersonalData :Activity_Profile ;
+	gc:hasStatus gc:ConsentStatusWithdrawn .
+
+\end{minted}
+\caption{GConsent representation of external use-case from SPECIAL}
+\label{code:gconsent:use-case:special}
+\end{listing}
+\begin{listing}[htbp]
+\begin{minted}{sparql}
+# Query (i)
+# retrieves :Activity_Profile as data shared for Sue
+# queried over Gym's records
+SELECT ?personal_data
+WHERE {
+	?_ gc:isConsentForDataSubject :Sue .
+	?_ gc:forPersonalData ?personalData .
+}
+
+# Query (ii)
+# retrieves :BeFit as data source
+# retrieves :Targeted_ads_related_to_fitness as purpose
+# queried over Gym's records
+SELECT ?party, ?purpose {
+	?_ gc:isConsentForDataSubject :Sue .
+	?_ gc:forPersonalData :Activity_Profile .
+	?_ gc:isProvidedTo ?party .
+	?_ gc:forPurpose ?purpose .
+}
+
+# Query (iii)
+# retrieves :CollectionOfPersonalData as the processing operation
+# from which it needs to be inferred that data is collected from Sue
+# queried over BeFit's records
+SELECT ?data_processing {
+    ?_ gc:forPersonalData :Activity_Profile .
+    ?_ gc:forProcessing ?data_processing .
+}
+
+# Query (iv)
+# retrieves :Consent1_registration as satisfying
+# conditions for data sharing with Gym
+# queried over BeFit's records
+SELECT ?consent
+WHERE {
+	?consent a gc:Consent .
+	?consent gc:isConsentForDataSubject :Sue .
+	?consent gc:forPersonalData :Activity_Profile .
+	?consent (gc:forProcessing/gc:sharesDataWithThirdParty) :Gym .
+}
+
+
+\end{minted}
+\caption{SPARQL queries using GConsent for external use-case from SPECIAL}
+\label{code:gconsent:use-case:special-sparql}
+\end{listing}
+
+From the above representation and queries, the use of GConsent demonstrates the use of terms (purpose, sharing, etc.) closer to those of SPECIAL as compared to GDPRov's representation in \autoref{sec:gdprov:use-case:SPECIAL}.
+At the same time, the inability to represent information about activities such as how the data was collected or shared is also evident since GConsent does not represent them while GDPRov does.
+From a consent perspective, the consent `records' represented using GConsent are more clear and concise in terms of what the consent related to, and how it was withdrawn.
+The above representation therefore demonstrates GConsent's use in managing consent information, with the SPARQL queries used to retrieve the answers to questions pertaining to use of Sue's personal data within the use-case.
+
+\color{black}
 
 \subsection*{Summary}
 GConsent is an ontology for the representation of consent and its associated information for GDPR compliance. It fulfils the research objective $RO3(c)$ and along with GDPRov forms the second major contribution of this thesis.

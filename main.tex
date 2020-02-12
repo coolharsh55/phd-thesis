@@ -139,60 +139,6 @@
 \renewcommand*{\subsectionautorefname}{Section}
 \renewcommand*{\subsubsectionautorefname}{Section}
 
-\pagenumbering{roman}
-\input{cover}
-
-\cleardoublepage
-
-% copyright
-\clearpage
-\vspace*{\fill}
-\begin{center}
-    \centering
-    \copyright\hspace{0.25cm} Harshvardhan J. Pandit, 2020\\
-    \url{https://harshp.com/research/phd-thesis}
-    \rule{\textwidth}{1pt}
-    \doclicenseThis
-\end{center}
-\vfill
-\clearpage
-
-% declaration
-\chapter*{Declaration}
-I declare that this thesis has not been submitted as an exercise for a degree at this or any other university and it is entirely my own work. \\[1cm]
-\noindent I agree to deposit this thesis in the University’s open access institutional repository or allow the Library to do so on my behalf, subject to Irish Copyright Legislation and Trinity College Library conditions of use and acknowledgement. \\[3cm]
-Signed. \\
-Harshvardhan J. Pandit
-
-% permission to lend and copy
-\chapter*{Permission to lend or copy}
-I, the undersigned, agree that the Trinity College Library may lend or copy this thesis upon request.
-
-\vspace{3cm}\noindent
-Date:
-
-\vspace{1cm}\noindent
-Signed. \\
-Harshvardhan J. Pandit
-
-\include{acknowledgements}
-\include{abstract}
-
-\cleardoublepage
-% \addtocontents{toc}{\protect\thispagestyle{fancy}}
-\pagestyle{plain}
-\tableofcontents
-\listoffigures
-\listoftables
-\renewcommand\listoflistingscaption{List of source codes}
-\listoflistings
-\include{abbreviations}
-
-\mainmatter
-\renewcommand{\thepage}{\arabic{page}}
-\setcounter{page}{1}
-\linenumbers \rightlinenumbers*
-
 % chapter headings
 \definecolor{gray75}{gray}{0.75}
 \newcommand{\hsp}{\hspace{20pt}}
@@ -201,6 +147,15 @@ Harshvardhan J. Pandit
 \titleformat*{\subsection}{\large\bfseries\sffamily}
 \titleformat*{\subsubsection}{\itshape\bfseries\sffamily}
 % do not hyphenate chapters
+
+\pagenumbering{roman}
+
+\input{cover}
+
+\mainmatter
+\renewcommand{\thepage}{\arabic{page}}
+\setcounter{page}{1}
+\linenumbers \rightlinenumbers*
 
 \include{introduction}
 \include{background}
@@ -211,7 +166,7 @@ Harshvardhan J. Pandit
 \include{conclusion}
 
 % \renewcommand\bibname{References}
-% \addcontentsline{toc}{chapter}{References}
+\addcontentsline{toc}{chapter}{References}
 % \bibliography{Thesis}
 
 \sloppy
