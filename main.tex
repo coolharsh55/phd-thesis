@@ -29,7 +29,9 @@
 % \nobibliography*
 
 % ToDo notes
-% \usepackage{todonotes}
+\usepackage[
+    textsize=tiny,
+    ]{todonotes}
 
 % line spacing
 \onehalfspacing
@@ -150,7 +152,9 @@
 
 \pagenumbering{roman}
 
+\listoftodos
 \input{cover}
+
 
 \mainmatter
 \renewcommand{\thepage}{\arabic{page}}
@@ -166,7 +170,7 @@
 \include{conclusion}
 
 % \renewcommand\bibname{References}
-\addcontentsline{toc}{chapter}{References}
+% \addcontentsline{toc}{chapter}{References}
 % \bibliography{Thesis}
 
 \sloppy

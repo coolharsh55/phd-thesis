@@ -898,6 +898,7 @@ Furthermore, GDPRov is one of the few approaches to be available under an open a
 
 \color{blue}
 \subsubsection{Application to external use-case from SPECIAL project}\label{sec:gdprov:use-case:SPECIAL}
+\todo{review GDPRov external use-case application}
 % description of the use-case
 The SPECIAL project uses a scenario\footnote{NOTE: the scenario explicitly mentions use of an immutable distributed ledger developed by the SPECIAL project to provide transparency and log accountability regarding metadata. This is omitted from the adapted use-case used to evaluate GDPRov.} to motivate their work and demonstrate the use of developed technologies in their deliverables (D1.7 \cite{bonatti_d1.7_2018}) and peer-reviewed publications (\cite{kirrane_scalable_2018}).
 In this section, the scenario is adapted as an external use-case to evaluate GDPRov's suitability to express the required concepts.
@@ -1030,9 +1031,21 @@ WHERE {
 \label{code:gdprov:use-case:special-sparql}
 \end{listing}
 
-From the above, GDPRov is shown to support the representation and answering of questions (using SPARQL) within the scenario. While the scenario relies on the use of SPECIAL's policy-based vocabulary and the immutable distributed ledger to store and retrieve information, these have not been replicated within the GDPRov representation.
-One important conclusion from the above exercise is the representation of given consent - while SPECIAL represents the given consent in the form of a policy, GDPRov does not readily provide a compatible representation of information relevant within the given consent. Instead, it associates the given consent as a legal basis with the purposes (specified as processes) that rely on it. 
-The same scenario is also used to demonstrate application of GConsent in \autoref{sec:gconsent:use-case:SPECIAL} to provide a consent-centric management of information, and to showcase its differences from GDPRov.
+Through the representation of the concepts within the scenario and the use of SPARQL, GDPRov is shown to support the representation and answering of questions within the scenario. While the scenario relies on the use of SPECIAL's policy-based vocabulary and the immutable distributed ledger to store and retrieve information regarding given consent and the processing activities carried out by BeFit and the Gym, these have not been replicated the above representation as storage mechanisms are not within scope for this work.
+
+One important conclusion from the above exercise is the representation of given consent, where SPECIAL vocabularies represent the given consent as a policy using OWL2 \cite{kirrane_scalable_2018}.
+In comparison, GDPRov does not provide a concise representation of information relevant to the given consent, but instead records it as an activity and associates the generated consent as an artefact representing a legal basis with the purposes (specified using \texttt{gdprov:Process}) that rely on it. 
+This is the consequence of GDPRov focusing on the representation of activities which does not concern the representation of consent.
+A consent-centric representation of this same scenario is presented in \autoref{sec:gconsent:use-case:SPECIAL} which uses GConsent to represent the scenario as interactions between consent states.
+
+% \subsubsection{Application to external use-case from Ujcich et al.}
+% Ujcich et al. present a similar (to the above) scenario in their demonstration of a provenance vocabulary based on the GDPR \cite{belhajjame_provenance_2018}. 
+% The scenario concerns Alice, a customer, who registers with a retailer and provides name, address, and credit card number; gives consent to store these and use for purchases made, and also consents to use of name and address to receive marketing. 
+% At some period of time, the retailer employs a third-party for marketing and provides it with Alice’s name and address based on the given consent.
+% After some more period of time, Alice no longer wishes to receive marketing and withdraws her consent.
+% The investigation of compliance presented in the publication utilises two questions related to the scenario, which are: (i) Was Alice’s personal data used for marketing purposes after Alice withdrew her consent?; and (ii) Was Alice’s personal data used for marketing purposes after Alice withdrew her consent?
+
+% Ujcich et al. represent the scenario as a series of activities using PROV-O
 
 % % breakdown into requirements
 % % select concepts from GDPRov to represent requirements - ex-ante and ex-post
@@ -1291,6 +1304,7 @@ The SotA usually limits the consent state to given or withdrawn without consider
 
 \color{blue}
 \subsubsection{Application to external use-case from SPECIAL project}\label{sec:gconsent:use-case:SPECIAL}
+\todo{review GConsent external use-case application}
 The use-case described in \autoref{sec:gdprov:use-case:SPECIAL} is used here to demonstrate the use and sufficiency of GConsent in management of consent information. The use-case concerns the scenario where a data subject named Sue gives consent to BeFit company for sharing her activity profile with other companies for receiving targeted ads. She later receives ads from a local Gym and investigates to find that the Gym is using her activity profile shared by BeFit - and that this activity is consistent with her previously given consent. She then withdraws her consent and asks both companies to delete her data.
 
 The representation of this use-case using GConsent consists of using its concepts to represent the information, and to then utilise SPARQL to answer the queries - similar to the exercise in \autoref{sec:gdprov:use-case:SPECIAL} for GDPRov. \autoref{table:gconsent:use-case:SPECIAL} presents the concepts for representing the use-case using GConsent, GDPRov, and SPECIAL vocabularies. The corresponding RDF representation using GConsent is provided in \autoref{code:gconsent:use-case:special} with the queries for deriving answers to questions (i) - (iv) in the use-case are provided in \autoref{code:gconsent:use-case:special-sparql}.
