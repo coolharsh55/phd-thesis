@@ -1,9 +1,9 @@
 \chapter{Representing Information for GDPR Compliance using Ontologies}
 \label{chapter:vocabularies}
 
-This chapter presents the ontologies developed to fulfil research objective $RO3$ defined in \autoref{sec:intro:RO}.
+This chapter presents the ontologies developed to fulfil research objective $RO3$ defined in \autoref{sec:intro:RO} regarding creating OWL2 ontologies for representation of information.
 It first expands on the methodology in \autoref{sec:intro:ontology-engineering} for developing and evaluating the ontologies based on the summary presented in \autoref{sec:voc:methodology}.
-It then presents the developed ontologies which consist of - GDPRtEXT (\autoref{sec:voc:GDPRtEXT}) which provides a linked data representation of GDPR text and a thesauri of GDPR compliance concepts, and which satisfies research objective $RO3(a)$; GDPRov \autoref{sec:voc:GDPRov} which enables representing provenance of activities associated with personal data and consent in ex-ante and ex-post phases, and fulfils research objective $RO3(b)$; and GConsent (\autoref{sec:voc:GConsent}) which enables representing information regarding consent, and fulfils research objective $RO3(c)$.
+It then presents the developed ontologies which consist of - (i) GDPRtEXT (\autoref{sec:voc:GDPRtEXT}) which provides a linked data representation of GDPR text and a thesauri of GDPR compliance concepts, and which satisfies research objective $RO3(a)$ by providing an ontological representation of concepts and text of the GDPR; (ii) GDPRov \autoref{sec:voc:GDPRov} which enables representing provenance of activities associated with personal data and consent in ex-ante and ex-post phases, and fulfils research objective $RO3(b)$ regarding ontological representation of activities associated with processing of personal data and consent; and (iii) GConsent (\autoref{sec:voc:GConsent}) which enables representing information regarding consent, and fulfils research objective $RO3(c)$ regarding ontological representation of consent relevant in determination of GDPR compliance.
 Each ontology is presented with a summary of its motivation, engineering process, and dissemination. The ontologies are presented with their evaluation based on the extent to which they satisfy the compliance questions presented in \autoref{sec:info:compliance-questions} and based on comparison with relevant approaches in the state of the art following the analysis presented in \autoref{sec:sota:analysis}.
 
 In addition to these, Data Privacy Vocabulary (DPV), initially presented in \autoref{sec:intro:dpvcg}, is also included as an external contribution based on work done by the author within the W3C Data Protection Vocabularies and Controls Community Group (DPVCG), and the overlap of this work with the research presented. \autoref{sec:voc:DPV} presents an overview of the DPV and compares it with the GDPRtEXT, GDPRov, and GConsent ontologies, and demonstrates their similarity in representing information while drawing attention to the distinguishing features.
@@ -378,7 +378,7 @@ dpd:mappingrule6
 
 The class \texttt{DPDToGDPR\_Annotation} represents annotations between DPD and GDPR, with an example instance depicted in \autoref{listing:vocabs:gdprtext-xacml}. The property \texttt{resourceInDPD} is used to refer to the particular clause within DPD through its URI. Similarly, the property \texttt{resourceInGDPR} is used to refer to the corresponding clause in GDPR. The nature of change is defined using the property \texttt{hasChange} whose value is an instance of the class \texttt{ChangeInObligation}, with defined instances for Extended, Same, Reduced, CompletelyChanged, and SlightlyChanged. Similarly, the change in the XACML rules is defined as a property whose values are one of Yes, No, and N/A defined as instances of the class \texttt{ChangeInXACMLRule}. Comments are defined using the \texttt{rdfs:comment} property.
 
-\subsection{Evaluation}
+\subsection{Evaluation}\label{sec:voc:gdprtext:evaluation}
 In terms of ontology assessment, the methodology outlined in \autoref{sec:voc:methodology} provides the criterion for evaluation of the quality of ontology as well as its documentation. GDPRtEXT fulfils these, based on tests undertaken using the OOPS! tool\footnote{OOPS! results published with ontology documentation. The results can also be independently obtained using the OOPS! online service.} and by following the best practices community guidelines for ontology documentation.
 GDPRtEXT, and the work described in this section, was published in the resource track at Extended Semantic Web Conference \cite{pandit_gdprtext_2018} (ESWC). The publication described the creation of the resource, summarised its contents, and also provided mapping of DPD obligations with GDPR using a linked data approach and XACML to denote which obligations from DPD could be re-used towards GDPR compliance. 
 ESWC is one of the premier and top-tier conferences for the semantic web domain, and has a rigorous review process with an open review policy.
@@ -784,7 +784,7 @@ Using this approach, the detected change can be analysed - manually for complex 
     \label{fig:vocabs:gdprov-change-detection}
 \end{figure}
 
-\subsection{Evaluation}
+\subsection{Evaluation}\label{sec:voc:gdprov:evaluation}
 The ontology assessment was based on the methodology outlined in \autoref{sec:voc:methodology} regarding the criterion for evaluation of the quality of ontology and its documentation.
 The ontology was used in two applications developed to demonstrate use of SPARQL to query information (see \autoref{sec:testing:sparql}) and SHACL to validate information for GDPR compliance (see \autoref{sec:testing:shacl}). The experience was used to identify suitability of GDPRov in representing the required information, and in cases of missing concepts, these were added as an iteration of the ontology.
 
@@ -1214,7 +1214,7 @@ The example serves to demonstrate the practical use of GConsent in representing 
     \label{fig:vocabs:gconsent-example}
 \end{figure}
 
-\subsection{Evaluation}
+\subsection{Evaluation}\label{sec:voc:gconsent:evaluation}
 GConsent as an ontology was evaluated regarding its capability to express information about consent using the methodology outlined in \autoref{sec:voc:methodology}.
 This was an iterative process where the ontology was tested and modified to accommodate the requirements of the competency questions. Changes were made to the ontology where information was found to be missing or incorrectly modelled.
 In particular, the iterations consisted of the degree and design of representing a dependency between purposes and processing operations associated with consent. These were ultimately rejected with the final iteration modelling purpose and processing independent of each other to provide greater granularity and reuse of these concepts.
