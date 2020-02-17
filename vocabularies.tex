@@ -394,9 +394,8 @@ For this, \autoref{table:gdprtext:eval-cq} shows the concepts and relationships 
 \centering
 \rowcolors{1}{}{gray!10}
 \begin{tabularx}{\textwidth}{|l|X|}
+\caption{Concepts in GDPRtEXT for answering competency questions} \\ \hline
 \label{table:gdprtext:eval-cq}
-\caption{Concepts in GDPRtEXT for answering competency questions} \\
-\hline
 \textbf{CQ} & \textbf{Concepts/Relationships} \\ \hline
 % & \textbf{Concepts associated with structure of GDPR} \\ \hline
 \textit{CQ1-7} & \textit{Recital, Chapter, Section, Article, Point, SubPoint, Reference, Citation} \\ \hline
@@ -437,8 +436,7 @@ For this, \autoref{table:gdprtext:eval-cq} shows the concepts and relationships 
 \textit{CQ34} & \textit{InformationAboutThirdParties}, \textit{ConsentCanBeWithdrawnEasily}, \textit{ClearExplanatinOfProcessing}, \textit{NotFromSilenceOrInactivity}, \textit{Demonstrable}, \textit{DistinguishableFromOtherMatters}, \textit{ValidConsent} \\ \hline
 \textit{CQ35} & \textit{RetentionOfPersonalData}, \textit{AdequateForProcessing}, \textit{IdentifiableForRequiredProcessing}, \textit{KeptUpToDate}, \textit{LimitedForProcessing}, \textit{RectifyInaccuracies}, \textit{RelevantForProcessing} \\ \hline
 \textit{CQ36} & \textit{SecurityofPersonalData}, \textit{AccidentalLoss}, \textit{Damage}, \textit{Destruction}, \textit{UnlawfulProcessing} \\ \hline
-\textit{CQ37} & \textit{Seal}, \textit{Certification} \\ \hline
-
+\textit{CQ37} & \textit{Seal}, \textit{Certification}
 \end{tabularx}
 \end{table}
 The table demonstrates that GDPRtEXT provides concepts to answer all of the competency questions. GDPRtEXT thus meets requirements of representing and linking information with the text and concepts of GDPR in a granular manner and fulfils $RO3(a)$.
@@ -798,9 +796,8 @@ The competency questions, summarised in \autoref{sec:gdprov:cq}, were used to gu
 \centering
 \rowcolors{1}{}{gray!10}
 \begin{tabularx}{\linewidth}{|l|X|p{5cm}|l|}
+\caption{Concepts in GDPRov for answering competency questions} \\ \hline
 \label{table:gdprov:cq}
-\caption{Concepts in GDPRov for answering competency questions} \\
-\hline
 \textbf{CQ} & \textbf{Class} & \textbf{Property} & \textbf{Phase} \\ \hline
 \multicolumn{4}{|l|}{\textbf{Actors and Agents involved in activities}}  \\ \hline
 \textit{CMQ2} & \textit{Controller}, \textit{ControllerRepresentative}, \textit{DPO} &  &  \\ \hline
@@ -891,9 +888,7 @@ The combination of PROV-O and P-Plan enables a flexible representation of activi
 Based on this, GDPRov's novelty within the SotA is based on it being one of the few approaches using PROV-O to represent activities for GDPR compliance in both ex-ante and ex-post phases. GDPRov is also novel in its provision of concepts associated with GDPR and the arbitrary granularity afforded by the use of PROV-O and P-Plan to link information in ex-ante and ex-post phases.
 Furthermore, GDPRov is one of the few approaches to be available under an open and permissive license (CC-by-4.0) thereby enabling its use, adoption, and further evolution.
 
-\color{blue}
 \subsubsection{Application to external use-case from SPECIAL project}\label{sec:gdprov:use-case:SPECIAL}
-\todo{review GDPRov external use-case application}
 % description of the use-case
 The SPECIAL project uses a scenario\footnote{NOTE: the scenario explicitly mentions use of an immutable distributed ledger developed by the SPECIAL project to provide transparency and log accountability regarding metadata. This is omitted from the adapted use-case used to evaluate GDPRov.} to motivate their work and demonstrate the use of developed technologies in their deliverables (D1.7 \cite{bonatti_d1.7_2018}) and peer-reviewed publications (\cite{kirrane_scalable_2018}).
 In this section, the scenario is adapted as an external use-case to evaluate GDPRov's suitability to express the required concepts.
@@ -1055,7 +1050,6 @@ A consent-centric representation of this same scenario is presented in \autoref{
 % % representation Turtle code
 % % analysis - what is possible and what isn't
 % % comment on deficiencies or advantages of GDPRov
-\color{black}
 
 \subsection*{Summary}
 GDPRov is part of the second major contribution of this thesis. It provides an ontological representation of ex-ante and ex-post activities associated with personal data and consent for GDPR compliance.
@@ -1296,14 +1290,11 @@ As the table depicts, GConsent is currently the only approach that models delega
 GConsent is also novel in the provision of consent states which enable documenting of information from a controller's perspective regarding the evolution of consent throughout its life-cycle. This is useful for the management of consent as an entity in an information management system such as a database.
 The SotA usually limits the consent state to given or withdrawn without consideration to its other states within the life-cycle as an entity.
 
-\color{blue}
 \subsubsection{Application to external use-case from SPECIAL project}\label{sec:gconsent:use-case:SPECIAL}
-\todo{review GConsent external use-case application}
 The use-case described in \autoref{sec:gdprov:use-case:SPECIAL} is used here to demonstrate the use and sufficiency of GConsent in management of consent information. The use-case concerns the scenario where a data subject named Sue gives consent to BeFit company for sharing her activity profile with other companies for receiving targeted ads. She later receives ads from a local Gym and investigates to find that the Gym is using her activity profile shared by BeFit - and that this activity is consistent with her previously given consent. She then withdraws her consent and asks both companies to delete her data.
 
 The representation of this use-case using GConsent consists of using its concepts to represent the information, and to then utilise SPARQL to answer the queries - similar to the exercise in \autoref{sec:gdprov:use-case:SPECIAL} for GDPRov. \autoref{table:gconsent:use-case:SPECIAL} presents the concepts for representing the use-case using GConsent, GDPRov, and SPECIAL vocabularies. The corresponding RDF representation using GConsent is provided in \autoref{code:gconsent:use-case:special} with the queries for deriving answers to questions (i) - (iv) in the use-case are provided in \autoref{code:gconsent:use-case:special-sparql}.
 \begin{center}
-\color{blue}
 \scriptsize
 \begin{tabularx}{\textwidth}{|p{0.3\linewidth}|X|X|X|}
 \caption{GConsent concepts to represent external use-case from SPECIAL}\label{table:gconsent:use-case:SPECIAL} \\
@@ -1428,8 +1419,6 @@ From the above representation and queries, the use of GConsent demonstrates the 
 At the same time, the inability to represent information about activities such as how the data was collected or shared is also evident since GConsent does not represent them while GDPRov does.
 From a consent perspective, the consent `records' represented using GConsent are more clear and concise in terms of what the consent related to, and how it was withdrawn.
 The above representation therefore demonstrates GConsent's use in managing consent information, with the SPARQL queries used to retrieve the answers to questions pertaining to use of Sue's personal data within the use-case.
-
-\color{black}
 
 \subsection*{Summary}
 GConsent is an ontology for the representation of consent and its associated information for GDPR compliance. It fulfils the research objective $RO3(c)$ and along with GDPRov forms the second major contribution of this thesis.
