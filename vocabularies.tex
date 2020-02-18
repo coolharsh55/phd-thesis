@@ -1111,10 +1111,9 @@ Through this, a rudimentary summary of information or attributes associated with
 \begin{itemize}
     \item Data Subject the consent is about
     \item Personal Data associated with consent
-    \item Processing operations or categories the consent is about
+    \item Processing operations or categories the consent is about, with data storage and data sharing having additional information requirements
     \item Purposes the consent is about
     \item Entity/Agent/Actor the consent is provided to
-    \item Specific operations, including data storage and data sharing
     \item Recipients of data or categories of recipients if any
 \end{itemize}
 These attributes are sufficient to provide a simplified representation of consent, and are used in existing approaches within the state of the art - such as the model of consent in SPECIAL vocabularies \cite{bonatti_special_2018}. However, these attributes are not sufficient by themselves to determine the validity of consent as they lack information about the context the consent was given in as well as changes to its state.
@@ -1151,7 +1150,7 @@ The \texttt{PersonalData} is the set of personal data associated with the consen
 The `status' or `state' of consent indicates the suitability of using that specific instance of consent as a legal basis for the processing of personal data defined by the consent attributes.
 
 \texttt{Purpose} and \texttt{Processing} are concepts that have semantic meaning based upon their use within the GDPR.
-`Processing' is defined by Article 4-2, while `Purpose' has no specific definition provided but can be summarised as the intent or aim of why the set of personal data is needed or to be used for. In practice, purpose is generally defined at a higher abstract level, and often encompasses several types or categories of data. An example of this is a privacy policy specifying `account information' and `location of service use' - which are data categories, that are `collected' and `used' - which are processing operations on the personal data, `to ensure security of the account' - which is the purpose the personal data will be processed for. The relation between a purpose and its associated processing operations is quite opaque when considered as a purpose involving one or more processing operations. Based only on the description, it is difficult to determine which processing operations a purpose entails and vice versa, and their usage may not always be implied or commonly understood. Therefore, GConsent provides purpose and processing as self-declarative high-level concepts which can be extended with additional information to indicate granularity and transparency.
+`Processing' is defined by Article 4-2, while `Purpose' has no specific definition provided but can be summarised as the intent or aim of why the set of personal data is needed or to be used for. In practice, purpose is generally defined at a higher abstract level, and often encompasses several types or categories of data. An example of this is a privacy policy specifying `account information' and `location of service use' - which are data categories, that are `collected' and `used' - which are processing operations on the personal data, `to ensure security of the account' - which is the purpose the personal data will be processed for. The relation between a purpose and its associated processing operations is quite opaque when considered as a purpose involving one or more processing operations. Based only on the description, it is difficult to determine which processing operations a purpose entails and vice versa, and their usage may not always be implied or commonly understood. Therefore, GConsent provides purpose and processing as self-declarative high-level concepts which can be extended with additional information for granularity and transparency.
 
 \subsubsection{Context of Consent}
 The context of consent refers to the attributes such as the location or time when the instance of consent was created, invalidated, generated, changed, modified, given, or recorded.
@@ -1185,7 +1184,7 @@ GConsent provides them based on the practical management of consent information 
     \label{fig:vocabs:gconsent-status}
 \end{figure}
 
-GDPR requires keeping track of state change for consent. For example, when the status changes from given to withdrawn or when the state if changed to invalidated because of the choice of the controller or some legal requirement. Whenever a consent status changes, this results in a new consent instance being created, which also assists in capturing the context of the new consent (such as time instant). This leads to a chain of consent instances, where the `latest' consent is at the `end' of this chain and indicates the most recent operation regarding consent states. It is vital to record such provenance to demonstrate past processing was in compliance with the state of consent at that point in time and to show the changes in consent as part of its life-cycle.
+GDPR requires keeping track of state change for consent - for example when the status changes from given to withdrawn or when the state if changed to invalidated because of the choice of the controller or some legal requirement. Whenever a consent status changes, this results in a new consent instance being created, which also assists in capturing the context of the new consent (such as time instant). This leads to a chain of consent instances, where the `latest' consent is at the `end' of this chain and indicates the most recent operation regarding consent states. It is vital to record such provenance to demonstrate past processing was in compliance with the state of consent at that point in time and to show the changes in consent as part of its life-cycle.
 
 \subsubsection{Example Use-Case}
 The documentation of GConsent provides example applications of the ontology in four use-cases to demonstrate how information can be represented, which are - (i) change in consent state, (ii) capturing given consent, (iii) capturing consent given via delegation, and (iv) capturing consent when data is shared with a third party.
@@ -1211,7 +1210,7 @@ GConsent was used and evaluated in the representation of consent information for
 GConsent was published in the Extended Semantic Web Conference (ESWC) as a peer-reviewed publication \cite{pandit_gconsent_2019} in the Ontologies and Reasoning Track. As ESWC is a top-tier semantic web conference with a rigorous review process, the acceptance of GConsent demonstrates its contribution as a semantic web resource.
 Along with this, the documentation of GConsent, available online, also provides extensive information about the ontology and its potential applications. It also provides a brief comparison of the ontology with relevant approaches within the state of the art.
 GConsent, along with the Consent Receipt standard \cite{lizar_consent_2017}, had a direct impact on the design and development of consent information within the DPV. In particular, GConsent provided the concepts for expression of consent based on the GDPR and competency questions for integrating those with the rest of DPV.
-Given the recency of the publication, GConsent does not currently have any citations (excluding self-citations).
+As of February 2020, GConsent does not currently have any citations (excluding self-citations) given the recency of its publication.
 
 \subsubsection{Fulfilment of Competency Questions}
 The assessment of the extent to which GConsent provides concepts and relationships to answer the competency questions is presented in \autoref{table:gconsent:cq}. 
@@ -1224,6 +1223,7 @@ Based on these, GConsent satisfies the requirements of providing information for
 \rowcolors{1}{}{gray!10}
 \begin{tabularx}{\textwidth}{|p{1cm}|X|p{4cm}|p{3.5cm}|}
 \caption{Concepts and relationships in GConsent for answering competency questions} \\ \hline
+\label{table:gconsent:cq}
 \textbf{CQ} & \textbf{Question} & \textbf{Concepts} & \textbf{Properties} \\ \hline
 \multicolumn{4}{|l|}{\textbf{Questions about consent}} \\ \hline
 \textit{CMQ35} & Who is the consent about? & \textit{DataSubject} & \textit{isConsentForDataSubject} \\ \hline
@@ -1248,7 +1248,6 @@ Based on these, GConsent satisfies the requirements of providing information for
 \textit{CMQ57} & Is the purpose or processing associated with a third party? & \textit{prov:Association}, \textit{ThirdParty} & \textit{hasAssociation, prov:agent} \\ \hline
 CMQ58 & What is the role played by the third party in the purpose or processing? & Role & prov:hadRole \\ \hline
 \end{tabularx}
-\label{table:gconsent:cq}
 \end{table}
 
 \subsubsection{Comparison with SotA}
@@ -1517,19 +1516,19 @@ While there have been no efforts to carry out an exercise to combine or align th
 GDPRtEXT provides a linked data version of GDPR and a SKOS glossary of concepts associated with GDPR compliance, which can be used to link information to the clauses and concepts of GDPR.
 This has been used by GDPRov and GConsent to define the source of its concepts within the text of GDPR.
 
-The DPV, whose concepts represent a generic legal term, does not link its concepts to the GDPR except in cases where the defined concept was directly taken from the definition provided by GDPR.
+The DPV, whose concepts represent generic legal terms, does not link its concepts to the GDPR except in cases where the defined concept was directly taken from the definition provided by GDPR.
 In such cases, it uses the URI format prescribed by the EU Publications Office to indicate the specific clause of GDPR. The URI format\footnote{The format is based on using templates to indicate the alphanumeric characters of articles and clauses. The template format can be represented as: \texttt{https://eur-lex.europa.eu/eli/reg/\{year\}/\{number\}/art\_\{X\}/par\_\{X\}/pnt\_\{X\}/oj}}, similar in its structuring of contents with GDPRtEXT, is based on an upcoming iteration\footnote{The information is based on a private communication between the author of the thesis with members of the EU Publications Office. The prescribed IRI, while not officially published or documented, currently resolves to the web-page of the legislation, which in this case is the GDPR.} of the ELI vocabulary which will be used in all EU published legislations to offer granular linking to their clauses.
 Since the format prescribed by EU Publications Office is authoritative in its nature, the links provided by GDPRtEXT need to be aligned or replaced with those defined using the newer ELI format which offers further advantages in provision of concepts and granularity.
 
 One of the aims of the DPVCG is to provide a glossary of concepts associated with legal personal data handling. For this, the concepts of DPV itself can be considered as a glossary of terms, though not defined as such within the ontology. This use of `glossary' refers to providing the concepts to an adopter in order to represent the required information. Since these terms do not necessarily arise from a particular legislation, their sources are based more on their use as a commonly understood concept or notion within the legal domain.
 In terms of coverage, GDPRtEXT focuses more on terms directly obtained through the text of the GDPR while the DPV focuses on the modelling of concepts based on their relevance to defining personal data handling.
-Therefore, while there is a small overlap in the concepts directly associated with GDPR, the two vocabularies differ in their provision of terms. To further exemplify this distinction, the DPV aims to offer terms that reflect real-world practices while GDPRtEXT focuses on the legal text of GDPR. This is evident from the hierarchical taxonomy of concepts in DPV, such as for personal data categories and purposes.
+Therefore, while there is a small overlap in the concepts directly associated with GDPR, the two vocabularies differ in the provision and definition of terms. For example, GDPRtEXT defines \texttt{DataSecurity} based on Article 28 and 32 of the GDPR as obligations for Controllers and Processors, while DPV defines \texttt{Security} as a purpose. To further exemplify this distinction, DPV aims to offer terms that reflect real-world practices while GDPRtEXT focuses on the legal text of GDPR. This is evident from the hierarchical taxonomy of concepts in DPV, such as for personal data categories and purposes, so as to enable modelling of practices across a broader spectrum of use-cases.
 
 \subsubsection{Representing information about activities}
 The DPV does not provide representation of activities through which it can be compared with GDPRov.
 Instead, DPV provides concepts to represent `processes' taking place within an organisation, such as those for ensuring technical and organisational measures, purposes, and processing.
 The modelling of an instance of personal data handling, which consists of specifying the purpose, processing, and technical \& organisational measures, can be compared with the modelling of plans in GDPRov where a purpose represents a plan and its steps represent processing activities - which can be further annotated with measures and legal bases.
-Through this, it can be summarised that the focus of GDPRov is on representing the activities with arbitrary granularity, and that of DPV on providing metadata about the processing without dealing with the underlying details of implementation. With this, it is possible to define an instance of personal data processing using DPV to indicate the high-level summary of associated information and further expand it using GDPRov to represent details of processes and capture their provenance in ex-ante/ex-post phases.
+Through this, it can be summarised that the focus of GDPRov is on representing the activities with granularity in terms of their composition and dependency, and that of DPV is on providing metadata as an overview of  the processing and data handling practices. With this, it is possible to define an instance of personal data processing using DPV to indicate the high-level summary of associated information and further expand it using GDPRov to represent details of processes and capture their provenance in ex-ante/ex-post phases.
 
 \subsubsection{Representing information about consent}
 The DPV and GConsent both provide concepts to represent information about consent based on the requirements specified by GDPR.
@@ -1572,11 +1571,11 @@ The ontology engineering process was presented in \autoref{sec:intro:ontology-en
 It also described utilisation of compliance questions presented in \autoref{sec:info:compliance-questions} as competency questions.
 
 The presented ontologies consisted of GDPRtEXT, GDPRov, and GConsent.
-GDPRtEXT, presented in \autoref{sec:voc:GDPRtEXT}, provides a linked data version of the text of GDPR created by extending the official ELI \cite{ELI_2012} ontology to represent its granular clauses. It also presents a SKOS glossary of concepts associated with GDPR compliance. GDPRtEXT enables the association and linking of information with the concepts and text of GDPR through the use of persistent IRIs. It thus fulfils research objective $RO3(a)$. GDPRtEXT extends the state of the art by providing an ELI-compatible extension capable of representing GDPR clauses at a granular level. It is also novel in providing a thesauri of concepts associated with GDPR compliance.
+GDPRtEXT, presented in \autoref{sec:voc:GDPRtEXT}, provides a linked data version of the text of GDPR created by extending the official ELI \cite{ELI_2012} ontology to represent its granular clauses. It also presents a SKOS glossary of concepts associated with GDPR compliance. GDPRtEXT enables the association and linking of information with the concepts and text of GDPR through the use of persistent IRIs. It thus fulfils research objective $RO3(a)$. GDPRtEXT extends the state of the art by providing an ELI-compatible extension capable of representing GDPR clauses at a granular level. It is also novel in providing a glossary of concepts associated with GDPR compliance.
 
 GDPRov provides an OWL2 ontology for representing activities associated with personal data and consent in ex-ante and ex-post phases. It is presented in \autoref{sec:voc:GDPRov}.
 The ontology is based on extending the existing ontologies of PROV-O \cite{lebo_prov-o_2013} and P-Plan \cite{garijo_p-plan_2014} with GDPR terminology using GDPRtEXT to represent activities in context of compliance requirements. GDPRov is novel in the use of PROV-O and P-Plan together based on the scientific workflow model to represent processes for GDPR compliance.
-It provides an extensible model that can be used for representing processes related to compliance and can be extended for other purposes as well.
+It provides an extensible model that can be used for representing processes related to compliance that can be extended for representing related  processes such as compliance activities and organisational processes.
 The use of GDPRov enables capturing the provenance of plans or snapshots of a system at a given time and document them as evidence of planned and maintained compliance.
 The use of P-Plan with PROV-O enables associating execution of activities with their intended planning and thereby provides systematic linking of ex-ante and ex-post compliance information.
 GDPRov thus fulfils the research objective $RO3(b)$.
@@ -1585,7 +1584,7 @@ The representation of consent is provided by GConsent - an OWL2 ontology present
 GConsent provides representation of information relevant for evaluation of consent under GDPR obligations and requirements.
 It extends on the notion of consent as an provenance entity in GDPRov and models the life-cycle of consent based on the concept of states.
 State or status of consent reflects its suitability for use as a legal basis for processing and is modelled based on the management of consent information from an organisation's perspective. In this GConsent is novel within the SotA.
-GConsent is also novel in the provision of concepts related to consent for the GDPR as it provides the most verbose vocabulary for representing information regarding consent.
+GConsent is also novel in the provision of concepts related to consent for the GDPR as it provides a more detailed and comprehensive vocabulary for representing information regarding consent.
 
 The chapter also presented the DPV vocabulary published by the W3C Data Privacy and Vocabularies Community Group (DPVCG). The author of the thesis was an active contributor to the DPV, and subsequently the DPV shares its aim and bears similarity to the research presented in this thesis. \autoref{sec:voc:DPV} provides a summary of the DPV and compares it with the ontologies presented as contributions in this thesis, namely GDPRtEXT, GDPRov, and GConsent. A comparison of DPV with the SotA is also provided.
 The DPV is intended to provide a vocabulary for representing information about personal data handling, and is not limited to the GDPR though it is influenced by it. It reflects a community consensus and is intended to be standardised, thereby providing a basis for its adoption.
