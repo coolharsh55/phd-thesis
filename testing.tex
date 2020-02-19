@@ -2,7 +2,7 @@
 \label{chapter:testing}
 % chapter introduction
 This chapter presents the application of semantic web technologies to query and validate information for GDPR compliance.
-It represents information using the developed vocabularies of GDPRtEXT, GDPRov, and GConsent presented in \autoref{chapter:vocabularies}.
+In this, information is represented using the developed vocabularies of GDPRtEXT, GDPRov, and GConsent presented in \autoref{chapter:vocabularies}.
 The queries are represented using SPARQL - a W3C standard for querying RDF - and are based on the compliance questions presented in \autoref{sec:info:compliance-questions}.
 Validation is carried out based on the identified assumptions and constraints presented in \autoref{sec:info:constraints} and is expressed using SHACL which is the W3C standard for representing constraints.
 The presented work represents minor contributions of this thesis, and fulfils the research objective $RO4$ regarding querying of information and $RO5$ regarding validation of information for GDPR compliance.
@@ -13,7 +13,9 @@ The chapter ends with conclusions drawn from the research in terms of novelty of
 
 \section{Querying Information for GDPR Compliance using SPARQL}\label{sec:testing:sparql}
 This section presents the creation and utilisation of SPARQL queries to retrieve information relevant for GDPR compliance.
-The creation of the queries is dependant on the ontological representation of information being retrieved, which in this case includes the use of GDPRov and GDPRtEXT ontologies. This is further explained in \autoref{sec:testing:sparql:relation}.
+The creation of the queries is dependant on the ontological representation of information being retrieved, which in this case includes the use of GDPRov and GDPRtEXT ontologies.
+As no consent instances needed to be represented, GConsent was not used.
+ This is further explained in \autoref{sec:testing:sparql:relation}.
 A GDPR preparation guide published by the Irish Data Protection Commission was used as the source of compliance questions for which corresponding the SPARQL queries were created. The methodology used for this is presented in \autoref{sec:testing:sparql:methodology} with a demonstration of the developed queries presented in \autoref{sec:testing:sparql:demo}.
 A note on the evaluation of this work is presented in \autoref{sec:testing:sparql:evaluation}.
 
@@ -26,7 +28,7 @@ The compliance questions, as presented in \autoref{sec:info:compliance-questions
 Since the work presented in this thesis derives motivation from the use of semantic web technologies which use RDF for representing information, the task of querying utilises the SPARQL standard to retrieve this information.
 
 The ontology used in the SPARQL queries must match the ontology used in the representation of information associated with compliance. Differences in ontologies would hamper the effective execution of queries with potential returning of invalid results or empty results.
-The creation of SPARQL queries is therefore specific to the ontologies used in a particular information representation, and is therefore also specific to the use-case it is used in.
+The creation of SPARQL queries is therefore specific to the ontologies used in a particular information representation.
 
 \subsection{Methodology}\label{sec:testing:sparql:methodology}
 The methodology used for creation of SPARQL queries is based on utilisation of GDPRov to represent the concepts and GDPRtEXT to link the information to the GDPR.
@@ -66,12 +68,12 @@ The first set of questions on page 1 concern consent and personal data and are s
 These questions are described under the `general' category with other groups of questions having their category mentioned explicitly within the document.
 Questions in the general category require information and practices associated with consent and personal data. Other categories contain questions which enquire explicitly about activities and mechanisms regarding compliance to specific obligations.
 
-The questions were analysed and categorised into three categories based on their intended requirements towards information required for compliance. The three categories identified through this exercise were - demonstrative, evaluative, and assistive - based on the requirements of information associated with them. 
+The questions were analysed and categorised based on their intended requirements towards information required for compliance. The three categories identified through this exercise were - demonstrative, evaluative, and assistive - based on the requirements of information associated with them. 
 Demonstrative questions require answers that satisfy the compliance question and do not need further actions or processing based on the information. 
 Assistive questions provide information that can be directly evaluated for compliance, with the term `assistive' indicating information that assists in the evaluation.
 Evaluative questions retrieve information whose evaluation requires further information retrieved through additional questions based on the provided information.
 The primary difference assistive and evaluative questions is whether they retrieve information which can be evaluated as is for compliance or whether it requires additional questions to retrieve further information.
-These terms used for categorisation are arbitrary and do not relate to any specific methodology for legal compliance, but are useful to analyse the question from an information management perspective.
+These terms used for categorisation do not relate to any specific methodology used in legal compliance, but are useful to analyse the question from an information management perspective.
 
 Questions were also analysed based on whether they relate to or require information regarding activities in ex-ante and ex-post phases.
 The questions do not explicitly provide an indication of whether they enquire about a model of processing (ex-ante) or the execution (ex-post). The distinction was based on whether the question concerned information about practices, plans, or intentions regarding processing of personal data - in which case it was deemed to enquire about ex-ante information.
@@ -176,8 +178,10 @@ In the table, column `\textit{Type}' indicate the type of query based on categor
 The column `\textit{Data}' provides information on information required for the question, including results of other queries.
 The relation of question to the ex-ante phase of compliance is reflected by the column `\textit{E/A}' and ex-post phase by the column '\textit{E/P}' using boolean \texttt{Y/N} values.
 The column `\textit{SPARQL}' indicates whether a SPARQL query was constructed for the corresponding question, with \texttt{N} indicating that a query was not constructed.
-The column `\textit{GDPRov}' indicates whether the current iteration (v0.7) of GDPRov provides the concepts and relationships to answer the compliance question, with a value of \texttt{Y} indicating that it does, \texttt{N} indicating it does not provide that concept, and \texttt{S} indicating the information to be out of scope of the ontology.
-Where a query was not constructed, the reason can be inferred by combining the value of \textit{SPARQL} and \textit{GDPRov} columns - for example, where concepts were out of scope for GDPRov the query was not constructed due to lack of concepts. Where a concept was lacking in GDPR, it was added in a later revision, except in cases where the information could not be modelled due to ambiguity or awaiting legal guidance - such as for data storage periods. The column \textit{GDPRov} therefore indicates whether that question can be represented using SPARQL.
+The column `\textit{GDPRov}' indicates whether the latest iteration (v0.7) of GDPRov provides the concepts and relationships to answer the compliance question, with a value of \texttt{Y} indicating that it does, \texttt{N} indicating it does not provide that concept, and \texttt{S} indicating the information to be out of scope of the ontology.
+Where a query was not constructed, the reason can be inferred by combining the value of \textit{SPARQL} and \textit{GDPRov} columns - for example, where concepts were out of scope for GDPRov the query was not constructed due to lack of concepts. 
+% Where a concept was lacking in GDPRov, it was added in a later revision, except in cases where the information could not be modelled due to ambiguity or awaiting legal guidance - such as for data storage periods. 
+% The column \textit{GDPRov} therefore indicates whether that question can be represented using SPARQL.
 \begin{center}
 \footnotesize 
 \begin{tabularx}{\textwidth}{|l|l|X|l|l|l|l|}
@@ -267,11 +271,11 @@ I7 & Not-Implemented & steps that share data &  &  & N & S \\ \hline
 % Where the questions could not be answered due to missing concepts and relationships in GDPRov, or due to uncertain interpretations of a legal concept or ambiguity, a note was made to identify solutions in the future.
 % This was used to update the GDPRov at a later date with additional concepts, such as for legal bases, data sharing, data transfers, or documentation of data breaches.
 The information regarding GDPRov is also provided since the creation of SPARQL queries from GDPR readiness guide was carried out in the earlier stages of GDPRov's iterations and before the enforcement of the GDPR in May 2018. Therefore, some questions were deemed to be ambiguous or lacking legal information on information necessary for compliance.
-The queries and constraints presented in \autoref{sec:testing:shacl} were developed at a later stage when GDPR had seen significant attention and interpretation and do not suffer from similar absences of implementation.
+The queries and constraints presented in \autoref{sec:testing:shacl} were developed at a later stage when GDPR had seen significant attention and interpretation and present a more mature implementation.
 
 \subsubsection{Creation of SPARQL queries}
 The creation of SPARQL queries involved analysis of the text of a question to identify relevant concepts and relationships in GDPRov useful towards expressing the question as a semantic query in SPARQL as well as representing the information required to answer the question.
-In this, some questions were found to be subjective or qualitative and thus could not be expressed as SPARQL queries. These are indicated as not implemented in \autoref{table:sparql:dpc-2} and were also included in the webpage of implementation presented in \autoref{sec:testing:sparql:demo}.
+In this, some questions were found to be subjective or qualitative based on the information they required and thus could not be expressed as SPARQL queries. For example, \textit{Question C3} is about reasons for not having a DPO. Such questions are indicated as not implemented in \autoref{table:sparql:dpc-2}.
 
 A total of 33 SPARQL queries were created based on the above analysis of compliance questions and their requirements.
 The queries utilised GDPRov and GDPRtEXT ontologies to specify the information associated with the question.
@@ -322,7 +326,8 @@ Ads are served to users and are generated by a Third Party.
 The sign-up process collects personal data such as name, address, email, and contact number.
 While ordering products, users are requested to provide sensitive information for transactions about their bank account or credit cards.
 
-The personal data is represented by extending \texttt{gdprov:PersonalData} as \texttt{CustomerInfo} for representing information about the user, and extending \texttt{SensitiveData} for representing banking and financial information as \texttt{gdprov:BankingInfo}.
+The personal data is represented by sub-classing \texttt{gdprov:PersonalData} as \texttt{CustomerInfo} in the use-case's namespace for representing information about the user.
+Similarly \texttt{SensitiveData} is sub-classed for representing banking and financial information as \texttt{gdprov:BankingInfo}.
 Processes for handling obligations and rights are expressed using the terms provided by GDPRov.
 The sign-up process enables an user to provide information which is used for personalisation and ads and collects the user's consent.
 As a final step, the Fact++\footnote{\url{http://owl.cs.manchester.ac.uk/tools/fact/}}
@@ -337,11 +342,11 @@ The demo is provided as a single web page, with the questions from GDPR readines
 The results for each query are retrieved whenever the page loads from a
 SPARQL endpoint\footnote{\url{http://openscience.adaptcentre.ie/sparql}}
 containing the RDF data about the use-case.
-The demo uses YASQE\footnote{\url{http://yasqe.yasgui.org/}} to represent the SPARQL queries with syntax highlighting, and YASR\footnote{\url{http://yasr.yasgui.org/}} to represent the results of queries in an interactive fashion.
+The demo uses the tools YASQE\footnote{\url{http://yasqe.yasgui.org/}} to present SPARQL queries with syntax highlighting and YASR\footnote{\url{http://yasr.yasgui.org/}} to represent the results of queries in an interactive fashion on the web page.
 
 The results of each query contain the information associated with answering the relevant compliance questions. For the SPARQL query regarding question \texttt{G5} presented in Listing. \autoref{code:sparql:dpc-G5} which enquired about legal obligations, the results express the steps and processes along with their legal obligations.
 The query and the results as presented in the demo are depicted in \autoref{fig:sparql:demo}.
-The results consist of five rows - of which three are processes that handle the various rights and therefore are not accompanied with any legal basis\footnote{The processes handling rights should utilise the legal basis of requirements specified by law since GDPR mandates the provision of rights.}.
+The results consist of five rows - of which three are processes that handle the various rights and therefore are not accompanied with any legal basis\footnote{The processes handling rights should utilise the legal basis of requirements specified by law since GDPR requires the provision of rights.}.
 The remaining two results represent processes associated with the provision of the service, of which \textit{OrderProcess} represents `ordering a product' and uses legitimate interest as its legal basis, and \textit{NewUserSignUpProcess} collects information about an user and uses the legal basis of given consent.
 \begin{figure}[htbp]
 \centering
@@ -356,11 +361,11 @@ The demonstration using a synthetic use-case provided the basis for exploring th
 The evaluation of this work, while not being exhaustive, demonstrates the creation of SPARQL queries and their application over a given use-case.
 
 In terms of coverage of compliance questions represented as SPARQL queries, the exercise could not represent all of the questions within the GDPR readiness guide.
-Where the reason was GDPRov not providing a required concept, the concept was identified and added in a later iteration of the ontology. 
-Other reasons include a the lack of knowledge regarding representation of ambiguous information such as `indefinite' storage periods and their legal validity, and the query being out of scope for the research question of this thesis - namely activities associated with personal data and consent.
+% Where the reason was GDPRov not providing a required concept, the concept was identified and added to ontology. 
+Reasons include a the lack of knowledge regarding representation of ambiguous information such as `indefinite' storage periods and their legal validity, and the query being out of scope for the research question of this thesis.
 \autoref{table:sparql:dpc-2} presents an indication of these through the \textit{SPARQL} and \textit{GDPRov} columns.
 
-Since the goal of the exercise demonstrating a compliance question could be expressed in SPARQL, the evaluation consisted of determining the extent to which this was possible. 
+Since the goal of the exercise demonstrating a questions related to GDPR compliance could be expressed in SPARQL, the evaluation consisted of determining the extent to which this was possible. 
 The expression of compliance questions using SPARQL is not novel in itself, as approaches in the SotA present their use of SPARQL in querying information related to GDPR compliance - such as in the SPECIAL, MIREL, and DAPRECO projects.
 However, details of their creation and implementation are sparse as pointed out in the SotA analysis in \autoref{sec:sota:analysis}, which makes it difficult to compare the application of SPARQL queries for retrieving information associated with GDPR compliance as presented here in context of the SotA.
 
