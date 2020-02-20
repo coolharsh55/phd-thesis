@@ -111,34 +111,35 @@ $RO2$: Identify information required to represent activities associated with pro
 \end{framed}
 
 % RO3
-The identified information is then represented using semantic web ontologies in the form of concepts and relationships. This representation acts as the information model upon which questions or queries are then  executed in an automated fashion to obtain the required information for determining compliance. The formalisation of information as an ontology also provides a controlled vocabulary for validation of information to determine its sufficiency and correctness before determining compliance. 
+The identified information is then represented as semantic web ontologies consisting of concepts and relationships. This representation acts as the information model upon which questions or queries can be executed to retrieve information for determining compliance. The formalisation of information as an ontology provides a controlled vocabulary for validation of information to determine its sufficiency and correctness before determining compliance. 
 
 % Rather than assimilating all information within a singular ontology, good practice dictates creation of modular ontologies specific to a particular task of domain. The information requirements can thus be divided into three distinct areas, each of which correspond to a specific topic or context, and lead towards the creation of an ontology within it. The first sub-objective concerns creating an ontology to associate information with the concepts and clauses within the text of the GDPR. The second objective utilises this ontology to represent activities associated with processing of personal data and consent. The third objective provides additional information regarding consent as required to determine its compliance. The distinction between the second and third objectives is based on the requirement of information other than that associated with activities in the determination of compliance for consent. 
 
 Instead of representing all required information in a single large ontology, modular ontologies provide better reuse and are easier to engineer \cite{suarez-figueroa_neon_2012}.
 A modular ontology is limited in scope towards representing a specific information category, and therefore is more consistent in its representation of concepts, and is easier to evaluate as compared to a larger ontology in which different concepts may have differing semantic connotations.
-Modular ontologies also provide a better motivation for reuse as an adopter can selectively choose to represent specific information without involving the other ontologies or dependency of concepts between them.
-With this as the motivation, the larger objective of $RO3$ for creating an ontology to address the research question is divided into three modular ontologies of: $RO3(a)$ - associating information with clauses and concepts of GDPR - fulfilled by GDPRtEXT presented in \autoref{sec:voc:GDPRtEXT}; $RO3(b)$ - representing information about activities associated with processing of personal data and consent - fulfilled by GDPRov presented in \autoref{sec:voc:GDPRov}; and $RO3(c)$ representing information about consent - fulfilled by GConsent \autoref{sec:voc:GConsent}.
+Modular ontologies also provide better motivation for reuse though selective choosing of concepts in a module without dependency of concepts in other modules.
+
+With this as motivation, the larger objective of $RO3$ for creating an ontology to address the research question is divided into three modular ontologies of: $RO3(a)$ - associating information with clauses and concepts of GDPR; $RO3(b)$ - representing information about activities associated with processing of personal data and consent; and $RO3(c)$ representing information about consent.
 This provides the third objective as:
 \begin{framed}
 $RO3$: Create OWL2 ontologies for representation information about:
-\newline\indent\indent\textbf{(a)}: concepts and text of the GDPR
+\newline\indent\indent\textbf{(a)}: concepts and text of GDPR
 \newline\indent\indent\textbf{(b)}: activities associated with processing of personal data and consent
 \newline\indent\indent\textbf{(c)}: consent required to determine compliance
 \end{framed}
 
 % RO4
-'Compliance questions' retrieve the relevant information required to determine compliance, and are important in the documentation process. These can be executed in an automated fashion by expressing the information using developed ontologies, and utilising SPARQL queries to represent compliance questions using corresponding concepts and relationships from the ontologies.
+'Compliance questions' retrieve information required to determine compliance, and are important in the documentation process. The information retrieval can be automated by utilising SPARQL queries to represent compliance questions using corresponding concepts and relationships from the developed ontologies. This provides the fourth objective as:
 \begin{framed}
 $RO4$: Represent compliance questions using SPARQL to query information about activities associated with processing of personal data and consent
 \end{framed}
 
 % RO5
-The determination of compliance not only includes assessment whether a given information satisfies all the obligations and requirements, but also involves validation of the information itself in terms of correctness and completeness.
-In software engineering processes, such assessments are automated in the form of tests that validate data and produce a report to record documentation.
-
-The same principle can be utilised to assess a given information for correctness and completeness based on requirements of the GDPR.
+The determination of compliance includes assessing whether a given information satisfies all obligations and requirements, and also involves validation of information itself in terms of correctness and completeness.
+In software engineering processes such assessments are automated as `tests' that validate data and produce a report to record documentation.
+The same principle is utilised here to assess information for correctness and completeness based on requirements of GDPR.
 This is done using SHACL which enables expressing validation requirements over developed ontologies and produces a report which can be persisted and linked back to the GDPR for documentation of compliance.
+This provides the fifth objective as:
 \begin{framed}
 $RO5$: Utilise SHACL to:
 \newline\indent\indent\textbf{(a)}: validate information for GDPR compliance regarding activities associated with processing of personal data and consent
@@ -148,34 +149,32 @@ $RO5$: Utilise SHACL to:
 \section{Research Methodology}\label{sec:intro:research-methodology}
 % state of the art
 \subsection{Reviewing the State of the Art}
-A review of the state of the art (SotA) was conducted at several stages of the research given the evolving nature of approaches towards GDPR compliance.
-The publications associated with the research objectives were driving factors in providing motivation to conduct a SotA review to capture the approaches and progress at that particular time.
-In addition, a general review of legal models for compliance was also conducted to identify relevant approaches which could be reused towards addressing the requirements of the GDPR.
+A review of the state of the art (SotA) regarding approaches towards GDPR compliance was conducted at several stages of the research from March 2016 to September 2019.
+Publications associated with research objectives were driving factors in providing requirements to conduct a SotA review to capture the approaches and progress at that particular time.
+In addition, a general review of legal models for compliance was also conducted to identify relevant approaches which could be reused towards addressing requirements of the GDPR.
+The inclusion of approaches in SotA largely focused on the use of semantic web technologies and the extent of their applicability towards addressing the requirements of the GDPR.
 
-The review included understanding of the GDPR, which was obtained and studied from sources including the official text of the GDPR, its interpretation and clarification provided by authoritative bodies such as Data Protection Commissions, Article 29 Working Party (A29WP), and European Data Protection Board (EDPB).
-In addition, guides and expert opinions provided by legal experts and organisations were also utilised to better understand the requirements for GDPR compliance.
-Information requirements associated with compliance were based on these, as well as studying case law related to interpretation of the GDPR where accessible.
+An understanding of GDPR was obtained from sources including the official text of GDPR \cite{Regulation_GDPR}, its interpretation and clarification provided by authoritative bodies such as Data Protection Commissions in various jurisdictions, Article 29 Working Party (A29WP), and the European Data Protection Board (EDPB).
+In addition, guides and expert opinions provided by legal experts and organisations were utilised as non-authoritative sources to better understand requirements of GDPR compliance.
+Information requirements associated with compliance presented within the thesis are based on these sources and through studying case law related to interpretation of the GDPR where accessible.
 
-Approaches associated with GDPR compliance were reviewed where information was openly available, such as through academic publications and project deliverables.
-Where such information was not accessible, such as in commercial products and some resources in academic projects, the available information was used to compile and review the SotA.
-In particular, the review focused on the use of semantic web technologies, and the extent of their applicability towards addressing the requirements of the GDPR.
-
-Publications and resources were discovered through Google Scholar, Scopus, IEEExplore, ACM Digital Library, as well as through events such as conferences and events, and by following relevant profiles on Twitter.
-Zotero was used as a tool for managing references and related notes.
+Approaches and resources within SotA were reviewed where information was open and accessible - such as through academic publications and project deliverables.
+Where such information was not accessible - such as in commercial products and some resources in academic projects - only the available information was included in the review of SotA.
+Publications and resources were discovered through Google Scholar, Scopus, IEEExplore, ACM Digital Library, and through events such as conferences and events, and through dissemination networks such as Twitter.
+Zotero was used as a bibliography tool for managing references and notes.
 
 \subsection{Information Gathering}
 The gathering of information regarding requirements of GDPR and its compliance was done through a literature review of official and authoritative documentation published by legal bodies and organisations.
-In order to understand the requirements of GDPR and the stakeholders involved, a model was developed to understand the requirements for interoperability of information for each stakeholder.
-Further, based on the use of information about GDPR compliance in the ontology engineering process, the analysed information was used to create `compliance questions' which guide the ontology development process by acting as `competency questions' (see \autoref{sec:intro:ontology-engineering}) and also act as queries for retrieving information relevant to the compliance process. The questions also provided the basis for creating information validation constraints.
-This process fulfils research objectives $RO1$ and $RO2$, and is described in \autoref{chapter:information}.
+In order to understand the requirements of GDPR and stakeholders involved, a model was developed to understand requirements for information interoperability for each stakeholder.
+The information about GDPR and its requirements was used to create `compliance questions' to guide the ontology development process by acting as `competency questions' (see \autoref{sec:intro:ontology-engineering}) and to act as queries for retrieving information relevant to the compliance process. The questions also provided the basis for creating information validation constraints.
+This process fulfilled research objectives $RO1$ and $RO2$ and is described in \autoref{chapter:information}.
 
 % construction of ontologies
 \subsection{Ontology Engineering}\label{sec:intro:ontology-engineering}
-The ontologies developed to fulfil research objective $RO3$ used commonly adopted methodologies within the semantic web community. These consisted of a general introductory guide for creating ontologies \cite{noy_ontology_2001} which was used to familiarise with the process of ontology engineering.
-The actual construction of ontologies followed a combination of NeON methodology \cite{suarez-figueroa_neon_2012} and UPON Lite \cite{de_nicola_lightweight_2016}, where NeON was used to identify existing scenarios and gather requirements and UPON Lite was used to derive actionable steps or tasks to build and test the ontology using an agile development process.
-The combination of the two provided a methodology for identifying relevant information from the GDPR (using NeOn) and iteratively building and updating an ontology to represent it (using UPON Lite).
-The methodology for ontology engineering is described in more detail in \autoref{sec:voc:methodology}.
-A summary of the methodology is as follows:
+The ontologies developed to fulfil research objective $RO3$ used methodologies commonly adopted and recommended within the semantic web community. A general introductory guide for creating ontologies \cite{noy_ontology_2001} was used to understand and start the process of ontology engineering.
+The actual construction of ontologies followed a combination of NeON methodology \cite{suarez-figueroa_neon_2012} and UPON Lite \cite{de_nicola_lightweight_2016} - where NeON was used to identify existing scenarios and gather requirements and UPON Lite was used to derive actionable steps or tasks to build and test the ontology using an agile development process.
+The combination provided a methodology for identifying relevant information from the GDPR (using NeOn) and iteratively building and updating an ontology to represent it (using UPON Lite).
+The methodology is described in more detail in \autoref{sec:voc:methodology}, with a summary as:
 \begin{enumerate}
 	\item Identification of aims, objectives, scope
     \item Identify and analyse relevant information
@@ -187,27 +186,27 @@ A summary of the methodology is as follows:
     \item Dissemination
 \end{enumerate}
 
-Each ontology was documented with metadata based on best practices advocated by the semantic web community\footnote{\url{https://dgarijo.github.io/Widoco/doc/bestPractices/index-en.html}}, which enabled automatic generation of documentation using the WIDOCO tool \cite{garijo_widoco_2017}.
+Each ontology was documented with metadata based on best practices advocated by the semantic web community\footnote{\url{https://dgarijo.github.io/Widoco/doc/bestPractices/index-en.html}} for automatic generation of documentation using the WIDOCO tool \cite{garijo_widoco_2017}.
 The namespace IRI was defined with persistent identifiers through the use of W3ID\footnote{\url{http://w3id.org/}}.
-The ontology itself was archived in the public open repository Zenodo\footnote{\url{https://zenodo.org/}} which provided it with versioned DOIs.
-All code and resources associated with the ontologies were also published on an open and public code repository.
-The ontology and related resources were hosted in a SPARQL end-point on Trinity College Dublin servers to enable their use via their IRIs on the internet.
+The ontology itself was archived in the public open repository Zenodo\footnote{\url{https://zenodo.org/}} which provided it with DOIs.
+All code and resources associated with the ontologies are published in GitHub - an open and public code repository.
+The ontology and related resources were hosted on Trinity College Dublin servers to enable resolution of their IRIs on the internet.
 
 % querying and validation framework
 \subsection{Querying Information for GDPR Compliance}
-The querying of information utilised SPARQL and fulfilled the research objective $RO4$.
-The methodology to represent the compliance questions as SPARQL queries utilised questions from a real-world document published by the Irish Data Protection Commission for assisting organisations in evaluation their readiness for GDPR.
+The querying of information utilised SPARQL and fulfilled research objective $RO4$.
+The methodology to represent compliance questions as SPARQL queries utilised questions from a real-world document published by the Irish Data Protection Commission for assisting organisations in evaluation their readiness for GDPR.
 The querying was demonstrated by representing each question within the document as a SPARQL query using the developed ontologies and executed over a synthetic use-case.
 
 \subsection{Information Validation Framework for GDPR Compliance}
-In order to demonstrate the validation of information, a modular framework was proposed in \autoref{sec:testing:shacl} which consisted of creating a separate `compliance graph' for storing information relevant to compliance.
+In order to demonstrate the validation of information, a modular framework was proposed in \autoref{sec:testing:shacl} consisting of creating a `compliance graph' separate from the data graph for storing information relevant to compliance.
 This facilitated the querying and validation of information associated with compliance in a modular approach using SPARQL and SHACL respectively.
 The constraints and assumptions created from constraint questions in \autoref{chapter:information} were represented using SHACL and used to validate information based on obligations and requirements of GDPR compliance.
-Its application was demonstrated through a use-case evaluating the validity of consent on a real-world website.
+Its application was demonstrated through a use-case evaluating validity of consent in a real-world website.
 
 % evaluation strategy
 \subsection{Evaluation Methodology}\label{sec:intro:evaluation}
-A summary of the evaluations methods used in the thesis is presented in \autoref{table:intro:evaluation-methods}
+A summary of evaluations methods used in the thesis is presented in \autoref{table:intro:evaluation-methods}
 \begin{table}[htbp]
 \footnotesize
 \centering
@@ -224,7 +223,7 @@ Demonstrate application to use-case & \cmark & \cmark & \cmark & \cmark & \cmark
 External use-case & \xmark & \cmark & \cmark & \cmark & \cmark \\ \hline
 Comparison with SotA & \cmark & \cmark & \cmark & \cmark & \cmark \\ \hline
 Analysis of citations & \cmark & \cmark & N/A & \cmark & N/A \\ \hline
-\multicolumn{6}{|l|}{Dissemination of work}  \\ \hline
+\multicolumn{6}{|l|}{Dissemination of work (for providing transparency)}  \\ \hline
 Peer-reviewed publication & \cmark & \cmark & \cmark & \cmark & \cmark \\ \hline
 Reproducibility (open access resources) & \cmark & \cmark & \cmark & \cmark & \cmark \\ \hline
 \end{tabularx}
@@ -232,60 +231,54 @@ Reproducibility (open access resources) & \cmark & \cmark & \cmark & \cmark & \c
 
 \subsubsection{Evaluating Ontologies}
 %% ontologies
-The developed ontologies presented in \autoref{chapter:vocabularies} were assessed in their sufficiency and completeness to answer the competency questions. 
+The developed ontologies presented in \autoref{chapter:vocabularies} were assessed in their sufficiency and completeness to answer the competency questions they were designed for. 
 In addition, use-cases related to situations differing in compliance requirements were used to assess the ontology in terms of sufficient representation of related information. These use-cases were compiled from GDPR-related case law, SotA, and synthetic situations, and validated regarding information requirements with a legal expert.
-Ontologies were also evaluated using best practices advocated by the community throughout its cycle of development by using a semantic reasoner to ensure logical consistency in expressed facts and axioms, and by using the OOPS! \cite{poveda-villalon_oops!_2014} online service to detect common pitfalls in ontology design.
+Ontologies were also evaluated using best practices advocated by the community throughout its development using a semantic reasoner to ensure logical consistency in expressed facts and axioms, and by using the OOPS! \cite{poveda-villalon_oops!_2014} online service to detect common pitfalls in ontology design.
 % While most detected pitfalls were corrected in the ontology engineering process, some pitfalls were found to have originated in parts of reused ontologies not relevant to this work and were ignored .
-Finally, the sections in this thesis describing each ontology present a comparison against similar ontologies identified in the SotA to analyse their novelty, as well as strengths and weaknesses.
-They also present the relevant peer-reviewed publications where the ontologies were presented and discussed. Citations to these publications are used as an indication to identify relevant approaches, and to investigate criticisms and comparisons with other ontological representations.
+Finally, the sections in this thesis describing each ontology present a comparison against similar ontologies identified in SotA to analyse novelty, strengths, and weaknesses.
+The sections also present relevant peer-reviewed publications where ontologies were presented and discussed. Citations to these publications were used to identify relevant approaches and to investigate criticisms and comparisons with other ontological representations.
 
-An evaluation of the ontologies in addition to the above was also carried out through their use in the querying and validation of information for research objectives $RO4$ and $RO5$. This provided the opportunity to evaluate whether the ontology provided sufficient concepts to represent the required information, and whether such representations could be used in the querying and validation process.
-Where an ontology was found to lack concepts, these were added in an updated iteration or - in cases where there was ambiguity in representations - noted for future updates.
+An ad-hoc evaluation of ontologies is also presented through their use in querying and validation of information for research objectives $RO4$ and $RO5$. This demonstrated the sufficiency of each ontology to provide sufficient concepts for representing information to facilitate querying and validation processes.
 
 \subsubsection{Evaluating Querying of Information}
-The use of SPARQL to query information based on compliance question as presented in \autoref{sec:testing:sparql} was evaluated through its application over a document published by the Irish Data Protection Commission.
-The SPARQL queries utilised the developed ontologies to represent concepts in the compliance question, which provided an opportunity to evaluate the extent to which the ontology could represent these concepts.
+The use of SPARQL to query information based on compliance question as presented in \autoref{sec:testing:sparql} was evaluated by applying it to questions in a document published by the Irish Data Protection Commission.
+The SPARQL queries utilised developed ontologies to represent the given question as a compliance question and provided an opportunity to evaluate the extent to which the ontology could represent these concepts.
 The approach itself was evaluated based on the extent to which the questions in the document could be expressed as SPARQL queries.
-Where a question could not or was not expressed using SPARQL, an analysis was carried out to determine its reason - such as the ontology lacking concepts or the question not being in scope of the research question.
+Where a question could not or was not expressed using SPARQL, an analysis was carried out to determine the reason - such as the question not being in scope of the research question.
 
 \subsubsection{Evaluating Information Validation Framework}
 %% querying and validation framework
-The framework developed for validating information using constraints derived from compliance questions is is presented with its evaluation in \autoref{sec:testing:shacl}.
-The evaluation consisted of generating a synthetic use-case based on the consent mechanism of a real-world website, where the constraints were validated against information related to consent and personal data activities within the use-case.
-The section also mentions the relevant peer-reviewed publications where the framework and its application were published and presented.
-
+The framework developed for validating information using constraints derived from compliance questions is presented in \autoref{sec:testing:shacl}.
+Its evaluation consisted of generating a synthetic use-case using the consent mechanism of a real-world website where the constraints related to consent and personal data activities were validated on information from the website .
 The use-case enabled representation of activities in both ex-ante and ex-post phases where ex-ante represented validity of the consent dialogue being presented, and ex-post represented determining validity of given consent.
-The information regarding activities related to personal data and consent within the use-case was represented using the developed ontologies to create a semantic web representation of the use-case.
-SHACL was then used to define constraints derived from competency questions over the use-case data, with links to GDPR added to constraints using custom properties.
+The information regarding activities related to personal data and consent within the use-case was represented using developed ontologies.
+SHACL was then used to define constraints derived from competency questions with links to GDPR added to the constraints using developed ontologies and custom properties.
 
-The evaluation consisted of demonstrating the use of SHACL and developed ontologies to express the constraints, and the ability to link the constraints and its validation results with the relevant clauses of the GDPR.
-The approach was also utilised to demonstrate the potential for the validation results to be represented as actionable tasks for compliance associated with clauses of GDPR.
-The framework and the application were compared with approaches within the SotA to demonstrate novelty in the use of SPARQL and SHACL for GDPR compliance.
+The evaluation consisted of demonstrating use of SHACL and developed ontologies to express the constraints and the ability to link constraints and its validation results with relevant clauses of GDPR.
+The approach also demonstrated the use of validation results as actionable tasks for compliance associated with clauses of GDPR.
+The framework and the application were compared with approaches within the SotA to demonstrate novelty in use of SPARQL and SHACL for GDPR compliance.
 
 \section{Contributions of this Thesis}\label{sec:intro:contributions}
-The two major contributions of this thesis are, first - enabling association of information with the text of GDPR following linked data principles, and second - ontologies for representing information about activities associated with processing of personal data and consent (based on ontologies in $RO3$). Minor contributions include formulating an information model of entities and their relationships in GDPR (based on information in $RO1$ and $RO2$), and using semantic web technologies for querying and validating information required for compliance (based on approaches from $RO4$ and $RO5$). Resources associated with the contributions\footnote{\url{http://openscience.adaptcentre.ie/res/}}, including published papers\footnote{\url{https://openscience.adaptcentre.ie/publications/}}, have been made accessible under open licenses (MIT,  CC-by-4.0) for reproducibility, and to foster adoption and re-use by the community.
+The two major contributions of this thesis are (based on ontologies in $RO3$): first - enabling association of information with the text of GDPR following linked data principles, and second - ontologies for representing information about activities associated with processing of personal data and consent. Minor contributions include formulating an information model of entities and their relationships in GDPR (based on information in $RO1$ and $RO2$), using semantic web technologies for querying (based on $RO4$) and validating (based on and $RO5$) information required for compliance . Resources associated with the contributions\footnote{\url{http://openscience.adaptcentre.ie/res/}}, including published papers\footnote{\url{https://openscience.adaptcentre.ie/publications/}}, have been made accessible under open licenses (MIT,  CC-by-4.0) for reproducibility and to foster adoption and re-use by the community.
 
 \subsection{GDPR as a Linked Data Resource}
-The first major contribution of this thesis is the GDPRtEXT resource - which provides a linked data version of the text of the GDPR and a vocabulary of its concepts, and fulfils research objectives $RO3(a)$ and $RO5(b)$. By exposing each individual article or point within the text of the GDPR as a unique resource using semantic web, GDPRtEXT makes it possible for links to be established between information and the text of the GDPR. As these links are machine-readable, they can be used in approaches that automate the generation and querying of information associated with GDPR - such as for compliance, management of business processes, or generation of privacy policies. Furthermore, GDPRtEXT extends and is therefore compatible with the ELI ontology \cite{thomas_european_2019} used by the European Publications Office to publish documents - including GDPR. ELI currently only provides representations at the document level, while GDPRtEXT extends its concepts for representing clauses at a granular level. GDPRtEXT thus provides its features in a manner compatible and interoperable with ELI.
+The first major contribution of this thesis is the GDPRtEXT resource - which provides a linked data version of the text of GDPR and a glossary of its concepts. It fulfils research objective $RO3(a)$ and enables fulfilment of $RO5(b)$ by exposing each individual article or point within the text of GDPR as a unique resource using semantic web to enable links to be established between information and clauses of the GDPR. As these links are machine-readable, they can be used in approaches to automate the generation and querying of information associated with GDPR - such as for compliance, management of business processes, or generation of privacy policies. Furthermore, GDPRtEXT extends and is therefore compatible with the ELI ontology \cite{thomas_european_2019} used by the European Publications Office to publish legislations - including GDPR. ELI currently provides representations only at the document level, which  GDPRtEXT extends for representing clauses at a granular level. GDPRtEXT thus provides its features in a manner compatible and interoperable with ELI.
 
-It is currently common practice to refer to concepts within legal documents such as the GDPR by associating them with the relevant clause within the document. 
-GDPRtEXT provides a glossary or vocabulary of concepts defined or referred to within the GDPR to assist with use of concepts defined or mentioned within the GDPR. Each concept or term is associated with its definition or articles of relevance within the GDPR by using the linked data version of text provided by GDPRtEXT. This provides another way to link information to the GDPR through the use of concepts, and has been used to indicate the source in definitions of terms and relationships for vocabularies (see \autoref{sec:contributions:ontologies}).
+It is currently common practice to refer to concepts within legal documents such as GDPR by associating them with their defining or relevant clauses within the document. 
+GDPRtEXT provides a glossary (and vocabulary) of concepts defined or referred to within GDPR to assist with use of concepts associated with its compliance. Each concept or term is associated with its definition or articles of relevance within GDPR by using the linked data version of text provided by GDPRtEXT. This provides another way to link information to GDPR through use of concepts and has been used to indicate the source in definitions of terms and relationships within the other developed ontologies (see \autoref{sec:contributions:ontologies}).
 
-GDPRtEXT fills an important gap in the state of the art (as investigated in \autoref{chapter:sota}) by providing a mechanism to link information with the text of the GDPR in a machine-readable manner. It is the only vocabulary providing a glossary of terms associated with GDPR and its compliance with a reference to their definition and usage within the text of GDPR.
-While there are other comparable and relevant methods to address such information \cite{agarwal_legislative_2018,palmirani_pronto_2018-1}, GDPRtEXT is currently the only one  that uses and extends ELI \cite{ELI_2012} which is the official metadata standard for European legislation documents, and is also the only openly accessible ontology regarding GDPR and its concepts \cite{leone_taking_2019}.
+GDPRtEXT fills an important gap in the state of the art (as investigated in \autoref{chapter:sota}) by providing a mechanism to link information with the text of GDPR in a machine-readable manner. It is the only provider of a semantic web glossary of terms associated with GDPR and its compliance with a reference to their definition and usage within the text of GDPR.
+While there are other comparable and relevant methods to address such information \cite{agarwal_legislative_2018,palmirani_pronto_2018-1}, GDPRtEXT is currently the only one that uses and extends ELI \cite{ELI_2012} - the official metadata standard for European legislation documents, and is also the only open and accessible ontology regarding GDPR and its concepts \cite{leone_taking_2019}.
 
-GDPRtEXT has been released\footnote{\url{https://w3id.org/GDPRtEXT}} under the open license (CC-by-4.0) and has been incorporated into Ireland's open data portal\footnote{\url{https://data.gov.ie/dataset/gdprtext}}.
+GDPRtEXT has been released\footnote{\url{https://w3id.org/GDPRtEXT}} under an open license (CC-by-4.0) and has been incorporated into Ireland's open data portal\footnote{\url{https://data.gov.ie/dataset/gdprtext}}.
 The provision of machine-readable concepts and reference to clauses of the GDPR makes GDPRtEXT an important resource for use in legal knowledge graphs.
 
 \subsection{Ontologies for representing activities about Personal Data and Consent}\label{sec:contributions:ontologies}
-The second major contribution of this thesis are the two semantic web ontologies - GDPRov for representing information about activities associated with processing of personal data and consent, and GConsent for representing information associated with determining compliance of consent. Both ontologies define concepts and relationships using GDPRtEXT to associate their source within the GDPR.
+The second major contribution of this thesis are the two semantic web ontologies - GDPRov for representing information about activities associated with processing of personal data and consent, and GConsent for representing information associated with determining compliance of consent. Both ontologies define concepts and relationships using GDPRtEXT to indicate source within GDPR.
 
-While GDPRov and GConsent both represent consent, the focus of GDPRov is on representing consent through activities and artefacts, while GConsent represents information associated with management of consent based on GDPR compliance requirements.
-As the application of these ontologies within use-cases in \autoref{chapter:testing} show, both ontologies share some concepts and overlap, but are complimentary in their use and represent different aims in their representation of information.
-
-Together with GDPRtEXT, GDPRov and GConsent enable the representation of activities required to evaluate and validate compliance with the relevant articles of the GDPR. Apart from advancing the state of the art, the ontologies also provide a vocabulary of terms and concepts relevant for GDPR compliance, and demonstrate the use of legal documents as a source for ontologies using linked data principles.
-Their usefulness has been demonstrated in approaches other than compliance - such as for representation of information in privacy policies \cite{pandit_ontology_2018}, generation of privacy policies from metadata \cite{pandit_personalised_2018}, and automating change-detection and its effects on activities \cite{pandit_gdpr-driven_2018}.
-GDPRov\footnote{\url{https://w3id.org/GDPRov}} and GConsent\footnote{\url{https://w3id.org/GConsent}} are available under the open license (CC-by-4.0).
+Together with GDPRtEXT, GDPRov and GConsent enable representation of activities required to evaluate and validate compliance with the GDPR. Apart from advancing state of the art, the ontologies also provide a vocabulary of terms and concepts relevant for GDPR compliance, and demonstrate the use of legal documents as a source for ontologies using linked data principles.
+Their usefulness has been demonstrated in approaches of: representation of information in privacy policies \cite{pandit_ontology_2018}, generation of privacy policies from metadata \cite{pandit_personalised_2018}, and automating change-detection and its effects on activities \cite{pandit_gdpr-driven_2018}.
+GDPRov\footnote{\url{https://w3id.org/GDPRov}} and GConsent\footnote{\url{https://w3id.org/GConsent}} are published under an open license (CC-by-4.0).
 
 \subsubsection{GDPRov}
 GDPRov enables representation of the processes and activities associated with the life-cycle of personal data and consent, and  fulfils the research objectives $RO3(b)$ and $RO3(c)$.
@@ -299,64 +292,65 @@ In comparison, GDPRov provides the most exhaustive vocabulary of concepts based 
 GDPRov thus advances the state of the art by providing the most comprehensive vocabulary for modelling and representing activities based on GDPR concepts.
 
 \subsubsection{GConsent}
-GDPRov provides representations for indicating activities that request consent and represent artefacts representing the request and given consent as inputs or outputs to such activities.
-While these concepts are sufficient to represent information regarding given consent, they represent a specific semantic view based on the notion of capturing provenance of information in ex-ante and ex-post phases.
+The determination of consent validity under the GDPR requires additional information \cite{politou_forgetting_2018,article_29_data_protection_working_party_guidelines_2018} which is not captured using GDPRov as it does not relate to representation of activities and artefacts.
+Therefore, a separate ontology called GConsent was created (and is the basis for formulating research objective $RO3(c)$) to provide necessary concepts and relationships for representing information relevant for management of consent.
+GConsent focuses on representation of \textit{only} consent information as required to evaluate its compliance. It acts as a distinct modular ontology which can be used by itself to represent consent, or in conjunction with GDPRov to represent consent and its related activities.
 
-The determination of consent validity under the GDPR requires additional information \cite{politou_forgetting_2018,article_29_data_protection_working_party_guidelines_2018}, which is not captured by the scope of activities represented by GDPRov or does not relate to its representation of activities and artefacts.
-Therefore, a separate modular ontology called GConsent was created based on the research objective $RO3(c)$ to provide the necessary concepts and relationships to represent information for management and evaluate compliance of consent.
-GConsent aims to provide representation of \textit{only} consent information as required to evaluate its compliance. It acts as a distinct modular ontology which can be used by itself to represent consent, or in conjunction with GDPRov to represent consent and its related activities.
+While GDPRov and GConsent both represent consent, the focus of GDPRov is on representing activities and artefacts associated with consent, while GConsent represents information associated with management of consent based on GDPR compliance requirements.
+Another perspective on this is that GDPRov represents a specific semantic view based on the notion of capturing provenance of activities in ex-ante and ex-post phases, while GConsent represents a state-based representation of consent.
+The application of these ontologies within use-cases in \autoref{chapter:testing} show, both ontologies share some concepts and overlap, but are complimentary in their use and represent different aims in their representation of information.
 
-GConsent provides the necessary concepts and relationships to express information about consent in terms of entities such as individuals or agents, purposes and processing, involvement of third parties, medium and context of provision, relationship between instances (e.g. withdraws, updates), and the novel concept of `consent states' which enable the management of consent as an entity. 
-In comparison with the state of the art, GConsent provides greater representation of information related to consent as compared to other approaches related to consent and data management for GDPR \cite{peras_guidelines_2018}, and is the most comprehensive ontology for representing consent (based on comparisons demonstrated in \autoref{chapter:vocabularies}).
+GConsent provides the necessary concepts and relationships to express information about consent in terms of entities such as individuals or agents, purposes and processing, involvement of third parties, medium and context of provision, relationship between instances (e.g. withdraws, updates), and the novel concept of `consent states' which enables management of consent as an entity. 
+In comparison with state of the art, GConsent provides greater representation of information related to consent and is the most comprehensive ontology for representing consent (based on comparisons demonstrated in \autoref{chapter:vocabularies}).
 
 \subsection{Querying Information Related to Compliance using SPARQL}\label{sec:contributions:querying}
-A minor contribution of this thesis is the utilisation of SPARQL to query  information relevant for GDPR compliance, which fulfils research objective $RO4$.
-The use of developed ontologies, namely - GDPRtEXT, GDPRov, and GConsent - provide representation of concepts associated with GDPR for use in SPARQL queries to represent compliance questions derived from state of the art (see \autoref{chapter:information}).
+A minor contribution of this thesis is the utilisation of SPARQL to query information relevant for GDPR compliance, which fulfils research objective $RO4$.
+The use of developed ontologies, namely GDPRtEXT, GDPRov, and GConsent - provide representation of concepts associated with GDPR for use in SPARQL queries to represent compliance questions derived from state of the art (see \autoref{chapter:information}).
 
-Where approaches in the state of the art also use SPARQL to represent questions for compliance \cite{agarwal_legislative_2018,palmirani_pronto_2018}, the work presented in \autoref{sec:testing:sparql} regarding querying using SPARQL is the only one within the state of the art to derive such queries from the questions used in an investigation of compliance, i.e. compliance questions as presented in \autoref{sec:info:compliance-questions}.
-A practical application demonstrates SPARQL queries derived from questions provided by the Irish Data Protection Commission for assisting organisations with their compliance readiness \cite{GDPR_readiness_checklist}, and shows use of SPARQL in assisting the investigation process associated with compliance.
+Where approaches in state of the art also use SPARQL to represent questions for compliance \cite{agarwal_legislative_2018,palmirani_pronto_2018}, the work presented in \autoref{sec:testing:sparql} is the only one within the state of the art to demonstrate derivation of queries from questions associated with an investigation of compliance, i.e. compliance questions as presented in \autoref{sec:info:compliance-questions}.
+A practical application of this demonstrates SPARQL queries derived from questions provided by the Irish Data Protection Commission for assisting organisations with their GDPR compliance readiness \cite{GDPR_readiness_checklist} and shows use of SPARQL in assisting the investigation process associated with compliance.
 This application of SPARQL was published in a peer-reviewed publication \cite{pandit_queryable_2018} and was presented to members of the Irish Data Protection Commission as part of research developed in this thesis.
 
 \subsection{Framework for Validating Information using SHACL Compliance}\label{sec:contributions:validation}
-Another contribution of this thesis is the approach for using SHACL to validate information and linking the results with the relevant clauses of the GDPR for compliance, which fulfils research objective $RO5$.
-While SPARQL is sufficient to query information, and in some cases, to determine compliance based on presence or absence of information, the use of SHACL provides a standardised approach for validation of information based on representing constraints and persisting the results of validation.
+Another contribution of this thesis is the approach for using SHACL to validate information and linking the results with relevant clauses of GDPR for compliance, which fulfils research objective $RO5$.
+While SPARQL is sufficient to query information and in some cases to determine compliance based on presence or absence of information, the use of SHACL provides a standardised approach for validation of information based on representing constraints and persisting the results of validation.
 
 The validation using SHACL is part of a proposed framework presented in \autoref{sec:testing:shacl} which consists of creating a `compliance graph' for storing information relevant in the investigation and demonstration of compliance.
-The validation requirements are derived from constraints and assumptions derived from compliance questions in \autoref{sec:info:constraints}, and are represented using SHACL with a link to relevant clauses of the GDPR established using GDPRtEXT to indicate their role in the compliance process.
+The validation requirements are derived from constraints and assumptions based on compliance questions in \autoref{sec:info:constraints}, and are represented using SHACL with a link to relevant clauses of the GDPR defined using GDPRtEXT to indicate their role in the compliance process.
 The constraints expressed using SHACL utilise concepts and relationships from GDPRov and GConsent to represent validation requirements, and re-use SPARQL queries created for $RO4$ to retrieve information.
 The validation results are persisted and annotated with GDPRtEXT to link them with the GDPR, thereby providing a form of documentation for information validation associated with compliance.
 
-The framework suggests a more efficient form of validation by reusing ex-ante validation results in ex-post evaluations by abstracting common constraints belonging to ex-ante information and validating them at the ex-ante stage so that only specific constraints associated with instances in the ex-post stage - such as provenance information - need to be validated.
-The demonstration of the framework and the approach consists of evaluating consent on a real-world website and generate a `compliance report' listing status of validations linked to GDPR.
+The framework suggests a more efficient form of validation by reusing ex-ante validation results in ex-post evaluations by abstracting common constraints belonging to ex-ante information and validating them in the ex-ante stage itself so that only specific constraints associated with instances in the ex-post stage - such as provenance information - need to be validated.
+The demonstration of the framework and approach consists of evaluating consent on a real-world website to generate a `compliance report' listing status of validations linked to GDPR.
 The framework and approach have been published in peer-reviewed publications \cite{pandit_towards_2018,pandit_exploring_2018,pandit_test-driven_2019}
 
-Related work in the state of the art uses a variety of approaches in the validation and assessment of compliance. The SPECIAL project has investigated the use of OWL2 reasoners to validate consent at ex-ante and ex-post stages \cite{bonatti_fast_2018,dullaert_d3.4_2019}, the application of ODRL policies as a compliance checking mechanism \cite{agarwal_legislative_2018,vos_odrl_2019}. The MIREL project has proposed the use of deontic logic for legal reasoning through the use of LegalRuleML \cite{palmirani_pronto_2018,monica_modelling_2018}, while the BPR4GDPR project proposes checking provenance logs for conformance to predetermined processes (ex-post analysis) \cite{mehr_compliance_2019}.
-A similar use of SHACL utilising P-Plan workflows to validate policies expressed in ODRL for GDPR compliance has been proposed \cite{lieber_policy-compliant_2019}, which provides future directions for application of this research.
-Compared to the state of the art, the approach presented in this thesis is novel in its utilisation of SHACL to validate information and link its results with the GDPR for compliance. It is also novel in its combination and reuse of ex-ante and ex-post validations for compliance.
+Related work in state of the art uses a variety of approaches for validation and assessment of compliance. The SPECIAL project demonstrates use of OWL2 reasoners to validate consent at ex-ante and ex-post stages \cite{bonatti_fast_2018,dullaert_d3.4_2019} and the application of ODRL policies as a compliance checking mechanism \cite{agarwal_legislative_2018,vos_odrl_2019}. The MIREL project proposes  the use of deontic logic for legal reasoning using LegalRuleML \cite{palmirani_pronto_2018,monica_modelling_2018}, while the BPR4GDPR project proposes checking provenance logs for conformance to predetermined processes (ex-post analysis) \cite{mehr_compliance_2019}.
+The use of SHACL utilising P-Plan workflows to validate policies expressed in ODRL for GDPR compliance has been proposed \cite{lieber_policy-compliant_2019} as a doctoral consortium paper - which provides future directions for application of this research.
+Compared to state of the art, the approach presented in this thesis is novel in its utilisation of SHACL to validate information and link its results with the GDPR for compliance. It is also novel in its combination and reuse of ex-ante and ex-post validations for compliance.
 
 \subsection{Information Interoperability Model of the GDPR}
-A minor contribution of this thesis also consists of an information interoperability model based on representing categories of entities (stakeholders) as defined by the GDPR and their interactions with respect to interoperability of information shaped by compliance requirements of the GDPR.
+A minor contribution of this thesis consists of an information interoperability model based on representing categories of entities (stakeholders) as defined by GDPR and their interactions with respect to interoperability of information shaped by GDPR compliance requirements.
 The model, described in \autoref{sec:info:model}, conceptualises interactions between stakeholders based on information identified as part of $RO1$ and $RO2$, and provides an overview of requirements regarding information and interoperability shaped by GDPR.
 
-The model provides the categorisation of information requirements based on provenance, agreements, consent, certification, and compliance; and assists in the exploration of existing standards, including semantic web, by outlining the requirements and applications of information based on its interoperability between the entities.
-It advances the state of the art by providing the first systemic analysis of information flows and interoperability between stakeholders, and serves to provide a framework for developing and evaluating potential consensus on interoperability of information for compliance between stakeholders.
+The model provides categorisation of information requirements based on provenance, agreements, consent, certification, and compliance; and assists in exploration of existing standards - including semantic web - by outlining requirements and applications of information based on interoperability between entities.
+It advances state of the art by providing the first systemic analysis of information flows and interoperability between stakeholders, and serves to provide a framework for developing and evaluating potential consensus on interoperability of information for compliance between stakeholders.
 The model, its analysis, and application in the context of right to data portability was published in peer-reviewed publications \cite{pandit_modelling_2017,pandit_exploration_2018} and as a book chapter \cite{pandit_standardisation_2020}.
 
 \subsection{Participation in DPVCG}\label{sec:intro:dpvcg}
 The Data Privacy Vocabularies and Controls Community Group\footnote{\url{https://www.w3.org/community/dpvcg/}} (DPVCG) is a W3C community group working towards developing a vocabulary associated with personal data processing based on relevant laws such as GDPR.
-The group was created by members of the SPECIAL project in May 2018, and currently consists of community members from diverse domains such as academia, legal experts, lawyers, and industry stakeholders.
+The group was created by members of the SPECIAL project in May 2018 and currently consists of community members from diverse domains such as academia, legal experts, lawyers, and industry stakeholders.
 
-The work done within the DPVCG has produced the Data Privacy Vocabulary\footnote{\url{http://w3.org/ns/dpv}} (DPV) , an ontological resource for the representation of information associated with processing of data.
-The DPV represents a community agreement for the vocabulary and semantics of terms and concepts associated with the GDPR, which provides a degree of interoperability in representing information for legal compliance.
-The work conducted in the creation of DPV has been published in a peer-reviewed conference \cite{pandit_dpv_2019}, and has also been listed as a deliverable within the SPECIAL project \cite{pandit_d6.5_2019} - in both of which the author of this thesis is listed as an editor and contributor.
-Further, the author of this thesis is acting as the chair of DPVCG since the start of 2020.
+The work done within DPVCG in its 18 months of operation has produced the Data Privacy Vocabulary\footnote{\url{http://w3.org/ns/dpv}} (DPV) - an ontological resource for representing information associated with processing of data.
+The DPV represents a community agreement of vocabulary and semantics of terms and concepts associated with GDPR, and provides a degree of interoperability in representing information for legal compliance.
+The work regarding creation of DPV has been published in a peer-reviewed conference \cite{pandit_dpv_2019}, and has also been listed as a deliverable within the SPECIAL project \cite{pandit_d6.5_2019}.
+The author of this thesis is listed as an editor and contributor in both publications, and is the co-chair DPVCG since January 2020.
 
-The research presented in this thesis had an impact in the creation of DPV through the use of developed ontologies as an input as well as through direct participation of the author as an active contributing member.
-An overview of the DPV is therefore presented in \autoref{sec:voc:DPV}, along with comparisons to the developed ontologies (GDPRtEXT, GDPRov, GConsent) and the SotA.
-To summarise the comparison, DPV provides a high-level abstraction of terms and concepts, whereas the ontologies in this thesis provide representations of information with more granularity and detail - which makes their usage with the DPV complimentary rather than contradictory.
+The research presented in this thesis had an impact in the creation of DPV through use of developed ontologies as an input as well as through direct participation of the author as an active contributing member.
+An overview of DPV is therefore presented in \autoref{sec:voc:DPV} along with comparisons to developed ontologies (GDPRtEXT, GDPRov, GConsent) and SotA.
+To summarise the comparison, DPV provides a high-level abstraction of terms and concepts, whereas the ontologies in this thesis provide representations of information with more granularity and detail - which makes their usage with DPV complimentary rather than contradictory.
 
 \subsection{Publications}\label{sec:intro:publications}
-The following peer-reviewed publications present the research in this thesis (grouped by relevance, ordered reverse chronologically):
+The following peer-reviewed publications present the research in this thesis (grouped by relevance, ordered chronologically reversed):
 
 \subsubsection{Ontologies representing information for GDPR compliance}
 The following publications are associated with $RO3$ - developing ontologies for representing the concepts and relationships within the GDPR.
@@ -365,27 +359,27 @@ The following publications are associated with $RO3$ - developing ontologies for
     \textit{\textbf{H. J. Pandit}, C. Debruyne, D. O’Sullivan, and D. Lewis.} \\ 
     \textit{16\textsuperscript{th} European Semantic Web Conference (ESWC), 2019.}
         \vspace{0.1cm} \newline
-        This publication presents the GConsent ontology for representing information about consent as required by the GDPR. GConsent fulfils research objective $RO3(c)$, and provides a verbose representation of consent for information management and documentation. GConsent is described in \autoref{sec:voc:GConsent}.
+        This publication presents the GConsent ontology for representing information about consent as required by GDPR. GConsent fulfils research objective $RO3(c)$, and provides a detailed representation of consent for information management and documentation. GConsent is described in \autoref{sec:voc:GConsent}.
     \item ``\textbf{GDPRtEXT - GDPR as a Linked Data Resource}'' \cite{pandit_gdprtext_2018} \\
     \textit{\textbf{H. J. Pandit}, K. Fatema, D. O’Sullivan, and D. Lewis.} \\
     \textit{15\textsuperscript{th} European Semantic Web Conference (ESWC), 2018.}
         \vspace{0.1cm} \newline
-        This publication presents the GDPRtEXT resource consisting of a linked data representation of the text of GDPR, and a thesauri of its concepts. It also provides a mapping from clauses of the DPD to GDPR based on applicability of access control methods developed for DPD towards GDPR compliance. GDPRtEXT fulfils research objective $RO3(a)$, and is instrumental in providing semantic association between information and the GDPR for the approaches presented in this thesis. GDPRtEXT is described in \autoref{sec:voc:GDPRtEXT}.
+        This publication presents the GDPRtEXT resource consisting of a linked data representation of the text of GDPR, and a glossary of its concepts. It also provides a mapping from clauses of the DPD to GDPR based on reuse of compliance methods developed for DPD for GDPR. GDPRtEXT fulfils research objective $RO3(a)$, and is instrumental in providing semantic association between information and GDPR for approaches presented in this thesis. GDPRtEXT is described in \autoref{sec:voc:GDPRtEXT}.
     \item ``\textbf{Modelling Provenance for GDPR Compliance using Linked Open Data Vocabularies}'' \cite{pandit_modelling_2017} \\ 
     \textit{\textbf{H. J. Pandit}, and D. Lewis.} \\
     \textit{5\textsuperscript{th} Workshop on Society, Privacy and the Semantic Web - Policy and Technology (PrivOn2017), co-located with the 16\textsuperscript{th} International Semantic Web Conference (ISWC), 2017. }
         \vspace{0.1cm} \newline
-        This publication presents the GDPRov ontology for representing the provenance of personal data and consent for GDPR, and also discusses the use of its concepts in SPARQL queries for retrieving information associated with compliance. GDPRov fulfils research objective $RO3(b)$, and provides ex-ante and ex-post representations for activities associated with personal data and consent for GDPR. GDPRov is described in \autoref{sec:voc:GDPRov}.
+        This publication presents the GDPRov ontology for representing the provenance of personal data and consent for GDPR, and discusses use of its concepts in SPARQL queries for retrieving information associated with compliance. GDPRov fulfils research objective $RO3(b)$, and provides ex-ante and ex-post representations for activities associated with personal data and consent for GDPR. GDPRov is described in \autoref{sec:voc:GDPRov}.
     \item \textbf{Compliance through Informed Consent: Semantic Based Consent Permission and Data Management Model} \cite{fatema_compliance_2017} \\
     \textit{K. Fatema, E. Hadziselimovic, \textbf{H. J. Pandit}, C. Debruyne, D. Lewis, and D. O’Sullivan.} \\
     \textit{5\textsuperscript{th} Workshop on Society, Privacy and the Semantic Web - Policy and Technology (PrivOn2017), co-located with the 16\textsuperscript{th} International Semantic Web Conference (ISWC), 2017. }
         \vspace{0.1cm} \newline
-        This publication presents an early (pre-GDPR enforcement) collaboration in developing a preliminary ontology for representing consent and a data management model for GDPR. The early work was crucial towards understanding the complexities of consent, and provided valuable feedback towards the development of GConsent.
+        This publication presents an early (pre-GDPR enforcement) collaboration in developing a preliminary ontology for representing consent and a data management model for GDPR. The early work was crucial towards understanding complexities of consent, and provided valuable feedback towards development of GConsent.
     \item ``\textbf{Linked Data Contracts to Support Data Protection and Data Ethics in the Sharing of Scientific Data}'' \cite{hadziselimovic_linked_2017} \\ 
     \textit{E. Hadziselimovic, K. Fatema, \textbf{H. J. Pandit}, and D. Lewis.} \\ 
     \textit{Workshop on Enabling Open Semantic Science (SemSci), co-located with the 16\textsuperscript{th} International Semantic Web Conference (ISWC), 2017.}
         \vspace{0.1cm} \newline
-        This publication presents an early collaboration (pre-GDPR) towards developing an ontology for representing data sharing agreements by extending the ODRL ontology based on GDPR. The ontology - called Data Protection Rights Language (DPRL) - enables representation of obligations associated with propagation of rights between parties that share or exchange data.
+        This publication presents an early collaboration (pre-GDPR) towards developing an ontology for representing data sharing agreements for GDPR by extending the ODRL ontology. The ontology enables representation of obligations associated with propagation of rights between parties that share or exchange data.
 \end{enumerate}
 
 \subsubsection{Querying and validating information for GDPR compliance}
@@ -395,22 +389,23 @@ The following publications are associated with $RO4$ - querying for information,
     \textit{\textbf{H. J. Pandit}, D. O’Sullivan, and D. Lewis.} \\ 
     \textit{14\textsuperscript{th} International Conference on Semantic Systems (SEMANTiCS), 2019.}
         \vspace{0.1cm} \newline
-        This publication presents an overview of the approach for validating information using SHACL and associating the results with specific articles of the GDPR. The approach proposes persistence of validation results to create a `compliance graph' that can itself by queried and validated for documenting information for compliance. This research fulfils research objective $RO5$ and is presented in \autoref{sec:testing:shacl}.
+         This publication presents implementation of approach for validation of information by utilising the use-case of consent in a real-world website. It utilises SHACL to validate information represented by GDPRov and GConsent, and uses GDPRtEXT to associate constraints and results with GDPR. It also demonstrates use of SPARQL to identify tasks and reports related to compliance by querying validation results. The approach demonstrates usefulness of combining ex-ante and ex-post approaches in terms of efficiency and compliance. This research fulfils research objective $RO5$ and is presented in \autoref{sec:testing:shacl}.
     \item ``\textbf{Queryable Provenance Metadata For GDPR Compliance}'' \cite{pandit_queryable_2018} \\
     \textit{\textbf{H. J. Pandit}, D. O’Sullivan, and D. Lewis.} \\ 
     \textit{14\textsuperscript{th} International Conference on Semantic Systems (SEMANTiCS), 2018.}
         \vspace{0.1cm} \newline
-        This publication presents the use of SPARQL queries to represent questions associated with compliance by using the GDPRtEXT and GDPRov ontologies.
+        This publication presents use of SPARQL queries to represent questions associated with compliance by using GDPRtEXT and GDPRov ontologies.
         It demonstrates effectiveness of SPARQL in retrieving information for GDPR compliance, and fulfils research objective $RO4$. This work is presented in \autoref{sec:testing:sparql}.
     \item ``\textbf{ Exploring GDPR Compliance Over Provenance Graphs Using SHACL}'' \cite{pandit_exploring_2018} \\
     \textit{\textbf{H. J. Pandit}, D. O’Sullivan, and D. Lewis.} \\ 
     \textit{14\textsuperscript{th} International Conference on Semantic Systems (SEMANTiCS) - Posters track, 2018.}
         \vspace{0.1cm} \newline
-        This publication presents the implementation of the approach described above for validation of information by utilising the use-case of consent mechanism in a real-world website. It utilises SHACL to validate information represented by GDPRov and GConsent, and uses GDPRtEXT to associate the tests and their results with the GDPR. It also demonstrates the use of SPARQL to identify tasks and reports related to compliance by querying the validation results. The approach demonstrates the usefulness of combining ex-ante and ex-post approaches in terms of efficiency and compliance, and fulfils research objective $RO5$. This work is presented in \autoref{sec:testing:shacl:approach}.
+        This publication presents an overview of the approach for validating information using SHACL and associating results with specific articles of GDPR. The approach proposes persistence of validation results to create a `compliance graph' that can be queried and validated for documenting information for compliance. This work is presented in \autoref{sec:testing:shacl:approach}.
     \item ''\textbf{Towards Knowledge-based Systems for GDPR Compliance}'' \cite{pandit_towards_2018} \\
     \textit{\textbf{H. J. Pandit}, C. Debruyne, D. O’Sullivan, and D. Lewis.} \\ 
     \textit{International Workshops on Contextualized Knowledge Graphs (CKG), co-located with 17\textsuperscript{th} International Semantic Web Conference (ISWC), 2018.}
-        \vspace{0.1cm} \newline This publication explores the creation of a knowledge-based framework based on the utilisation of information associated with compliance using semantic web technologies, which can be utilised in applications such as creation of reports, documentation, and assessment of compliance for different stakeholders. The approach was used in conjunction with the above mentioned publication in addressing research objective $RO5$.
+        \vspace{0.1cm} \newline 
+        This publication explores creation of a knowledge-based framework based on utilisation of information associated with compliance using semantic web technologies for applications such as creation of reports, documentation, and assessment of compliance for different stakeholders. The approach was used in conjunction with the above publication in addressing research objective $RO5$.
 \end{enumerate}
 
 \subsubsection{Model for information interoperability based on requirements of GDPR compliance}
@@ -429,25 +424,25 @@ The model provides an overview of information flows between stakeholders, and th
 \end{enumerate}
 
 \subsubsection{Investigated applications of research - Information Management}
-The following publications do not address the research question, but consist of applying the research presented in this thesis towards processes that assist with being compliant.
+The following publications do not directly address the research question, but consist of applying the research presented in this thesis towards processes that assist with the compliance process.
 \begin{enumerate}[resume]
     \item ``\textbf{Towards Generating Policy- Compliant Datasets}'' \cite{debruyne_towards_2019} \\
     \textit{C. Debruyne, \textbf{H. J. Pandit}, D. O’Sullivan, and D. Lewis.} \\ 
     \textit{13\textsuperscript{th} IEEE International Conference on Semantic Computing (ICSC), 2019.}
-    \vspace{0.1cm} \newline This publication presents an approach for generating just-in-time datasets consisting of personal data based on given consent to ensure processes are compliant in their usage of consent as the legal basis.
+    \vspace{0.1cm} \newline This publication presents an approach for generating just-in-time datasets consisting of personal data based on given consent to ensure processes are compliant in their usage of consent.
     \item ``\textbf{GDPR-driven Change Detection in Consent and Activity Metadata}'' \cite{pandit_gdpr-driven_2018} \\
     \textit{\textbf{H. J. Pandit}, D. O’Sullivan, and D. Lewis.} \\ 
     \textit{4\textsuperscript{th} Workshop on Managing the Evolution and Preservation of the Data Web (MEPDaW), co-located with 15\textsuperscript{th} European Semantic Web Conference (ESWC), 2018.}
-    \vspace{0.1cm} \newline This publication proposes an approach for detecting changes related to use of personal data and consent in activities by utilising the ex-ante component of GDPRov to represent activities and comparing them using a graph-based algorithm.
+    \vspace{0.1cm} \newline This publication proposes an approach for detecting changes related to use of personal data and consent in activities by utilising the ex-ante component of P-Plan to represent activities and comparing them using a graph-based algorithm.
 \end{enumerate}
 
 \subsubsection{Investigated Applications of Research - Privacy Policies}
-The following publications do not address the research question, but consist of applying the research presented in this thesis towards privacy policies.
+The following publications do not directly address the research question, but consist of applying the research presented in this thesis towards privacy policies.
 \begin{enumerate}[resume]
     \item ``\textbf{Extracting Provenance Metadata from Privacy Policies}'' \cite{pandit_extracting_2018} \\
     \textit{\textbf{H. J. Pandit}, D. O’Sullivan, and D. Lewis.} \\ 
     \textit{7\textsuperscript{th} International Provenance \& Annotation Workshop (IPAW), par t of Provenance Week, 2018.}
-    \vspace{0.1cm} \newline This publication discusses the use of GDPRov to represent extracted extracting information about activities associated with personal data from within a privacy policy.
+    \vspace{0.1cm} \newline This publication discusses use of GDPRov to represent extracted information about activities associated with personal data within a privacy policy.
     \item ``\textbf{An Ontology Design Pattern for Describing Personal Data in Privacy Policies}'' \cite{pandit_ontology_2018} \\
     \textit{\textbf{H. J. Pandit}, D. O’Sullivan, and D. Lewis.} \\ 
     \textit{9\textsuperscript{th} Workshop on Ontology Design and Patterns (WOP), co-located with 17\textsuperscript{th} International Semantic Web Conference (ISWC), 2018.}
@@ -455,11 +450,11 @@ The following publications do not address the research question, but consist of 
     \item ``\textbf{Personalised Privacy Policies}'' \cite{pandit_personalised_2018} \\
     \textit{\textbf{H. J. Pandit}, D. O’Sullivan, and D. Lewis.} \\ 
     \textit{4\textsuperscript{th} International Workshop on TEchnical and LEgal aspects of data pRIvacy and SEcurity (TELERISE), co-located with 22\textsuperscript{nd} European Conference on Advances in Databases and Information Systems, 2018.}
-    \vspace{0.1cm} \newline This publication discusses the personalisation of privacy policies by using information about an individual's personal data processing to generate the text of the policy, and using GDPRtEXT and GDPRov to annotate it for a machine-readable representation.
+    \vspace{0.1cm} \newline This publication discusses personalisation of privacy policies by using information about an individual's personal data processing and using GDPRtEXT and GDPRov to annotate it for a machine-readable representation.
 \end{enumerate}
 
 \subsubsection{Data Privacy Vocabulary}
-The following publication presents the work related to the creation of the Data Privacy Vocabulary by the DPVCG, and describes the methodology used as well as relation to the existing vocabulary, including those presented in this thesis - namely GDPRtEXT, GDPRov, and GConsent. The DPV is described in \autoref{sec:voc:DPV}.
+The following publication presents work related to creation of the Data Privacy Vocabulary by DPVCG and describes the methodology used with relation to the existing vocabularies - including those presented in this thesis - namely GDPRtEXT, GDPRov, and GConsent. The DPV is described in \autoref{sec:voc:DPV}.
 \begin{enumerate}[resume]
     \item ``\textbf{Creating A Vocabulary for Data Privacy}'' \cite{pandit_creating_2019} \\
     \textit{\textbf{H. J. Pandit}, A. Polleres, B. Bos, R. Brennan, B. Bruegger, F. J. Ekaputra, J. D. Fernández, R. G. Hamed, E. Kiesling, M. Lizar, E. Schlehahn, S. Steyskal, R. Wenning} \\
@@ -471,24 +466,24 @@ The following publication presents the work related to the creation of the Data 
 The rest of this thesis is structured as follows:
 
 \subsubsection*{\autoref{chapter:background}: Background on GDPR and Semantic Web}
-This chapter presents a summary of information required to understand the work presented in this thesis. The chapter consists of two sections, the first describes the concepts and requirements of the GDPR with particular focus on information about activities associated personal data and consent. The second section describes the semantic web technologies through an overview of standards and vocabularies, and the mechanisms used for querying and validation of information.
+This chapter presents a summary of information required to understand the work presented in this thesis. The chapter consists of two sections: the first describes concepts and requirements of GDPR, while the second section describes semantic web technologies with an overview of its standards and vocabularies.
 
 \subsubsection*{\autoref{chapter:sota}: State of the Art}
-This chapter reviews existing work and approaches regarding regulatory compliance with a specific focus on those addressing GDPR compliance. The chapter starts by providing an overview of approaches used for legal compliance. It then presents an in-depth review of approaches utilising semantic web technologies to address GDPR compliance requirements, followed by other approaches for GDPR compliance. Approaches which do not directly address the GDPR, but are relevant to the domain of legislative compliance and semantic web are also presented. The chapter then presents an analysis of the state of the art, and concludes with a discussion on identified gaps and limitations.
+This chapter reviews existing work and approaches regarding regulatory compliance with a specific focus on those addressing GDPR compliance. The chapter starts by providing an overview of approaches used for legal compliance. It then presents an in-depth review of approaches utilising semantic web technologies to address GDPR compliance requirements, followed by other approaches for GDPR compliance. Approaches which do not directly address the GDPR, but are relevant to legislative compliance and semantic web are also presented. The chapter then presents an analysis of the state of the art and concludes with a discussion on identified gaps and limitations.
 
 \subsubsection*{\autoref{chapter:information}: Information Required for GDPR Compliance}
-This chapter presents the information required for GDPR compliance of activities associated with processing of personal data and consent in ex-ante and ex-post phases.
-The chapter starts by presenting an information model for the interoperability of information between stakeholders defined by the GDPR.
-The model provides an analysis of the information interoperability requirements based on the requirements of GDPR compliance, and the role of existing standards in addressing them.
-This is followed by expressing the information requirements in the form of analytical questions, termed `compliance questions', whose answers provide the information necessary to evaluate compliance. 
-The chapter then concludes with the use of compliance questions in the ontology engineering process as `competency questions', and the identification of constraints and assumptions which can be used to validate the information for GDPR compliance.
+This chapter presents information required for GDPR compliance of activities associated with processing of personal data and consent in ex-ante and ex-post phases.
+The chapter starts by presenting an information model for interoperability of information between stakeholders defined by the GDPR.
+The model provides an analysis of information interoperability requirements based on requirements of GDPR compliance and the role of existing standards in addressing them.
+This is followed by expressing information requirements as analytical questions - termed `compliance questions' - whose answers provide the information necessary to evaluate compliance. 
+The chapter then concludes with identification of constraints and assumptions which can be used to validate information for GDPR compliance.
 
 \subsubsection*{\autoref{chapter:vocabularies}: Representing Information for GDPR Compliance using Ontologies}
 This chapter presents the OWL2 ontologies developed to represent information associated processing of personal data and consent for GDPR compliance.
-The ontologies present concepts for answering the compliance queries presented in Chapter 4. The first ontology presented is GDPRtEXT, which provides a method to link information with the concepts and clauses of GDPR through a linked data version of its text and a vocabulary of concepts. The second ontology presented is GDPRov, which enables representation of provenance information regarding personal data and consent in the form of models or templates and their executions or activity logs. The third ontology presented is GConsent, which enables representation of information associated with consent. The chapter presents an overview of the concepts and relationships for each vocabulary, its relation with the GDPR, and how the vocabulary uses the compliance queries as competency questions to guide its development.
+The ontologies present concepts for answering compliance queries presented in \autoref{chapter:information}. The first ontology presented is GDPRtEXT - which provides a method to link information with concepts and clauses of GDPR through a linked data version of its text and a vocabulary of concepts. The second ontology presented is GDPRov - which enables representation of provenance information regarding personal data and consent as models or templates and their executions or activity logs. The third ontology presented is GConsent - which enables representation of information associated with consent. The chapter presents an overview of concepts and relationships for each vocabulary, its relation with GDPR, and the competency questions used to guide its development. The chapter also presents a brief overview of the Data Privacy Vocabulary and its comparison with the other presented ontologies and the SotA.
 
 \subsubsection*{\autoref{chapter:testing}: Querying and Validating Information for GDPR Compliance}
-This chapter presents the use of SPARQL to express the compliance queries using the ontologies presented in Chapter 5. The chapter also presents a framework to validate information based on the constraints identified in Chapter 4 through the use of SHACL. The framework demonstrates the use of semantic web technologies in validating information for GDPR compliance by utilising a combination of ex-ante and ex-post validations, and the linking of results with the GDPR for documentation of information for compliance.
+This chapter presents use of SPARQL to express compliance queries using ontologies presented in Chapter 5. The chapter also presents a framework to validate information using SHACL based on constraints identified in Chapter 4. The framework demonstrates use of semantic web technologies in validating information for GDPR compliance by utilising a combination of ex-ante and ex-post validations and linking of results with GDPR for documentation of information for compliance.
 
 \subsubsection*{\autoref{chapter:conclusion}: Conclusion}
 This chapter concludes the thesis with a summary of key findings and outcomes of the presented work. It discusses the extent to which the thesis serves to address the research question(s) and objective(s), and outlines directions for future work in terms of potential applications and extension through related work.
