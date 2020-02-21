@@ -1,20 +1,20 @@
 \chapter{State of the Art}\label{chapter:sota}
-The chapter presents the state of the art (SotA) regarding technological approaches for GDPR compliance, with a particular focus and emphasis on those that utilise semantic web technologies.
+This chapter presents the state of the art (SotA) regarding technological approaches for GDPR compliance with a particular focus and emphasis on those that utilise semantic web technologies.
 
-Legal compliance as a field is quite broad due to the extent of laws which can be abstract (or universal) in their application or are intended to be enacted for a specific domain.
-Achieving legal compliance is itself a large field of research, with technical approaches providing a special attraction in all domains due to the potential of automation and co-ordination with information management systems.
-For the purposes of this thesis, the scope and focus is on technical approaches to assist the legal compliance process within the domain of GDPR compliance.
+Legal compliance as a field is quite broad due to the extent of laws which can be abstract (or universal) in their application or are enacted for a specific domain.
+Achieving legal compliance is itself a large field of research, with technical approaches providing a special attraction in all domains due to potential of automation and co-ordination with information management systems.
+For the purposes of this thesis, the scope and focus is on technical approaches to assist legal compliance process within the domain of GDPR compliance.
 
 Before delving into approaches concerning GDPR, it is imperative to have an understanding of the field concerning technological approaches used in legal compliance. As all approaches for legal compliance share their motivation and aims, understanding their commonality and rationale enables placing the work associated with GDPR compliance within the broader scope of legal compliance.
 It also provides investigation of avenues where existing approaches developed for other areas of legal compliance could be reused for GDPR, while providing the necessary background for understanding some of the decisions made by approaches concerning GDPR compliance in reusing existing technologies developed for legal compliance.
 
 Surveys analysing approaches over a period of time provide a good overview of the use of technology in addressing legal compliance.
-One such survey  analyses technological approaches for legal compliance within the 50 years of 1957-2007 \cite{otto_addressing_2007} to provide categorisation based on the representation of information and a set of Requirements Engineering Objectives (REO) an approach must follow to assist the legal compliance process.
-While the survey paper in does not explicitly refer to linked data principles \cite{bizer_linked_2011}, some of the REO are fulfilled by utilising linked data and semantic web to provide an interoperable representation based in standards to define the required metadata regarding legislations.
+One such survey  analyses technological approaches for legal compliance within the 50 years of 1957-2007 \cite{otto_addressing_2007} to provide categorisation based on representation of information and a set of Requirements Engineering Objectives (REO) an approach must follow to assist the legal compliance process.
+While the survey paper does not explicitly refer to linked data principles \cite{bizer_linked_2011}, some of the REO are fulfilled by utilising linked data and semantic web to provide an interoperable representation based in standards to define the required metadata regarding legislations.
 
-Where legal compliance is closely tied to the functioning of an organisation, the requirements of compliance need to be Incorporated into the relevant activities (commonly called \textit{business processes}) within the organisation.
-As the GDPR dictates the use of personal data and also requires organisations to adopt practices such as provision of rights, the study of compliance approaches from the perspective of business processes is also relevant in understanding the state of the art. 
-For this, two key surveys provide the necessary overview of the relation between business processes and compliance. The first survey \cite{fellmann_state---art_2014} relates to the use of business processes within different phases of compliance, and provides the basis for categorising approaches as ex-ante (a-priori, ad-hoc) and ex-post (a-posteriori, post-hoc) depending on whether the compliance is relevant before the activity (in this case processing of personal data) has taken place or after. The second survey \cite{benyoucef_information_2015} analyses the approaches utilising business processes for compliance, and concludes that compliance approaches are basically limited to identifying relevant requirements from laws and regulations and ensuring that business processes comply with them, without much attention to compliance enactment.
+Where legal compliance is closely tied to functioning of an organisation, requirements of compliance need to be incorporated into relevant activities (commonly called \textit{business processes}) within the organisation.
+As GDPR regulates use of personal data and requires organisations to adopt practices such as provision of rights, the study of compliance approaches from the perspective of business processes is also relevant in understanding state of the art. 
+For this, two key surveys provide the necessary overview of relation between business processes and compliance. The first survey \cite{fellmann_state---art_2014} relates to use of business processes within different phases of compliance, and provides basis for categorising approaches as ex-ante (a-priori, ad-hoc) and ex-post (a-posteriori, post-hoc) depending on whether compliance is relevant before the activity (in this case processing of personal data) has taken place or after. The second survey \cite{benyoucef_information_2015} analyses approaches utilising business processes for compliance and concludes that compliance approaches are basically limited to identifying relevant requirements from laws and regulations and ensuring that business processes comply with them without much attention to compliance enactment.
 
 `Legal Ontologies' is an umbrella term used to represent ontologies that represent information associated with the legal domain.
 Key surveys in this domain categorise and analyse ontologies based on 
@@ -25,40 +25,42 @@ privacy policy languages \cite{van_de_ven_qualitative_2016}, and
 privacy requirements engineering \cite{gharib_ontologies_2016}.
 Ontologies have been extensively used for formal representations of information, rules \cite{kirrane_scalable_2018}, rights \cite{pellegrini_genealogy_2018}, legislations \cite{leone_taking_2019}, business processes \cite{elgammal_formalizing_2016}, policies \cite{van_de_ven_qualitative_2016}, and requirements \cite{gharib_ontologies_2016}.
 In areas of compliance, standardisation of representations for norms and requirements has seen efforts such as LegalRuleML \cite{palmirani_legalruleml_2011} which uses temporal and defeasible logic, and has been applied for compliance checking over business processes \cite{governatori_semantic_2016}. On similar lines, Compliance Management Ontology \cite{syed_abdullah_compliance_2012} proposes shared conceptualisation of business process management, culture management, obligations, programme, resources, risk management, and solutions.
-There has also been a noted lack of guidelines regarding their reuse, particularly within the legal domain for compliance \cite{casanovas_legal_2017} where evaluation of developed ontologies is a challenge due to the requirement of specialists or legal experts being involved in the modelling stage \cite{rodrigues_legal_2019}.
+There has been a noted lack of guidelines regarding their reuse, particularly within the legal compliance domain \cite{casanovas_legal_2017} where evaluation of developed ontologies is a challenge due to requirement of specialists or legal experts being involved in modelling stage \cite{rodrigues_legal_2019}.
 
-The state of the art in technologies used for legal compliance thus presents encompassing representations for documents, requirements, rules, obligations, policies, and business processes associated with legal compliance. An adopter has a range of approaches to choose from based on existing approaches and formalisms, where the choice of approach is based on the stated requirements and goals as well as its role in the legal compliance process.
+The state of the art in technologies used for legal compliance thus presents encompassing representations for documents, requirements, rules, obligations, policies, and business processes associated with legal compliance. An adopter has a range of approaches to choose from based on existing work and formalisms where the selection of an approach is dependant on requirements, goals, and its role in legal compliance process.
 
-Given the motivation of this thesis in utilising semantic web technologies, and the research question exploring activities associated with personal data and processing for GDPR compliance - the state of the art is presented as an overview of approaches within the scope of these topics - with other approaches also presented to present the relevance of work developed within the domain.
+Given the motivation of this thesis in utilising semantic web technologies and the research question exploring activities associated with personal data and processing for GDPR compliance, the state of the art is presented as an overview of approaches within the scope of these topics.
+The other approaches are also presented to for relevance of work developed within the domain.
 
-The chapter is structured as follows: the first section (\autoref{sec:sota:methodology}) presents an overview of the methodology used to identify and analyse the state of the art. 
+The chapter is structured as follows: the first section (\autoref{sec:sota:methodology}) presents an overview of the methodology used to identify and analyse state of the art. 
 The second section (\autoref{sec:sota:gdpr-semweb}) presents approaches using semantic web technologies to address GDPR compliance, with the third section  (\autoref{sec:sota:gdpr-other}) presenting approaches addressing GDPR compliance using technologies other than semantic web.
-The fourth section (\autoref{sec:sota:privacy-policies}) presents approaches regarding privacy policies in the context of GDPR which feature information relevant to the compliance process while not addressing compliance itself directly.
+The fourth section (\autoref{sec:sota:privacy-policies}) presents approaches regarding privacy policies in context of GDPR which feature information relevant to compliance process while not directly addressing compliance itself.
 The fifth section (\autoref{sec:sota:consent}) presents approaches that concern representation of consent as required by GDPR.
-The chapter concludes with an analysis of the SotA (\autoref{sec:sota:analysis}). It identifies gaps within the SotA and discusses the research opportunities to address them.
+The chapter concludes with an analysis of SotA (\autoref{sec:sota:analysis}). It identifies gaps within SotA and discusses research opportunities to address them.
 
 \section{Methodology}\label{sec:sota:methodology}
 
 \subsection{Identification and classification of approaches}
-The identification of approaches was carried out throughout the development of research presented in this thesis given the evolving nature of information about GDPR and legal opinions on its compliance.
-Given the research question and motivation of this thesis, the scope of work considered as the state of the art was defined as \textit{approaches addressing GDPR compliance through technological solutions}, with a particular emphasis on the approach being published in an accessible manner.
+Identification of approaches was carried out throughout development of research presented in this thesis given the evolving nature of information about GDPR and legal opinions on its compliance.
+This exercise was carried out from March 2016 until September 2019 at which point the analysis presented here was carried out and encoded into the thesis.
+Given the research question and motivation of this thesis, the scope of work considered as state of the art was defined as: \textit{approaches addressing GDPR compliance through technological solutions} - with a particular emphasis on the approach being published in an accessible manner so as to enable it analysis.
 
-Peer-reviewed publications were the primary source of knowledge regarding the approaches, identified using scholarly indexing services such as Google Scholar\footnote{\url{https://scholar.google.com/}}, IEEE Explore\footnote{\url{https://ieeexplore.ieee.org/}}, ACM Digital Library\footnote{\url{https://dl.acm.org/}}, Scopus\footnote{\url{https://www.scopus.com/}}, and DBLP\footnote{\url{https://dblp.uni-trier.de/}}.
-In addition to these, information was also gathered through dissemination networks such as Twitter\footnote{\url{https://twitter.com/}} and mailing lists.
+Peer-reviewed publications were the primary source of knowledge regarding approaches, and were identified using scholarly indexing services such as Google Scholar\footnote{\url{https://scholar.google.com/}}, IEEE Explore\footnote{\url{https://ieeexplore.ieee.org/}}, ACM Digital Library\footnote{\url{https://dl.acm.org/}}, Scopus\footnote{\url{https://www.scopus.com/}}, and DBLP\footnote{\url{https://dblp.uni-trier.de/}}.
+In addition to these, information was gathered through dissemination networks such as Twitter\footnote{\url{https://twitter.com/}} and public mailing lists.
 Searches using keywords such as \textit{GDPR}, \textit{GDPR Compliance}, and \textit{Consent} were used to identify relevant approaches in these sources and added to a reference manager (Zotero\footnote{\url{https://zotero.org/}}).
 Authors and affiliations of identified publications were also used as keywords to find additional relevant resources.
-In cases where the publication acknowledged a particular funding or project, an effort was made to identify its online website and access the list of publications. This also provided information about the project's aims and objectives, and its future goals and directions. 
+In cases where publications acknowledged funding or projects, an effort was made to identify its online website and access the list of publications. This provided information about the project's aims and objectives, and its future goals and directions. 
 
-Publications behind paywalls which could not be accessed either as a pre-print found elsewhere or by contacting the author with a request to access were not added to the state of the art and are not presented in this thesis. Requests for access to resources mentioned within a publication was also made where possible, with a resource considered `open' if published and `accessible' if it could be accessed. Commercial solutions of GDPR compliance are not considered to be within the state of the art given their closed nature and lack of knowledge regarding implementations.
+Publications behind pay-walls which could not be accessed either as a pre-print found elsewhere or by requesting authors for access were not included in state of the art and are not presented in this thesis as they cannot be analysed or compared without access to the work. Requests for access to resources mentioned within a publication was made where possible, with a resource considered `open' if published and `accessible' if it could be accessed. Commercial solutions of GDPR compliance are not considered to be within state of the art given their closed nature and lack of knowledge regarding implementations.
 
-Based on the approaches collected, they were categorised based on their relevance to the research question of this thesis.
-Approaches addressing GDPR with a particular emphasis on utilising semantic web are presented in \autoref{sec:sota:gdpr-semweb} with the other approaches addressing GDPR compliance presented in \autoref{sec:sota:gdpr-other}.
+The identified approaches were collected and categorised based on their relevance to the research question of this thesis.
+Approaches addressing GDPR with a particular emphasis on utilising semantic web are presented in \autoref{sec:sota:gdpr-semweb} with other approaches addressing GDPR compliance presented in \autoref{sec:sota:gdpr-other}.
 
 \subsection{Criteria for Analysis}
-Analysis of the state of the art is based on two surveys regarding
+Analysis of state of the art is based on two surveys regarding
 classification of approaches for legal compliance \cite{otto_addressing_2007} and phases of compliance \cite{fellmann_state---art_2014} that provide context and features to represent the analysis.
-The research questions and objectives provide the basis for constructing a set of questions for the investigation of approaches within the state of the art.
-The questions are stated below with an indication to the relevant research question and objective guiding this thesis:
+The research questions and objectives provide the basis for constructing a set of questions for investigation of approaches within state of the art.
+The questions are stated below with an indication to relevant research question and objective guiding this thesis:
 \begin{enumerate}
     \item Which aspects of GDPR compliance does the approach target? ($RO1$, $RO2$)
     \item How does the approach represent information associated with GDPR and its compliance? ($RO3$)
@@ -71,9 +73,9 @@ The questions are stated below with an indication to the relevant research quest
     \item How does the approach evaluate GDPR compliance? ($RO5$)
 \end{enumerate}
 
-Based on these, the approaches within the SotA are analysed to identify if they: (i) represent clauses and concepts of GDPR, (ii) provide a data model of concepts such as an ontology, (iii) represent information for ex-ante compliance, (iv) represent information for ex-post compliance, (v) model process flows/activities, (vi) model consent information, (vii) evaluate GDPR compliance, (viii) specify requirements for compliance, and (ix) provide their resources in an open and accessible manner to enable its introspection.
+Based on these, approaches within SotA are analysed to identify if they: (i) represent clauses and concepts of GDPR, (ii) provide a data model of concepts such as an ontology, (iii) represent information for ex-ante compliance, (iv) represent information for ex-post compliance, (v) model process flows/activities, (vi) model consent information, (vii) evaluate GDPR compliance, (viii) specify requirements for compliance, and (ix) provide their resources in an open and accessible manner to enable its analysis.
 
-These questions and criteria are used to assess the approaches with their analysis provided in \autoref{sec:sota:analysis} at the conclusion of this chapter.
+These questions and criteria are used to assess and analyse approaches with the outcome presented in \autoref{sec:sota:analysis} at the end of this chapter.
 The analyses is presented in sections associated with representation of GDPR, representation of activities, representation of consent, querying of information for compliance, and evaluation of GDPR compliance.
 
 \section{Approaches for GDPR compliance utilising Semantic Web}\label{sec:sota:gdpr-semweb}
