@@ -279,7 +279,7 @@ EARL provides a standardised vocabulary to describe specific resources and relat
     \item \texttt{Test Result} - What was the outcome of test? A test result could also include contextual information such as error messages or relevant locations.
 \end{itemize}
 
-Taking the example of Right to Data Portability, the EARL report in \autoref{code:voc:gdprtext-earl} represents compliance checks for conditions associated with linked articles in GDPR (Article 20). The compliance system has a module \texttt{\_system\_dataportability} that checks software that handles provision of copy of personal data \texttt{\_org\_dataportability} through test case \texttt{\_test\_provide\_data\_copy} and generates a report showing the test has passed through \texttt{\_result\_pass}.
+Taking the example of Right to Data Portability, the EARL report in \autoref{earl} represents compliance checks for conditions associated with linked articles in GDPR (Article 20). The compliance system has a module \texttt{\_system\_dataportability} that checks software that handles provision of copy of personal data \texttt{\_org\_dataportability} through test case \texttt{\_test\_provide\_data\_copy} and generates a report showing the test has passed through \texttt{\_result\_pass}.
 
 
 \begin{listing}
@@ -315,8 +315,8 @@ _test_provide_data_copy
       of personal data on exercising right to data portability"@en ;
     dct:subject gdprtext:article20 .
 \end{minted}
-\label{code:voc:gdprtext-earl}
 \caption{Use of GDPRtEXT to link tests with GDPR Articles in EARL report}
+\label{earl}
 \end{listing}
 
 To gather related resources together, a SPARQL query (simplified) would focus on link between \texttt{TestCase} and its result using \texttt{earl:validity}, as shown in \autoref{code:voc:gdprtext-sparql}.
@@ -348,8 +348,8 @@ SELECT ?gdpr ?result ?confidence ?mode WHERE {
 | article18     | fail       | high           | manual        |
 | article19     | pass       | high           | automatic     |
 \end{minted}
-\label{code:voc:gdprtext-sparql}
 \caption{SPARQL query and results showing retrieved GDPR test results by article}
+\label{code:voc:gdprtext-sparql}
 \end{listing}
 
 \subsubsection{Example Use-Case: Mapping between DPD and GDPR obligations}
@@ -374,8 +374,8 @@ dpd:mappingrule6
     dpd:resourceInGDPR gdpr:Article6-1-a ;
     rdfs:comment "added consent given to ..." .
 \end{minted}
-\label{code:voc:gdprtext-xacml}
 \caption{Example annotation of associating existing DPD compliance XACML rules with requirements of GDPR}
+\label{code:voc:gdprtext-xacml}
 \end{listing}
 % The value \texttt{No} was used to indicate no changes in the GDPR obligation compared to the DPD obligation, so that the existing XACML rule would be sufficient to meet GDPR requirements. Similarly \texttt{Yes} was used to indicate a change required in the XACML rule to handle the obligation.
 
@@ -398,14 +398,27 @@ A survey of legal approaches within state of the art \cite{leone_taking_2019} un
 \subsubsection{Fulfilment of Competency Questions}
 The assessment of GDPRtEXT consists of evaluating the extent to which it answers competency questions outlined in \autoref{sec:voc:gdprtext-engineering}.
 For this, \autoref{table:gdprtext:eval-cq} shows concepts and relationships of GDPRtEXT relevant towards answering competency questions.
-\begin{table}[htbp]
-\footnotesize
-\centering
-\rowcolors{1}{}{gray!10}
+\begin{center}
+    \footnotesize
 \begin{tabularx}{\textwidth}{|l|X|}
-\caption{Concepts in GDPRtEXT for answering competency questions} \\ \hline
-\label{table:gdprtext:eval-cq}
-\textbf{CQ} & \textbf{Concepts/Relationships} \\ \hline
+\caption{Concepts in GDPRtEXT for answering competency questions} \label{table:gdprtext:eval-cq} \\
+\toprule
+\textbf{CQ} & \textbf{Concepts/Relationships} \\
+\midrule
+\endfirsthead
+
+\caption*{Concepts in GDPRtEXT for answering competency questions (cont'd)} \\
+\toprule
+\textbf{CQ} & \textbf{Concepts/Relationships} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{2}{r@{}}{\footnotesize (Cont'd on following page)}\\
+\endfoot
+
+\endlastfoot
+
 % & \textbf{Concepts associated with structure of GDPR} \\ \hline
 \textit{CQ1-7} & \textit{Recital, Chapter, Section, Article, Point, SubPoint, Reference, Citation} \\ \hline
 % \textit{CQ2} & \textit{Chapter} \\ \hline
@@ -445,9 +458,10 @@ For this, \autoref{table:gdprtext:eval-cq} shows concepts and relationships of G
 \textit{CQ34} & \textit{InformationAboutThirdParties}, \textit{ConsentCanBeWithdrawnEasily}, \textit{ClearExplanatinOfProcessing}, \textit{NotFromSilenceOrInactivity}, \textit{Demonstrable}, \textit{DistinguishableFromOtherMatters}, \textit{ValidConsent} \\ \hline
 \textit{CQ35} & \textit{RetentionOfPersonalData}, \textit{AdequateForProcessing}, \textit{IdentifiableForRequiredProcessing}, \textit{KeptUpToDate}, \textit{LimitedForProcessing}, \textit{RectifyInaccuracies}, \textit{RelevantForProcessing} \\ \hline
 \textit{CQ36} & \textit{SecurityofPersonalData}, \textit{AccidentalLoss}, \textit{Damage}, \textit{Destruction}, \textit{UnlawfulProcessing} \\ \hline
-\textit{CQ37} & \textit{Seal}, \textit{Certification}
+\textit{CQ37} & \textit{Seal}, \textit{Certification} \\
+\bottomrule
 \end{tabularx}
-\end{table}
+\end{center}
 The table demonstrates that GDPRtEXT provides concepts to answer all  competency questions. GDPRtEXT thus meets requirements of representing and linking information with text and concepts of GDPR in a granular manner and fulfils $RO3(a)$.
 
 \subsubsection{Comparison with SotA}
@@ -458,23 +472,24 @@ The additional resource of ELI+ mentioned in analysis shows intention of EU Publ
 
 A comparison of GDPRtEXT with these approaches, depicted in \autoref{table:gdprtext:sota}, shows that GDPRtEXT provides a glossary of concepts, uses permanent identifiers, provides linked data version of text of GDPR, and is available under an open and permissive license (CC-BY-4.0).
 This matches the intended contributions of ELI+ (update to ELI) planned by EU Publications Office, and therefore enables GDPRtEXT to fill this gap in this time.
+\begin{center}
+    \footnotesize
+\begin{tabularx}{\textwidth}{|l|>{\columncolor[gray]{0.9}}l|l|l|l|l|}
+    \caption{Comparison of GDPRtEXT with SotA}\label{table:gdprtext:sota} \\
+\toprule
+Work & \textbf{GDPRtEXT} & ELI & ELI+ & Agarwal et al & PrOnto \\
+\midrule
+\endhead
 
-\begin{table}[htbp]
-\footnotesize
-\centering
-\caption{Comparison of GDPRtEXT with SotA}\label{table:gdprtext:sota}
-\rowcolors{1}{}{gray!10}
-\begin{tabular}{|l|>{\columncolor[gray]{0.9}}l|l|l|l|l|}
-\hline
-Work & \textbf{GDPRtEXT} & ELI & ELI+ & Agarwal et al & PrOnto \\ \hline
 Vocabulary & ELI & OWL2 & OWL2 & RDFS & Akoma Ntoso \\ \hline
 Granularity & Sub-Paragraph & Legislation & Sub-Paragraph & Paragraph & Sub-Paragraph \\ \hline
 Glossary & \cmark & \xmark & \cmark & \xmark & \xmark \\ \hline
 PID & \cmark & \cmark & \cmark & \xmark & \xmark \\ \hline
 OA & \cmark & \cmark & \cmark & \xmark & \xmark \\ \hline
-GDPR text & \cmark & \xmark & \cmark & \xmark & \cmark \\ \hline
-\end{tabular}
-\end{table}
+GDPR text & \cmark & \xmark & \cmark & \xmark & \cmark \\
+\bottomrule
+\end{tabularx}
+\end{center}
 
 A survey of legal ontologies by Leone et al. \cite{leone_taking_2019} includes GDPRtEXT as an ontology relevant for data protection. The survey also includes ELI and PrOnto within the scope of data protection ontologies - which provides external comparison between these and GDPRtEXT. The survey outlines the role of GDPRtEXT in acting as a glossary of concepts rather than a prescriptive set of norms and rules for specification of compliance - such as made available through PrOnto. In this role, GDPRtEXT is novel within state of the art given a lack of other similar resources.
 
@@ -717,7 +732,7 @@ A visual summary of steps in a consent life-cycle is provided in \autoref{fig:vo
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{img/GDPRov_consent_lifecycle.png}
-    \caption{Figure describing consent life-cycle defined using GDPRov}
+    \caption{Consent life-cycle defined using GDPRov}
     \label{fig:vocabs:gdprov-consent-lifecycle}
 \end{figure}
 
@@ -800,14 +815,28 @@ A publication describing an approach for annotating DFDs (data flow diagrams) wi
 An assessment of the extent to which GDPRov satisfies competency questions by providing concepts and relationships is presented here as part of its evaluation.
 The competency questions, summarised in \autoref{sec:gdprov:cq}, were used to guide development of ontology and therefore are used to evaluate the extent to which the developed ontology meets requirements of representing this information.
 \autoref{table:gdprov:cq} lists concepts and properties for answering competency question (with \textit{N/S} used to indicate not in scope).
-\begin{table}[htbp]
-\footnotesize
-\centering
-\rowcolors{1}{}{gray!10}
-\begin{tabularx}{\linewidth}{|l|X|p{5cm}|l|}
-\caption{Concepts in GDPRov for answering competency questions} \\ \hline
-\label{table:gdprov:cq}
-\textbf{CQ} & \textbf{Class} & \textbf{Property} & \textbf{Phase} \\ \hline
+\begin{center}
+    \footnotesize
+\begin{tabularx}{\textwidth}{|l|X|p{5cm}|l|}
+\caption{Concepts in GDPRov for answering competency questions} \label{table:gdprov:cq} \\
+\toprule
+\textbf{CQ} & \textbf{Class} & \textbf{Property} & \textbf{Phase} \\
+\midrule
+\endfirsthead
+
+\caption*{Concepts in GDPRov for answering competency questions (cont'd)} \\
+\toprule
+\textbf{CQ} & \textbf{Class} & \textbf{Property} & \textbf{Phase} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{4}{r@{}}{\footnotesize (Cont'd on following page)}\\
+\endfoot
+
+\endlastfoot
+
+
 \multicolumn{4}{|l|}{\textbf{Actors and Agents involved in activities}}  \\ \hline
 \textit{CMQ2} & \textit{Controller}, \textit{ControllerRepresentative}, \textit{DPO} &  &  \\ \hline
 \textit{CMQ17} & \textit{Processor}, \textit{ProcessorRepresentative}, \textit{DPO} &  &  \\ \hline
@@ -841,9 +870,10 @@ The competency questions, summarised in \autoref{sec:gdprov:cq}, were used to gu
 \textit{CMQ48} & \textit{ConsentStep}, \textit{ConsentAcquisitionStep}, \textit{ConsentModificationStep}, \textit{ConsentArchivalStep}, \textit{ConsentAgreement}, \textit{ConsentAgreementTemplate} & \textit{usesConsentAgreement}, \textit{generatesConsentAgreement} & \textit{Ex}-\textit{ante} \\ \hline
  & \textit{ConsentActivity}, \textit{AcquireConsentActivity}, \textit{ArchiveConsentActivity}, \textit{ModifyConsentActivity}, \textit{GivenConsent}, \textit{GivenConsentTemplate} & \textit{collectedConsentFromAgent} & \textit{Ex}-\textit{post} \\ \hline
 \textit{CMQ49} & \textit{ConsentAgreementTemplate} &  & \textit{Ex}-\textit{ante} \\ \hline
- & \textit{GivenConsentTemplate} &  & \textit{Ex}-\textit{post} \\ \hline
+ & \textit{GivenConsentTemplate} &  & \textit{Ex}-\textit{post} \\
+\bottomrule
 \end{tabularx}
-\end{table}
+\end{center}
 
 % Some questions which were not considered in scope regarding expression of activities are marked with \textit{N/S}. 
 Questions not in scope (marked as \textit{N/S} either require clarity from authoritative sources regarding interpretation of information to provide a concrete design pattern or have multiple possible representations of which it cannot be determined which is more useful from a legal compliance point of view. Examples include location of recipients - which can be expressed either through an property/annotation associated with a data sharing activity or attached with a particular third party; and specifying time limits or duration or conditional events associated with data storage and deletion periods. These have been identified as future work regarding further development of the ontology based on differing interpretations of representation, complexity of specifying values such as ``EU membership'' and  ``as long as required'', and pending expert opinion of legal authorities on these issues through courts or executive decisions.
@@ -860,15 +890,31 @@ The analysis demonstrated existence of a variety of approaches that utilised  ex
 A comparison of GDPRov with SotA is provided in \autoref{table:gdprov:sota} using the same attributes used for analysis.
 The table lists features supported by each approach using a check mark (\cmark) with a blank indicating no information regarding the feature was found.
 Column headings corresponding with expression of information supported by an approach, and use following abbreviations - (Repr): method used for representation of process flow; (EA): whether it permits Ex-ante modelling; (EP): whether it permits Ex-post modelling; (Pu): whether Purpose can be specified; (Pr): whether Processing can be specified; (DS): if Data Sharing can be modelled; (Rp): if Recipients are associated with data sharing; (St): whether Data Storage occurs; (Rg): if provision of Rights can be modelled; and (LB): if Legal Basis can be associated with a process flow.
-% Table GDPRov vs SotA
-\begin{table}[htbp]
-\footnotesize
-\centering
-\rowcolors{1}{}{gray!10}
-\begin{tabularx}{\textwidth}{|l|l|X|X|X|X|X|X|X|X|X|}
 
-\caption{Comparison of GDPRov with SotA}\label{table:gdprov:sota} \\ \hline
-\textbf{Work} & \textbf{Repr} & \textbf{EA} & \textbf{EP} & \textbf{Pu} & \textbf{Pr} & \textbf{DS} & \textbf{Rp} & \textbf{St} & \textbf{Rg} & \textbf{LB} \\ \hline
+The table demonstrates that GDPRov supports all of analysed features and is the only one currently providing all of them. However, this analysis only takes into consideration abstract existence or provision of features and does not take into consideration context of an approach or its granularity. For example, while an approach may provide representation of data storage concepts, there are additional features such as storage duration, condition, form or medium, security, and policy which are also relevant in evaluation of GDPR compliance.
+These are highly dependant on individual use-cases and domains, and contain existing work which can be used to represent them such as Time ontology \cite{cox_time_2017} for temporal annotations and ODRL ontology \cite{iannella_odrl_2018} for conditions and events as policies.
+Since the scope of GDPRov is limited to expression of information regarding activities in ex-ante and ex-post phases, representation of such granular attributes is relevant but not the primary focus within its scope and is therefore not considered in its evaluation or comparison with SotA.
+% Table GDPRov vs SotA
+\begin{center}
+    \footnotesize
+\begin{tabularx}{\textwidth}{|l|l|X|X|X|X|X|X|X|X|X|}
+\caption{Comparison of GDPRov with SotA}\label{table:gdprov:sota} \\
+\toprule
+\textbf{Work} & \textbf{Repr} & \textbf{EA} & \textbf{EP} & \textbf{Pu} & \textbf{Pr} & \textbf{DS} & \textbf{Rp} & \textbf{St} & \textbf{Rg} & \textbf{LB} \\
+\midrule
+\endfirsthead
+
+\caption*{Comparison of GDPRov with SotA (cont'd)} \\
+\toprule
+\textbf{Work} & \textbf{Repr} & \textbf{EA} & \textbf{EP} & \textbf{Pu} & \textbf{Pr} & \textbf{DS} & \textbf{Rp} & \textbf{St} & \textbf{Rg} & \textbf{LB} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{11}{r@{}}{\footnotesize (Cont'd on following page)}\\
+\endfoot
+\endlastfoot
+
 \rowcolor[gray]{0.8}
 \textbf{GDPRov} & PROV-O,P-Plan & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark  \\ \hline
 SPECIAL & PROV-O & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
@@ -883,13 +929,10 @@ LUCE &  & \cmark & \cmark &  &  & \cmark & \cmark &  &  &  \\ \hline
 Sion et al &  & \cmark &  & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark \\ \hline
 privacyTracker &  & \cmark & \cmark &  &  & \cmark & \cmark &  &  &  \\ \hline
 Basin et al &  & \cmark &  & \cmark &  &  &  &  &  &  \\ \hline
-RestAssured &  &  &  & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
+RestAssured &  &  &  & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ 
+\bottomrule
 \end{tabularx}
-\end{table}
-
-The table demonstrates that GDPRov supports all of analysed features and is the only one currently providing all of them. However, this analysis only takes into consideration abstract existence or provision of features and does not take into consideration context of an approach or its granularity. For example, while an approach may provide representation of data storage concepts, there are additional features such as storage duration, condition, form or medium, security, and policy which are also relevant in evaluation of GDPR compliance.
-These are highly dependant on individual use-cases and domains, and contain existing work which can be used to represent them such as Time ontology \cite{cox_time_2017} for temporal annotations and ODRL ontology \cite{iannella_odrl_2018} for conditions and events as policies.
-Since the scope of GDPRov is limited to expression of information regarding activities in ex-ante and ex-post phases, representation of such granular attributes is relevant but not the primary focus within its scope and is therefore not considered in its evaluation or comparison with SotA.
+\end{center}
 
 Regarding expression of information as being in either ex-ante or ex-post phase - GDPRov is the only approach to do so using existing ontologies of PROV-O and P-Plan based on a scientific workflow model which is useful in investigation of executions based on a plan and association of information between ex-ante and ex-post phases. The use of PWO \cite{gangemi_publishing_2017} in MIREL project also follows a similar rationale though it does not provide the same extent of concepts and representations as GDPRov.
 In addition, utilisation of PROV-O as its base ontology enables information represented using GDPRov to be captured and recorded as provenance information using PROV-O or GDPRov itself. This provides capabilities for documenting evolution of a system as well as representing state of compliance at a given moment in time.
@@ -908,7 +951,7 @@ The use-case is summarised as follows with GDPR concepts added in parenthesis fo
 
 The use-case is accompanied with information on its interpretation in terms of GDPR terminology \cite{bonatti_d1.7_2018} and its representation using  SPECIAL vocabularies \cite{kirrane_scalable_2018}. To represent the use-case using GDPRov, concepts used by SPECIAL are mapped or aligned to their closest relative concepts within GDPRov (see \autoref{table:gdprov:use-case:SPECIAL}) with its RDF/Turtle representation provided in \autoref{code:gdprov:use-case:special}. The SPARQL queries used to retrieve information depicted by statements (i) to (iv) in the scenario are provided in \autoref{code:gdprov:use-case:special-sparql}. The RDF representation and SPARQL query utilised a simplified representation of the scenario to present only the essential fact for answering of questions. 
 \begin{center}
-\footnotesize
+    \footnotesize
 \begin{tabularx}{\textwidth}{|p{0.35\linewidth}|X|X|}
 \caption{GDPRov concepts to represent external use-case from SPECIAL} \label{table:gdprov:use-case:SPECIAL} \\
 \toprule
@@ -1229,14 +1272,25 @@ Assessment of the extent to which GConsent provides concepts and relationships t
 In these, the PROV-O and Time ontologies are used in conjunction with GConsent to represent provenance and temporal information about consent and changes to it.
 PROV-O is also used to capture association and roles of entities in activities associated with consent.
 Based on these, GConsent satisfies requirements of providing information for answering compliance questions regarding consent and thus fulfils research objective $RO3(c)$.
-\begin{table}[htbp]
-\footnotesize
-\centering
-\rowcolors{1}{}{gray!10}
+\begin{center}
+    \footnotesize
 \begin{tabularx}{\textwidth}{|p{1cm}|X|p{4cm}|p{3.5cm}|}
-\caption{Concepts and relationships in GConsent for answering competency questions} \\ \hline
-\label{table:gconsent:cq}
-\textbf{CQ} & \textbf{Question} & \textbf{Concepts} & \textbf{Properties} \\ \hline
+\caption{Concepts in GConsent for answering competency questions} \label{table:gconsent:cq} \\
+\toprule
+\textbf{CQ} & \textbf{Question} & \textbf{Concepts} & \textbf{Properties} \\
+\midrule
+\endfirsthead
+\caption*{Concepts in GConsent for answering competency questions (cont'd)} \\
+\toprule
+\textbf{CQ} & \textbf{Question} & \textbf{Concepts} & \textbf{Properties} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{4}{r@{}}{\footnotesize (Cont'd on following page)}\\
+\endfoot
+\endlastfoot
+
 \multicolumn{4}{|l|}{\textbf{Questions about consent}} \\ \hline
 \textit{CMQ35} & Who is the consent about? & \textit{DataSubject} & \textit{isConsentForDataSubject} \\ \hline
 \textit{CMQ36} & What type of Personal Data are associated with the Consent? & \textit{PersonalData} & \textit{forPersonalData} \\ \hline
@@ -1258,23 +1312,31 @@ Based on these, GConsent satisfies requirements of providing information for ans
 \textit{CMQ82} & What artefacts were shown when consent was acquired/changed/created/invalidated? & \textit{prov:Entity} & \textit{prov:used} \\ \hline
 \multicolumn{4}{|l|}{\textbf{Questions related to Third Party associated with the consent}} \\ \hline
 \textit{CMQ57} & Is the purpose or processing associated with a third party? & \textit{prov:Association}, \textit{ThirdParty} & \textit{hasAssociation, prov:agent} \\ \hline
-CMQ58 & What is the role played by the third party in the purpose or processing? & Role & prov:hadRole \\ \hline
+CMQ58 & What is the role played by the third party in the purpose or processing? & Role & prov:hadRole \\
+\bottomrule
 \end{tabularx}
-\end{table}
+\end{center}
 
 \subsubsection{Comparison with SotA}
 Existing approaches regarding consent were presented and analysed in \autoref{sota:analysis:consent}, with an observation about lack of approaches modelling consent as required for GDPR compliance.
 \autoref{table:gconsent:sota} demonstrates a comparison of GConsent with SotA based on attributes used in this analysis.
 Column headings indicate representation of information within an approach and are abbreviated to indicate - Personal Data (PD), Purpose (Pu), Processing (Pr), Data Sharing (Sh), Data Storage (St), Recipients (Rp), Data Source (S), Withdrawal of consent (W), Delegation (D), Visualisation (V), Significant effects of processing (SE), (Ct): Context (Ct), Types or States (T).
 A check mark (\cmark) indicates the approach provides or models that information category, and a blank cell indicates that the approach does not provide representation for that information or that there is no open and public information available regarding its provision.
-\begin{table}[htbp]
-\footnotesize
-\centering
-\rowcolors{1}{}{gray!10}
+
+The table demonstrates contributions of GConsent to state of the art. 
+Compared to SotA, GConsent provides novel contributions for representation of consent for GDPR compliance and thus extends state of the art.
+In particular, depiction of delegation is more detailed and provides representation of information based on compliance requirements of GDPR.
+As the table depicts, GConsent is currently the only approach that models delegation based on its potential relevancy to evaluation of GDPR compliance.
+GConsent is also novel in provision of consent states which enable documenting of information from a controller's perspective regarding evolution of consent throughout its life-cycle. This is useful for management of consent as an entity in an information management system such as a database.
+The SotA usually limits consent state to given or withdrawn without consideration to its other states within its life-cycle as an entity.
+\begin{center}
+    \footnotesize
 \begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|X|X|X|X|X|X|}
-\caption{Representation of consent in SotA}\label{table:gconsent:sota} \\
-\hline
-\textbf{Work} & \textbf{PD} & \textbf{Pu} & \textbf{Pr} & \textbf{Sh} & \textbf{St} & \textbf{Rp} & \textbf{S} & \textbf{W} & \textbf{D} & \textbf{SE} & \textbf{Ct} & \textbf{T} \\ \hline
+\caption{Comparison of GConsent with SotA}\label{table:gconsent:sota} \\
+\toprule
+\textbf{Work} & \textbf{PD} & \textbf{Pu} & \textbf{Pr} & \textbf{Sh} & \textbf{St} & \textbf{Rp} & \textbf{S} & \textbf{W} & \textbf{D} & \textbf{SE} & \textbf{Ct} & \textbf{T} \\
+\midrule
+\endhead
 \rowcolor[gray]{0.8}
 GConsent & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\ \hline
 SPECIAL & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark &  &  &  &  \\ \hline
@@ -1288,17 +1350,10 @@ OPERANDO & \cmark & \cmark & \cmark & \cmark &  & \cmark &  &  &  &  &  &  \\ \h
 PoSEID-on & \cmark &  &  &  &  & \cmark &  &  &  &  &  &  \\ \hline
 MHMD & \cmark &  &  &  &  &  &  &  &  &  &  &  \\ \hline
 DECODE & \cmark & \cmark &  &  & \cmark &  &  &  &  &  &  &  \\ \hline
-Consent Receipt & \cmark & \cmark &  &  &  &  &  &  &  &  & \cmark & \cmark \\ \hline
-
+Consent Receipt & \cmark & \cmark &  &  &  &  &  &  &  &  & \cmark & \cmark \\
+\bottomrule
 \end{tabularx}
-\end{table}
-
-The table demonstrates contributions of GConsent to state of the art. 
-Compared to SotA, GConsent provides novel contributions for representation of consent for GDPR compliance and thus extends state of the art.
-In particular, depiction of delegation is more detailed and provides representation of information based on compliance requirements of GDPR.
-As the table depicts, GConsent is currently the only approach that models delegation based on its potential relevancy to evaluation of GDPR compliance.
-GConsent is also novel in provision of consent states which enable documenting of information from a controller's perspective regarding evolution of consent throughout its life-cycle. This is useful for management of consent as an entity in an information management system such as a database.
-The SotA usually limits consent state to given or withdrawn without consideration to its other states within its life-cycle as an entity.
+\end{center}
 
 \subsubsection{Application to external use-case from SPECIAL project}\label{sec:gconsent:use-case:SPECIAL}
 The use-case described earlier in \autoref{sec:gdprov:use-case:SPECIAL} is used here to demonstrate use and sufficiency of GConsent in management of consent information. The use-case concerns the scenario where a data subject named Sue gives consent to BeFit company for sharing her activity profile with other companies for receiving targeted ads. She later receives ads from a local Gym and investigates to find that the Gym is using her activity profile shared by BeFit - and that this activity is consistent with her previously given consent. She then withdraws her consent and asks both companies to delete her data.
@@ -1528,7 +1583,7 @@ GDPRtEXT provides a linked data version of GDPR and a SKOS glossary of concepts 
 This has been used by GDPRov and GConsent to define the source of its concepts within GDPR.
 
 DPV, whose concepts represent generic legal terms, does not link its concepts to GDPR except in cases where a defined concept was directly taken from a definition provided by GDPR.
-In such cases, it uses the URI format prescribed by EU Publications Office to indicate specific clause of GDPR. The URI format\footnote{The format is based on using templates to indicate the alphanumeric characters of articles and clauses. The template format can be represented as: \texttt{https://eur-lex.europa.eu/eli/reg/\{year\}/\{number\}/art\_\{X\}/par\_\{X\}/pnt\_\{X\}/oj}} is similar in its structuring of contents with GDPRtEXT and is based on an upcoming iteration\footnote{The information is based on a private communication between the author of the thesis with members of the EU Publications Office. The prescribed IRI, while not officially published or documented, currently resolves to the web-page of the legislation, which in this case is the GDPR.} of ELI vocabulary which will be used in all EU published legislations to offer granular linking to their clauses.
+In such cases, it uses the URI format prescribed by EU Publications Office to indicate specific clause of GDPR. The URI format\footnote{The format is based on using templates to indicate the alphanumeric characters of articles and clauses. The template format can be represented as: \url{https://eur-lex.europa.eu/eli/reg/YEAR/NUMBER/ARTICLE/PARA/POINT/oj}} is similar in its structuring of contents with GDPRtEXT and is based on an upcoming iteration\footnote{The information is based on a private communication between the author of the thesis with members of the EU Publications Office. The prescribed IRI, while not officially published or documented, currently resolves to the web-page of the legislation, which in this case is the GDPR.} of ELI vocabulary which will be used in all EU published legislations to offer granular linking to their clauses.
 Since the format prescribed by EU Publications Office is authoritative in its nature, the links provided by GDPRtEXT need to be aligned or replaced with those defined using the newer ELI format.
 
 One of the aims of DPVCG is to provide a glossary of concepts associated with legal personal data handling. For this, concepts of DPV itself are considered a glossary of terms, though not explicitly defined as such within the ontology. This use of `glossary' refers to providing concepts to an adopter in order to represent required information in an interoperable manner. Since these terms do not necessarily arise from a particular legislation, their sources are based on their use as a commonly understood concept or notion within legal domain.

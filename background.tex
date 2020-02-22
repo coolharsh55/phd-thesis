@@ -112,9 +112,14 @@ RDFS provides concepts for expressing classes, properties, and data types in ord
 \begin{minted}{turtle}
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix : <http://example.com/> .
-:Ch2 rdf:type :Chapter ; foaf:name "Background"@en ; :chnum 2^^xsd:integer .
-:Chapter rdf:type rdfs:Class ; rdfs:label "Chapter"@en .
-:chnum a rdfs:Property ; rdfs:label "number"@en ; rdfs:range xsd:integer .
+:Chapter rdf:type rdfs:Class ;
+    rdfs:label "Chapter"@en .
+:chnum a rdfs:Property ;
+    rdfs:label "number"@en ;
+    rdfs:range xsd:integer .
+:Ch2 rdf:type :Chapter ;
+    foaf:name "Background"@en ; 
+    :chnum 2^^xsd:integer .
 \end{minted}
 
 \subsubsection{Web Ontology Language (OWL)}

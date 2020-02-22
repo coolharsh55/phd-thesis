@@ -87,7 +87,7 @@ It assigns an ID for each question to enable associating it with corresponding S
 The column `\textit{Category}' reflects category of question mentioned within the guide, with `general' used for initial generic questions.
 `\textit{Title}' refers to title of text within the guide, and column `\textit{GDPR}' refers to an explicit mention of a GDPR clause within the question or its description.
 \begin{center}
-\footnotesize
+    \footnotesize
 \begin{tabularx}{\textwidth}{|l|l|X|l|}
 \caption{Questions provided in the GDPR Readiness Guide} \label{table:sparql:dpc-1} \\
 \toprule
@@ -284,7 +284,7 @@ The queries utilised GDPRov and GDPRtEXT ontologies to specify information assoc
 The SPARQL queries were published online\footnote{\url{https://w3id.org/GDPRep/checklist-demo/sparql-queries}}
 with separate files for each query associated with a question, and a common file containing common prefixes used in all queries.
 
-As an example, Listing \autoref{code:sparql:dpc-G5} contains corresponding SPARQL query for question \texttt{G5} which concerns legal basis used to justify processing of personal data. 
+As an example, \autoref{code:sparql:dpc-G5} contains corresponding SPARQL query for question \texttt{G5} which concerns legal basis used to justify processing of personal data. 
 The query retrieves information about steps and processes along with legal basis for their operation in ex-ante phase using GDPRov.
 Within this, the query specifically retrieves steps which are defined as being part of a process and use some form of personal data, where the legal bases can be associated with individual steps or with a process.
 \begin{listing}[htbp]
@@ -345,7 +345,7 @@ SPARQL endpoint\footnote{\url{http://openscience.adaptcentre.ie/sparql}}
 containing RDF data about the use-case.
 The demo uses tools YASQE\footnote{\url{http://yasqe.yasgui.org/}} to present SPARQL queries with syntax highlighting and YASR\footnote{\url{http://yasr.yasgui.org/}} to represent results of queries in an interactive fashion.
 
-The results of each query contain information associated with answering relevant questions. SPARQL query regarding question \texttt{G5} is presented in Listing. \autoref{code:sparql:dpc-G5} which enquires about legal obligations and whose results express steps and processes along with their legal obligations.
+The results of each query contain information associated with answering relevant questions. SPARQL query regarding question \texttt{G5} is presented in \autoref{code:sparql:dpc-G5} which enquires about legal obligations and whose results express steps and processes along with their legal obligations.
 The query and results as presented in the demo are depicted in \autoref{fig:sparql:demo}.
 In this, the results consist of five rows - of which three are processes that handle various rights and therefore are not accompanied with any legal basis\footnote{The processes handling rights should utilise the legal basis of requirements specified by law since GDPR requires the provision of rights.}.
 The remaining two results represent processes associated with provision of service, of which \textit{OrderProcess} represents `ordering a product' and uses legitimate interest as its legal basis, and \textit{NewUserSignUpProcess} collects information about an user and uses legal basis of given consent.
@@ -455,7 +455,7 @@ GDPRtEXT is used to link a constraint to a clause within GDPR to indicate its re
 
 \subsubsection{Extending SHACL concepts to associate information with GDPR}
 In the assessment of information for GDPR compliance, some constraints cannot be evaluated automatically based on their qualitative requirements. For example, constraints associated with given consent that aim to evaluate whether it was `freely given' or `unambiguous'. These constraints need to be manually evaluated and their results added to compliance graph.
-To distinguish such constraints, the SHACL concept of \texttt{NodeShape} for representing a shape was extended with a sub-class as \texttt{Constraint} with further sub-classes of \texttt{ManuallyCheckedConstraint} and \texttt{AutomaticallyCheckedConstraint} representing constraints that should be checked manually and automatically respectively. This is presented in Listing.\autoref{code:shacl:manual-constraint}.
+To distinguish such constraints, the SHACL concept of \texttt{NodeShape} for representing a shape was extended with a sub-class as \texttt{Constraint} with further sub-classes of \texttt{ManuallyCheckedConstraint} and \texttt{AutomaticallyCheckedConstraint} representing constraints that should be checked manually and automatically respectively. This is presented in \autoref{code:shacl:manual-constraint}.
 The property \texttt{linkToGDPR} was created to link information with clauses of GDPR with the range \texttt{eli:LegalResourceSubdivision} to enable associating it with any granular part of GDPR - such as a chapter, article, paragraph, or sub-paragraph - based on GDPRtEXT's uses of this concept in representing structure of GDPR.
 \begin{listing}[htbp]
 \begin{minted}{turtle}
@@ -616,7 +616,7 @@ The consent dialogue was represented using GDPRov as \texttt{ConsentAgreementTem
 Since the consent dialogue offers granular choices from which the user can choose any option individually, the question of its semantic representation led to two possible solutions - first where entire consent dialogue and all consent choices are considered a single instance of consent, and second where each individual and independent choice is considered an instance of consent.
 Since given consent for an individual option in the dialogue could be revoked without affecting other choices, each independent option was chosen to be modelled as an instance of consent.
 As the consent dialogue acts as a common template for all options, its representation as a `bundle' of consent templates was added to an updated version of GDPRov (v0.7) as \texttt{gdprov:ConsentAgreementTemplateBundle}. This enabled representing a common artefact used to request separate instances of consent.
-Listing \autoref{code:shacl:consent-dialogue} provides an example representation of information from consent dialogue using this data model.
+\autoref{code:shacl:consent-dialogue} provides an example representation of information from consent dialogue using this data model.
 \begin{listing}[htbp]
 \begin{minted}{turtle}
 :ConsentRequestDialog a gdprov:ConsentAgreementTemplateBundle ;
@@ -683,7 +683,7 @@ The triple store enabled querying of information to generate compliance reports 
 The use of GraphDB provided access to some in-built reasoning capabilities\footnote{\url{http://graphdb.ontotext.com/free/devhub/inference.html}} which were useful in the querying process.
 While a number of SPARQL queries were constructed based on compliance questions and are available for introspection in the code repository, only one is provided here as an example to demonstrate retrieval of information and documentation of compliance information.
 
-The SPARQL query, listed in Listing \autoref{code:shacl:sparql-report}, retrieves information about each tested validation constraint, its result, link to GDPR, and whether it passed or failed.
+The SPARQL query, listed in \autoref{code:shacl:sparql-report}, retrieves information about each tested validation constraint, its result, link to GDPR, and whether it passed or failed.
 The results, shown in \autoref{table:shacl:sparql-report} act as a test report, and contain constraint description (Name), type - automatic (A) or manual (M), link to GDPR, result - pass (P) or fail (F), and node (instance in data graph) if it failed a constraint.
 The report also contains a failure message associated with the constraint that is not shown in table due to space limitations.
 \begin{listing}[htbp]
@@ -713,6 +713,10 @@ WHERE {
 \label{code:shacl:sparql-report}
 \end{listing}
 
+
+The rows which correspond to failed constraints are manually highlighted to provide an indication of information in a visual medium - such as a dashboard.
+The query and its results can both be persisted in machine-readable serialisations using standards for representations, making them interoperable and capable of automation.
+The information derived from such validations and querying is useful to generate compliance documentation and reports for an organisation to oversee their compliance with GDPR - which is itself an obligation mandated by GDPR.
 \definecolor{lightred}{RGB}{255,225,225}
 
 \begin{center}
@@ -781,10 +785,6 @@ Withdraw Consent Information & M & A7-3 & P &  \\
 \end{tabularx}
 \end{center}
 
-The rows which correspond to failed constraints are manually highlighted to provide an indication of information in a visual medium - such as a dashboard.
-The query and its results can both be persisted in machine-readable serialisations using standards for representations, making them interoperable and capable of automation.
-The information derived from such validations and querying is useful to generate compliance documentation and reports for an organisation to oversee their compliance with GDPR - which is itself an obligation mandated by GDPR.
-
 \subsection{Evaluation}
 The approach described in \autoref{sec:testing:shacl:approach} for the conceptual model has been published as a peer-reviewed publication \cite{pandit_exploring_2018} in Poster \& Demo track at the SEMANTiCS conference in 2018 - which involves a good mix of industry and academic participants and thereby provided opportunity to present this work to industry community.
 The construction of a knowledge graph based on evaluations of GDPR compliance was published as a peer-reviewed publication \cite{pandit_towards_2018} in  workshop on Contextualized Knowledge Graphs which was co-located with International Semantic Web Conference (ISWC). The workshop provided reviews and feedback from domain experts regarding use of semantic web to create knowledge graphs, and how it could be utilised in legal compliance domain. 
@@ -806,12 +806,21 @@ The SPECIAL project uses a semantic reasoner to determine whether a given combin
 The MIREL project detects violations of GDPR by utilising the PrOnto ontology \cite{palmirani_pronto_2018,palmirani_pronto_2018-1,monica_modelling_2018} to model legal concepts and LegalRuleML to model norms, which are then applied over a BPMN use-case using Regorous to generate a report \cite{monica_modelling_2018}.
 The DAPRECO project uses PrOnto along with Reified Input/Output logic (RIO) \cite{robaldo_reified_2017} to specify norms and rules to create a knowledge base \cite{bartolini_agile_2019} which is then used to identify relevant obligations to check for compliance.
 These efforts show the variety in evaluation approaches for compliance and the use of semantic web technologies in evaluation of compliance.
-\begin{table}[htbp]
-\footnotesize
-\centering
-\caption{Comparison of SHACL validation with SotA} \label{table:shacl:sota}
-\rowcolors{1}{}{gray!10}
+
+The work described in this section demonstrates how SHACL can be used to validate information for correctness and adherence to obligations mandated by GDPR based on interpretation of compliance questions from \autoref{chapter:information}. In this form, SHACL can be used to evaluate compliance, though presented work focused on validation of constraints based on concept of compliance questions.
+Compared to state of the art in \autoref{chapter:sota}, the work regarding SHACL (highlighted first row of table) is novel within SotA in use of SHACL and linking of results to GDPR in a machine-readable and thus query-able form.
+In addition, creation of a compliance graph to store information associated with demonstration of compliance enables using SPARQL queries to identify remedial measures to achieve compliance as well as create reports to identify and present information relevant to compliance.
+The utilisation of ex-ante test results in ex-post validations is also novel within state of the art and provides an efficient method for validation of compliance information.
+
+In comparison with SHACL, approaches in SotA use or advocate formal methods based in logic where legal norms can be expressed in terms of requirements and evaluated to determine compliance.
+In turn, SHACL provides a validation framework where results can be persisted as a graph and queried. In addition, SHACL validations can be linked to GDPR, as demonstrated using GDPRtEXT, which makes it possible to use SHACL to verify the output of other compliance evaluation approaches and record their outcomes as a test result linked to GDPR clauses, thereby creating reports  of compliance.
+This also provides an opportunity to explore reuse of existing approaches and resources regarding evaluation of GDPR compliance where SHACL is used to generate an interoperable overview of evaluation results while abstracting underlying outputs from different approaches.
+For this, resources provided by Vos et. al \cite{vos_odrl_2019} and DAPRECO project \cite{bartolini_agile_2019} provide constraints expressed using logic-based formalisms that are available as open access, providing future direction for applicability of this research.
+\begin{center}
+    \footnotesize
+% \rowcolors{1}{}{gray!10}
 \begin{tabularx}{\textwidth}{|l|l|l|X|X|X|}
+\caption{Comparison of SHACL validation with SotA} \label{table:shacl:sota} \\
 \toprule
 \textbf{Approach} & \textbf{Evaluation method} & \textbf{Scope} & \textbf{Machine-readable result?} & \textbf{Provides remedies?} & \textbf{Links results to GDPR?} \\ 
 \midrule
@@ -841,17 +850,7 @@ OPERANDO & Access Control & Process Flows & \cmark &  &  \\ \hline
 PoSEID-on & Smart Contracts & Data Sharing & \cmark &  &  \\ \hline
 DECODE & Smart Contracts & Consent & \cmark &  &  \\ \hline
 \end{tabularx}
-\end{table}
-
-The work described in this section demonstrates how SHACL can be used to validate information for correctness and adherence to obligations mandated by GDPR based on interpretation of compliance questions from \autoref{chapter:information}. In this form, SHACL can be used to evaluate compliance, though presented work focused on validation of constraints based on concept of compliance questions.
-Compared to state of the art in \autoref{chapter:sota}, the work regarding SHACL (highlighted first row of table) is novel within SotA in use of SHACL and linking of results to GDPR in a machine-readable and thus query-able form.
-In addition, creation of a compliance graph to store information associated with demonstration of compliance enables using SPARQL queries to identify remedial measures to achieve compliance as well as create reports to identify and present information relevant to compliance.
-The utilisation of ex-ante test results in ex-post validations is also novel within state of the art and provides an efficient method for validation of compliance information.
-
-In comparison with SHACL, approaches in SotA use or advocate formal methods based in logic where legal norms can be expressed in terms of requirements and evaluated to determine compliance.
-In turn, SHACL provides a validation framework where results can be persisted as a graph and queried. In addition, SHACL validations can be linked to GDPR, as demonstrated using GDPRtEXT, which makes it possible to use SHACL to verify the output of other compliance evaluation approaches and record their outcomes as a test result linked to GDPR clauses, thereby creating reports  of compliance.
-This also provides an opportunity to explore reuse of existing approaches and resources regarding evaluation of GDPR compliance where SHACL is used to generate an interoperable overview of evaluation results while abstracting underlying outputs from different approaches.
-For this, resources provided by Vos et. al \cite{vos_odrl_2019} and DAPRECO project \cite{bartolini_agile_2019} provide constraints expressed using logic-based formalisms that are available as open access, providing future direction for applicability of this research.
+\end{center}
 
 % In terms of expressiveness and coverage of legal compliance requirements, the establishment of a `gold standard or dataset' or use-cases and compliance investigations is needed to provide effective comparison of the SotA. This will enable identification of effectiveness of different approaches in specific subsets of investigation procedures and promote the exploration of utilising a variety of methods in combination to provide more coverage of compliance investigations.
 
