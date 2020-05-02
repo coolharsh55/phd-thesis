@@ -18,7 +18,7 @@ For this, two key surveys provide the necessary overview of relation between bus
 
 `Legal Ontologies' is an umbrella term used to represent ontologies that represent information associated with the legal domain.
 Key surveys in this domain categorise and analyse ontologies based on 
-purposes \cite{leone_taking_2019,rodrigues_legal_2019}, 
+purposes \cite{rodrigues_legal_2019}\cite{leone_taking_2019}, 
 access control \cite{kirrane_access_2016}, 
 rights expression languages \cite{pellegrini_genealogy_2018}, 
 privacy policy languages \cite{van_de_ven_qualitative_2016}, and
@@ -127,7 +127,7 @@ Activities are recorded as a log entry using Policy Log vocabulary \cite{bonatti
     \label{fig:SPECIAL-policy-log-vocabulary}
 \end{figure}
 
-The Policy Log vocabulary, described in D2.7 \cite{kirrane_d2.7_2018}, reuses existing vocabularies of DCAT and PROV-O \cite{lebo_prov-o_2013}, and is used to record immutable record of activities and their legal basis in consent. Each log entry contains information about agents that created the log (\texttt{prov:SoftwareAgent} and \texttt{Log}), link to data subject, and information about processing through \texttt{LogEntryContent} which contains information represented using concepts from base policy.
+The Policy Log vocabulary, described in D2.7 \cite{kirrane_d2.7_2018}, reuses existing vocabularies of DCAT and PROV-O \cite{lebo_prov-o_2013}, and is used to record immutable record of activities and their legal basis in consent. Each log entry (\texttt{Log}) contains information about agents that created the log (\texttt{prov:SoftwareAgent}), link to data subject, and information about processing through \texttt{LogEntryContent} which contains information represented using concepts from base policy.
 Information about consent is recorded through \texttt{PolicyEntry} and consists of consent assertion (given consent) and consent revocation (withdrawn consent).
 
 Methodologies associated with vocabularies produced by SPECIAL project are based on utilisation of metadata in compliance process \cite{wenning_compliance_2018}. The creation of policy vocabularies from use-cases is described through public deliverable D1.5 \cite{bonatti_d1.5_2018}, with creation of log vocabulary described in D3.2 \cite{kirrane_d2.7_2018}. The vocabularies publicly accessible online with their documentation.
@@ -200,10 +200,16 @@ The defined policies are checked in ex-ante and ex-post phases using SPECIAL com
     \label{fig:SPECIAL-CitySPIN}
 \end{figure}
 
+The use-cases utilised within SPECIAL project and a discussion of their legal requirements is provided in deliverables D1.5 \cite{bonatti_d1.5_2018} and D1.6 \cite{schlehahn_d1.6_2018}.
+A dashboard representing information of processing activities and consent was created to represent logged information \cite{raschke_designing_2017}
+ with its usability and testing described in deliverables D4.3 \cite{raschke_d4.3_2019} and D4.4 \cite{milosevic_d4.4_2019}.
+A separate visual interface for interactive consent was developed based on presenting components of usage policy to individuals in an interactive format \cite{gritzalis_i_2019}.
+The interface provides visual representations of associations between purposes, processing, data categories, recipients, and storage which allows individuals to explore and manage their consent. It also offers visual paradigms for representation of information as tabs, breadcrumbs, hierarchies, and graphs for visualisation and exploration of information. 
+
 The use-cases utilised within SPECIAL project and a discussion of their legal requirements is provided in deliverables D1.5 \cite{bonatti_d1.5_2018} and D1.6 \cite{schlehahn_d1.6_2018}. A dashboard representing information of processing activities and consent was created to represent logged information \cite{raschke_designing_2017} with its usability and testing described in deliverables D4.3 \cite{raschke_d4.3_2019} and D4.4 \cite{milosevic_d4.4_2019}. A separate visual interface for interactive consent was developed based on presenting components of usage policy to individuals in an interactive format \cite{gritzalis_i_2019}. The interface provides visual representations of associations between purposes, processing, data categories, recipients, and storage which allows individuals to explore and manage their consent. It also offers visual paradigms for representation of information as tabs, breadcrumbs, hierarchies, and graphs for visualisation and exploration of information. 
 
 \subsection*{MIREL}\label{sec:sota:MIREL}
-MIREL\footnote{\url{www.mirelproject.eu/}} (Mining and Reasoning with Legal Texts) is an European H2020 Project that aims to create a framework for interpretation of legal texts into formal representations for querying norms, checking legal compliance, and decision support. The project uses semantic web to provide normative requirements \cite{gandon_normative_2017}, use natural language processing over legal texts \cite{teruel_legal_2018}, and creating ontologies based on GDPR \cite{monica_legal_2018} for legal compliance \cite{palmirani_pronto_2018-1} and reasoning \cite{palmirani_pronto_2018}. The project also involves creation of icons for data protection based on the developed ontologies \cite{arianna_dapis_2019}.
+MIREL\footnote{\url{www.mirelproject.eu/}} (Mining and Reasoning with Legal Texts) is an European H2020 Project that aims to create a framework for interpretation of legal texts into formal representations for querying norms, checking legal compliance, and decision support. The project uses semantic web to provide normative requirements \cite{gandon_normative_2017}, use natural language processing over legal texts \cite{teruel_legal_2018}, and creating ontologies based on GDPR \cite{monica_legal_2018} for legal compliance \cite{palmirani_pronto_compliance_2018} and reasoning \cite{palmirani_pronto_2018}. The project also involves creation of icons for data protection based on the developed ontologies \cite{arianna_dapis_2019}.
 Information about the project is available through peer-reviewed publications and public deliverables\footnote{\url{http://www.mirelproject.eu/publications.php}}.
 Details about the project and its developed resources, namely PrOnto,
 have  been described in publications, but are not open or publicly
@@ -211,7 +217,7 @@ accessible as of September 2020.
 
 The developed ontology is called PrOnto (Privacy Ontology) \cite{monica_legal_2018}, and provides concepts regarding GDPR associated with data types and documents, agents and roles, processing purposes, legal bases, processing operations, and deontic operations for modelling rights and duties. It reuses existing vocabularies \cite{palmirani_pronto_2018} and has been applied within the Cloud4EU project\footnote{\url{http://www.agid.gov.it/cloudforeurope}} for legal compliance checking of eGovernment systems as well as the DAPRECO project.
 PrOnto was developed using MeLOn (Methodology for building Legal
-Ontologies) developed by the MIREL project \cite{palmirani_pronto_2018,palmirani_pronto_2018-1,monica_modelling_2018}.
+Ontologies) developed by the MIREL project \cite{palmirani_pronto_2018,palmirani_pronto_compliance_2018,monica_modelling_2018}.
 
 PrOnto consists of modules representing (i) documents and data
 (depicted in \autoref{fig:PrOnto-data}), (ii) actors and roles, (iii)
@@ -233,9 +239,10 @@ obligations and rules for compliance.
 
 A proof-of-concept application for detecting violations of the GDPR \cite{monica_modelling_2018} utilised PrOnto to model the legal concepts, along with Akoma Ntoso to model the legal text, LegalRuleML to model norms, and Regorous to apply LegalRuleML rules over BPMN and generate a report. The application utilises a web editor for modelling legal rules in connection with the legal text and ontology.
 
+
 \subsection*{DAPRECO}\label{sec:sota:DAPRECO}
 DAPRECO\footnote{\url{https://www.fnr.lu/projects/data-protection-regulation-compliance/}} (Data Protection Regulation Compliance) is an Luxembourgian project relating to the creation of a knowledge base for formal compliance with the terms and provisions of the GDPR. It aims to provide formalisms in deontic logic and natural language semantics for handling legal norms in written language. The project has researched correlation of standards with laws \cite{bartolini_towards_2016}, creation of an ontology to model concepts in the GDPR \cite{otake_using_2017}, modelling the norms of the GDPR using logic formalisms \cite{bartolini_legal_2018}, and annotating BPMN for GDPR compliance \cite{bartolini_enhancing_2019}.
-The project involves collaborations with the MIREL project, particularly in the creation and utilisation of PrOnto for addressing GDPR \cite{monica_legal_2018,palmirani_pronto_2018,palmirani_pronto_2018-1,bartolini_enhancing_2019}. In turn, DAPRECO provides a practical application of PrOnto as an use-case for legal compliance over business activities \cite{bartolini_enhancing_2019,bartolini_agile_2019}.
+The project involves collaborations with the MIREL project, particularly in the creation and utilisation of PrOnto for addressing GDPR \cite{monica_legal_2018,palmirani_pronto_2018,palmirani_pronto_compliance_2018,bartolini_enhancing_2019}. In turn, DAPRECO provides a practical application of PrOnto as an use-case for legal compliance over business activities \cite{bartolini_enhancing_2019,bartolini_agile_2019}.
 
 While PrOnto represents a more mature and progressive deliverable of the project's ontology for GDPR, the earlier ontology - referred to as data protection ontology \cite{otake_using_2017} - is relevant for its modelling of concepts and norms based on an draft of GDPR. This ontology uses OWL2 to model concepts of GDPR and was specified to be a work in progress in its publication\footnote{It can be assumed the ontology is no longer being used or developed and was utilised in the development of PrOnto based on subsequent publications of the project \cite{bartolini_legal_2018,bartolini_enhancing_2019}.}.
 Its methodology consists of using structure provided by the Handbook on European Data Protection Law\footnote{2014 edition \url{https://publications.europa.eu/en/publication-detail/-/publication/eee277d3-d26f-4a18-825b-8e1fd80d2f0d/language-en}}, and consists of concepts associated with - data protection principles, rules of data processing constituting duties of data controller, and data subject's rights.
@@ -320,7 +327,7 @@ from developed ontology to create a RDF representation of
 policy. Apart from this description, the papers do not provide further
 details of semantic representations or examples of extracted
 information, nor an use-case demonstrating capabilities. The ontology
-is referenced with an accessible link\footnote{\url{https://ebiquity.umbc.edu/resource/html/id/377/Ontology-for-EU-s-General-Data-Protection-Regulation-GDPR}} \cite{elluri_knowledge_2018}, though it does not provide documentation or examples of its usage. Analysing the ontology shows instances of relevant chapters and articles within GDPR applicable to PCI DSS and CSA, and declared as generic resources without reference to actual text or IRI of GDPR.
+is referenced with an accessible link\footnote{Ontology by Elluri et al. \url{https://ebiquity.umbc.edu/resource/html/id/377/Ontology-for-EU-s-General-Data-Protection-Regulation-GDPR}} \cite{elluri_knowledge_2018}, though it does not provide documentation or examples of its usage. Analysing the ontology shows instances of relevant chapters and articles within GDPR applicable to PCI DSS and CSA, and declared as generic resources without reference to actual text or IRI of GDPR.
 
 Related work within the same project by Joshi and Banerjee  \cite{joshi_automating_2019} concerns use of ontology to represent personal data categorisations and data privacy policies for automated enforcing of access control mechanisms regarding sharing of data with third parties through a blockchain. The data privacy policy, depicted in \autoref{fig:Ellur-PII-policy}, shows concepts and relationships for information regarding processing. The privacy policy contains information about data collection purpose, data collected, protection measures, use limitations, consent requirements, and access control.
 \begin{figure}[htbp]
@@ -376,8 +383,7 @@ The publication explicitly mentions that the ontology has not been evaluated. Th
 \section{Other approaches addressing GDPR compliance}\label{sec:sota:gdpr-other}
 
 \subsection*{Layered Privacy Language (LPL)}
-LPL \cite{gerl_lpl_2018} presents a formal model for specification of legal requirements regarding consent, data provenance, data retention and other privacy related concepts associated with GDPR.
-The objective of LPL to provide technical systems with a machine-readable privacy policy and privacy by design. 
+LPL \cite{gerl_lpl_2018} presents a formal model for specification of legal requirements regarding consent, data provenance, data retention and other privacy related concepts associated with GDPR. The objective of LPL to provide technical systems with a machine-readable privacy policy and privacy by design. 
 LPL defines the following requirements for a privacy language: (i) differentiation between data-source and data-recipient to enable fine-grained access-control; (ii) modelling of purpose-based privacy policies with modelling of data, retention and anonymisation enabling privacy models; (iii) layering of privacy policies to ensure provenance; and (iv) human-readability.
 
 The LPL structure, depicted in \autoref{fig:LPL-model}, consists of \textit{LayeredPrivacyPolicy} (LPP) as the root element representing a privacy policy or a legal contract. The element contains attributes for recording version information and an URI to privacy policy containing its human-readable description. Each LPP can refer to an \textit{UnderlyingPrivacyPolicy} to enable tracking of privacy policies across multiple entities.
@@ -665,13 +671,14 @@ Information about the project is available through its public deliverables\footn
 
 Deliverable D2.1 \cite{noauthor_d2.1_2018} provides information on use-cases, user stories, personal data required, and third parties involved. Deliverable D3.1 \cite{noauthor_d3.1_2019} presents the architecture with information about smart contracts utilised on permissioned blockchain to support permissions regarding requesting, granting, revoking, notifying, checking, and accessing permissions regarding use of PII. Each permission event is logged to blockchain and consists of data processor, data subject, and personal data field involved. Deliverable D4.3 \cite{noauthor_d4.3_2019} describes use of natural language programming approaches to detect PII in stored data as a measure of risk detection and management.
 
+
 \section{Analysis}\label{sec:sota:analysis}
 
 \subsection{Overview of SotA}
 The analysis of state of the art was carried out using the methodology presented earlier in \autoref{sec:sota:methodology}.
 The approaches were first analysed to identify relevance for categories of information identified in the methodology.
 \autoref{table:sota:analysis:overview} presents this information by using a check mark (\cmark) to indicate the approach uses or provides information about that topic, with its absence indicating that the approach does not address that topic or no information about its use could be found.
-The column headings represent identified categories of information, and represent - (T): type of work where PRJ indicates a research project and RES indicates research publication, (R): if it models GDPR clauses and concepts, (MG): if it provides an ontology, (EA): if it represents information for ex-ante Compliance, (EP): if it represents information for ex-post compliance, (P): if it models activities, (C): if it represents consent, (Cm): if it evaluates compliance, (Rq): if it specifies requirements for GDPR compliance, and (O): it provides resources in an open and accessible manner.
+The column headings represent identified categories of information, and represent - (T): type of work where PRJ indicates a research project and RES indicates research publication, (R): if it models GDPR clauses and concepts, (M): if it provides an ontology, (EA): if it represents information for ex-ante Compliance, (EP): if it represents information for ex-post compliance, (P): if it models activities, (C): if it represents consent, (Cm): if it evaluates compliance, (Rq): if it specifies requirements for GDPR compliance, and (O): it provides resources in an open and accessible manner.
 \begin{table}[htbp]
 \footnotesize
 \centering
@@ -769,7 +776,7 @@ The following observations are made based on an overview of \autoref{table:sota:
 Following these observations, a more detailed description of analysis is provided for areas identified in \autoref{sec:sota:methodology}. These correspond to investigation of state of the art regarding relevance to research objectives.
 
 \subsection{Representation of GDPR}\label{sota:analysis:representation}
-The overview presented in \autoref{table:sota:analysis:overview} shows only three approaches representing structure of GDPR and enabling machine-readable linking of information to specific parts of its text. Of these, two (MIREL and DAPRECO) utilise PrOnto \cite{palmirani_pronto_2018,palmirani_pronto_2018-1} and are therefore consolidated into a single work for purposes of analysis. Therefore, there are only two distinct approaches for representation of GDPR in state of the art. 
+The overview presented in \autoref{table:sota:analysis:overview} shows only three approaches representing structure of GDPR and enabling machine-readable linking of information to specific parts of its text. Of these, two (MIREL and DAPRECO) utilise PrOnto \cite{palmirani_pronto_2018,palmirani_pronto_compliance_2018} and are therefore consolidated into a single work for purposes of analysis. Therefore, there are only two distinct approaches for representation of GDPR in state of the art. 
 
 \autoref{table:sota:analysis:GDPR} presents an overview of these approaches, along with ELI ontology \cite{ELI_2012} % TODO: citation ELI
 used in publication of metadata associated with legislations including GDPR.
@@ -799,13 +806,21 @@ Apart from ELI, neither of other two resources are open and publicly accessible 
 \subsection{Representation of activities}\label{sota:analysis:process-flows}
 The modelling of activities in SotA is elaborated in \autoref{table:sota:analysis:process-flow} in terms of its use in terms of phase (ex-ante or ex-post), concepts modelled, and representation. The column headings used are as follows - (Repr): representation of activities, (EA): Ex-ante modelling, (EP): Ex-post modelling, (Pu): Purpose, (Pr): Processing, (DS): Data Sharing, (Rp): Recipients, (St): Data Storage, (Rg): Rights, (LB): Legal Basis.
 The table uses a check mark (\cmark) to indicate that the approach represents a feature, while a blank denotes no information was found regarding its representation. The use of a blank is indicative of the possibility that a feature exists but is not published or accessible, or that it may be developed in future given ongoing work in these approaches.
-\begin{table}
+
+The table shows use of BPMN notation and semantic web ontologies to model activities for GDPR, which includes reuse of existing ontologies PROV-O \cite{lebo_prov-o_2013} and 
+PWO \cite{gangemi_publishing_2017}.
+The approaches model activities across both ex-ante and ex-post phases with 4 approaches modelling both phases.
+
+Approaches modelling activities do not necessarily model their concepts to match or align with terminology utilised by GDPR. In cases where terminology is relevant to GDPR compliance, source of concepts and relationships used are not provided. Therefore, it is left up to an adopter's `common sense' to interpret terms correctly, and to manually align such ontologies with other legal resources.
+
+In approaches that utilise PROV-O and PWO to represent activities, developed ontologies extend existing ontologies by defining concepts relevant to GDPR. As PROV-O represents provenance information, and therefore records information about activities that have already been carried out (in the past), use of PROV-O to represent ex-ante activities involves recording information of planned activities as a provenance record. PROV-O defines the concept \textit{Plan} to represent a plan of activities, but it is not utilised by any approach. P-Plan, an extension of PROV-O which further expands on \textit{Plan} to define templates of activities as workflows, is also not utilised by any approach. PWO, by comparison, represents workflows and is therefore capable of expressing ex-ante information. However, the use of PROV-O provides commonality and interoperability by virtue of being a standardised vocabulary.
+\begin{table}[htbp]
 \footnotesize
 \centering
-\rowcolors{2}{}{gray!10}
-\begin{tabularx}{\textwidth}{|l|l|X|X|X|X|X|X|X|X|X|}
-\caption{Representation of activities in SotA}\label{table:sota:analysis:process-flow} \\ 
+\begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|X|X|X|X|}
+\caption{Representation of activities in SotA}\label{table:sota:analysis:process-flow} \\
 \hline
+\rowcolors{2}{}{gray!10}
 \textbf{Work} & \textbf{Repr} & \textbf{EA} & \textbf{EP} & \textbf{Pu} & \textbf{Pr} & \textbf{DS} & \textbf{Rp} & \textbf{St} & \textbf{Rg} & \textbf{LB} \\ \hline
 SPECIAL & PROV-O & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
 SPL+CitySPIN & PROV-O & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
@@ -820,17 +835,9 @@ Sion et al &  & \cmark &  & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cma
 privacyTracker &  & \cmark & \cmark &  &  & \cmark & \cmark &  &  &  \\ \hline
 Basin et al &  & \cmark &  & \cmark &  &  &  &  &  &  \\ \hline
 RestAssured &  &  &  & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
-
 \end{tabularx}
 \end{table}
 
-The table shows use of BPMN notation and semantic web ontologies to model activities for GDPR, which includes reuse of existing ontologies PROV-O \cite{lebo_prov-o_2013} and 
-PWO \cite{gangemi_publishing_2017}.
-The approaches model activities across both ex-ante and ex-post phases with 4 approaches modelling both phases.
-
-Approaches modelling activities do not necessarily model their concepts to match or align with terminology utilised by GDPR. In cases where terminology is relevant to GDPR compliance, source of concepts and relationships used are not provided. Therefore, it is left up to an adopter's `common sense' to interpret terms correctly, and to manually align such ontologies with other legal resources.
-
-In approaches that utilise PROV-O and PWO to represent activities, developed ontologies extend existing ontologies by defining concepts relevant to GDPR. As PROV-O represents provenance information, and therefore records information about activities that have already been carried out (in the past), use of PROV-O to represent ex-ante activities involves recording information of planned activities as a provenance record. PROV-O defines the concept \textit{Plan} to represent a plan of activities, but it is not utilised by any approach. P-Plan, an extension of PROV-O which further expands on \textit{Plan} to define templates of activities as workflows, is also not utilised by any approach. PWO, by comparison, represents workflows and is therefore capable of expressing ex-ante information. However, the use of PROV-O provides commonality and interoperability by virtue of being a standardised vocabulary.
 
 Most approaches model some combination of purpose, processing, data item or category, sharing of data, recipients, and data storage within their representations. In comparison, representation of rights and legal basis associated with processing of personal data is not common with only a few approaches providing concepts for their representation. This is due to use of consent as an implicit legal basis in approaches with assumption that activities associated with rights are separate and distinct operations from processing activities. 
 
@@ -935,7 +942,7 @@ From this, it can be concluded that state of the art demonstrates use of technol
 The following list provides avenues for carrying out research based on opportunities identified from gaps within state of the art towards achieving the research objectives of this thesis:
 \begin{enumerate}
 \item \textbf{Machine-readable representation of GDPR:} A linked-data representation of GDPR based on existing ELI ontology with sufficient granularity to represent recitals and sub-paragraphs within articles. This will provide an ELI-compatible resource to link information with GDPR.
-\item \textbf{Glossary of terms and concepts associated with GDPR:} A glossary of terms and concepts relevant to GDPR compliance that can provide interoperability between machine-readable approaches, and using a machine-readable representation of GDPR to indicate source of information.
+\item \textbf{Glossary of terms and concepts associated with GDPR:} A glossary of terms and concepts relevant to GDPR compliance that can provide interoperability between machine readable approaches, and using a machine-readable representation of GDPR to indicate source of information.
 \item \textbf{Representation of activities associated with processing of personal data in ex-ante and ex-post phases:} A cohesive representation of activities across both ex-ante and ex-post phases that can indicate how an ex-ante activity acts as a plan for executing an ex-post activity. This will provide an indication of planned compliance in ex-ante stage, verification of compliant processing in ex-post stage, and evolution of compliance in a system across time based on changes to information in both phases. The PROV-O ontology provides a basis to represent activities using an standardised ontology based on similar use within state of the art.
 \item \textbf{Representation of consent information:} An ontology for representing information associated with consent covering all requirements of GDPR. This can incorporate or reuse representation of activities from above to indicate activities associated with consent.
 \item \textbf{Demonstration using authoritative compliance queries:} Implementing retrieval of information for compliance using questions and checklists published by data protection offices to demonstrate practical application of research in compliance process.

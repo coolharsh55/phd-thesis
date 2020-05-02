@@ -10,7 +10,7 @@ A significant aspect of GDPR are its principles and rights which are intended to
 
 By virtue of being a regulation as opposed to a directive, GDPR is considered enforceable law with local and national data protection laws acting in conjunction rather than replacing it.
 The GDPR has attracted global attention and scrutiny due to its requirements for compliance and potential fines, as well as for providing rights that enhance privacy.
-It has directly influenced other privacy laws across the globe with the California Consumer Protection Act (CCPA) being a significant example that follows many of its provisions and requirements \cite{marini_gdpr_2018}.
+It has influenced other privacy laws across the globe with the California Consumer Protection Act (CCPA) being a recent example \cite{marini_gdpr_2018}.
 
 \subsection{Terminology}
 The legal terminology utilised in GDPR is intended to clarify the roles, actions, and concepts referred in its obligations.
@@ -84,13 +84,13 @@ PRIPARE\footnote{\url{http://pripareproject.eu/}} (PReparing Industry to Privacy
 
 The term `\textit{Semantic Web}' refers to extension of World Wide Web with machine-readable and interoperable metadata to enable encoding of semantics with data.
 This is achieved through use of standards developed by World Wide Web Consortium (W3C) to promote common data formats for interoperability and data exchange protocols using the infrastructure of the web.
-\autoref{fig:bg:semantic-web-stack} shows the `\textit{Semantic Web Stack}' - which depicts the architecture and relationship of different components as semantic web technologies.
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.75\linewidth]{img/Semantic_web_stack.png}
-    \caption{Semantic Web Stack}
-    \label{fig:bg:semantic-web-stack}
-\end{figure}
+% \autoref{fig:bg:semantic-web-stack} shows the `\textit{Semantic Web Stack}' - which depicts the architecture and relationship of different components as semantic web technologies.
+% \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.75\linewidth]{img/Semantic_web_stack.png}
+%     \caption{Semantic Web Stack}
+%     \label{fig:bg:semantic-web-stack}
+% \end{figure}
 
 \subsection{RDF, RDFS, and OWL}
 
@@ -100,10 +100,10 @@ RDF triples are serialised using syntax languages such as XML\footnote{\url{http
 RDF triples utilise the same identifier system as world wide web and are specified using IRIs\footnote{\url{https://tools.ietf.org/html/rfc3987}} - a generalised form of URIs which itself are a generalised form of URLs\footnote{\url{https://www.w3.org/TR/uri-clarification/}}.
 A database storing RDF is called a triple-store and enables creation of graphs of RDF data and provides an interface for querying it.
 
-A RDF triple consists of a subject, an object, and a predicate - where predicate describes the relationship from subject to object. An example of RDF triple specified using Turtle language to indicate chapter number of an entity is expressed as -\\ \-\hspace{5mm}\mintinline{turtle}{<http://example.com/ch2> foaf:name "Background"@en .}\\
+A RDF triple consists of a subject, an object, and a predicate - where predicate describes the relationship from subject to object. An example of RDF triple specified using the Turtle language to indicate chapter number of an entity is expressed as -\\ \-\hspace{5mm}\mintinline{turtle}{<http://example.com/ch2> foaf:name "Background"@en .}\\
 The subject in this triple is the IRI \mintinline{turtle}{<http://example.com/ch2>} representing a resource, with the predicate \mintinline{turtle}{foaf:name} representing relationship of associating a name as indicated by the string in object field \mintinline{turtle}{"Background"@en} with \texttt{@en} specifying use of English language. 
 
-The subject is written in shorthand notation indicating it starts with the same IRI as the data file it is described in. A complete IRI is often too long to write and is usually written using shorthand prefixes intended for human-readability.
+The subject is written in shorthand notation indicating it starts with the same IRI as the data file it is described in. An IRI can become too long for readability and is usually written using shorthand prefixes.
 The predicate is a \textit{property} provided by an external ontology called `Friend of a Friend' (FOAF\footnote{\url{http://xmlns.com/foaf/spec/}}), which is referenced by its prefix \texttt{foaf} as shorthand for its entire IRI.
 The object is a string in this case, but could itself be another RDF triple or resource - in which case it would be specified as an IRI.
 
@@ -132,17 +132,19 @@ SPARQL\footnote{\url{https://www.w3.org/TR/sparql11-query/}} is a query language
 SPARQL queries information following the RDF specification, and thus specifies queries to act on data expressed as `subject-predicate-object' triples.
 SPARQL queries can also retrieve information from traditional (SQL) databases which store data in non-RDF form through mapping\footnote{\url{https://www.w3.org/2008/07/MappingRules/StemMapping}} which permits its semantics to be applied across a large variety of existing data stores.
 
-A SPARQL endpoint is an interface provided by a triple-store for access and querying over stored data. Such endpoints can be exposed over the web to provide querying capabilities through the internet, with DBPedia\footnote{\url{http://dbpedia.org/sparql}} - a semantic web representation of Wikipedia - providing a well-known example.
+A SPARQL endpoint is an interface for access and querying over stored data. Such endpoints can be exposed over the web to provide querying capabilities through the internet, with DBPedia\footnote{\url{http://dbpedia.org/sparql}} - a semantic web representation of Wikipedia - providing a well-known example.
 
 \subsection{Shapes Constraint Language (SHACL)}
-SHACL\footnote{\url{http://dbpedia.org/sparql}} is a specification language for expressing constraints that validate RDF data. The input over which SHACL constraints are validated is called the \textit{data graph}.
+SHACL\footnote{\url{http://dbpedia.org/sparql}} is the W3C standard for expressing constraints that validate RDF data. The input over which SHACL constraints are validated is called the \textit{data graph}.
 Constraints in SHACL are called `shapes' based on the notion of checking if data \textit{fits a shape}, with the set of constraints being validated called as \textit{shapes graph}.
 SHACL constraints are themselves also expressed in RDF which makes it possible to serialise them as a data graph and perform querying over it.
 
-The output of validation process is a conformance report which uses a validation report vocabulary provided by SHACL and indicates \textit{failing validations} and status of validation of a whole. A \textit{conformance report} provides boolean indication of whether the any of given set of validations have failed or conversely whether all validations have passed.
+The output of a validation process is a conformance report which uses a validation report vocabulary provided by SHACL and indicates \textit{failing validations} and status of validation of a whole. A \textit{conformance report} provides boolean indication of whether the any of given set of validations have failed or conversely whether all validations have passed.
 
-\textit{SHACL-core} refers to features defined within SHACL standard specification. Extensions have been developed which provide additional features for expression and validation of constraints. Amongst these, \textit{SHACL-SPARQL} provides use of SPARQL queries to retrieve data failing a given constraint, and is mentioned within SHACL specification.
+\textit{SHACL core} refers to features defined within the SHACL standard specification. Extensions have been developed which provide additional features for expression and validation of constraints. \textit{SHACL-SPARQL} provides use of SPARQL queries to retrieve data failing a given constraint, and is mentioned within SHACL specification.
 SHACL validations are performed using a `validator' - an implementation and interpretation of SHACL standard that provides at least the validation features described in SHACL-core.
+
+Shape Expressions language (ShEx)\footnote{\url{https://www.w3.org/community/shex/}} is an alternative to SHACL that provides a similar conceptual language for expressing constraints and validating RDF data. The design of ShEx emphasises human readability inspired from Turtle, whereas SHACL follows the abstract RDF syntax. ShEx and SHACL were aimed to converge into a common standard, but this has not happened to date - and therefore both are maintained as separate technologies. Both SHACL and ShEx have seen significant adoption by the community.
 
 \subsection{Standardised Ontologies}
 \subsubsection{Provenance Ontology (PROV-O)}

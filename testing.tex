@@ -803,7 +803,7 @@ In the use-case of consent dialogue presented in this section, $V_{t}=59$ valida
 \subsubsection*{Comparison with SotA}
 \autoref{table:shacl:sota} provides a comparison of use of SHACL with approaches within SotA based on earlier analysis in \autoref{sota:analysis:compliance}.
 The SPECIAL project uses a semantic reasoner to determine whether a given combination of processing operations expressed as OWL2 class axioms are valid \cite{westphal_spirit_2018}, while work presented by Vos et. al \cite{vos_odrl_2019} uses ODRL profiles to express requirements which are converted to and evaluated using Answer Set Programming (ASP).
-The MIREL project detects violations of GDPR by utilising the PrOnto ontology \cite{palmirani_pronto_2018,palmirani_pronto_2018-1,monica_modelling_2018} to model legal concepts and LegalRuleML to model norms, which are then applied over a BPMN use-case using Regorous to generate a report \cite{monica_modelling_2018}.
+The MIREL project detects violations of GDPR by utilising the PrOnto ontology \cite{palmirani_pronto_2018,palmirani_pronto_compliance_2018,monica_modelling_2018} to model legal concepts and LegalRuleML to model norms, which are then applied over a BPMN use-case using Regorous to generate a report \cite{monica_modelling_2018}.
 The DAPRECO project uses PrOnto along with Reified Input/Output logic (RIO) \cite{robaldo_reified_2017} to specify norms and rules to create a knowledge base \cite{bartolini_agile_2019} which is then used to identify relevant obligations to check for compliance.
 These efforts show the variety in evaluation approaches for compliance and the use of semantic web technologies in evaluation of compliance.
 
@@ -854,7 +854,7 @@ DECODE & Smart Contracts & Consent & \cmark &  &  \\ \hline
 
 % In terms of expressiveness and coverage of legal compliance requirements, the establishment of a `gold standard or dataset' or use-cases and compliance investigations is needed to provide effective comparison of the SotA. This will enable identification of effectiveness of different approaches in specific subsets of investigation procedures and promote the exploration of utilising a variety of methods in combination to provide more coverage of compliance investigations.
 
-\section{Summary of Chapter}\label{sec:testing:conclusion}
+\section*{Summary of Chapter}\label{sec:testing:conclusion}
 
 \subsubsection*{Summary of work presented}
 \autoref{sec:testing:sparql} presented use of SPARQL queries in representing compliance queries and retrieving information associated with compliance that was represented using GDPRov and GDPRtEXT ontologies.
