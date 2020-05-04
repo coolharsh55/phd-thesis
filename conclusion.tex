@@ -3,7 +3,7 @@ This chapter concludes the thesis with a discussion on the extent to which the r
 
 % RESEARCH OBJECTIVES
 \section{Fulfilment of Research Objectives}\label{sec:conclusion-RO}
-The research question guiding the work presented in this thesis, defined in \autoref{sec:intro:RQ}, is - ``\textit{To what extent can information regarding activities associated with processing of personal data and consent be represented using Semantic Web technologies for GDPR compliance?}''.
+The research question guiding the work presented in this thesis, defined in \autoref{sec:intro:RQ}, is - ``\textit{To what extent can information regarding activities associated with processing of personal data and consent be represented, queried, and validated using Semantic Web technologies for GDPR compliance?}''.
 Five research objectives were identified which guided the work towards answering the research question.
 This section discusses the extent of their fulfilment based on work presented in previous chapters of the thesis.
 
@@ -62,7 +62,7 @@ The SHACL tests defined for validation were annotated with an additional propert
 The framework thus demonstrated the validation of information for GDPR compliance regarding activities associated with personal data and consent, and linking the validation results with relevant clauses and concepts of the GDPR using GDPRtEXT, thus fulfilling $RO5$.
 
 \section{Extent of semantic web technologies in addressing RQ}
-The research question guiding this thesis focuses on the representation of information as the basis upon which GDPR compliance is evaluated.
+The research question guiding this thesis focuses on the representation, querying, and validation of information as the basis upon which GDPR compliance is evaluated.
 More specifically, it concerns activities associated with processing of personal data and consent - which, while being an important part of GDPR, represents only a subset of requirements in the GDPR.
 To investigate the `extent' aspect in the research question, the research objectives were formulated to correspond with information representation ($RO3$), querying ($RO4$), and validation ($RO5$).
 In addition to these, the use of linked data principles enables associating  information - in general and including queries, validations, and results - with clauses of the GDPR.
@@ -73,11 +73,11 @@ Existing approaches have demonstrated use of semantic web technologies in repres
 These serve to prove that there is more than one way to represent and evaluate information towards evaluating GDPR compliance using semantic web.
 
 At the same time, there is a lack of information representation and approaches utilising semantic web technologies for addressing the larger scope of information associated with GDPR compliance as discussed in \autoref{sec:info:model} regarding data governance, data processing agreements, and documentation of information.
-The existing approaches - including the contributions of this thesis - provide the necessary building blocks for addressing these topics, but need an undertaking to sufficiently incorporate the specific requirements and provide solutions through further research within this domain.
+The existing approaches - including the contributions of this thesis - provide the necessary building blocks for addressing representation of information required to evaluate compliance, expressing information about compliance itself, querying information, validating it for correctness, evaluating information for sufficiency to an expressed obligation or requirement, compiling reports or records, recording provenance of activities, and generating documentation for compliance.
+Semantic web is notable in providing a consistent, coherent, interoperable, and modular set of technologies for carrying out the above activities - which makes their use in development of legal compliance solutions particularly attractive due to the complexity of the domain and a need to expand or specialise applications in use-cases.
+Therefore, from the perspective of information and knowledge modeling - semantic web provides the foundational set of technologies useful towards carrying out the activities associated with GDPR compliance.
 
-To summarise, the extent of semantic web in representing information associated with GDPR compliance is quite broad and covers a large range of activities associated with compliance - but is by no means comprehensive in providing solutions for all necessary tasks.
-It provides the building blocks for representation of information required to evaluate compliance, expressing information about compliance itself, querying information, validating it for correctness, evaluating information for sufficiency to an expressed obligation or requirement, compiling reports or records, recording provenance of activities, and generating documentation for compliance.
-Future work within this domain therefore largely consists of utilising these to extend or revise existing work to address new requirements and applications, with a few of these mentioned as future work in \autoref{sec:conclusion-future-work}.
+Future work within this domain largely consists of utilising existing approaches towards extending or revising existing work in an application-oriented manner with a few examples of these mentioned as future work in \autoref{sec:conclusion-future-work}.
 
 To end the discussion with an analogy - \textit{Though all roads lead to Rome, we aren't there yet.}
 
@@ -171,6 +171,9 @@ The aim of GConsent, as presented in this thesis, is to represent information ab
 Currently, GConsent is also being used in conjunction with the DPV to create an updated Consent Receipt \cite{lizar_consent_2017} based on requirements of consent under GDPR.
 
 \subsection*{Generate Assistive Systems for Compliance}
+%% what steps would an organisation need to take to use this research
+The research presented in this thesis provides a technological base for modeling, querying, and validating information associated with GDPR compliance. In order for organisations to make use of this research - they need to express their use-case and internal activities using the developed ontologies. This presents an opportunity for tools and assistive technologies to be developed for helping organisations with the task of information gathering and documentation associated with GDPR compliance. These can be commercial products - similar to existing ones - or a collaborative community effort that takes advantage of the interoperability provided by semantic web. With this background, following are three opportunities where this research can be applied.
+
 \subsubsection*{Incorporate GDPRov and GConsent in the SPECIAL compliance checker}
 The compliance checker developed by the SPECIAL project \cite{kirrane_scalable_2018} uses a semantic reasoner \cite{bonatti_fast_2018} with a controlled vocabulary consisting of personal data, processing, purpose, storage, and recipients expressed in OWL2. It is potentially possible to use the SPECIAL compliance checker to check the compliance of information defined using GDPRov and GConsent by modifying the checker to target these vocabularies or by alignment of SPECIAL vocabularies with GDPRov and GConsent. This would enable the work presented in this thesis to take advantage of large scale analysis and transparent log mechanisms provided by the SPECIAL architecture. Evaluation of the approach would be based on analysis of scalability and performance to ascertain extent of its benefit.
 
@@ -191,6 +194,6 @@ Technological solutions towards addressing compliance are dependant on the under
 
 % The work presented in this thesis is a step towards enabling technological solutions that assist in the linking of information for compliance in an interoperable and machine-readable form through semantic web.
 
-Within this context, the work presented in this thesis is useful for all involved stakeholders - controllers, processors, supervisory authorities, and data subjects - by enabling creation of tools and services to assist in the representation, querying, and validation of information. In particular, the thesis establishes advantages of using semantic web technologies and provides an argument towards their adoption in the regulatory compliance domain.
+Within this context, the work presented in this thesis is useful for all involved stakeholders - controllers, processors, supervisory authorities, and data subjects - by enabling creation of tools and services to assist in the representation, querying, and validation of information. In particular, the thesis establishes advantages of using semantic web technologies and provides an argument towards their adoption in the regulatory compliance domain. Where use-cases and context differs, stakeholders now have the technological means towards establishing common patterns and tools beneficial to the larger community.
 
 With an increased need and focus on the intersection of technology and privacy, approaches based on semantic web can foster transparency and accountability by enabling an open medium for knowledge interaction for all stakeholders. It is therefore the author's hope that this thesis and the work presented therein is of benefit to society for meeting the expectations demanded by privacy laws such as GDPR as well those arising from social obligations. 

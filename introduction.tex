@@ -51,8 +51,10 @@ Governmental agencies across the globe have addressed the issue of information i
 These standards implement principles of the Semantic Web \cite{semantic-web} by utilising the Resource Description Framework (RDF) \cite{RDF} to specify information in an interoperable, extensible, and machine-readable manner.
 This has paved the way for development of technologies that address challenges associated with legal compliance through greater use of automation and operations at large scales.
 Consequently, the use of Linked Data and Semantic Web within the legal domain has resulted in the development of ontologies for organising and structuring information, reasoning and problem solving, semantic indexing and search, semantic integration and interoperability, and understanding the domain \cite{rodrigues_legal_2019}.
+
 Semantic Web is also being used to address the challenges associated with GDPR compliance through commercial\footnote{Example: Top Quadrant's Semantic Data Governance for GDPR Compliance \url{https://www.topquadrant.com/gdpr-compliance/}} solutions as well as large-scale European research projects such as SPECIAL \cite{SPECIAL}, MIREL \cite{MIREL}, DAPRECO \cite{DAPRECO}, BPR4GDPR \cite{BPR4GDPR}, and RestAssured \cite{RestAssured}.
 The technological solutions developed within these utilise ontologies to represent the information required for compliance and a corresponding approach that expresses and evaluates obligations to assess compliance.
+In general, semantic web technologies provide numerous advantages, such as: their basis in standards maintained through community and stakeholder engagement by W3C; an interoperable information representation specification that serves as the base for other specifications that build on top of it to provide knowledge modeling, querying, and validation; and the ability to easily build upon an existing knowledge-system by extending the underlying data models while retaining compatibility. These advantages make semantic web technologies and ideal and useful toolset in the legal compliance domain, and especially the GDPR given the emphasis of its requirements on information and documentation for compliance.
 
 %%% link between GDPR compliance and research question???
 The work presented in this thesis also utilises the Semantic Web to address GDPR compliance. It focuses on the representation of activities associated with processing of personal data and consent as a subset of information relevant to the investigation of GDPR compliance. These activities correspond to how organisations plan their processing of personal data and execute or implement them, and are therefore relevant to the planning and management of operations within organisations.
@@ -76,7 +78,7 @@ The research question investigated in this thesis is:
 \begin{framed}
 \small{Research Question}
 \begin{quote}
-\textbf{To what extent can information regarding activities associated with processing of personal data and consent be represented using Semantic Web technologies for GDPR compliance?}
+\textbf{To what extent can information regarding activities associated with processing of personal data and consent be represented, queried, and validated using Semantic Web technologies for GDPR compliance?}
 \end{quote}
 \end{framed}
 
@@ -92,11 +94,13 @@ The following definitions are used in the context of the research question outli
     \item \textit{subset of GDPR}: a subset of the clauses defined in the text of the GDPR;
     \item \textit{ex-ante compliance}: compliance regarding processing before it has taken place, i.e. \textit{A-priori};
     \item \textit{ex-post compliance}: compliance regarding processing after it has taken place, i.e. \textit{A-posteriori};
-    \item \textit{compliance questions}: questions that retrieve information relevant for determination of compliance.
+    \item \textit{compliance questions}: questions that retrieve information relevant for determination of compliance; 
+    \item \textit{transparency of information}: specifying or providing information in a way that enables others (external entities) to understand and analyse it.
 \end{itemize}
 
 \subsection{Research Objectives}\label{sec:intro:RO}
-The research question represents a broad investigation which is difficult to address as a whole. Therefore, it is reconstructed as multiple `sub-research questions' which are smaller in scope and provide specific aims in the form of research objectives.
+The research question represents a broad investigation which is difficult to address as a whole. Therefore, it is reconstructed as multiple `sub-research questions' which are smaller in scope and provide specific aims in the form of research objectives. These objectives are influenced by the analysis of the state of the art and subsequent identification of gaps in \autoref{sec:sota:analysis} as potential opportunities to answer the research question. 
+The first two objectives are structured on the identification of information required for GDPR compliance. The third objective focuses on use of semantic web technologies for information representation, while the fourth and fifth objectives are associated with querying and validation of information respectively.
 
 % RO1
 The GDPR is a legal document structured into 173 Recitals, 99 Articles, and 21 Citations. Of these, not all clauses are relevant to activities associated with personal data and consent. Therefore, the first research sub-question concerns investigation and identification of the sub-set of GDPR regarding activities associated with personal data and consent, along with information on the ex-ante and ex-post aspects of such activities towards compliance. This provides the first objective as:
