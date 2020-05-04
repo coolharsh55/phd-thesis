@@ -146,6 +146,8 @@ SHACL validations are performed using a `validator' - an implementation and inte
 
 Shape Expressions language (ShEx)\footnote{\url{https://www.w3.org/community/shex/}} is an alternative to SHACL that provides a similar conceptual language for expressing constraints and validating RDF data. The design of ShEx emphasises human readability inspired from Turtle, whereas SHACL follows the abstract RDF syntax. ShEx and SHACL were aimed to converge into a common standard, but this has not happened to date - and therefore both are maintained as separate technologies. Both SHACL and ShEx have seen significant adoption by the community.
 
+% SPARQL and SHACL can both be used to validate data by identifying nodes that are malformed or do not conform to a specific shape. In SPARQL this can be done by querying for invalid nodes and similarly in SHACL through the expression of shape. Theoretically, both languages perform retrieval of nodes and filtering based on shape or criteria. However, it is arguably easier and more beneficial to use a dedicated specification such as SHACL (or ShEx) for the purposes of validation due to their provision of concepts and the ability to persist results. By contrast, SPARQL can also persist results e.g. through the use of \texttt{CONSTRUCT} queries - though this provides a rather convoluted approach to doing validations.
+
 \subsection{Standardised Ontologies}
 \subsubsection{Provenance Ontology (PROV-O)}
 PROV-O\footnote{\url{https://www.w3.org/TR/prov-o/}} is a standardised ontological representation of the PROV Data Model\footnote{\url{https://www.w3.org/TR/prov-dm/}} (PROV-DM) which is the W3C standard for representing provenance information using semantics provided by RDF and OWL.

@@ -1,7 +1,7 @@
 \chapter{Querying and Validating Information for GDPR Compliance}
 \label{chapter:testing}
 % chapter introduction
-This chapter presents application of semantic web technologies to query and validate information for GDPR compliance.
+This chapter presents an application of semantic web technologies to query and validate information for GDPR compliance.
 In this, information is represented using developed vocabularies of GDPRtEXT, GDPRov, and GConsent - as presented in \autoref{chapter:vocabularies}.
 The queries are represented using SPARQL - a W3C standard for querying RDF - and are based on compliance questions presented in \autoref{sec:info:compliance-questions}.
 Validation is carried out based on identified assumptions and constraints presented in \autoref{sec:info:constraints} and is expressed using SHACL - a W3C standard for representing constraints.
@@ -11,7 +11,7 @@ The presented work represents minor contributions of this thesis, and fulfils re
 Use of SHACL to validate information for GDPR compliance is presented in \autoref{sec:testing:shacl}.
 The chapter ends with conclusions drawn from this research in \autoref{sec:testing:conclusion} regarding novelty of contributions.
 
-\section{Querying Information for GDPR Compliance using SPARQL}\label{sec:testing:sparql}
+\section{Querying Information using SPARQL}\label{sec:testing:sparql}
 This section presents creation and utilisation of SPARQL queries to retrieve information relevant for GDPR compliance.
 Creation of queries is dependant on ontological representation of information being retrieved, which in this case includes use of GDPRov and GDPRtEXT ontologies.
 As no consent instances needed to be represented, GConsent was not used.
@@ -46,7 +46,7 @@ The guide was chosen based on its simplicity in terms of questions, its intended
 The guide divides questions into contextual sections based on addressing specific GDPR articles and obligations.
 \begin{figure}[htbp]
 \centering
-\fbox{\includegraphics[width=\textwidth]{img/GDPR_guide_page_10.png}}
+\fbox{\includegraphics[width=\textwidth,trim={0 0 5.5cm 0},clip]{img/GDPR_guide_page_10.png}}
 \caption{Questions for information required to assess compliance - Page 10 of ``Preparing Your Organisation for the GDPR - A Guide for SMEs'' published by Ireland's Data Protection Commission}
 \label{fig:sparql:guide}
 \end{figure}
@@ -305,8 +305,12 @@ SELECT DISTINCT ?process ?legal WHERE {
   ?step_type rdfs:subClassOf gdprov:DataStep .
   ?step gdprov:usesData ?data . 
   ?step gdprov:isPartOfProcess ?process .
+{
   OPTIONAL { ?step gdprov:hasLegalBasis ?legal } .
+} UNION
+{
   OPTIONAL { ?process gdprov:hasLegalBasis ?legal } .
+}
 } ORDER BY ?process
 \end{minted}
 \caption{SPARQL query representing compliance question \texttt{G5} concerning legal basis for processing}
@@ -328,7 +332,7 @@ The sign-up process collects personal data such as name, address, email, and con
 While ordering products, users are requested to provide sensitive information for transactions about their bank account or credit cards.
 
 Personal data is represented by sub-classing \texttt{gdprov:PersonalData} as \texttt{CustomerInfo} in the use-case's namespace for representing information about users.
-Similarly \texttt{SensitiveData} is sub-classed for representing banking and financial information as \texttt{gdprov:BankingInfo}.
+Similarly \texttt{SensitiveData} is sub-classed as \texttt{gdprov:BankingInfo} for representing banking and financial information.
 Processes for handling obligations and rights are expressed using GDPRov.
 The sign-up process enables an user to provide information which is used for personalisation and ads and collects user's consent.
 As a final step, Fact++\footnote{\url{http://owl.cs.manchester.ac.uk/tools/fact/}}
@@ -358,7 +362,7 @@ The remaining two results represent processes associated with provision of servi
 
 \subsection{Evaluation}\label{sec:testing:sparql:evaluation}
 The aim of this work was to represent compliance questions using SPARQL in order to retrieve information represented in RDF regarding processing of personal data.
-The demonstration using a synthetic use-case provided basis for exploring application of created SPARQL queries by using GDPRov and GDPRtEXT for ontological representations of data.
+The demonstration using a synthetic use-case provided basis for exploring the application of created SPARQL queries by using GDPRov and GDPRtEXT for ontological representations of data.
 The evaluation of this work, while not being exhaustive, demonstrates creation of SPARQL queries and their application over a given use-case.
 
 In terms of coverage of compliance questions represented as SPARQL queries, the exercise could not represent all questions within the GDPR readiness guide.
@@ -371,7 +375,7 @@ The expression of compliance questions using SPARQL is not novel in itself as ap
 However, details of their creation and implementation are sparse as pointed out by the analysis in \autoref{sec:sota:analysis}, which makes it difficult to compare application of SPARQL queries for retrieving information associated with GDPR compliance as presented here.
 
 Of the total 63 questions within the GDPR readiness guide, 32 questions have corresponding SPARQL queries created and used in the demo.
-Of 31 questions that were not implemented, 20 questions were considered out of scope as they do not relate to the research question, with other 3 questions lacking corresponding concepts in GDPRov to create SPARQL queries.
+Of 31 questions that were not implemented, 20 questions were considered out of scope as they do not relate to the research question, with the other 3 questions lacking corresponding concepts in GDPRov to create SPARQL queries.
 Of these, question \texttt{G8} concerning retention periods for personal data can be expressed using Time ontology \cite{cox_time_2017}.
 The other two, \texttt{S5} and \texttt{S7} require specification of information associated with information management and governance procedures utilised within an organisation. While these are technically not outside the scope of GDPRov, they require a larger understanding of how such processes are specified and managed and commonly involve use of specifications to denote practices - for example ISO/IEC 27001 describing a framework for information management and protection.
 Some questions not considered within scope concern information not associated with processing of personal data or consent, but which can be represented as activities using GDPRov. These include questions \texttt{C1} concerning agreements between entities or question \texttt{C4} concerning escalation procedures involving DPO.
@@ -380,7 +384,7 @@ The application of SPARQL for querying information associated with GDPR complian
 
 % ---------------------------------------------------------------------------------
 
-\section{Validating Information for GDPR Compliance using SHACL}\label{sec:testing:shacl}
+\section{Validating Information using SHACL}\label{sec:testing:shacl}
 This section presents application of SHACL to validate information based on requirements of GDPR compliance.
 SHACL is utilised as a validation mechanism to create a test-driven approach where information regarding processing activities is represented using ontologies and is first checked for correctness and then for compliance.
 In this, constraints presented in \autoref{sec:info:constraints} are utilised to determine correctness and compliance of information, and questions presented in \autoref{sec:info:compliance-questions} are used to retrieve information for compliance.
@@ -449,7 +453,7 @@ The constraints presented in \autoref{sec:info:constraints} thus incorporate exp
 The same argument applies for validation of information using SHACL, where constraints must utilise the same ontologies as those used in the RDF it aims to validate.
 An alternative is using mapping tables to convert ontologies used in data to a common ontology used in validation constraints - however, this will be a difficult, if not impossible, exercise due to complexities of finding a common model in all the ontologies that can be potentially used to represent information, such as those within state of the art.
 
-The constraints presented here use developed ontologies from \autoref{chapter:vocabularies} - namely GDPRov to represent activities associated with processing of personal data and consent, GConsent to represent information about consent relevant for compliance, and GDPRtEXT to link information with concepts and clauses of GDPR.
+The constraints presented here use developed ontologies from \autoref{chapter:vocabularies} as: GDPRov to represent activities associated with processing of personal data and consent, GConsent to represent information about consent relevant for compliance, and GDPRtEXT to link information with concepts and clauses of GDPR.
 In this, the use of GDPRov and GConsent is complimentary in some constraints given their overlap in representing concepts associated with consent.
 GDPRtEXT is used to link a constraint to a clause within GDPR to indicate its relevancy regarding compliance. It is also used to link validation results with clauses in GDPR to enable querying of results based on GDPR articles, as shown later in \autoref{sec:testing:shacl:reports}.
 
@@ -526,7 +530,7 @@ The use of SHACL-SPARQL also allows use of SPARQL queries from \autoref{sec:test
 For manually evaluated constraints represented using \texttt{ManuallyCheckedConstaint}, the result arising from its assessment indicates whether the constraint fails or passes, and is therefore a boolean value.
 Therefore, assessment of manually checked constraints is based on verifying a boolean value associated with the constraint through the SHACL property \texttt{sh:hasValue} which indicates expected value of a property.
 An example of this is presented in \autoref{code:shacl:boolean} which represents a constraint checking whether given consent was freely given.
-The assessment is based on explicitly inserting a triple within the data graph that denotes manually inspected condition of freely given through property \texttt{m:consentIsFreelyGiven} whose value must be true to indicate compliance.
+The assessment is based on an explicitly added triple within the data graph through the property \texttt{m:consentIsFreelyGiven} whose value must be true to indicate a manual inspection of the condition that consent must be freely given.
 The messages of a manually checked constraint are prefixed with \textit{(MANUAL-TEST)} to indicate their qualitative nature in human-intended messages.
 \begin{listing}[htbp]
 \begin{minted}{turtle}
@@ -563,7 +567,7 @@ The constraint automatically evaluates outcome of a previous SHACL validation co
 :ValidationReportConforms a sh:PropertyShape, :AutomaticallyCheckedConstraint ;
     sh:path sh:conforms ;
     sh:hasValue true ; 
-    sh:message "Consent Model should be compliant for given consent to be valid" ; 
+    sh:message "Consent Model should be compliant for valid given consent" ; 
     sh:name "Check validation report says data conforms" .
 \end{minted}
 \caption{Utilising ex-ante test results for consent model in evaluating ex-post instances of given consent}
@@ -609,10 +613,10 @@ The first panel, depicted in figure as \texttt{(a)}, presents a brief descriptio
 Clicking `Show Purposes' dialogue opens a second panel containing information about purposes and third parties associated with consent, displayed in figure as \texttt{(b-d)}.
 The first section provides information about processing of personal data carried out by Quantcast. Its structuring of information consists of title specifying the purpose of processing, for example - ``\textit{Information storage}'', followed by a textual description of personal data categories involved and processing operations to be performed on them.
 
-The purpose was represented using GDPRov and GConsent as instances of \texttt{gdprov:Process} and \texttt{gc:Purpose} with title from consent dialogue specified as its label using \texttt{rdfs:label}. 
+The purpose was represented as instances of \texttt{gdprov:Process} and \texttt{gc:Purpose} with the title from consent dialogue specified as its label using \texttt{rdfs:label}. 
 Information about processing and personal data categories was manually extracted from text and represented as - \texttt{gdprov:Step} and \texttt{gc:Processing} for processing, and \texttt{gdprov:PersonalData} and \texttt{gc:PersonalData} for personal data.
 
-The consent dialogue was represented using GDPRov as \texttt{ConsentAgreementTemplate} to indicate an ex-ante artefact provided when requesting consent.
+The consent dialogue was represented as \texttt{gdprov:ConsentAgreementTemplate} to indicate an ex-ante artefact provided when requesting consent.
 Since the consent dialogue offers granular choices from which the user can choose any option individually, the question of its semantic representation led to two possible solutions - first where entire consent dialogue and all consent choices are considered a single instance of consent, and second where each individual and independent choice is considered an instance of consent.
 Since given consent for an individual option in the dialogue could be revoked without affecting other choices, each independent option was chosen to be modelled as an instance of consent.
 As the consent dialogue acts as a common template for all options, its representation as a `bundle' of consent templates was added to an updated version of GDPRov (v0.7) as \texttt{gdprov:ConsentAgreementTemplateBundle}. This enabled representing a common artefact used to request separate instances of consent.
@@ -648,7 +652,7 @@ Consent for each purpose for sharing data with third parties can be individually
 
 The third parties were defined using \texttt{gdprov:ThirdParty} and \texttt{gc:ThirdParty}.
 Although names of purposes are same in sections describing processing by Quantcast (top-half) and by third parties (bottom-half), these were declared as separate instances to reflect separation of choices to provide consent.
-Third parties were associated with a particular process by first creating an instance of a data sharing step using \texttt{gdprov:DataSharingStep} and \texttt{gc:DataStep}, and then linking the third party using property \texttt{gc:SharesDataWithThirdParty}.
+Third parties were associated with a process by first creating representing the data sharing using \texttt{gdprov:DataSharingStep} and \texttt{gc:DataStep}, and then using the property \texttt{gc:SharesDataWithThirdParty} to link these with the third party.
 
 \subsubsection{Gathering additional information from Quantcast website}
 The consent dialogue does not provide information on how personal data categories are collected, or data sources of personal data. To investigate this, an analysis of information about products and services provided by Quantcast on their website along with their policies was carried out to identify relevant information which could be added to complete the use-case.
@@ -671,7 +675,7 @@ As the use-case concerns consent, constraints associated with consent in \autore
 For evaluation, three sets of constraints were developed to validate: (a) only ex-ante model of consent dialogue, (b) instances of given consent, and (c) reusing results of ex-ante consent dialogue tests to validate given consent.
 This allowed an analysis and comparison of combining ex-ante and ex-post validations, and to demonstrate benefits in terms of reduced validations and reuse of compliance information.
 
-SHACL constraints were executed using TopBraid SHACL binary\footnote{\url{https://github.com/TopQuadrant/shacl}}.
+SHACL constraints were executed using the TopBraid SHACL binary\footnote{\url{https://github.com/TopQuadrant/shacl}}.
 A bash\footnote{\url{https://www.gnu.org/software/bash/}} script enabled automation in execution of constraints as different approaches (ex-ante, ex-post, combination of both) and persistence of test results as separate files.
 
 For ease of evaluation, a combined data graph was created consisting of data from Quantcast and ontologies used - GDPRov, GConsent, GDPRtEXT. 
