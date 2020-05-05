@@ -786,9 +786,8 @@ The granularity of ELI ontology in representing metadata is limited to specifyin
 \centering
 \caption{Approaches representing GDPR in machine-readable format}\label{table:sota:analysis:GDPR}
 \rowcolors{1}{}{gray!10}
-\begin{tabular}{|l|l|l|l|l|}
+\begin{tabularx}{\textwidth}{|l|l|l|l|l|}
 \hline
-
 \textbf{Work} & \textbf{ELI} & \textbf{ELI+} & \textbf{Agarwal et al} & \textbf{PrOnto} \\ \hline
 \textbf{Vocabulary} & OWL2 & OWL2 & RDFS & Akoma Ntoso \\ \hline
 \textbf{Granularity} & Legislation & Sub-Paragraph & Paragraph & Sub-Paragraph \\ \hline
@@ -796,8 +795,7 @@ The granularity of ELI ontology in representing metadata is limited to specifyin
 \textbf{PID} & \cmark & \cmark & \xmark & \xmark \\ \hline
 \textbf{OA} & \cmark & \cmark & \xmark & \xmark \\ \hline
 \textbf{GDPR text} & \xmark & \cmark & \xmark & \cmark \\ \hline
-
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 The table demonstrates that there are very few approaches working with machine-readable representations of GDPR, even when a large number of approaches utilise machine-readable formats for information associated with specifying information for compliance assessment. The table also shows that none of existing approaches address drawbacks of ELI, but instead utilise other vocabularies to achieve granularity regarding GDPR. For this, Agarwal et al. \cite{agarwal_legislative_2018} use RDFS, while PrOnto uses Akoma Ntoso to represent hierarchy of text within GDPR.
@@ -817,10 +815,10 @@ In approaches that utilise PROV-O and PWO to represent activities, developed ont
 \begin{table}[htbp]
 \footnotesize
 \centering
-\begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|X|X|X|X|}
-\caption{Representation of activities in SotA}\label{table:sota:analysis:process-flow} \\
-\hline
+\caption{Representation of activities in SotA}\label{table:sota:analysis:process-flow}
 \rowcolors{2}{}{gray!10}
+\begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|X|X|X|X|}
+\hline
 \textbf{Work} & \textbf{Repr} & \textbf{EA} & \textbf{EP} & \textbf{Pu} & \textbf{Pr} & \textbf{DS} & \textbf{Rp} & \textbf{St} & \textbf{Rg} & \textbf{LB} \\ \hline
 SPECIAL & PROV-O & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
 SPL+CitySPIN & PROV-O & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  &  \\ \hline
@@ -848,9 +846,9 @@ Some upcoming research projects have been included based on published informatio
 \begin{table}[htbp]
 \footnotesize
 \centering
+\caption{Representation of consent in SotA}\label{table:sota:analysis:consent}
 \rowcolors{2}{}{gray!10}
 \begin{tabularx}{\textwidth}{|l|X|X|X|X|X|X|X|X|X|X|X|X|}
-\caption{Representation of consent in SotA}\label{table:sota:analysis:consent} \\
 \hline
 \textbf{Work} & \textbf{PD} & \textbf{Pu} & \textbf{Pr} & \textbf{Sh} & \textbf{St} & \textbf{Rp} & \textbf{S} & \textbf{W} & \textbf{D} & \textbf{SE} & \textbf{Ct} & \textbf{T} \\ \hline
 SPECIAL & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark &  & \cmark &  &  &  &  \\ \hline
@@ -920,7 +918,6 @@ DEFeND & Questionnaire & Obligations & \cmark &  & \cmark &  &  \\ \hline
 OPERANDO & Access Control & Process Flows &  & \cmark & \cmark &  &  \\ \hline
 PoSEID-on & Smart Contracts & Data Sharing &  & \cmark & \cmark &  &  \\ \hline
 DECODE & Smart Contracts & Consent &  & \cmark & \cmark &  &  \\ \hline
-
 \end{tabularx}
 \end{table}
 
